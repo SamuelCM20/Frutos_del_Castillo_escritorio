@@ -45,7 +45,13 @@ public class Controlador implements ActionListener {
 
         }
 
-        modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
+        try{
+            modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, "En el campo identificación solo se aceptan números");
+            return;
+        }
+        
         modeloLogin.setContrasenia(vistaLogin.contraseniaUser.getText());
 
 

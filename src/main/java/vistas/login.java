@@ -153,9 +153,8 @@ public class login extends javax.swing.JFrame {
     public void runLogin() {
 
         this.setTitle("Inicio de sesión");
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
-
+        this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

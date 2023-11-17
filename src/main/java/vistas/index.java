@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import Modelo.Login;
+import controladores.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -92,7 +94,7 @@ public class index extends javax.swing.JFrame {
         papelTapiz = new javax.swing.JLabel();
 
         btnGesUsuarios3.setBackground(new java.awt.Color(133, 33, 33));
-        btnGesUsuarios3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGesUsuarios3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGesUsuarios3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGesUsuarios3MouseEntered(evt);
@@ -125,7 +127,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnGesUsuarios5.setBackground(new java.awt.Color(133, 33, 33));
-        btnGesUsuarios5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGesUsuarios5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGesUsuarios5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnGesUsuarios5MouseEntered(evt);
@@ -168,7 +170,7 @@ public class index extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoCircle.png"))); // NOI18N
 
         btnInicio.setBackground(new java.awt.Color(133, 33, 33));
-        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnInicioMouseClicked(evt);
@@ -217,7 +219,7 @@ public class index extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 206, 172));
 
         btnPerfil.setBackground(new java.awt.Color(133, 33, 33));
-        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPerfilMouseClicked(evt);
@@ -255,7 +257,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnProductos.setBackground(new java.awt.Color(133, 33, 33));
-        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProductosMouseClicked(evt);
@@ -296,7 +298,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnUsuarios.setBackground(new java.awt.Color(133, 33, 33));
-        btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUsuariosMouseClicked(evt);
@@ -337,7 +339,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnSoporte.setBackground(new java.awt.Color(133, 33, 33));
-        btnSoporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSoporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSoporte.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSoporteMouseClicked(evt);
@@ -378,7 +380,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnPedidos.setBackground(new java.awt.Color(133, 33, 33));
-        btnPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPedidosMouseClicked(evt);
@@ -419,7 +421,7 @@ public class index extends javax.swing.JFrame {
         );
 
         btnReservas.setBackground(new java.awt.Color(133, 33, 33));
-        btnReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnReservas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnReservasMouseClicked(evt);
@@ -459,7 +461,16 @@ public class index extends javax.swing.JFrame {
             .addComponent(iconReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        btnLogout.setBackground(new java.awt.Color(204, 204, 204));
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        btnLogout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogout.setFocusPainted(false);
+        btnLogout.setFocusable(false);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
@@ -479,7 +490,7 @@ public class index extends javax.swing.JFrame {
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogout)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
                 .addContainerGap())
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -640,17 +651,6 @@ public class index extends javax.swing.JFrame {
         btnPedidos.setBackground(Color.decode(principalColor));
     }//GEN-LAST:event_btnPedidosMouseExited
 
-    private void btnReservasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseEntered
-        // TODO add your handling code here:
-        btnReservas.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnReservasMouseEntered
-
-    private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
-        // TODO add your handling code here:
-        btnReservas.setBackground(Color.decode(principalColor));
-
-    }//GEN-LAST:event_btnReservasMouseExited
-
     private void btnInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseExited
         // TODO add your handling code here:    String principalColor = "852121";
 
@@ -694,12 +694,6 @@ public class index extends javax.swing.JFrame {
         showPanel(sp);
     }//GEN-LAST:event_btnSoporteMouseClicked
 
-    private void btnReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseClicked
-        // TODO add your handling code here:
-        Reservas rs = new Reservas();
-        showPanel(rs);
-    }//GEN-LAST:event_btnReservasMouseClicked
-
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
         index prn = new index();
@@ -707,6 +701,33 @@ public class index extends javax.swing.JFrame {
         p.setLocationRelativeTo(null);
         p.setVisible(true);
     }//GEN-LAST:event_btnPerfilMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.setVisible(false);
+
+        Login modLogin = new Login();
+        login visLogin = new login();
+
+        Controlador ctrl = new Controlador(visLogin, modLogin);
+        ctrl.iniciar();
+
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
+        // TODO add your handling code here:
+        btnReservas.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnReservasMouseExited
+
+    private void btnReservasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseEntered
+        // TODO add your handling code here:
+        btnReservas.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnReservasMouseEntered
+
+    private void btnReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseClicked
+        // TODO add your handling code here:
+        Reservas rs = new Reservas();
+        showPanel(rs);
+    }//GEN-LAST:event_btnReservasMouseClicked
 
     
     public void runView() {
