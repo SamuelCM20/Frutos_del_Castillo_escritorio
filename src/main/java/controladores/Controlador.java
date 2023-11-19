@@ -40,7 +40,7 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (vistaLogin.txtIdentificacion.getText().equals("") || vistaLogin.contraseniaUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "casillas vacias");
+            JOptionPane.showMessageDialog(null, "Por favor, llene todas las casilla.");
             return;
 
         }
@@ -48,7 +48,7 @@ public class Controlador implements ActionListener {
         try{
             modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "En el campo identificación solo se aceptan números");
+            JOptionPane.showMessageDialog(null, "El campo identificación solo se acepta números");
             return;
         }
         
@@ -67,7 +67,7 @@ public class Controlador implements ActionListener {
                 x.runView();
                 
             } else {
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
+                JOptionPane.showMessageDialog(null, "Datos incorrectos.");
             }
             
         } catch (SQLException s) {
