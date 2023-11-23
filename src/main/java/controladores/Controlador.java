@@ -48,7 +48,7 @@ public class Controlador implements ActionListener {
         try{
             modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, "El campo identificación solo se acepta números");
+            JOptionPane.showMessageDialog(null, "El campo identificación solo acepta números.");
             return;
         }
         
