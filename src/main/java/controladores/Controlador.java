@@ -14,17 +14,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  *
  * @author samue
  */
 public class Controlador implements ActionListener {
-    
+
     Conexion conex = new Conexion();
     Connection con = conex.getConectarDB();
     private login vistaLogin;
     private Login modeloLogin;
-    
 
     public Controlador(login vistaLogin, Login modeloLogin) {
         this.vistaLogin = vistaLogin;
@@ -45,37 +46,41 @@ public class Controlador implements ActionListener {
 
         }
 
-        try{
+        try {
             modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
-        }catch(Exception error){
+        } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "El campo identificación solo acepta números.");
             return;
         }
-        
+
         modeloLogin.setContrasenia(vistaLogin.contraseniaUser.getText());
 
+        String consulta = "select * from users where id = " + modeloLogin.getIdUsuario();
 
-        String consulta = "select * from users where id = "+ modeloLogin.getIdUsuario()+" and password = '" + modeloLogin.getContrasenia()+"'";
-        
         ResultSet rc = conex.consulta(consulta);
         try {
-            
+
             if (rc != null && rc.next()) {
-                
-                vistas.index x = new vistas.index();
-                this.vistaLogin.setVisible(false);
-                x.runView();
-                
+                String passwordOld = rc.getString("password");
+
+                String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
+
+                if (BCrypt.checkpw(modeloLogin.getContrasenia(), passwordNew)) {
+                    vistas.index x = new vistas.index();
+                    this.vistaLogin.setVisible(false);
+                    x.runView();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos.");
+                }
+
             } else {
-                JOptionPane.showMessageDialog(null, "Datos incorrectos.");
+                JOptionPane.showMessageDialog(null, "Usuario no existe.");
             }
-            
+
         } catch (SQLException s) {
             s.printStackTrace();
         }
-        
 
     }
-    
 
 }
