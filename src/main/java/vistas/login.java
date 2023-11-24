@@ -72,7 +72,7 @@ public class login extends javax.swing.JFrame {
         contraseniaUser.setFont(new java.awt.Font("Mollen Personal Use Cond", 0, 18)); // NOI18N
         contraseniaUser.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bg.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copiaLogin.jpg"))); // NOI18N
 
         btnEntrar.setBackground(new java.awt.Color(96, 29, 73));
         btnEntrar.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
@@ -100,7 +100,7 @@ public class login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 774, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
