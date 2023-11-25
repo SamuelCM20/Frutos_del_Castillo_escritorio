@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import java.util.Date;//Analizar DATE
 
 /**
  *
@@ -16,6 +17,80 @@ import javax.swing.border.Border;
  */
 public class Reservas extends JPanel{
     
+    //Inicio modelo
+    private int idReserva;
+    private Date fecha_hora;//Analizar el tipo de dato DATE
+    private int cantidad_personas;
+    private String comentario;
+    //foraneas
+    private int usuarios_id;
+    private int mesas_id;
+    private int tipo_reserva_id;
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public Date getFecha_hora() {
+        return fecha_hora;
+    }
+
+    public void setFecha_hora(Date fecha_hora) {
+        this.fecha_hora = fecha_hora;
+    }
+
+    public int getCantidad_personas() {
+        return cantidad_personas;
+    }
+
+    public void setCantidad_personas(int cantidad_personas) {
+        this.cantidad_personas = cantidad_personas;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public int getUsuarios_id() {
+        return usuarios_id;
+    }
+
+    public void setUsuarios_id(int usuarios_id) {
+        this.usuarios_id = usuarios_id;
+    }
+
+    public int getMesas_id() {
+        return mesas_id;
+    }
+
+    public void setMesas_id(int mesas_id) {
+        this.mesas_id = mesas_id;
+    }
+
+    public int getTipo_reserva_id() {
+        return tipo_reserva_id;
+    }
+
+    public void setTipo_reserva_id(int tipo_reserva_id) {
+        this.tipo_reserva_id = tipo_reserva_id;
+    }
+
+    public static int getNumMesa() {
+        return numMesa;
+    }
+
+    public static void setNumMesa(int numMesa) {
+        Reservas.numMesa = numMesa;
+    }
+    //final modelo
     
       public static int numMesa = 1;
 

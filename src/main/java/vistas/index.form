@@ -2,8 +2,6 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="Modelo.Producto" name="producto1">
-    </Component>
     <Container class="javax.swing.JPanel" name="btnGesUsuarios3">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

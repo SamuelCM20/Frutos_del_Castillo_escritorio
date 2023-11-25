@@ -21,7 +21,6 @@ public class index extends javax.swing.JFrame {
 
     public String principalColor = "#852121", segundoColor = "#531415", tercerColor= "#601d49";
 
-
     /**
      * Creates new form index
      */
@@ -54,7 +53,6 @@ public class index extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        producto1 = new Modelo.Producto();
         btnGesUsuarios3 = new javax.swing.JPanel();
         labelPerfil4 = new javax.swing.JLabel();
         btnGesUsuarios5 = new javax.swing.JPanel();
@@ -772,7 +770,6 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel menuLateral;
     private javax.swing.JPanel panelBody;
     private javax.swing.JLabel papelTapiz;
-    private Modelo.Producto producto1;
     private javax.swing.JLabel textBiene;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
