@@ -18,7 +18,7 @@ public class Login {
    
     private int idUsuario;
     private String contrasenia;
-    
+    private String userName;
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
@@ -34,6 +34,14 @@ public class Login {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
     
     
