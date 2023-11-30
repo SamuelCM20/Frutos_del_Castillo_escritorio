@@ -12,7 +12,7 @@ public class Mesas {
     private int idMesa;
     private int numero_mesa;
     private int cantidad_sillas;
-    private int estado;//Tipo de dato TINYINT para verificar
+    private int estado;
 
     public int getIdMesa() {
         return idMesa;

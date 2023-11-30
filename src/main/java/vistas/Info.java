@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import controladores.ControladorInfo;
+import java.sql.SQLException;
+
 /**
  *
  * @author samue
@@ -15,8 +18,20 @@ public class Info extends javax.swing.JPanel {
      */
     public Info() {
         initComponents();
+        mostrarNumUsuariosEnVista();
     }
 
+    
+     private void mostrarNumUsuariosEnVista() {
+        try {
+            ControladorInfo controlador = new ControladorInfo();
+            int numUsuarios = controlador.contar_num_usuarios();
+            cantUsers.setText(String.valueOf(numUsuarios));
+        } catch (SQLException e) {
+            // Manejar excepciones
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
