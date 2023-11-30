@@ -54,7 +54,7 @@ public class Controlador implements ActionListener {
         }
 
         modeloLogin.setContrasenia(vistaLogin.contraseniaUser.getText());
-
+        
         String consulta = "select * from users where id = " + modeloLogin.getIdUsuario();
 
         ResultSet rc = conex.consulta(consulta);
@@ -62,12 +62,14 @@ public class Controlador implements ActionListener {
 
             if (rc != null && rc.next()) {
                 String passwordOld = rc.getString("password");
-
+                String UserName = rc.getString("nombre");
+                modeloLogin.setUserName(UserName);
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 if (BCrypt.checkpw(modeloLogin.getContrasenia(), passwordNew)) {
                     vistas.index x = new vistas.index();
                     this.vistaLogin.setVisible(false);
+                    x.setUserName(modeloLogin.getUserName());
                     x.runView();
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
