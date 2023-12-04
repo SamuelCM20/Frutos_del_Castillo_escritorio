@@ -13,6 +13,12 @@ public class Categorias {
     private String nombre;
     private String imagen;
 
+    public Categorias(int idCategorias, String nombre, String imagen){
+        this.idCategoria = idCategorias;
+        this.nombre = nombre;
+        this.imagen = imagen;
+    }
+    
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -37,5 +43,9 @@ public class Categorias {
         this.imagen = imagen;
     }
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
 }

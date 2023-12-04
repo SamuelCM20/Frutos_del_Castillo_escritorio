@@ -25,10 +25,10 @@ public class Pedidos extends javax.swing.JPanel {
         initComponents();
         JTableHeader header = tablePedidos.getTableHeader();
         JTableHeader headerP = tablePediProducts.getTableHeader();
+        
         index i = new index();
         i.tableColor(header);
         i.tableColor(headerP);
-
         
     }
 

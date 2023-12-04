@@ -73,7 +73,7 @@
                       <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                       <Component id="jPanel1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -115,51 +115,41 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="labelDescripcionP" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelDescripcionP" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="comboBoxCategoria" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="iconProduct" min="-2" pref="60" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnImg1" min="-2" pref="174" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnEnter" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txtPrecioP" alignment="0" pref="120" max="32767" attributes="0"/>
-                                              <Component id="txtNameProduct" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtNameProduct" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                                           <Component id="labelNameP" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelPrecio" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelCodigo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtPrecioP" min="-2" pref="123" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="comboBoxDispo" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                              <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelDispo" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="labelCodigo" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txtCodProduct" min="-2" pref="123" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="comboBoxDispo" max="32767" attributes="0"/>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="labelDispo" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Component id="comboBoxCategoria" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -182,20 +172,14 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtCodProduct" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="comboBoxDispo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPrecioP" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="comboBoxDispo" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="txtNameProduct" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtPrecioP" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="comboBoxCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="comboBoxCategoria" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="labelDescripcionP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -278,7 +262,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Codigo"/>
+                <Property name="text" type="java.lang.String" value="Precio"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNameProduct">
@@ -292,29 +276,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameProductActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtCodProduct">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
-                  </Border>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodProductActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelPrecio">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="sansserif" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Precio"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrecioP">
               <Properties>
@@ -374,7 +335,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="txtDescripcion">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>

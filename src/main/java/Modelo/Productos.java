@@ -22,6 +22,16 @@ public class Productos {
    private int categorias_id;
 
    
+   public Productos(int id, String nombre, double precio, String descripcion, int disponibilidad, String imagen1, int categoriaId){
+       this.idProductos = id;
+       this.nombre = nombre;
+       this.precio = precio;
+       this.descripcion = descripcion;
+       this.disponibilidad = disponibilidad;
+       this.imagen_1 = imagen1;
+       this.categorias_id = categoriaId;
+   }
+   
     public int getIdProductos() {
         return idProductos;
     }

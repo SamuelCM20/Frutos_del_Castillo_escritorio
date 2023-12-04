@@ -64,16 +64,16 @@ public class Conexion {
         return val;
     }
 
-        public ResultSet consulta(String sql) {
-            ResultSet resultado;
-            try {
-                Statement sentencia;
-                sentencia = getConectarDB().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-                resultado = sentencia.executeQuery(sql);
-            } catch (SQLException error) {
-                System.out.println("error en la consulta" + error);
-                resultado = null;
-            }
-            return resultado;
+    public ResultSet consulta(String sql) {
+        ResultSet resultado;
+        try {
+            Statement sentencia;
+            sentencia = getConectarDB().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            resultado = sentencia.executeQuery(sql);
+        } catch (SQLException error) {
+            System.out.println("error en la consulta" + error);
+            resultado = null;
         }
+        return resultado;
+    }
 }

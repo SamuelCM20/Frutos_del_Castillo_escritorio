@@ -31,12 +31,7 @@ public class index extends javax.swing.JFrame {
         Info in = new Info();
         showPanel(in);
         
-        
-        
-        
         UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
-        
-     
 
     }
     
