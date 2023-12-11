@@ -19,6 +19,8 @@ public class Info extends javax.swing.JPanel {
     public Info() {
         initComponents();
         mostrarNumUsuariosEnVista();
+        mostrarNumProductosEnVista();
+        mostrarNumReservasEnVista();
     }
 
     
@@ -27,6 +29,28 @@ public class Info extends javax.swing.JPanel {
             ControladorInfo controlador = new ControladorInfo();
             int numUsuarios = controlador.contar_num_usuarios();
             cantUsers.setText(String.valueOf(numUsuarios));
+        } catch (SQLException e) {
+            // Manejar excepciones
+            e.printStackTrace();
+        }
+    }
+     
+     private void mostrarNumProductosEnVista() {
+        try {
+            ControladorInfo controlador = new ControladorInfo();
+            int numProductos = controlador.contar_num_productos();
+            cantProductos.setText(String.valueOf(numProductos));
+        } catch (SQLException e) {
+            // Manejar excepciones
+            e.printStackTrace();
+        }
+    }
+     
+     private void mostrarNumReservasEnVista() {
+        try {
+            ControladorInfo controlador = new ControladorInfo();
+            int numReservas = controlador.contar_num_reservas();
+            cantReservas.setText(String.valueOf(numReservas));
         } catch (SQLException e) {
             // Manejar excepciones
             e.printStackTrace();

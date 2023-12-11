@@ -11,6 +11,11 @@ package controladores;
 
 import Modelo.Conexion;
 import Modelo.Usuarios;
+import Modelo.Productos;
+import Modelo.Mesas;
+import Modelo.Reservas;
+import Modelo.Compra;
+import Modelo.Factura;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +27,7 @@ public class ControladorInfo {
     
     
     public int contar_num_usuarios() throws SQLException{ 
-     int n= 0;
+     int nUsuarios= 0;
      Connection con = conex.getConectarDB();
      Statement stm = con.createStatement();
      // almaceno resultado de consulta en ResultSet
@@ -31,12 +36,48 @@ public class ControladorInfo {
      // primer fila. (El cursor inicia antes de la primer fila)
      if(rs.next()) {
        //Si hay resultados obtengo el valor. 
-        n= rs.getInt(1);
+        nUsuarios= rs.getInt(1);
      }
      // libero recursos
      stm.close();
      con.close();
-     return n;
+     return nUsuarios;
+}
+    
+    public int contar_num_productos() throws SQLException{ 
+     int nProductos= 0;
+     Connection con = conex.getConectarDB();
+     Statement stm = con.createStatement();
+     // almaceno resultado de consulta en ResultSet
+     ResultSet rs  = stm.executeQuery("SELECT count(*) FROM productos");
+     // chequeo que el result set no sea vacío, moviendo el cursor a la 
+     // primer fila. (El cursor inicia antes de la primer fila)
+     if(rs.next()) {
+       //Si hay resultados obtengo el valor. 
+        nProductos= rs.getInt(1);
+     }
+     // libero recursos
+     stm.close();
+     con.close();
+     return nProductos;
+}
+    
+    public int contar_num_reservas() throws SQLException{ 
+     int nReservas= 0;
+     Connection con = conex.getConectarDB();
+     Statement stm = con.createStatement();
+     // almaceno resultado de consulta en ResultSet
+     ResultSet rs  = stm.executeQuery("SELECT count(*) FROM reservas");
+     // chequeo que el result set no sea vacío, moviendo el cursor a la 
+     // primer fila. (El cursor inicia antes de la primer fila)
+     if(rs.next()) {
+       //Si hay resultados obtengo el valor. 
+        nReservas= rs.getInt(1);
+     }
+     // libero recursos
+     stm.close();
+     con.close();
+     return nReservas;
 }
     
 }
