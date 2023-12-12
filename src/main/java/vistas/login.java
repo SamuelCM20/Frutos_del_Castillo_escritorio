@@ -5,6 +5,9 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 
 /**
@@ -46,6 +49,8 @@ public class login extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1077, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1077, 600));
 
         labelInicioSesion.setBackground(new java.awt.Color(0, 0, 0));
         labelInicioSesion.setFont(new java.awt.Font("Boring Sans A Trial", 0, 36)); // NOI18N

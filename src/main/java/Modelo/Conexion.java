@@ -31,9 +31,9 @@ public class Conexion {
         String dbURL = "jdbc:mysql://" + host + ":" + puerto + "/" + nameBD + "?userSSL = false";
 
         try {
+            System.out.println("Conectado");
             Class.forName(driver);
             conect = DriverManager.getConnection(dbURL, usuario, pass);
-            System.out.println("Conectado");
         } catch (Exception e) {
 
             System.out.println("Desconectado");

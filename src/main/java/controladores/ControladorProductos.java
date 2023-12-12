@@ -60,7 +60,7 @@ public class ControladorProductos {
                 String descripcion = rc.getString("descripcion");
                 int disponibilidad = rc.getInt("disponibilidad");
                 String imagen1 = rc.getString("imagen_1");
-                int categoriaId = rc.getInt("categorias_id");
+                int categoriaId = rc.getInt("categoria_id");
                 
                 lista.add(new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId));
             }
@@ -167,7 +167,7 @@ public class ControladorProductos {
         
         Conexion objConexion = new Conexion();
     
-        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categorias_id) "
+        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id) "
                 + "VALUES('"+ nombre + "', "+ precio + ", 'descripcion', "+ disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
 
         

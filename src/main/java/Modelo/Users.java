@@ -10,17 +10,18 @@ package Modelo;
  */
 import java.util.Date;
 
-public class Usuarios {
+public class Users {
     
     private int idUsuario;
-    private String identificacion;
     private String nombre;
     private String apellido; 
     //pendiente fecha
-    private Date fecha_nacimiento;
+    private String fecha_nacimiento;
     private String email;
     private String password;
     private String celular;
+    
+
 
     public int getIdUsuario() {
         return idUsuario;
@@ -28,14 +29,6 @@ public class Usuarios {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
     }
 
     public String getNombre() {
@@ -54,11 +47,11 @@ public class Usuarios {
         this.apellido = apellido;
     }
 
-    public Date getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 

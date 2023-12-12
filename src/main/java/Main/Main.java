@@ -4,7 +4,7 @@
  */
 package Main;
 
-import Modelo.Login;
+import Modelo.Users;
 import controladores.Controlador;
 import vistas.login;
 
@@ -16,7 +16,7 @@ public class Main {
     
     public static void main(String args[]){
         
-        Login modLogin = new Login();
+        Users modLogin = new Users();
         login visLogin = new login();
         
         Controlador ctrl = new Controlador(visLogin, modLogin);

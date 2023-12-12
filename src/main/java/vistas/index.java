@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import Modelo.Login;
+import Modelo.Users;
 import controladores.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,7 +20,6 @@ import javax.swing.table.JTableHeader;
 public class index extends javax.swing.JFrame {
 
     public String principalColor = "#852121", segundoColor = "#531415", tercerColor= "#601d49";
-
     /**
      * Creates new form index
      */
@@ -38,7 +37,7 @@ public class index extends javax.swing.JFrame {
     public void setUserName(String name){
         this.userName.setText(name);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -689,16 +688,13 @@ public class index extends javax.swing.JFrame {
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
-        index prn = new index();
-        Perfil p = new Perfil(prn,true);
-        p.setLocationRelativeTo(null);
-        p.setVisible(true);
+                   
     }//GEN-LAST:event_btnPerfilMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         this.setVisible(false);
 
-        Login modLogin = new Login();
+        Users modLogin = new Users();
         login visLogin = new login();
 
         Controlador ctrl = new Controlador(visLogin, modLogin);
@@ -735,7 +731,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel btnInicio;
     private javax.swing.JButton btnLogout;
     private javax.swing.JPanel btnPedidos;
-    private javax.swing.JPanel btnPerfil;
+    public javax.swing.JPanel btnPerfil;
     private javax.swing.JPanel btnProductos;
     private javax.swing.JPanel btnReservas;
     private javax.swing.JPanel btnSoporte;

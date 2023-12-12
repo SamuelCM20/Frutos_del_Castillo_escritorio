@@ -10,7 +10,7 @@ package controladores;
  */
 
 import Modelo.Conexion;
-import Modelo.Usuarios;
+import Modelo.Users;
 import Modelo.Productos;
 import Modelo.Mesas;
 import Modelo.Reservas;
