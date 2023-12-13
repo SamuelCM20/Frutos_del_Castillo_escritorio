@@ -13,12 +13,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import org.mindrot.jbcrypt.BCrypt;
 
 
 import Modelo.Conexion;
@@ -106,6 +103,11 @@ public class ControladorProductos {
         }
     }
 
+    public String obtenerRutaImagen(String ruta){
+        String newRuta = ruta.replace("\\", "/");
+        return newRuta;
+    }
+    
     public String[] copiarImagen() {
         if (selectedFile != null){
             String basePath = Paths.get("src", "main").toString();
@@ -168,7 +170,7 @@ public class ControladorProductos {
         Conexion objConexion = new Conexion();
     
         String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id) "
-                + "VALUES('"+ nombre + "', "+ precio + ", 'descripcion', "+ disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
+                + "VALUES('"+ nombre + "', "+ precio + ",'" + descripcion + "', "+ disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
 
         
         boolean res = objConexion.ejecutar(consulta);
@@ -177,6 +179,37 @@ public class ControladorProductos {
             System.out.println("producto agreagado");
         }else{
             System.out.println("producto fallido");
+        }
+        
+    }
+    
+    public void actualizarProducto(int id, String nombre, double precio, int disponibilidad, int categoria, String descripcion, String[] imagen){
+        
+        String consulta;
+        
+        if(imagen[0].equalsIgnoreCase("true")){
+            
+            String rutaImagen = obtenerRutaImagen(imagen[1]);
+            
+            consulta = "UPDATE productos set nombre = '"+nombre+"'"
+                    + ", precio = '"+precio+"', disponibilidad = '"+disponibilidad+"', categoria_id = '"+categoria+"', descripcion = '"+descripcion+"'"
+                    + ", imagen_1 = '"+rutaImagen+"', imagen_2 = '"+rutaImagen+"' WHERE id = "+ id;
+        }else{
+            consulta = "UPDATE productos set nombre = '"+nombre+"'"
+                    + ", precio = '"+precio+"', disponibilidad = '"+disponibilidad+"', categoria_id = '"+categoria+"', descripcion = '"+descripcion+"'"
+                    + " WHERE id = "+id;
+        }
+        
+        
+        Conexion objConexion = new Conexion();
+        
+        
+        boolean res = objConexion.ejecutar(consulta);
+        
+        if(res){
+            System.out.println("producto actualizado");
+        }else{
+            System.out.println("Error al actualizar producto.");
         }
         
     }
@@ -215,6 +248,23 @@ public class ControladorProductos {
             return true;
         }else{
             return false;
+        }
+    }
+    
+    public boolean validarSeleccionTabla(int rowSelected){
+        if(rowSelected != -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public int getValorDisponibilidad(JComboBox disponibilidad) {
+        String opcion = (String) disponibilidad.getSelectedItem();
+        if (opcion.equalsIgnoreCase("disponible")) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

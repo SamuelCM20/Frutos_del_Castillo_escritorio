@@ -36,13 +36,27 @@ public class Productos extends javax.swing.JPanel {
         tableModel();
         fillRows();
         llenarComboBoxCategorias();
-
+        
+        setColorBotones();
+        
     }
 
+    public void setColorBotones(){
+        btnActualizar.setContentAreaFilled(false);
+        btnActualizar.setOpaque(true);
+        btnActualizar.setBackground(new Color(153,255,153));
+
+        btnImg1.setContentAreaFilled(false);
+        btnImg1.setOpaque(true);
+        btnImg1.setBackground(new Color(96,29,73));
+    }
     private ControladorProductos objControlador = new ControladorProductos();
 
     private DefaultComboBoxModel<Categorias> modelComboBox = new DefaultComboBoxModel<>();
     private DefaultTableModel modelTable;
+    private List<Modelo.Productos> listaProductos;
+    
+    int rowSelected = -1;
 
     public void limpiarCampos() {
         txtDescripcion.setText("");
@@ -100,9 +114,9 @@ public class Productos extends javax.swing.JPanel {
     public void fillRows() {
 
         modelTable.setRowCount(0);
-        List<Modelo.Productos> lista = objControlador.getProductos();
+        listaProductos = objControlador.getProductos();
 
-        lista.forEach(l -> {
+        listaProductos.forEach(l -> {
             String cat = getNombreCategoria(l.getCategorias_id());
             String disponibilidad = getNombreDisponibilidad(l.getDisponibilidad());
             modelTable.addRow(new Object[]{l.getIdProductos(), l.getNombre(), l.getPrecio(), cat, disponibilidad});
@@ -114,7 +128,7 @@ public class Productos extends javax.swing.JPanel {
         List<Categorias> lista = objControlador.getCategorias();
         objControlador.fillComboBox(lista, comboBoxCategoria, modelComboBox);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,6 +155,7 @@ public class Productos extends javax.swing.JPanel {
         labelDispo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProducts = new javax.swing.JTable();
+        btnActualizar = new javax.swing.JButton();
 
         labelNameP1.setBackground(new java.awt.Color(255, 255, 255));
         labelNameP1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -186,6 +201,7 @@ public class Productos extends javax.swing.JPanel {
         labelCodigo.setText("Precio");
 
         txtNameProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNameProduct.setMinimumSize(null);
         txtNameProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProductActionPerformed(evt);
@@ -193,6 +209,7 @@ public class Productos extends javax.swing.JPanel {
         });
 
         txtPrecioP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPrecioP.setMinimumSize(null);
         txtPrecioP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioPActionPerformed(evt);
@@ -223,6 +240,7 @@ public class Productos extends javax.swing.JPanel {
         btnEnter.setForeground(new java.awt.Color(255, 255, 255));
         btnEnter.setText("Añadir");
         btnEnter.setBorder(null);
+        btnEnter.setFocusPainted(false);
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterActionPerformed(evt);
@@ -234,6 +252,7 @@ public class Productos extends javax.swing.JPanel {
         btnImg1.setForeground(new java.awt.Color(255, 255, 255));
         btnImg1.setText("Ingresar Imagen");
         btnImg1.setBorder(null);
+        btnImg1.setFocusPainted(false);
         btnImg1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImg1ActionPerformed(evt);
@@ -354,6 +373,11 @@ public class Productos extends javax.swing.JPanel {
         tableProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableProducts.setShowHorizontalLines(true);
         tableProducts.setShowVerticalLines(true);
+        tableProducts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableProductsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableProducts);
         if (tableProducts.getColumnModel().getColumnCount() > 0) {
             tableProducts.getColumnModel().getColumn(0).setResizable(false);
@@ -363,6 +387,15 @@ public class Productos extends javax.swing.JPanel {
             tableProducts.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        btnActualizar.setBackground(new java.awt.Color(153, 255, 153));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setFocusPainted(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelProductsLayout = new javax.swing.GroupLayout(panelProducts);
         panelProducts.setLayout(panelProductsLayout);
         panelProductsLayout.setHorizontalGroup(
@@ -370,7 +403,10 @@ public class Productos extends javax.swing.JPanel {
             .addGroup(panelProductsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelProductsLayout.createSequentialGroup()
+                        .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizar))
                     .addGroup(panelProductsLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -381,7 +417,9 @@ public class Productos extends javax.swing.JPanel {
             panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar))
                 .addGap(10, 10, 10)
                 .addGroup(panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -405,14 +443,6 @@ public class Productos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameProductActionPerformed
 
-    public int getValorDisponibilidad() {
-        String opcion = (String) comboBoxDispo.getSelectedItem();
-        if (opcion.equalsIgnoreCase("disponible")) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
 
@@ -425,12 +455,15 @@ public class Productos extends javax.swing.JPanel {
                 String[] data = objControlador.copiarImagen();
 
                 if (data[0].equalsIgnoreCase("true")) {
-                    int disponibilidad = getValorDisponibilidad();
+                    
+                    String newRuta = objControlador.obtenerRutaImagen(data[1]);
+                    
+                    int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDispo);
 
                     Categorias categoria = (Categorias) comboBoxCategoria.getSelectedItem();
                     int idCategoria = categoria.getIdCategoria();
 
-                    objControlador.agregarProducto(txtNameProduct.getText().trim(), precio, disponibilidad, idCategoria, txtDescripcion.getText().trim(), data[1]);
+                    objControlador.agregarProducto(txtNameProduct.getText().trim(), precio, disponibilidad, idCategoria, txtDescripcion.getText().trim(), newRuta);
 
                     fillRows();
 
@@ -467,8 +500,28 @@ public class Productos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioPActionPerformed
 
+    private void tableProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductsMouseClicked
+        rowSelected = tableProducts.getSelectedRow();
+    }//GEN-LAST:event_tableProductsMouseClicked
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if(objControlador.validarSeleccionTabla(rowSelected)){
+            
+            Modelo.Productos producto = (Modelo.Productos) listaProductos.get(rowSelected);
+            
+            index prn = new index();
+            editarProducto obj = new editarProducto(prn, true, producto, this);
+            obj.setLocationRelativeTo(null);
+            obj.setResizable(false);
+            obj.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Se necesita seleccionar una fila de la tabla.");
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnImg1;
     private javax.swing.JComboBox<String> comboBoxCategoria;

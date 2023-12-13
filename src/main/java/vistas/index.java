@@ -31,6 +31,10 @@ public class index extends javax.swing.JFrame {
         showPanel(in);
         
         UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
+        
+        btnLogout.setContentAreaFilled(false);
+        btnLogout.setOpaque(true);
+        btnLogout.setBackground(new Color(133,33,33));
 
     }
     
