@@ -120,9 +120,13 @@ public class editarProducto extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(97, 29, 73));
         jLabel2.setText("Nombre");
 
+        fieldNombre.setMargin(new java.awt.Insets(2, 7, 2, 7));
+
         labelPrecio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelPrecio.setForeground(new java.awt.Color(97, 29, 73));
         labelPrecio.setText("Precio");
+
+        fieldPrecio.setMargin(new java.awt.Insets(2, 7, 2, 7));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(97, 29, 73));
@@ -144,6 +148,7 @@ public class editarProducto extends javax.swing.JDialog {
 
         fieldDescripcion.setColumns(20);
         fieldDescripcion.setRows(5);
+        fieldDescripcion.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldDescripcion.setSelectionColor(new java.awt.Color(173, 0, 113));
         jScrollPane2.setViewportView(fieldDescripcion);
 

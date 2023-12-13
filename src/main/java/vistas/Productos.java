@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -83,6 +84,8 @@ public class Productos extends javax.swing.JPanel {
         modelTable.addColumn("disponibilidad");
 
         tableProducts.setModel(modelTable);
+        
+        tableProducts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     public String getNombreCategoria(int id) {
@@ -200,16 +203,14 @@ public class Productos extends javax.swing.JPanel {
         labelCodigo.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelCodigo.setText("Precio");
 
-        txtNameProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtNameProduct.setMinimumSize(null);
+        txtNameProduct.setMargin(new java.awt.Insets(2, 7, 2, 7));
         txtNameProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameProductActionPerformed(evt);
             }
         });
 
-        txtPrecioP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtPrecioP.setMinimumSize(null);
+        txtPrecioP.setMargin(new java.awt.Insets(2, 7, 2, 7));
         txtPrecioP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioPActionPerformed(evt);
@@ -229,6 +230,7 @@ public class Productos extends javax.swing.JPanel {
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.setMargin(new java.awt.Insets(2, 7, 2, 7));
         txtDescripcion.setSelectionColor(new java.awt.Color(173, 0, 113));
         jScrollPane2.setViewportView(txtDescripcion);
 
