@@ -15,6 +15,8 @@ public class Compra {
     private double costo_total;
     private String comentario;
     private String direccion;
+    private int estado;
+
     //foraneas
     private int usuarios_id;
     private int usuarios_reservas_id;
@@ -66,6 +68,14 @@ public class Compra {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public int getUsuarios_id() {

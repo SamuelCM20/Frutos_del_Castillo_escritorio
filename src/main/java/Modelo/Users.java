@@ -22,6 +22,8 @@ public class Users {
     private String email;
     private String password;
     private String celular;
+    private int estado;
+
     
     
     public Users(int id,String nombre,String apellido,String fecha_nacimiento,String email,String celular){
@@ -93,7 +95,15 @@ public class Users {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
+    
  
 }
