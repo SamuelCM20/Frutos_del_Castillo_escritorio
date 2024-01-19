@@ -12,6 +12,8 @@ import java.util.Date;
 
 public class Users {
     
+    
+    
     private int idUsuario;
     private String nombre;
     private String apellido; 
@@ -21,6 +23,19 @@ public class Users {
     private String password;
     private String celular;
     
+    
+    public Users(int id,String nombre,String apellido,String fecha_nacimiento,String email,String celular){
+        
+        this.idUsuario = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.email = email;
+        this.celular = celular; 
+    }
+
+    public Users() {
+    }
 
 
     public int getIdUsuario() {

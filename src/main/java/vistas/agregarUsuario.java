@@ -47,6 +47,7 @@ public class agregarUsuario extends javax.swing.JDialog {
         labelPass = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nuevo usuario");
 
         panelEditUsers.setBackground(new java.awt.Color(255, 255, 255));
 

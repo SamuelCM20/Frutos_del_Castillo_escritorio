@@ -60,7 +60,7 @@ public class Controlador implements ActionListener {
    
     public void actionPerformed(ActionEvent e) {
 
-        if (vistaLogin.txtIdentificacion.getText().equals("") || vistaLogin.contraseniaUser.getText().equals("")) {
+        if (vistaLogin.txtEmail.getText().equals("") || vistaLogin.contraseniaUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, llene todas las casilla.");
             
             return;
@@ -68,15 +68,15 @@ public class Controlador implements ActionListener {
         }
 
         try {
-            modeloLogin.setIdUsuario(Integer.parseInt(vistaLogin.txtIdentificacion.getText()));
+            modeloLogin.setEmail(vistaLogin.txtEmail.getText());
         } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, "El campo identificación solo acepta números.");
-            return;
+            JOptionPane.showMessageDialog(null, "error");
+            return ;
         }
 
         modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
         
-        String consulta = "select * from users where id = " + modeloLogin.getIdUsuario();
+        String consulta = "select * from users where email = '" + modeloLogin.getEmail()+"'";
 
         ResultSet rc = conex.consulta(consulta);
         try {

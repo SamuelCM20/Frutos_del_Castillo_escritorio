@@ -52,6 +52,7 @@ public class Perfil extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mi perfil");
 
         jPanel1.setBackground(new java.awt.Color(250, 250, 250));
 

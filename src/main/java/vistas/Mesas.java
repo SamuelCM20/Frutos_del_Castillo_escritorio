@@ -10,12 +10,12 @@ import java.awt.FlowLayout;
  *
  * @author samue
  */
-public class Reservas extends javax.swing.JPanel {
+public class Mesas extends javax.swing.JPanel {
 
     /**
      * Creates new form Reservas
      */
-    public Reservas() {
+    public Mesas() {
         initComponents();
         content.setLayout(new FlowLayout(FlowLayout.LEFT));
     }
@@ -132,7 +132,7 @@ public class Reservas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMesaActionPerformed
-        agregarMesa();
+      
             // TODO add your handling code here:
     }//GEN-LAST:event_btnAddMesaActionPerformed
 
@@ -147,11 +147,6 @@ public class Reservas extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollReservas;
     // End of variables declaration//GEN-END:variables
     
-    public void agregarMesa(){
-        Modelo.Reservas rs = new Modelo.Reservas();
-       
-        content.add(rs); 
-        content.revalidate();
-    }
+   
 }
 

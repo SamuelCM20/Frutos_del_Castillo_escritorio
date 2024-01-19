@@ -38,12 +38,13 @@ public class login extends javax.swing.JFrame {
         labelInicioSesion = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         contrasenia = new javax.swing.JLabel();
-        txtIdentificacion = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         contraseniaUser = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio de sesión");
         setBackground(new java.awt.Color(245, 245, 220));
         setLocationByPlatform(true);
         setResizable(false);
@@ -59,18 +60,18 @@ public class login extends javax.swing.JFrame {
 
         id.setBackground(new java.awt.Color(0, 0, 0));
         id.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
-        id.setText("Identificación");
+        id.setText("Correo eléctronico");
 
         contrasenia.setBackground(new java.awt.Color(0, 0, 0));
         contrasenia.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
         contrasenia.setText("Contraseña");
 
-        txtIdentificacion.setFont(new java.awt.Font("Mollen Personal Use Cond", 0, 18)); // NOI18N
-        txtIdentificacion.setToolTipText("");
-        txtIdentificacion.setMargin(new java.awt.Insets(2, 8, 2, 8));
-        txtIdentificacion.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.setFont(new java.awt.Font("Mollen Personal Use Cond", 0, 18)); // NOI18N
+        txtEmail.setToolTipText("");
+        txtEmail.setMargin(new java.awt.Insets(2, 8, 2, 8));
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdentificacionActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -113,7 +114,7 @@ public class login extends javax.swing.JFrame {
                         .addComponent(labelInicioSesion))
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contraseniaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id)
                     .addComponent(contrasenia))
                 .addGap(14, 14, 14))
@@ -126,7 +127,7 @@ public class login extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addComponent(id)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(contrasenia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,9 +152,9 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdentificacionActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
@@ -183,6 +184,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelInicioSesion;
-    public javax.swing.JTextField txtIdentificacion;
+    public javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 }

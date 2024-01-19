@@ -52,6 +52,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditIdUsers = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar usuario");
 
         panelEditUsers.setBackground(new java.awt.Color(255, 255, 255));
 

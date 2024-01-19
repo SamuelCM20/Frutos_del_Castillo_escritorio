@@ -36,6 +36,7 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         txtConfirmPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Recuperar contraseña");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
