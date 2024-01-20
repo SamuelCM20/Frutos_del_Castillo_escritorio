@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import Modelo.Conexion;
+import Modelo.Mesas;
 import Modelo.Productos;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -38,6 +39,32 @@ public class ControladorProductos {
     
     public void setNullFile(){
         selectedFile = null;
+    }
+    
+    public Productos getProducto(int productoId){
+        Conexion objConexion = new Conexion();
+    
+        String consulta = "select * from productos where id = "+productoId;
+        
+        ResultSet rc = objConexion.consulta(consulta);
+        try {
+            while (rc != null && rc.next()) {
+                
+                int id = rc.getInt("id");
+                String nombre = rc.getString("nombre");
+                double precio = rc.getDouble("precio");
+                String descripcion = rc.getString("descripcion");
+                int disponibilidad = rc.getInt("disponibilidad");
+                String imagen1 = rc.getString("imagen_1");
+                int categoriaId = rc.getInt("categoria_id");
+                
+                return new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId);
+            }
+
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
+        return new Productos();
     }
     
     public List<Productos> getProductos(){

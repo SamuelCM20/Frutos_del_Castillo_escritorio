@@ -18,6 +18,18 @@ public class Factura {
     private int compra_usuarios_id;
     private int compra_usuarios_reservas_id;
     private int productos_id;
+    
+    public Factura(int idFactura, int cantidad_producto, double subtotal, double precio, int compra_id, int producto_id){
+        this.idFactura = idFactura;
+        this.cantidad_producto = cantidad_producto;
+        this.subtotal = subtotal;
+        this.precio = precio;
+        this.compra_id = compra_id;
+        this.productos_id = producto_id;
+    }
+    public Factura(){
+        
+    }
 
     public int getIdFactura() {
         return idFactura;

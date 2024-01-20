@@ -131,7 +131,7 @@ public class Productos extends javax.swing.JPanel {
         List<Categorias> lista = objControlador.getCategorias();
         objControlador.fillComboBox(lista, comboBoxCategoria, modelComboBox);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

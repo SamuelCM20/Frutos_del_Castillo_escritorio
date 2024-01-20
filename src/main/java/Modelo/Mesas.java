@@ -14,6 +14,15 @@ public class Mesas {
     private int cantidad_sillas;
     private int estado;
 
+    public Mesas(int id, int numero_mesa, int estado){
+        this.idMesa = id;
+        this.numero_mesa = numero_mesa;
+        this.estado = estado;
+    }
+    public Mesas(){
+        
+    }
+    
     public int getIdMesa() {
         return idMesa;
     }
@@ -44,5 +53,11 @@ public class Mesas {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+    
+    
+    @Override
+    public String toString(){
+        return String.valueOf(numero_mesa);
     }
 }

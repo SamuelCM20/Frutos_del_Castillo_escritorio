@@ -21,6 +21,19 @@ public class Compra {
     private int usuarios_id;
     private int usuarios_reservas_id;
     private int mesas_id;
+    
+    public Compra(int id, Date fecha_hora, float iva, double costo_total, String comentario, String direccion, int estado, int usuario_id, int mesa_id){
+       this.idCompra = id;
+       this.fecha_hora = fecha_hora;
+       this.iva = iva;
+       this.costo_total = costo_total;
+       this.comentario = comentario;
+       this.direccion = direccion;
+       this.estado = estado;
+       this.usuarios_id = usuario_id;
+       this.mesas_id = mesa_id;
+       
+   }
 
     public int getIdCompra() {
         return idCompra;

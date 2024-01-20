@@ -31,6 +31,9 @@ public class Productos {
        this.imagen_1 = imagen1;
        this.categorias_id = categoriaId;
    }
+   public Productos(){
+       
+   }
    
     public int getIdProductos() {
         return idProductos;
