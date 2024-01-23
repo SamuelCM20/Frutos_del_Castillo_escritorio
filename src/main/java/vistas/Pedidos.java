@@ -4,14 +4,17 @@
  */
 package vistas;
 
+import Modelo.Users;
 import controladores.ControladorFacturas;
 import controladores.ControladorMesas;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -46,12 +49,10 @@ public class Pedidos extends javax.swing.JPanel {
     private ControladorProductos objControladorProductos = new ControladorProductos();
     private ControladorMesas objControladorMesas = new ControladorMesas();
     private ControladorFacturas objControladorFacturas = new ControladorFacturas();
-    
-    
+
     private DefaultTableModel modelTable2;
     private DefaultTableModel modelTable1;
     private List<Modelo.Compra> listaPedidos;
-    
 
     public void tableModel() {
         modelTable1 = new DefaultTableModel() {
@@ -77,6 +78,7 @@ public class Pedidos extends javax.swing.JPanel {
         modelTable2.addColumn("Pedido");
         modelTable2.addColumn("Mesa");
         modelTable2.addColumn("Disponibilidad");
+        modelTable2.addColumn("Fecha");
 
         tablePedidos.setModel(modelTable2);
         tablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -88,17 +90,17 @@ public class Pedidos extends javax.swing.JPanel {
 
         listaPedidos.forEach(l -> {
             Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
-            modelTable2.addRow(new Object[]{"¡Nuevo pedido!", objMesa, "en proceso..."});
+            modelTable2.addRow(new Object[]{"¡Nuevo pedido!", objMesa, "en proceso...", l.getFecha_hora()});
         });
     }
-    
-    public void fillRowsPedidosProductos(int idCompra){
+
+    public void fillRowsPedidosProductos(int idCompra) {
         modelTable1.setRowCount(0);
         List<Modelo.Factura> listaPedidos = objControladorFacturas.getFacturas(idCompra);
-        
+
         listaPedidos.forEach(l -> {
             Modelo.Productos objProducto = objControladorProductos.getProducto(l.getProductos_id());
-            
+
             modelTable1.addRow(new Object[]{l.getIdFactura(), objProducto.getNombre(), l.getCantidad_producto()});
         });
     }
@@ -107,35 +109,40 @@ public class Pedidos extends javax.swing.JPanel {
         Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
         Modelo.Mesas mesa = (Modelo.Mesas) tablePedidos.getValueAt(rowSelected, 1);
 
+        Users usuario = objControlador.getUsuario(pedido.getUsuarios_id());
+
+        fieldEmpleado.setText(usuario.getNombre().toUpperCase());
+
         fieldMesa.setText(String.valueOf(mesa.getNumero_mesa()));
         fieldComentario.setText(pedido.getComentario());
-        
+
         fillRowsPedidosProductos(pedido.getIdCompra());
     }
 
-    public void limpiarCampos(){
+    public void limpiarCampos() {
         fieldComentario.setText("");
         fieldMesa.setText("");
         fieldEmpleado.setText("");
-        
+
         modelTable1.setRowCount(0);
-        
+        rowSelected = -1;
     }
-    
-    public void validacionCampos(){
-        if(objControlador.validarCamposPedido(fieldComentario.getText(), fieldMesa.getText(), fieldEmpleado.getText())){
+
+    public void validacionCampos() {
+        if (rowSelected != -1) {
             Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
-            if(objControlador.actualizarPedido(pedido.getIdCompra())){
+            if (objControlador.actualizarPedido(pedido.getIdCompra())) {
                 fillRows();
                 limpiarCampos();
-                JOptionPane.showMessageDialog(this, "Pedido tomado con exito");
-            }else{
-                JOptionPane.showMessageDialog(this, "Hubo un error al tomar el pedido");
+                JOptionPane.showMessageDialog(this, "Pedido tomado con exito.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Hubo un error al tomar el pedido.");
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Se necesitan los tres campos llenos");
+        } else {
+            JOptionPane.showMessageDialog(this, "Se necesita seleccionar un pedido de la tabla.");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -169,6 +176,7 @@ public class Pedidos extends javax.swing.JPanel {
         btnCompletarP = new javax.swing.JButton();
         btnFactura = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel4.setText("Pedido hecho por:");
@@ -186,17 +194,17 @@ public class Pedidos extends javax.swing.JPanel {
         tablePedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
         tablePedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"!Nuevo Pedido!", "Mesa 1", "en proceso,,,"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {"!Nuevo Pedido!", "Mesa 1", "en proceso,,,", null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Pedido", "Numero Mesa", "Disponibilidad"
+                "Pedido", "Numero Mesa", "Disponibilidad", "Fecha"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -248,6 +256,7 @@ public class Pedidos extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
         );
 
+        fieldMesa.setEditable(false);
         fieldMesa.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,11 +267,13 @@ public class Pedidos extends javax.swing.JPanel {
         labelEmpleado.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelEmpleado.setText("Empleado:");
 
+        fieldEmpleado.setEditable(false);
         fieldEmpleado.setMargin(new java.awt.Insets(2, 7, 2, 7));
 
         labelCliente.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelCliente.setText("Comentario:");
 
+        fieldComentario.setEditable(false);
         fieldComentario.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldComentario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,6 +444,13 @@ public class Pedidos extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("Historial");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPedidosLayout = new javax.swing.GroupLayout(panelPedidos);
         panelPedidos.setLayout(panelPedidosLayout);
         panelPedidosLayout.setHorizontalGroup(
@@ -446,7 +464,9 @@ public class Pedidos extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPedidosLayout.createSequentialGroup()
                         .addComponent(labelTitlePedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(73, 73, 73)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -459,7 +479,9 @@ public class Pedidos extends javax.swing.JPanel {
                         .addComponent(labelTitlePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPedidosLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -511,7 +533,7 @@ public class Pedidos extends javax.swing.JPanel {
 
     private void btnCancelarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPActionPerformed
         limpiarCampos();
-        
+
         ListSelectionModel selectionModel = tablePedidos.getSelectionModel();
         selectionModel.clearSelection();
     }//GEN-LAST:event_btnCancelarPActionPerformed
@@ -520,6 +542,14 @@ public class Pedidos extends javax.swing.JPanel {
         fillRows();
         limpiarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        if(frame != null){
+            HistorialPedidos obj = new HistorialPedidos(frame, true);
+            obj.runView();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -531,6 +561,7 @@ public class Pedidos extends javax.swing.JPanel {
     private javax.swing.JTextField fieldEmpleado;
     private javax.swing.JTextField fieldMesa;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
