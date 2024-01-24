@@ -116,7 +116,7 @@ public class ControladorPedidos {
                 String celular = rc.getString("celular");
                 int estado = rc.getInt("estado");
                 
-                return new Users(id, nombre, apellido, fechaNacimiento, email, celular);
+                return new Users(id, nombre, apellido, fechaNacimiento, email, celular,estado);
             }
 
         } catch (SQLException s) {

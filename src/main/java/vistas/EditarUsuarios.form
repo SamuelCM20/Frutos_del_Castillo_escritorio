@@ -53,17 +53,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtEditNameUsers" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaNacimiento" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cbxEditState" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="cbxEditState" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" pref="119" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -79,7 +82,7 @@
                                       <Component id="cbxEditRol" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtEditIdUsers" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="txtEditCelUsers" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -109,7 +112,7 @@
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtEditIdUsers" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="txtEditCelUsers" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -122,8 +125,8 @@
                                   <Component id="txtEditNameUsers" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="fieldFechaNacimiento" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -170,8 +173,6 @@
             <Property name="text" type="java.lang.String" value="Fecha nacimiento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fieldFechaNacimiento">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -199,9 +200,10 @@
         <Component class="javax.swing.JComboBox" name="cbxEditRol">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Administrador"/>
-                <StringItem index="1" value="Empleado"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Elige..."/>
+                <StringItem index="1" value="Administrador"/>
+                <StringItem index="2" value="Empleado"/>
               </StringArray>
             </Property>
           </Properties>
@@ -223,9 +225,10 @@
         <Component class="javax.swing.JComboBox" name="cbxEditState">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Disponible"/>
-                <StringItem index="1" value="No disponible"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Elige..."/>
+                <StringItem index="1" value="Activo"/>
+                <StringItem index="2" value="Inactivo"/>
               </StringArray>
             </Property>
           </Properties>
@@ -296,6 +299,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditSaveActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEditNameUsers">
         </Component>
@@ -320,13 +326,27 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="49" green="1d" red="61" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Identificaci&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="celular"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEditIdUsers">
+        <Component class="javax.swing.JTextField" name="txtEditCelUsers">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEditIdUsersActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEditCelUsersActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

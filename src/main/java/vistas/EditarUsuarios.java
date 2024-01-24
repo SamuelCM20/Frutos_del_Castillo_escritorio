@@ -4,6 +4,16 @@
  */
 package vistas;
 
+import com.toedter.calendar.JDateChooser;
+import java.text.ParseException;
+import controladores.controladorUsers;
+import java.awt.HeadlessException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author samue
@@ -13,13 +23,79 @@ public class EditarUsuarios extends javax.swing.JDialog {
     /**
      * Creates new form EditarUsuarios
      */
-    public EditarUsuarios(java.awt.Frame parent, boolean modal) {
+    
+    index prn = new index();
+    
+    private Modelo.Users user;
+    private vistas.Usuarios usuarios;
+    private JDateChooser dateChooser;
+    controladorUsers ctrlu = new controladorUsers();
+
+    public EditarUsuarios(java.awt.Frame parent, boolean modal, Modelo.Users user, vistas.Usuarios usuarios) throws ParseException {
         super(parent, modal);
+        this.user = user;
+        this.usuarios = usuarios;
         initComponents();
+        initDateChooser();
+
+        llenarCampos();
+    }
+
+    private void initDateChooser() {
+        dateChooser = new JDateChooser();
+        dateChooser.setBounds(30, 200, 125, 26);
+        dateChooser.setBackground(java.awt.Color.RED);
+
+        getContentPane().setLayout(null);
+        getContentPane().add(dateChooser);
+        dateChooser.repaint();
+
     }
 
     EditarUsuarios() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void llenarCampos() throws ParseException {
+
+        txtEditNameUsers.setText(user.getNombre());
+        txtEditLastnameUsers.setText(user.getApellido());
+        txtEditCelUsers.setText(user.getCelular());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+
+            Date fecha = sdf.parse(user.getFecha_nacimiento());
+            dateChooser.setDate(fecha);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        txtEditEmailUsers.setText(user.getEmail());
+
+        int rol = ctrlu.getRol(user.getIdUsuario());
+        cbxEditRol.setSelectedIndex(rol);
+
+        getEstado();
+
+    }
+
+    public void getEstado() {
+
+        int state = user.getEstado();
+
+        if (state == 0) {
+            cbxEditState.setSelectedIndex(2);
+        } else {
+            cbxEditState.setSelectedIndex(1);
+        }
+
+    }
+
+    public boolean correoModificado(String correoActual, String correoNuevo) {
+
+        return correoActual.equals(correoNuevo);
     }
 
     /**
@@ -33,7 +109,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
         panelEditUsers = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        fieldFechaNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEditEmailUsers = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -49,7 +124,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtEditLastnameUsers = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtEditIdUsers = new javax.swing.JTextField();
+        txtEditCelUsers = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar usuario");
@@ -68,13 +144,13 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(97, 29, 73));
         jLabel7.setText("Rol");
 
-        cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
+        cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(97, 29, 73));
         jLabel8.setText("Estado");
 
-        cbxEditState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "No disponible" }));
+        cbxEditState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Activo", "Inactivo" }));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
@@ -106,6 +182,11 @@ public class EditarUsuarios extends javax.swing.JDialog {
         btnEditSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditSave.setForeground(new java.awt.Color(255, 255, 255));
         btnEditSave.setText("Guardar");
+        btnEditSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditSaveActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(97, 29, 73));
@@ -113,13 +194,16 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(97, 29, 73));
-        jLabel5.setText("Identificación");
+        jLabel5.setText("celular");
 
-        txtEditIdUsers.addActionListener(new java.awt.event.ActionListener() {
+        txtEditCelUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEditIdUsersActionPerformed(evt);
+                txtEditCelUsersActionPerformed(evt);
             }
         });
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout panelEditUsersLayout = new javax.swing.GroupLayout(panelEditUsers);
         panelEditUsers.setLayout(panelEditUsersLayout);
@@ -134,15 +218,17 @@ public class EditarUsuarios extends javax.swing.JDialog {
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                         .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditUsersLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEditNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(fieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3))
                                 .addGap(45, 45, 45))
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addComponent(cbxEditState, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbxEditState, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
                                 .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +241,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
                                     .addComponent(cbxEditRol, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel5)
-                                    .addComponent(txtEditIdUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtEditCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
                                 .addComponent(btnPasswordRestore)
                                 .addGap(22, 22, 22)
@@ -176,7 +262,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
                                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(28, 28, 28))
-                                    .addComponent(txtEditIdUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEditCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel7)
                                 .addGap(5, 5, 5)
@@ -187,8 +273,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
                                 .addComponent(txtEditNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel3)
-                                .addGap(5, 5, 5)
-                                .addComponent(fieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(5, 5, 5)
@@ -228,31 +314,80 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
     private void btnPasswordRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswordRestoreActionPerformed
         // TODO add your handling code here:
+        vistas.RecuperarContraseña rc = new vistas.RecuperarContraseña(prn,user,true);
     }//GEN-LAST:event_btnPasswordRestoreActionPerformed
 
-    private void txtEditIdUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditIdUsersActionPerformed
+    private void txtEditCelUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditCelUsersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEditIdUsersActionPerformed
+    }//GEN-LAST:event_txtEditCelUsersActionPerformed
 
     private void btnPasswordRestoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPasswordRestoreMouseClicked
         // TODO add your handling code here:
-        index prn = new index();
-        RecuperarContraseña rc = new RecuperarContraseña(prn,true);
+        RecuperarContraseña rc = new RecuperarContraseña(prn,user,true);
         rc.setLocationRelativeTo(null);
-        rc.setVisible(true);  
+        this.setVisible(false);
+        rc.setVisible(true);
     }//GEN-LAST:event_btnPasswordRestoreMouseClicked
+
+    private void btnEditSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSaveActionPerformed
+        // TODO add your handling code here:
+
+        boolean validacionCampos = ctrlu.validarCampos(txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), txtEditCelUsers.getText(), dateChooser.getDate(), txtEditEmailUsers.getText(), txtEditNameUsers.getText(), cbxEditRol);
+        boolean validacionCampoEstado = ctrlu.validarCampoEstado(cbxEditState);
+        if (validacionCampos && validacionCampoEstado) {
+
+            try {
+
+                int cel = Integer.parseInt(txtEditCelUsers.getText().trim());
+
+                if (ctrlu.validarFecha(dateChooser.getDate())) {
+                    
+                            int rol = ctrlu.obtenerRol(cbxEditRol);
+                            int estado = ctrlu.obtenerEstado(cbxEditState);
+
+                    if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                        if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                            
+                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
+                            usuarios.fillRows();
+
+                            JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                            this.setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else {
+                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
+                        usuarios.fillRows();
+                        JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                        this.setVisible(false);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Todos los campos son requeridos");
+        }
+    }//GEN-LAST:event_btnEditSaveActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditSave;
     private javax.swing.JButton btnPasswordRestore;
     private javax.swing.JComboBox<String> cbxEditRol;
     private javax.swing.JComboBox<String> cbxEditState;
-    private javax.swing.JTextField fieldFechaNacimiento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -263,8 +398,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel panelEditUsers;
     private javax.swing.JLabel titleEditUsers;
+    private javax.swing.JTextField txtEditCelUsers;
     private javax.swing.JTextField txtEditEmailUsers;
-    private javax.swing.JTextField txtEditIdUsers;
     private javax.swing.JTextField txtEditLastnameUsers;
     private javax.swing.JTextField txtEditNameUsers;
     // End of variables declaration//GEN-END:variables

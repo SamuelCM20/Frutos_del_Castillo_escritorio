@@ -281,17 +281,17 @@ public class index extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnProductosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(iconProductos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addComponent(labelProductos)
-                .addGap(79, 79, 79))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnProductosLayout.setVerticalGroup(
             btnProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnProductosLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+            .addComponent(iconProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+            .addGroup(btnProductosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(labelProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(iconProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnUsuarios.setBackground(new java.awt.Color(133, 33, 33));
@@ -363,7 +363,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(btnPedidosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(iconPedidos)
-                .addGap(51, 51, 51)
+                .addGap(52, 52, 52)
                 .addComponent(labelPerfil8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -395,26 +395,28 @@ public class index extends javax.swing.JFrame {
         labelPerfil9.setForeground(new java.awt.Color(255, 206, 172));
         labelPerfil9.setText("Mesas");
 
-        iconReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reserva.png"))); // NOI18N
+        iconReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mesa.png"))); // NOI18N
 
         javax.swing.GroupLayout btnReservasLayout = new javax.swing.GroupLayout(btnReservas);
         btnReservas.setLayout(btnReservasLayout);
         btnReservasLayout.setHorizontalGroup(
             btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReservasLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addComponent(iconReservas)
-                .addGap(45, 45, 45)
+                .addGap(48, 48, 48)
                 .addComponent(labelPerfil9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnReservasLayout.setVerticalGroup(
             btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReservasLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(labelPerfil9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(iconReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(btnReservasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnReservasLayout.createSequentialGroup()
+                        .addComponent(labelPerfil9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addComponent(iconReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         btnLogout.setBackground(new java.awt.Color(133, 33, 33));
@@ -445,7 +447,7 @@ public class index extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
                 .addContainerGap())

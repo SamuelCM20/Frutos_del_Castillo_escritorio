@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.text.View;
 
 import org.mindrot.jbcrypt.BCrypt;
 import sun.awt.www.content.audio.x_aiff;
@@ -33,36 +34,39 @@ public class Controlador implements ActionListener {
     private Users modeloLogin;
     
     vistas.index x = new vistas.index();
-    Perfil p = new Perfil(x,true);
+    Perfil p = new Perfil(x, true);
 
     
-
-
     public Controlador(login vistaLogin, Users modeloLogin) {
         this.vistaLogin = vistaLogin;
         this.modeloLogin = modeloLogin;
         this.vistaLogin.btnEntrar.addActionListener(this);
+        
         x.btnPerfil.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    mostrarDatos();
-                    p.setLocationRelativeTo(null);
-                    p.setVisible(true);
-                }
-            });
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mostrarDatos();
+                p.setLocationRelativeTo(null);
+                p.setVisible(true);
+            }
+        });
+    }
+
+    public Controlador() {
+        //Poder crear herencias de la funcion obtenerRol()
     }
 
     public void iniciar() {
         vistaLogin.runLogin();
     }
-    
+
     @Override
-   
+
     public void actionPerformed(ActionEvent e) {
 
         if (vistaLogin.txtEmail.getText().equals("") || vistaLogin.contraseniaUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, llene todas las casilla.");
-            
+
             return;
 
         }
@@ -71,39 +75,40 @@ public class Controlador implements ActionListener {
             modeloLogin.setEmail(vistaLogin.txtEmail.getText());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "error");
-            return ;
+            return;
         }
 
         modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
-        
-        String consulta = "select * from users where email = '" + modeloLogin.getEmail()+"'";
+
+        String consulta = "select * from users where email = '" + modeloLogin.getEmail() + "'";
 
         ResultSet rc = conex.consulta(consulta);
         try {
 
             if (rc != null && rc.next()) {
                 String passwordOld = rc.getString("password");
+                int state = rc.getInt("estado");
                 String UserName = rc.getString("nombre");
                 String Lastname = rc.getString("apellido");
-                String UserId = rc.getString("id");
+                int UserId = rc.getInt("id");
                 String Birthday = rc.getString("fecha_nacimiento");
                 String Useremail = rc.getString("email");
                 String phone = rc.getString("nombre");
-                
-                modeloLogin.setIdUsuario(Integer.parseInt(UserId));
+
+                modeloLogin.setIdUsuario(UserId);
                 modeloLogin.setNombre(UserName);
                 modeloLogin.setApellido(Lastname);
                 modeloLogin.setFecha_nacimiento(Birthday);
                 modeloLogin.setEmail(Useremail);
                 modeloLogin.setCelular(phone);
-                
+                modeloLogin.setEstado(state);
+
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
                     this.vistaLogin.setVisible(false);
                     x.setUserName(modeloLogin.getNombre());
                     x.runView();
-                    obtenerRol();
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
                 }
@@ -115,41 +120,43 @@ public class Controlador implements ActionListener {
         } catch (SQLException s) {
             s.printStackTrace();
         }
-        
+
     }
-    
-    public void mostrarDatos(){
-        
+
+    public void mostrarDatos() {
+
         p.txtNombre.setText(modeloLogin.getNombre());
         p.txtApellido.setText(modeloLogin.getApellido());
         p.txtCorreo.setText(modeloLogin.getEmail());
         p.txtNacimiento.setText(modeloLogin.getFecha_nacimiento());
-        p.labelRol.setText(obtenerRol());
+        p.labelRol.setText(obtenerRol(modeloLogin.getIdUsuario()));
         
         p.txtNombre.setEditable(false);
         p.txtApellido.setEditable(false);
         p.txtCorreo.setEditable(false);
         p.txtNacimiento.setEditable(false);
     }
-    
-    public String obtenerRol(){
-        
-        String consulta = "SELECT roles.name AS role_name FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id" + 
-                " JOIN roles ON model_has_roles.role_id = roles.id WHERE users.id = "+modeloLogin.getIdUsuario()+";";
-        
+
+    public String obtenerRol(int id) {
+
+        int idUsuario = id;
+
+        String consulta = "SELECT roles.name AS role_name FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id"
+                + " JOIN roles ON model_has_roles.role_id = roles.id WHERE users.id = " + idUsuario + ";";
+
         ResultSet rc = conex.consulta(consulta);
-        
+
         try {
-             if (rc != null && rc.next()){
-                 
-                 String nombreRol = rc.getString("role_name");
-                 
-                 return nombreRol;
-             }else{
-                 System.out.println("error");
-             }
+            if (rc != null && rc.next()) {
+
+                String nombreRol = rc.getString("role_name");
+
+                return nombreRol;
+            } else {
+                System.out.println("error al obtener rol");
+            }
         } catch (Exception e) {
-            
+
             System.out.println(e);
         }
         return null;

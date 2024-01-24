@@ -23,16 +23,24 @@ public class Users {
     private String password;
     private String celular;
     private int estado;
+    private int getRol_id;
+    
+    
 
-    
-    
-    public Users(int id,String nombre,String apellido,String fecha_nacimiento,String email,String celular){
+   
+
+    public Users(int id,String nombre,String apellido,String fecha_nacimiento,String email,String celular,int estado){
         this.idUsuario = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha_nacimiento = fecha_nacimiento;
         this.email = email;
+
         this.celular = celular;
+
+        this.celular = celular; 
+        this.estado = estado;
+
     }
 
     public Users() {
@@ -101,6 +109,10 @@ public class Users {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public int getGetRol_id() {
+        return getRol_id;
     }
     
     

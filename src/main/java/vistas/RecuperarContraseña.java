@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import controladores.controladorUsers;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author samue
@@ -13,9 +16,20 @@ public class RecuperarContraseña extends javax.swing.JDialog {
     /**
      * Creates new form RecuperarContraseña
      */
-    public RecuperarContraseña(java.awt.Frame parent, boolean modal) {
+    
+    private Modelo.Users user;
+    public RecuperarContraseña(java.awt.Frame parent, Modelo.Users user, boolean modal) {
         super(parent, modal);
+        this.user = user;
         initComponents();
+    }
+
+    controladorUsers ctrlu = new controladorUsers();
+
+    private boolean validarContraseniasIguales(String newPass, String confirmPass) {
+
+        return newPass.equals(confirmPass);
+
     }
 
     /**
@@ -44,6 +58,11 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         btnPasswordSave.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnPasswordSave.setForeground(new java.awt.Color(255, 255, 255));
         btnPasswordSave.setText("Guardar");
+        btnPasswordSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPasswordSaveActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setText("Confirmar contraseña");
@@ -79,12 +98,12 @@ public class RecuperarContraseña extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPasswordSave, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
@@ -106,10 +125,33 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPasswordSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswordSaveActionPerformed
+        // TODO add your handling code here:
+
+        String newPass = txtNewPassword.getText();
+        String confirmPass = txtConfirmPassword.getText();
+        if (validarContraseniasIguales(newPass, confirmPass)) {
+
+            boolean password = ctrlu.validarLargoContrasenia(newPass);
+
+            if (password) {
+                
+                ctrlu.actualizarContrasenia(user.getIdUsuario(), newPass);
+                JOptionPane.showMessageDialog(this, "Contraseña actualizada exitosamente!");
+                this.setVisible(false);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "La contraseña debe tener minimo 6 caracteres");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+        }
+    }//GEN-LAST:event_btnPasswordSaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPasswordSave;

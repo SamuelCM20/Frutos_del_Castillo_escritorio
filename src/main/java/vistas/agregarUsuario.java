@@ -4,6 +4,13 @@
  */
 package vistas;
 
+import com.toedter.calendar.JDateChooser;
+import vistas.Usuarios;
+import controladores.controladorUsers;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+
 /**
  *
  * @author samue
@@ -13,11 +20,31 @@ public class agregarUsuario extends javax.swing.JDialog {
     /**
      * Creates new form agregarUsuario
      */
-    public agregarUsuario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    private JDateChooser dateChooser;
 
+    private Usuarios us;
+    
+    public agregarUsuario(java.awt.Frame parent, boolean modal, vistas.Usuarios us) {
+        super(parent, modal);
+        this.us = us;
+        initComponents();
+        initDateChooser();
+                
+    }  
+    
+    private controladorUsers ctrlu = new controladorUsers();
+
+    
+    private void initDateChooser(){
+    dateChooser = new JDateChooser();
+        dateChooser.setBounds(30, 200, 125, 26);
+        dateChooser.setBackground(java.awt.Color.RED);
+                
+        getContentPane().setLayout(null);
+        getContentPane().add(dateChooser);
+        dateChooser.repaint();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +56,6 @@ public class agregarUsuario extends javax.swing.JDialog {
 
         panelEditUsers = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        fieldFechaNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNewEmailUsers = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -42,9 +68,10 @@ public class agregarUsuario extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtNewLastnameUsers = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNewIdUsers = new javax.swing.JTextField();
+        txtNewCelUsers = new javax.swing.JTextField();
         newPassword = new javax.swing.JPasswordField();
         labelPass = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo usuario");
@@ -59,11 +86,17 @@ public class agregarUsuario extends javax.swing.JDialog {
         jLabel6.setForeground(new java.awt.Color(97, 29, 73));
         jLabel6.setText("Correo");
 
+        txtNewEmailUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNewEmailUsersActionPerformed(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(97, 29, 73));
         jLabel7.setText("Rol");
 
-        cbxNewRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Empleado" }));
+        cbxNewRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
@@ -80,6 +113,11 @@ public class agregarUsuario extends javax.swing.JDialog {
         btnNewSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNewSave.setForeground(new java.awt.Color(255, 255, 255));
         btnNewSave.setText("Guardar");
+        btnNewSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewSaveActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(97, 29, 73));
@@ -87,19 +125,20 @@ public class agregarUsuario extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(97, 29, 73));
-        jLabel5.setText("Identificación");
+        jLabel5.setText("Celular");
 
-        txtNewIdUsers.addActionListener(new java.awt.event.ActionListener() {
+        txtNewCelUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNewIdUsersActionPerformed(evt);
+                txtNewCelUsersActionPerformed(evt);
             }
         });
 
-        newPassword.setText("jPasswordField1");
-
         labelPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelPass.setForeground(new java.awt.Color(97, 29, 73));
-        labelPass.setText("Correo");
+        labelPass.setText("Contraseña");
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout panelEditUsersLayout = new javax.swing.GroupLayout(panelEditUsers);
         panelEditUsers.setLayout(panelEditUsersLayout);
@@ -113,13 +152,15 @@ public class agregarUsuario extends javax.swing.JDialog {
                         .addComponent(jSeparator1)
                         .addComponent(titleNewUsers)
                         .addGroup(panelEditUsersLayout.createSequentialGroup()
-                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
+                                .addComponent(cbxNewRol, 0, 125, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addComponent(fieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNewRol, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(45, 45, 45)
+                                .addGroup(panelEditUsersLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                             .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(panelEditUsersLayout.createSequentialGroup()
                                     .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +171,7 @@ public class agregarUsuario extends javax.swing.JDialog {
                                     .addGap(45, 45, 45)
                                     .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel5)
-                                        .addComponent(txtNewIdUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                        .addComponent(txtNewCelUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                         .addComponent(newPassword)
                                         .addComponent(labelPass)))
                                 .addGroup(panelEditUsersLayout.createSequentialGroup()
@@ -146,22 +187,20 @@ public class agregarUsuario extends javax.swing.JDialog {
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                         .addComponent(titleNewUsers)
                         .addGap(25, 25, 25)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(28, 28, 28))
-                                    .addComponent(txtNewIdUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(88, 88, 88))
+                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(panelEditUsersLayout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(28, 28, 28))
+                                .addComponent(txtNewCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(5, 5, 5)
                                 .addComponent(txtNewNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
-                                .addComponent(jLabel3)
-                                .addGap(5, 5, 5)
-                                .addComponent(fieldFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(5, 5, 5)
@@ -199,9 +238,58 @@ public class agregarUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNewIdUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewIdUsersActionPerformed
+    private void txtNewCelUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewCelUsersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNewIdUsersActionPerformed
+    }//GEN-LAST:event_txtNewCelUsersActionPerformed
+
+    private void txtNewEmailUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewEmailUsersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNewEmailUsersActionPerformed
+
+    private void btnNewSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewSaveActionPerformed
+        // TODO add your handling code here:
+        boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(),txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
+        
+        if(validacionCampos){
+            try {
+                int cel = Integer.parseInt(txtNewCelUsers.getText().trim());
+                if(ctrlu.validarFecha(dateChooser.getDate())){
+                    
+                    if (!ctrlu.validarCorreo(txtNewEmailUsers.getText())) {
+                        if(ctrlu.validarLargoContrasenia(newPassword.getText())){
+                            
+                            int rol = ctrlu.obtenerRol(cbxNewRol);
+                            ctrlu.agregarUsuario(txtNewNameUsers.getText().trim(),txtNewLastnameUsers.getText(),String.valueOf(cel), dateChooser.getDate(),txtNewEmailUsers.getText(), newPassword.getText(),rol);
+                           
+                            us.fillRows();
+                            
+                            JOptionPane.showMessageDialog(this, "Usuario creado exitosamente");
+                            this.setVisible(false);
+
+                        }else{
+                            JOptionPane.showMessageDialog(this, "La contraseña debe tener como minimo 6 o mas digitos");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa","Error de validacion",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }else{
+                     JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            } catch (NumberFormatException e) {
+                
+                JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
+
+            }
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Todos los campos son requeridos");
+
+        }
+        
+    }//GEN-LAST:event_btnNewSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,7 +299,7 @@ public class agregarUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNewSave;
     private javax.swing.JComboBox<String> cbxNewRol;
-    private javax.swing.JTextField fieldFechaNacimiento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -223,8 +311,8 @@ public class agregarUsuario extends javax.swing.JDialog {
     private javax.swing.JPasswordField newPassword;
     private javax.swing.JPanel panelEditUsers;
     private javax.swing.JLabel titleNewUsers;
+    private javax.swing.JTextField txtNewCelUsers;
     private javax.swing.JTextField txtNewEmailUsers;
-    private javax.swing.JTextField txtNewIdUsers;
     private javax.swing.JTextField txtNewLastnameUsers;
     private javax.swing.JTextField txtNewNameUsers;
     // End of variables declaration//GEN-END:variables
