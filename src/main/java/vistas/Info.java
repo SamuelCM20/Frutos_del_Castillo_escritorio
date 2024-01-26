@@ -20,13 +20,13 @@ public class Info extends javax.swing.JPanel {
         initComponents();
         mostrarNumUsuariosEnVista();
         mostrarNumProductosEnVista();
-        mostrarNumReservasEnVista();
+        mostrarNumPedidosEnVista();
+        mostrarNumMesasEnVista();
     }
 
-    
+    ControladorInfo controlador = new ControladorInfo();
      private void mostrarNumUsuariosEnVista() {
         try {
-            ControladorInfo controlador = new ControladorInfo();
             int numUsuarios = controlador.contar_num_usuarios();
             cantUsers.setText(String.valueOf(numUsuarios));
         } catch (SQLException e) {
@@ -37,7 +37,6 @@ public class Info extends javax.swing.JPanel {
      
      private void mostrarNumProductosEnVista() {
         try {
-            ControladorInfo controlador = new ControladorInfo();
             int numProductos = controlador.contar_num_productos();
             cantProductos.setText(String.valueOf(numProductos));
         } catch (SQLException e) {
@@ -46,11 +45,20 @@ public class Info extends javax.swing.JPanel {
         }
     }
      
-     private void mostrarNumReservasEnVista() {
+     private void mostrarNumPedidosEnVista() {
         try {
-            ControladorInfo controlador = new ControladorInfo();
-            int numReservas = controlador.contar_num_reservas();
-            cantReservas.setText(String.valueOf(numReservas));
+            int numPedidos = controlador.contar_num_pedidos();
+            cantPedidos.setText(String.valueOf(numPedidos));
+        } catch (SQLException e) {
+            // Manejar excepciones
+            e.printStackTrace();
+        }
+    }
+     
+     private void mostrarNumMesasEnVista() {
+        try {
+            int numMesas = controlador.contar_num_mesas();
+            cantReservas.setText(String.valueOf(numMesas));
         } catch (SQLException e) {
             // Manejar excepciones
             e.printStackTrace();

@@ -106,9 +106,15 @@ public class Controlador implements ActionListener {
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
-                    this.vistaLogin.setVisible(false);
-                    x.setUserName(modeloLogin.getNombre());
-                    x.runView();
+                    if (verEstado(state)) {
+                        this.vistaLogin.setVisible(false);
+                        x.setUserName(modeloLogin.getNombre());
+                        x.runView();
+                    }else{
+                        
+                        JOptionPane.showMessageDialog(null, "El usuario ingresado esta inactivo");
+                        
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
                 }
@@ -160,5 +166,11 @@ public class Controlador implements ActionListener {
             System.out.println(e);
         }
         return null;
+    }
+    
+    public boolean verEstado(int state){
+        
+        return state == 1;
+        
     }
 }
