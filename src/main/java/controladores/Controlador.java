@@ -32,16 +32,15 @@ public class Controlador implements ActionListener {
     Connection con = conex.getConectarDB();
     private login vistaLogin;
     private Users modeloLogin;
-    
+
     vistas.index x = new vistas.index();
     Perfil p = new Perfil(x, true);
 
-    
     public Controlador(login vistaLogin, Users modeloLogin) {
         this.vistaLogin = vistaLogin;
         this.modeloLogin = modeloLogin;
         this.vistaLogin.btnEntrar.addActionListener(this);
-        
+
         x.btnPerfil.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -106,14 +105,15 @@ public class Controlador implements ActionListener {
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
+
                     if (verEstado(state)) {
                         this.vistaLogin.setVisible(false);
                         x.setUserName(modeloLogin.getNombre());
                         x.runView();
-                    }else{
-                        
+                    } else {
+
                         JOptionPane.showMessageDialog(null, "El usuario ingresado esta inactivo");
-                        
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
@@ -136,11 +136,17 @@ public class Controlador implements ActionListener {
         p.txtCorreo.setText(modeloLogin.getEmail());
         p.txtNacimiento.setText(modeloLogin.getFecha_nacimiento());
         p.labelRol.setText(obtenerRol(modeloLogin.getIdUsuario()));
-        
+
         p.txtNombre.setEditable(false);
         p.txtApellido.setEditable(false);
         p.txtCorreo.setEditable(false);
         p.txtNacimiento.setEditable(false);
+    }
+
+    public boolean verEstado(int state) {
+
+        return state == 1;
+
     }
 
     public String obtenerRol(int id) {
@@ -167,10 +173,5 @@ public class Controlador implements ActionListener {
         }
         return null;
     }
-    
-    public boolean verEstado(int state){
-        
-        return state == 1;
-        
-    }
+
 }
