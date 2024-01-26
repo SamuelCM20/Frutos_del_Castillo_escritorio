@@ -16,27 +16,25 @@ import java.util.List;
  * @author jdelg
  */
 public class ControladorFacturas {
- 
-    
-    public List<Factura> getFacturas(int idCompra){
+
+    public List<Factura> getFacturas(int idCompra) {
         List<Factura> lista = new ArrayList<>();
-        
-        Conexion objConexion = new Conexion();
-   
-        String consulta = "select * from factura where compra_id = "+idCompra;
-        
-        ResultSet rc = objConexion.consulta(consulta);
-        try {
+
+        try ( Conexion objConexion = new Conexion();) {
+
+            String consulta = "select * from factura where compra_id = " + idCompra;
+
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
-                
+
                 int id = rc.getInt("id");
                 int cantidadProducto = rc.getInt("cantidad_producto");
                 double subtotal = rc.getDouble("subtotal");
                 double precio = rc.getDouble("precio");
-                
+
                 int compraId = rc.getInt("compra_id");
                 int productoId = rc.getInt("producto_id");
-                
+
                 lista.add(new Factura(id, cantidadProducto, subtotal, precio, compraId, productoId));
             }
 
@@ -44,6 +42,7 @@ public class ControladorFacturas {
             s.printStackTrace();
         }
         return lista;
+
     }
-    
+
 }

@@ -16,12 +16,11 @@ import java.sql.SQLException;
 public class ControladorMesas {
     
     public Mesas getMesa(int mesaId){
-        Conexion objConexion = new Conexion();
-    
+        
         String consulta = "select * from mesas where id = "+mesaId;
         
-        ResultSet rc = objConexion.consulta(consulta);
-        try {
+        try (Conexion objConexion = new Conexion();) {
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
                 
                 int id = rc.getInt("id");

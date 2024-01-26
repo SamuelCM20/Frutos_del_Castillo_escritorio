@@ -21,14 +21,15 @@ import java.sql.Statement;
 
 public class ControladorInfo {
 
-    Conexion conex = new Conexion();
+    
 
-    public int contar_num_usuarios() throws SQLException {
+    public int contar_num_usuarios() {
         int nUsuarios = 0;
-        Connection con = conex.getConectarDB();
-        Statement stm = con.createStatement();
+        
         // almaceno resultado de consulta en ResultSet
-        try {
+        try(Conexion conex = new Conexion()) {
+            Connection con = conex.getConectarDB();
+            Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT count(*) FROM users");
 
             if (rs.next()) {
@@ -43,12 +44,13 @@ public class ControladorInfo {
         return nUsuarios;
     }
 
-    public int contar_num_productos() throws SQLException {
+    public int contar_num_productos(){
         int nProductos = 0;
-        Connection con = conex.getConectarDB();
-        Statement stm = con.createStatement();
+        
         // almaceno resultado de consulta en ResultSet
-        try {
+        try (Conexion conex = new Conexion()) {
+            Connection con = conex.getConectarDB();
+            Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT count(*) FROM productos");
             // chequeo que el result set no sea vacío, moviendo el cursor a la 
             // primer fila. (El cursor inicia antes de la primer fila)
@@ -65,12 +67,14 @@ public class ControladorInfo {
         return nProductos;
     }
 
-    public int contar_num_pedidos() throws SQLException {
+    public int contar_num_pedidos() {
         int nPedidos = 0;
-        Connection con = conex.getConectarDB();
-        Statement stm = con.createStatement();
+        
 
-        try {
+        try (Conexion conex = new Conexion()){
+            
+            Connection con = conex.getConectarDB();
+            Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT count(*) FROM compras");
             // chequeo que el result set no sea vacío, moviendo el cursor a la 
             // primer fila. (El cursor inicia antes de la primer fila)
@@ -85,12 +89,13 @@ public class ControladorInfo {
         return nPedidos;
     }
 
-    public int contar_num_mesas() throws SQLException {
+    public int contar_num_mesas() {
         int nMesas = 0;
-        Connection con = conex.getConectarDB();
-        Statement stm = con.createStatement();
+        
 
-        try {
+        try (Conexion conex = new Conexion()) {
+            Connection con = conex.getConectarDB();
+            Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("SELECT count(*) FROM mesas ");
             // chequeo que el result set no sea vacío, moviendo el cursor a la 
             // primer fila. (El cursor inicia antes de la primer fila)

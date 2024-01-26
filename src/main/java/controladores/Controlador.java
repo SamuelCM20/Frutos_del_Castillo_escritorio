@@ -16,6 +16,9 @@ import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.View;
 
@@ -28,8 +31,6 @@ import sun.awt.www.content.audio.x_aiff;
  */
 public class Controlador implements ActionListener {
 
-    Conexion conex = new Conexion();
-    Connection con = conex.getConectarDB();
     private login vistaLogin;
     private Users modeloLogin;
 
@@ -81,9 +82,9 @@ public class Controlador implements ActionListener {
 
         String consulta = "select * from users where email = '" + modeloLogin.getEmail() + "'";
 
-        ResultSet rc = conex.consulta(consulta);
-        try {
-
+        
+        try (Conexion conex = new Conexion();) {
+            ResultSet rc = conex.consulta(consulta);
             if (rc != null && rc.next()) {
                 String passwordOld = rc.getString("password");
                 int state = rc.getInt("estado");
@@ -125,6 +126,8 @@ public class Controlador implements ActionListener {
 
         } catch (SQLException s) {
             s.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -156,9 +159,10 @@ public class Controlador implements ActionListener {
         String consulta = "SELECT roles.name AS role_name FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id"
                 + " JOIN roles ON model_has_roles.role_id = roles.id WHERE users.id = " + idUsuario + ";";
 
-        ResultSet rc = conex.consulta(consulta);
+        
 
-        try {
+        try (Conexion conex = new Conexion();) {
+            ResultSet rc = conex.consulta(consulta);
             if (rc != null && rc.next()) {
 
                 String nombreRol = rc.getString("role_name");
@@ -173,5 +177,5 @@ public class Controlador implements ActionListener {
         }
         return null;
     }
-
+    
 }

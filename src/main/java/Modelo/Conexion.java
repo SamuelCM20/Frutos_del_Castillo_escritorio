@@ -14,7 +14,7 @@ import java.sql.Statement;
  *
  * @author samue
  */
-public class Conexion {
+public class Conexion  implements AutoCloseable{
 
     Connection conect;
 
@@ -34,7 +34,7 @@ public class Conexion {
             
             Class.forName(driver);
             conect = DriverManager.getConnection(dbURL, usuario, pass);
-            //System.out.print("Conectado");
+           
         } catch (Exception e) {
 
             System.out.println("Desconectado");
@@ -43,9 +43,22 @@ public class Conexion {
     }
 
     public Connection getConectarDB() {
-
+        
+        System.out.print("Conectado");
         return conect;
 
+    }
+    public void close() {
+        try {
+            // Cerrar la conexión correctamente
+            if (conect != null && !conect.isClosed()) {
+                conect.close();
+                System.out.println("Conexión cerrada exitosamente.");
+            }
+        } catch (SQLException e) {
+            // Manejo de excepciones al cerrar la conexión
+            e.printStackTrace();
+        }
     }
 
     public boolean ejecutar(String sql) {
@@ -77,4 +90,7 @@ public class Conexion {
         }
         return resultado;
     }
+
+    
+    
 }

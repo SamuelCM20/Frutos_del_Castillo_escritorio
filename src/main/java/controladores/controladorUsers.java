@@ -32,13 +32,10 @@ public class controladorUsers {
     public List<Users> getUsers() {
         List<Users> lista = new ArrayList<>();
 
-        Conexion con = new Conexion();
+        try ( Conexion con = new Conexion()) {
+            String consulta = "select * from users";
 
-        String consulta = "select * from users";
-
-        ResultSet rc = con.consulta(consulta);
-
-        try {
+            ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {
 
                 int id = rc.getInt("id");
@@ -51,63 +48,64 @@ public class controladorUsers {
                 lista.add(new Users(id, nombre, apellido, fecha_na, email, celular, estado));
             }
         } catch (SQLException e) {
-
-            e.printStackTrace();
         }
 
         return lista;
     }
 
     public void agregarUsuario(String nombre, String apellido, String celular, Date selectedDate, String correo, String contrasenia, int rol) {
-        Conexion con = new Conexion();
 
-        String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
-        java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
+        try ( Conexion con = new Conexion()) {
+            String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
+            java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
-        String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,estado) "
-                + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "'," + 1 + ");";
+            String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,estado) "
+                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "'," + 1 + ");";
 
-        boolean res = con.ejecutar(consulta);
+            boolean res = con.ejecutar(consulta);
 
-        if (res) {
+            if (res) {
 
-            agregarRol(correo, rol);
-            System.out.println("usuario creado exitosamente");
+                agregarRol(correo, rol);
+                System.out.println("usuario creado exitosamente");
 
-        } else {
+            } else {
 
-            System.out.println("error al agregar");
+                System.out.println("error al agregar");
+            }
+
+        } catch (Exception e) {
         }
+
     }
 
     public void actualizarUsuario(int id, String nombre, String apellido, String celular, Date selectedDate, String correo, int rol, int estado) {
 
-        Conexion con = new Conexion();
+        try ( Conexion con = new Conexion()) {
+            java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
-        java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
+            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "', estado =" + estado + " WHERE id = " + id;
 
-        String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "', estado =" + estado + " WHERE id = " + id;
+            boolean res = con.ejecutar(consulta);
 
-        boolean res = con.ejecutar(consulta);
+            if (res) {
+                actualizarRol(id, rol);
+                System.out.println("usuario actualizado");
+            } else {
+                System.out.println("Error al actualizar usuario.");
+            }
 
-        if (res) {
-            actualizarRol(id, rol);
-            System.out.println("usuario actualizado");
-        } else {
-            System.out.println("Error al actualizar usuario.");
+        } catch (Exception e) {
         }
 
     }
 
     public void agregarRol(String correo, int rol) {
 
-        Conexion con = new Conexion();
-
         String consulta = "SELECT id FROM users WHERE email = '" + correo + "'";
 
-        ResultSet rs = con.consulta(consulta);
-        try {
-
+        try ( Conexion con = new Conexion()) {
+            ResultSet rs = con.consulta(consulta);
             if (rs != null && rs.next()) {
                 int id = rs.getInt("id");
 
@@ -131,17 +129,19 @@ public class controladorUsers {
 
     public void actualizarRol(int id, int rol) {
 
-        Conexion con = new Conexion();
+        try ( Conexion con = new Conexion()) {
+            String consulta = "UPDATE model_has_roles "
+                    + "SET role_id =" + rol + " WHERE model_id = " + id;
 
-        String consulta = "UPDATE model_has_roles "
-                + "SET role_id =" + rol + " WHERE model_id = " + id;
+            boolean res = con.ejecutar(consulta);
 
-        boolean res = con.ejecutar(consulta);
+            if (res) {
+                System.out.println("rol actualizado con exito");
+            } else {
+                System.out.println("error en actualizar rol");
+            }
 
-        if (res) {
-            System.out.println("rol actualizado con exito");
-        } else {
-            System.out.println("error en actualizar rol");
+        } catch (Exception e) {
         }
 
     }
@@ -159,13 +159,11 @@ public class controladorUsers {
 
     public int getRol(int id) {
 
-        Conexion con = new Conexion();
         int rol;
         String consulta = "SELECT role_id FROM model_has_roles WHERE model_id =" + id;
 
-        ResultSet rs = con.consulta(consulta);
-
-        try {
+        try ( Conexion con = new Conexion()) {
+            ResultSet rs = con.consulta(consulta);
 
             if (rs.next()) {
                 rol = rs.getInt("role_id");
@@ -197,70 +195,56 @@ public class controladorUsers {
     public boolean validarCampos(String nombre, String apellido, String celular, Date selectedDate, String correo, String contrasenia, JComboBox rol) {
         boolean validacionRol = validarOpcionRol(rol);
 
-        if (nombre.equals("") || apellido.equals("") || celular.equals("") || selectedDate == null || correo.equals("") || contrasenia.equals("") || !validacionRol) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(nombre.equals("") || apellido.equals("") || celular.equals("") || selectedDate == null || correo.equals("") || contrasenia.equals("") || !validacionRol);
     }
 
     public boolean validarCampoEstado(JComboBox item) {
         String opcion = (String) item.getSelectedItem();
 
-        if (opcion.equalsIgnoreCase("Activo") || opcion.equalsIgnoreCase("Inactivo")) {
-            return true;
-        } else {
-            return false;
-        }
+        return opcion.equalsIgnoreCase("Activo") || opcion.equalsIgnoreCase("Inactivo");
     }
 
     public boolean validarOpcionRol(JComboBox item) {
 
         String opcion = (String) item.getSelectedItem();
 
-        if (opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado")) {
-            return true;
-        } else {
-            return false;
-        }
+        return opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado");
 
     }
 
     public boolean validarFecha(Date selectedDate) {
 
         Date currentDate = new Date();
-        if (selectedDate.before(currentDate)) {
-            return true;
-        } else {
-            return false;
-        }
+        return selectedDate.before(currentDate);
     }
 
     public boolean validarCorreo(String email) {
 
-        Conexion con = new Conexion();
-
         String patronCorreo = ".*@.*";
 
         String consulta = "SELECT COUNT(*) AS cantidad FROM users WHERE email = '" + email + "'";
+        try ( Conexion con = new Conexion()) {
+            ResultSet rs = con.consulta(consulta);
 
-        ResultSet rs = con.consulta(consulta);
+            Pattern patron = Pattern.compile(patronCorreo);
+            Matcher matcher = patron.matcher(email);
 
-        Pattern patron = Pattern.compile(patronCorreo);
-        Matcher matcher = patron.matcher(email);
+            if (matcher.matches()) {
 
-        if (matcher.matches()) {
-
-            try {
-                if (rs.next()) {
-                    int cantidad = rs.getInt("cantidad");
-                    return cantidad > 0;
+                try {
+                    if (rs.next()) {
+                        int cantidad = rs.getInt("cantidad");
+                        return cantidad > 0;
+                    }
+                } catch (SQLException e) {
                 }
-            } catch (SQLException e) {
+            } else {
+                return false;
             }
-        } else {
-            return false;
+
+        } catch (Exception e) {
         }
+
         return false;
     }
 
@@ -283,13 +267,16 @@ public class controladorUsers {
 
         String consulta = "UPDATE users SET password = '" + newPassEncryp + "'WHERE id =  " + id;
 
-        Conexion con = new Conexion();
-        boolean res = con.ejecutar(consulta);
+        try ( Conexion con = new Conexion()) {
+            boolean res = con.ejecutar(consulta);
 
-        if (res) {
-            System.out.println("Contrasenia actualizada con exito");
-        } else {
-            System.out.println("error en actualizar contrasenia");
+            if (res) {
+                System.out.println("Contrasenia actualizada con exito");
+            } else {
+                System.out.println("error en actualizar contrasenia");
+            }
+
+        } catch (Exception e) {
         }
 
     }

@@ -16,7 +16,7 @@ public class Info extends javax.swing.JPanel {
     /**
      * Creates new form Info
      */
-    public Info() {
+    public Info(){
         initComponents();
         mostrarNumUsuariosEnVista();
         mostrarNumProductosEnVista();
@@ -25,44 +25,24 @@ public class Info extends javax.swing.JPanel {
     }
 
     ControladorInfo controlador = new ControladorInfo();
-     private void mostrarNumUsuariosEnVista() {
-        try {
-            int numUsuarios = controlador.contar_num_usuarios();
-            cantUsers.setText(String.valueOf(numUsuarios));
-        } catch (SQLException e) {
-            // Manejar excepciones
-            e.printStackTrace();
-        }
+     private void mostrarNumUsuariosEnVista(){
+         int numUsuarios = controlador.contar_num_usuarios(); // Manejar excepciones
+         cantUsers.setText(String.valueOf(numUsuarios));
     }
      
      private void mostrarNumProductosEnVista() {
-        try {
-            int numProductos = controlador.contar_num_productos();
-            cantProductos.setText(String.valueOf(numProductos));
-        } catch (SQLException e) {
-            // Manejar excepciones
-            e.printStackTrace();
-        }
+         int numProductos = controlador.contar_num_productos(); // Manejar excepciones
+         cantProductos.setText(String.valueOf(numProductos));
     }
      
      private void mostrarNumPedidosEnVista() {
-        try {
-            int numPedidos = controlador.contar_num_pedidos();
-            cantPedidos.setText(String.valueOf(numPedidos));
-        } catch (SQLException e) {
-            // Manejar excepciones
-            e.printStackTrace();
-        }
+         int numPedidos = controlador.contar_num_pedidos(); // Manejar excepciones
+         cantPedidos.setText(String.valueOf(numPedidos));
     }
      
      private void mostrarNumMesasEnVista() {
-        try {
-            int numMesas = controlador.contar_num_mesas();
-            cantReservas.setText(String.valueOf(numMesas));
-        } catch (SQLException e) {
-            // Manejar excepciones
-            e.printStackTrace();
-        }
+         int numMesas = controlador.contar_num_mesas(); // Manejar excepciones
+         cantReservas.setText(String.valueOf(numMesas));
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -17,7 +17,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
 import Modelo.Conexion;
 import Modelo.Mesas;
 import Modelo.Productos;
@@ -36,20 +35,19 @@ import javax.swing.JTextField;
 public class ControladorProductos {
 
     private File selectedFile;
-    
-    public void setNullFile(){
+
+    public void setNullFile() {
         selectedFile = null;
     }
-    
-    public Productos getProducto(int productoId){
-        Conexion objConexion = new Conexion();
-    
-        String consulta = "select * from productos where id = "+productoId;
-        
-        ResultSet rc = objConexion.consulta(consulta);
-        try {
+
+    public Productos getProducto(int productoId) {
+
+        String consulta = "select * from productos where id = " + productoId;
+
+        try ( Conexion objConexion = new Conexion()) {
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
-                
+
                 int id = rc.getInt("id");
                 String nombre = rc.getString("nombre");
                 double precio = rc.getDouble("precio");
@@ -57,7 +55,7 @@ public class ControladorProductos {
                 int disponibilidad = rc.getInt("disponibilidad");
                 String imagen1 = rc.getString("imagen_1");
                 int categoriaId = rc.getInt("categoria_id");
-                
+
                 return new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId);
             }
 
@@ -66,18 +64,16 @@ public class ControladorProductos {
         }
         return new Productos();
     }
-    
-    public List<Productos> getProductos(){
+
+    public List<Productos> getProductos() {
         List<Productos> lista = new ArrayList<>();
-        
-        Conexion objConexion = new Conexion();
-    
+
         String consulta = "select * from productos";
-        
-        ResultSet rc = objConexion.consulta(consulta);
-        try {
+
+        try ( Conexion objConexion = new Conexion()) {
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
-                
+
                 int id = rc.getInt("id");
                 String nombre = rc.getString("nombre");
                 double precio = rc.getDouble("precio");
@@ -85,7 +81,7 @@ public class ControladorProductos {
                 int disponibilidad = rc.getInt("disponibilidad");
                 String imagen1 = rc.getString("imagen_1");
                 int categoriaId = rc.getInt("categoria_id");
-                
+
                 lista.add(new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId));
             }
 
@@ -130,13 +126,13 @@ public class ControladorProductos {
         }
     }
 
-    public String obtenerRutaImagen(String ruta){
+    public String obtenerRutaImagen(String ruta) {
         String newRuta = ruta.replace("\\", "/");
         return newRuta;
     }
-    
+
     public String[] copiarImagen() {
-        if (selectedFile != null){
+        if (selectedFile != null) {
             String basePath = Paths.get("src", "main").toString();
 
             // Ruta relativa al src/main donde se guardarán las imágenes
@@ -144,42 +140,40 @@ public class ControladorProductos {
 
             // Crear el directorio de destino dentro de resources si no existe
             Path destinationDir = Paths.get(basePath, relativePath);
-            
+
             try {
                 Files.createDirectories(destinationDir);
                 // Copiar el archivo seleccionado al directorio de destino
 
                 Path destinationPath = destinationDir.resolve(selectedFile.getName());
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                
+
                 System.out.println("Imagen guardada, ruta de destino: " + destinationPath.toString());
-                
+
                 String[] data = {"true", destinationPath.toString()};
                 return data;
-                
+
             } catch (IOException ex) {
                 ex.printStackTrace();
                 System.out.println("Error al guardar la imagen en el proyecto.");
-                
+
                 String[] data = {"false"};
                 return data;
             }
-        }else{
-            
+        } else {
+
             String[] data = {"false"};
             return data;
         }
     }
-    
-    public List<Categorias> getCategorias(){
+
+    public List<Categorias> getCategorias() {
         List<Categorias> lista = new ArrayList<>();
-        
-        Conexion objConexion = new Conexion();
-    
+
         String consulta = "select * from categorias";
-        
-        ResultSet rc = objConexion.consulta(consulta);
-        try {
+
+        try ( Conexion objConexion = new Conexion()) {
+            ResultSet rc = objConexion.consulta(consulta);
             lista.add(new Categorias(0, "Seleccionar", "None"));
             while (rc != null && rc.next()) {
                 int id = rc.getInt("id");
@@ -191,101 +185,89 @@ public class ControladorProductos {
         }
         return lista;
     }
-    
-    public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen){
-        
-        Conexion objConexion = new Conexion();
-    
-        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id) "
-                + "VALUES('"+ nombre + "', "+ precio + ",'" + descripcion + "', "+ disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
 
-        
-        boolean res = objConexion.ejecutar(consulta);
-        
-        if(res){
-            System.out.println("producto agreagado");
-        }else{
-            System.out.println("producto fallido");
+    public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen) {
+
+        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id) "
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
+
+        try ( Conexion objConexion = new Conexion()) {
+            boolean res = objConexion.ejecutar(consulta);
+
+            if (res) {
+                System.out.println("producto agreagado");
+            } else {
+                System.out.println("producto fallido");
+            }
+
+        } catch (Exception e) {
         }
-        
+
     }
-    
-    public void actualizarProducto(int id, String nombre, double precio, int disponibilidad, int categoria, String descripcion, String[] imagen){
-        
+
+    public void actualizarProducto(int id, String nombre, double precio, int disponibilidad, int categoria, String descripcion, String[] imagen) {
+
         String consulta;
-        
-        if(imagen[0].equalsIgnoreCase("true")){
-            
+
+        if (imagen[0].equalsIgnoreCase("true")) {
+
             String rutaImagen = obtenerRutaImagen(imagen[1]);
-            
-            consulta = "UPDATE productos set nombre = '"+nombre+"'"
-                    + ", precio = '"+precio+"', disponibilidad = '"+disponibilidad+"', categoria_id = '"+categoria+"', descripcion = '"+descripcion+"'"
-                    + ", imagen_1 = '"+rutaImagen+"', imagen_2 = '"+rutaImagen+"' WHERE id = "+ id;
-        }else{
-            consulta = "UPDATE productos set nombre = '"+nombre+"'"
-                    + ", precio = '"+precio+"', disponibilidad = '"+disponibilidad+"', categoria_id = '"+categoria+"', descripcion = '"+descripcion+"'"
-                    + " WHERE id = "+id;
+
+            consulta = "UPDATE productos set nombre = '" + nombre + "'"
+                    + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
+                    + ", imagen_1 = '" + rutaImagen + "', imagen_2 = '" + rutaImagen + "' WHERE id = " + id;
+        } else {
+            consulta = "UPDATE productos set nombre = '" + nombre + "'"
+                    + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
+                    + " WHERE id = " + id;
         }
-        
-        
-        Conexion objConexion = new Conexion();
-        
-        
-        boolean res = objConexion.ejecutar(consulta);
-        
-        if(res){
+
+        try (Conexion objConexion = new Conexion()) {
+            boolean res = objConexion.ejecutar(consulta);
+
+        if (res) {
             System.out.println("producto actualizado");
-        }else{
+        } else {
             System.out.println("Error al actualizar producto.");
         }
+            
+        } catch (Exception e) {
+        }
+       
+
         
+
     }
-    
-    public void fillComboBox(List<Categorias> lista, JComboBox comboBoxCategorias, DefaultComboBoxModel<Categorias> modelComboBox){
+
+    public void fillComboBox(List<Categorias> lista, JComboBox comboBoxCategorias, DefaultComboBoxModel<Categorias> modelComboBox) {
         lista.forEach(l -> modelComboBox.addElement(l));
         comboBoxCategorias.setModel(modelComboBox);
     }
-    
-    public boolean validarCampos(String nombre, String precio, JComboBox disponibilidad, JComboBox categoria, String descripcion){
-        
+
+    public boolean validarCampos(String nombre, String precio, JComboBox disponibilidad, JComboBox categoria, String descripcion) {
+
         Boolean validacionDisponibilidad = validarOpcionDisponibilidad(disponibilidad);
         Boolean validacionCategoria = validarOpcionCategorias(categoria);
-                
-        if(nombre.equals("") || precio.equals("") || descripcion.equals("") || !validacionDisponibilidad || !validacionCategoria){
-            return false;
-        }else{
-            return true;
-        }
+
+        return !(nombre.equals("") || precio.equals("") || descripcion.equals("") || !validacionDisponibilidad || !validacionCategoria);
     }
-    
-    public boolean validarOpcionDisponibilidad(JComboBox item){
+
+    public boolean validarOpcionDisponibilidad(JComboBox item) {
         String opcion = (String) item.getSelectedItem();
-        
-        if(opcion.equalsIgnoreCase("disponible") || opcion.equalsIgnoreCase("no disponible")){
-            return true;
-        }else{
-            return false;
-        }
+
+        return opcion.equalsIgnoreCase("disponible") || opcion.equalsIgnoreCase("no disponible");
     }
-    
-    public boolean validarOpcionCategorias(JComboBox item){
+
+    public boolean validarOpcionCategorias(JComboBox item) {
         Categorias itemSeleccionado = (Categorias) item.getSelectedItem();
-        
-        if(itemSeleccionado.getIdCategoria() != 0){
-            return true;
-        }else{
-            return false;
-        }
+
+        return itemSeleccionado.getIdCategoria() != 0;
     }
-    
-    public boolean validarSeleccionTabla(int rowSelected){
-        if(rowSelected != -1){
-            return true;
-        }else{
-            return false;
-        }
+
+    public boolean validarSeleccionTabla(int rowSelected) {
+        return rowSelected != -1;
     }
-    
+
     public int getValorDisponibilidad(JComboBox disponibilidad) {
         String opcion = (String) disponibilidad.getSelectedItem();
         if (opcion.equalsIgnoreCase("disponible")) {
