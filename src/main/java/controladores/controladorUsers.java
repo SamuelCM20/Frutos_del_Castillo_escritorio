@@ -11,7 +11,6 @@ package controladores;
 import Modelo.Conexion;
 import Modelo.Users;
 import vistas.Usuarios;
-import controladores.Controlador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -144,6 +143,30 @@ public class controladorUsers {
         } catch (Exception e) {
         }
 
+    }
+    
+    public void actualizarPerfil(String name,String lastname, Date date,String email){
+        
+        Modelo.Users user = new Users();
+        try ( Conexion con = new Conexion()) {
+                    
+            java.sql.Date fechaNacimiento = new java.sql.Date(date.getTime());
+            
+            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento +"' WHERE email = '" + email+"';";
+            
+                user.setNombre(name);
+                user.setApellido(lastname);
+            boolean res = con.ejecutar(consulta);
+
+            if (res) {
+                System.out.println("perfil actualizado");
+            } else {
+                System.out.println("Error al actualizar perfil.");
+            }
+
+        } catch (Exception e) {
+        }
+        
     }
 
     public int obtenerRol(JComboBox rol) {
@@ -279,6 +302,10 @@ public class controladorUsers {
         } catch (Exception e) {
         }
 
+    }
+    public boolean validarCamposPerfil(String nombre,String apellido,Date seleDate){
+        
+        return !(nombre.equals("")||apellido.equals("")|| seleDate == null);
     }
 
 }
