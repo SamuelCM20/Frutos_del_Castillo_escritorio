@@ -96,6 +96,10 @@ public class Pedidos extends javax.swing.JPanel {
 
     public void fillRowsPedidosProductos(int idCompra) {
         modelTable1.setRowCount(0);
+        
+        Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
+        labelValorTotal.setText("$"+String.valueOf(pedido.getCosto_total()));
+        
         List<Modelo.Factura> listaPedidos = objControladorFacturas.getFacturas(idCompra);
 
         listaPedidos.forEach(l -> {
@@ -123,6 +127,7 @@ public class Pedidos extends javax.swing.JPanel {
         fieldComentario.setText("");
         fieldMesa.setText("");
         fieldEmpleado.setText("");
+        labelValorTotal.setText("$");
 
         modelTable1.setRowCount(0);
         rowSelected = -1;
