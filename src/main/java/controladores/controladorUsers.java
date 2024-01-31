@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class controladorUsers {
-
+    //hola
     public List<Users> getUsers() {
         List<Users> lista = new ArrayList<>();
 

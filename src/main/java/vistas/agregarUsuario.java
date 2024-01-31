@@ -16,7 +16,7 @@ import javax.swing.border.Border;
  * @author samue
  */
 public class agregarUsuario extends javax.swing.JDialog {
-
+    //hola
     /**
      * Creates new form agregarUsuario
      */

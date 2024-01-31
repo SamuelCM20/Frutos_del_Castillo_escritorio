@@ -23,7 +23,7 @@ import javax.swing.table.JTableHeader;
  * @author samue
  */
 public class Pedidos extends javax.swing.JPanel {
-
+    //hola
     String tercerColor = "#601d49";
     String cuartoColor = "#491738";
 

@@ -24,7 +24,7 @@ import javax.swing.table.JTableHeader;
  * @author samue
  */
 public class Productos extends javax.swing.JPanel {
-
+    //hola
     /**
      * Creates new form Productos
      */
