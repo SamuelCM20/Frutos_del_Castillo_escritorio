@@ -11,7 +11,6 @@ package controladores;
 import Modelo.Conexion;
 import Modelo.Users;
 import Modelo.Productos;
-import Modelo.Mesas;
 import Modelo.Compra;
 import Modelo.Factura;
 import java.sql.Connection;
@@ -88,28 +87,4 @@ public class ControladorInfo {
 
         return nPedidos;
     }
-
-    public int contar_num_mesas() {
-        int nMesas = 0;
-        
-
-        try (Conexion conex = new Conexion()) {
-            Connection con = conex.getConectarDB();
-            Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT count(*) FROM mesas ");
-            // chequeo que el result set no sea vacío, moviendo el cursor a la 
-            // primer fila. (El cursor inicia antes de la primer fila)
-            if (rs.next()) {
-                //Si hay resultados obtengo el valor. 
-                nMesas = rs.getInt(1);
-            }
-
-        } catch (SQLException e) {
-
-            System.out.println(e);
-        }
-
-        return nMesas;
-    }
-
 }

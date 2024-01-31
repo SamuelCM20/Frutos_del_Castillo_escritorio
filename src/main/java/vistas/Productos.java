@@ -45,7 +45,7 @@ public class Productos extends javax.swing.JPanel {
     public void setColorBotones(){
         btnActualizar.setContentAreaFilled(false);
         btnActualizar.setOpaque(true);
-        btnActualizar.setBackground(new Color(153,255,153));
+        btnActualizar.setBackground(new Color(96,29,73));
 
         btnImg1.setContentAreaFilled(false);
         btnImg1.setOpaque(true);

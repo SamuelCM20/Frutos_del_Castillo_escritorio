@@ -23,9 +23,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
     /**
      * Creates new form EditarUsuarios
      */
-    
     index prn = new index();
-    
+
     private Modelo.Users user;
     private vistas.Usuarios usuarios;
     private JDateChooser dateChooser;
@@ -314,7 +313,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
     private void btnPasswordRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswordRestoreActionPerformed
         // TODO add your handling code here:
-        vistas.RecuperarContraseña rc = new vistas.RecuperarContraseña(prn,user,true);
+        vistas.RecuperarContraseña rc = new vistas.RecuperarContraseña(prn, user, true);
     }//GEN-LAST:event_btnPasswordRestoreActionPerformed
 
     private void txtEditCelUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditCelUsersActionPerformed
@@ -323,7 +322,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
     private void btnPasswordRestoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPasswordRestoreMouseClicked
         // TODO add your handling code here:
-        RecuperarContraseña rc = new RecuperarContraseña(prn,user,true);
+        RecuperarContraseña rc = new RecuperarContraseña(prn, user, true);
         rc.setLocationRelativeTo(null);
         this.setVisible(false);
         rc.setVisible(true);
@@ -341,20 +340,21 @@ public class EditarUsuarios extends javax.swing.JDialog {
                 int cel = Integer.parseInt(txtEditCelUsers.getText().trim());
 
                 if (ctrlu.validarFecha(dateChooser.getDate())) {
-                    
-                            int rol = ctrlu.obtenerRol(cbxEditRol);
-                            int estado = ctrlu.obtenerEstado(cbxEditState);
+
+                    int rol = ctrlu.obtenerRol(cbxEditRol);
+                    int estado = ctrlu.obtenerEstado(cbxEditState);
 
                     if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
                         if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
-                            
+
+                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+
+                        } else {
                             ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
                             usuarios.fillRows();
 
                             JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                             this.setVisible(false);
-                        } else {
-                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
                         }
 
                     } else {

@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Modelo.Conexion;
-import Modelo.Mesas;
 import Modelo.Productos;
 import java.sql.Connection;
 import java.util.ArrayList;

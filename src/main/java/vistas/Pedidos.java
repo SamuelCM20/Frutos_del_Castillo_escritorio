@@ -170,11 +170,11 @@ public class Pedidos extends javax.swing.JPanel {
         labelCliente2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePediProducts = new javax.swing.JTable();
-        btnAñadirP = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btnCancelarP = new javax.swing.JButton();
         btnCompletarP = new javax.swing.JButton();
         btnFactura = new javax.swing.JButton();
+        labelPrecio = new javax.swing.JLabel();
+        labelValorTotal = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -247,7 +247,7 @@ public class Pedidos extends javax.swing.JPanel {
         panelHeaderProductsLayout.setHorizontalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderProductsLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(86, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(73, 73, 73))
         );
@@ -305,35 +305,6 @@ public class Pedidos extends javax.swing.JPanel {
         tablePediProducts.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablePediProducts);
 
-        btnAñadirP.setBackground(new java.awt.Color(96, 29, 73));
-        btnAñadirP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAñadirPMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAñadirPMouseExited(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("+");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout btnAñadirPLayout = new javax.swing.GroupLayout(btnAñadirP);
-        btnAñadirP.setLayout(btnAñadirPLayout);
-        btnAñadirPLayout.setHorizontalGroup(
-            btnAñadirPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnAñadirPLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        btnAñadirPLayout.setVerticalGroup(
-            btnAñadirPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE)
-        );
-
         btnCancelarP.setBackground(new java.awt.Color(133, 33, 33));
         btnCancelarP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnCancelarP.setForeground(new java.awt.Color(255, 255, 255));
@@ -362,6 +333,12 @@ public class Pedidos extends javax.swing.JPanel {
             }
         });
 
+        labelPrecio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelPrecio.setText("Total:");
+
+        labelValorTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelValorTotal.setText("$0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -381,6 +358,12 @@ public class Pedidos extends javax.swing.JPanel {
                             .addGap(9, 9, 9)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(labelCliente2)
+                                    .addGap(74, 74, 74)
+                                    .addComponent(labelPrecio)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(labelValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(labelEmpleado)
                                         .addComponent(labelMesaN))
@@ -388,17 +371,14 @@ public class Pedidos extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(fieldEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                         .addComponent(fieldMesa)))
-                                .addComponent(labelCliente)
-                                .addComponent(labelCliente2)))
+                                .addComponent(labelCliente)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(6, 6, 6)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 102, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnAñadirP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(fieldComentario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(fieldComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -414,16 +394,15 @@ public class Pedidos extends javax.swing.JPanel {
                     .addComponent(fieldEmpleado)
                     .addComponent(labelEmpleado))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fieldComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCliente))
-                        .addGap(18, 18, 18)
-                        .addComponent(labelCliente2)
-                        .addGap(4, 4, 4))
-                    .addComponent(btnAñadirP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCliente))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCliente2)
+                    .addComponent(labelPrecio)
+                    .addComponent(labelValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -468,7 +447,7 @@ public class Pedidos extends javax.swing.JPanel {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         panelPedidosLayout.setVerticalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,7 +465,7 @@ public class Pedidos extends javax.swing.JPanel {
                 .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -508,15 +487,6 @@ public class Pedidos extends javax.swing.JPanel {
     private void fieldMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldMesaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldMesaActionPerformed
-
-    private void btnAñadirPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirPMouseEntered
-        btnAñadirP.setBackground(Color.decode(cuartoColor));
-    }//GEN-LAST:event_btnAñadirPMouseEntered
-
-    private void btnAñadirPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirPMouseExited
-        // TODO add your handling code here:
-        btnAñadirP.setBackground(Color.decode(tercerColor));
-    }//GEN-LAST:event_btnAñadirPMouseExited
 
     private void btnCompletarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompletarPActionPerformed
         validacionCampos();
@@ -553,7 +523,6 @@ public class Pedidos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnAñadirP;
     private javax.swing.JButton btnCancelarP;
     private javax.swing.JButton btnCompletarP;
     private javax.swing.JButton btnFactura;
@@ -562,7 +531,6 @@ public class Pedidos extends javax.swing.JPanel {
     private javax.swing.JTextField fieldMesa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -573,7 +541,9 @@ public class Pedidos extends javax.swing.JPanel {
     private javax.swing.JLabel labelCliente2;
     private javax.swing.JLabel labelEmpleado;
     private javax.swing.JLabel labelMesaN;
+    private javax.swing.JLabel labelPrecio;
     private javax.swing.JLabel labelTitlePedidos;
+    private javax.swing.JLabel labelValorTotal;
     private javax.swing.JPanel panelHeaderProducts;
     private javax.swing.JPanel panelPedidos;
     private javax.swing.JTable tablePediProducts;

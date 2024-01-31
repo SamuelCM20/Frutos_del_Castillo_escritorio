@@ -6,7 +6,6 @@ package controladores;
 
 import Modelo.Conexion;
 import Modelo.Compra;
-import Modelo.Mesas;
 import Modelo.Factura;
 import Modelo.Users;
 import java.sql.ResultSet;

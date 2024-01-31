@@ -243,21 +243,26 @@ public class controladorUsers {
 
     public boolean validarCorreo(String email) {
 
-        String patronCorreo = ".*@.*";
+        String patronCorreo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
         String consulta = "SELECT COUNT(*) AS cantidad FROM users WHERE email = '" + email + "'";
         try ( Conexion con = new Conexion()) {
-            ResultSet rs = con.consulta(consulta);
-
+            
             Pattern patron = Pattern.compile(patronCorreo);
             Matcher matcher = patron.matcher(email);
 
             if (matcher.matches()) {
 
                 try {
+                    ResultSet rs = con.consulta(consulta);
                     if (rs.next()) {
                         int cantidad = rs.getInt("cantidad");
-                        return cantidad > 0;
+                        
+                        if(cantidad > 0){
+                            return false;
+                        }else{
+                            return true;
+                        }
                     }
                 } catch (SQLException e) {
                 }

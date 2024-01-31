@@ -21,7 +21,6 @@ public class Info extends javax.swing.JPanel {
         mostrarNumUsuariosEnVista();
         mostrarNumProductosEnVista();
         mostrarNumPedidosEnVista();
-        mostrarNumMesasEnVista();
     }
 
     ControladorInfo controlador = new ControladorInfo();
@@ -38,11 +37,6 @@ public class Info extends javax.swing.JPanel {
      private void mostrarNumPedidosEnVista() {
          int numPedidos = controlador.contar_num_pedidos(); // Manejar excepciones
          cantPedidos.setText(String.valueOf(numPedidos));
-    }
-     
-     private void mostrarNumMesasEnVista() {
-         int numMesas = controlador.contar_num_mesas(); // Manejar excepciones
-         cantReservas.setText(String.valueOf(numMesas));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,7 +93,7 @@ public class Info extends javax.swing.JPanel {
         cardProductosLayout.setHorizontalGroup(
             cardProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardProductosLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(cardProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardProductosLayout.createSequentialGroup()
                         .addComponent(labelPA)
@@ -176,7 +170,7 @@ public class Info extends javax.swing.JPanel {
         labelMR.setBackground(new java.awt.Color(255, 255, 255));
         labelMR.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
         labelMR.setForeground(new java.awt.Color(96, 29, 73));
-        labelMR.setText("Mesas reservadas");
+        labelMR.setText("Numero de mesas");
 
         iconReservasCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reservaCard.png"))); // NOI18N
 
@@ -189,7 +183,7 @@ public class Info extends javax.swing.JPanel {
         cardReservasLayout.setHorizontalGroup(
             cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cardReservasLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
                         .addComponent(iconReservasCard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +193,7 @@ public class Info extends javax.swing.JPanel {
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
                         .addComponent(cantReservas)
-                        .addGap(116, 116, 116))))
+                        .addGap(109, 109, 109))))
         );
         cardReservasLayout.setVerticalGroup(
             cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +204,7 @@ public class Info extends javax.swing.JPanel {
                 .addComponent(labelMR, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cantReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardPedidos1.setBackground(new java.awt.Color(255, 255, 255));
@@ -265,37 +259,40 @@ public class Info extends javax.swing.JPanel {
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelInfoLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                                .addGap(490, 490, 490))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)))
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addGap(187, 187, 187)
-                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cardUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cardProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
-                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cardPedidos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cardReservas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                            .addComponent(cardReservas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(166, 166, 166)))
+                .addGap(31, 31, 31))
         );
         panelInfoLayout.setVerticalGroup(
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
-                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelInfoLayout.createSequentialGroup()
                         .addComponent(cardPedidos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(29, 29, 29)
-                        .addComponent(cardReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cardReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelInfoLayout.createSequentialGroup()
-                        .addComponent(cardUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cardUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(30, 30, 30)
-                        .addComponent(cardProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(cardProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(47, 47, 47))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

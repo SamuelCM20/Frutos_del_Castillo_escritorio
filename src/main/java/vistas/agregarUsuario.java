@@ -23,28 +23,28 @@ public class agregarUsuario extends javax.swing.JDialog {
     private JDateChooser dateChooser;
 
     private Usuarios us;
-    
+
     public agregarUsuario(java.awt.Frame parent, boolean modal, vistas.Usuarios us) {
         super(parent, modal);
         this.us = us;
         initComponents();
         initDateChooser();
-                
-    }  
-    
+
+    }
+
     private controladorUsers ctrlu = new controladorUsers();
 
-    
-    private void initDateChooser(){
-    dateChooser = new JDateChooser();
+    private void initDateChooser() {
+        dateChooser = new JDateChooser();
         dateChooser.setBounds(30, 200, 125, 26);
         dateChooser.setBackground(java.awt.Color.RED);
-                
+
         getContentPane().setLayout(null);
         getContentPane().add(dateChooser);
         dateChooser.repaint();
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,53 +248,52 @@ public class agregarUsuario extends javax.swing.JDialog {
 
     private void btnNewSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewSaveActionPerformed
         // TODO add your handling code here:
-        boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(),txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
-        
-        if(validacionCampos){
+        boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(), txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
+
+        if (validacionCampos) {
             try {
                 int cel = Integer.parseInt(txtNewCelUsers.getText().trim());
-                if(ctrlu.validarFecha(dateChooser.getDate())){
-                    
+                if (ctrlu.validarFecha(dateChooser.getDate())) {
+
                     if (!ctrlu.validarCorreo(txtNewEmailUsers.getText())) {
-                        if(ctrlu.validarLargoContrasenia(newPassword.getText())){
-                            
+                        JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (ctrlu.validarLargoContrasenia(newPassword.getText())) {
+
                             int rol = ctrlu.obtenerRol(cbxNewRol);
-                            ctrlu.agregarUsuario(txtNewNameUsers.getText().trim(),txtNewLastnameUsers.getText(),String.valueOf(cel), dateChooser.getDate(),txtNewEmailUsers.getText(), newPassword.getText(),rol);
-                           
+                            ctrlu.agregarUsuario(txtNewNameUsers.getText().trim(), txtNewLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), rol);
+
                             us.fillRows();
-                            
+
                             JOptionPane.showMessageDialog(this, "Usuario creado exitosamente");
                             this.setVisible(false);
 
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(this, "La contraseña debe tener como minimo 6 o mas digitos");
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa","Error de validacion",JOptionPane.ERROR_MESSAGE);
                     }
 
-                }else{
-                     JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             } catch (NumberFormatException e) {
-                
+
                 JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
 
             }
-            
-        }else{
-            
+
+        } else {
+
             JOptionPane.showMessageDialog(null, "Todos los campos son requeridos");
 
         }
-        
+
     }//GEN-LAST:event_btnNewSaveActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNewSave;
