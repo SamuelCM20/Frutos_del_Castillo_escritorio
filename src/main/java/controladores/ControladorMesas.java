@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author jdelg
+ * @author jd
  */
 public class ControladorMesas {
     

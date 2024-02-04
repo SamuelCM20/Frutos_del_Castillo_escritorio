@@ -6,7 +6,7 @@ package Modelo;
 
 /**
  *
- * @author Usuario Repaso 2
+ * @author Jd
  */
 public class Mesas {
     private int idMesa;

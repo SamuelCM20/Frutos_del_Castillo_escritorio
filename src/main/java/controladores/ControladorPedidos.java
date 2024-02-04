@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jdelg
+ * @author jd
  */
 public class ControladorPedidos {
 

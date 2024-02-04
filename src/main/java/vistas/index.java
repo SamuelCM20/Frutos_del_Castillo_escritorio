@@ -16,7 +16,7 @@ import javax.swing.table.JTableHeader;
 
 /**
  *
- * @author samue
+ * @author samue, Jd
  */
 public class index extends javax.swing.JFrame {
 

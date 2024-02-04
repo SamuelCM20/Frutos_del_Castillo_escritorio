@@ -29,7 +29,7 @@ import sun.awt.www.content.audio.x_aiff;
 
 /**
  *
- * @author samuel
+ * @author samuel, Jd
  */
 public class Controlador implements ActionListener {
 

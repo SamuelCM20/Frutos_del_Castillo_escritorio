@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author samue
+ * @author samue, Jd
  */
 public class Info extends javax.swing.JPanel {
 

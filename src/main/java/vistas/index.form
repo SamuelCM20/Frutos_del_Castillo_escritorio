@@ -163,7 +163,7 @@
                   <Component id="menuLateral" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jpanelMain" pref="912" max="32767" attributes="0"/>
+                      <Component id="jpanelMain" pref="913" max="32767" attributes="0"/>
                       <Component id="papelTapiz" pref="912" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>

@@ -6,7 +6,7 @@ package controladores;
 
 /**
  *
- * @author SENA
+ * @author Jd
  */
 import Modelo.Conexion;
 import Modelo.Users;

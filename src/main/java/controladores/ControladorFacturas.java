@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author jdelg
+ * @author Jd
  */
 public class ControladorFacturas {
 
