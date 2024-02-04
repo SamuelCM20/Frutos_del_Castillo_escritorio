@@ -9,6 +9,7 @@ import controladores.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
@@ -38,6 +39,13 @@ public class index extends javax.swing.JFrame {
 
     }
     
+    private String rol;
+    
+    /*public index(int rol){
+        this.rol = rol;
+    //Constructor para obtener el rol
+    
+    }*/
     public void setUserName(String name){
         this.userName.setText(name);
     }
@@ -411,9 +419,9 @@ public class index extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReservasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(iconReservas)
-                .addGap(71, 71, 71)
+                .addGap(60, 60, 60)
                 .addComponent(labelPerfil9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(110, 110, 110))
+                .addGap(121, 121, 121))
         );
         btnReservasLayout.setVerticalGroup(
             btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -625,14 +633,24 @@ public class index extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
-        Usuarios us = new Usuarios();
-        showPanel(us);
+        if("super_admin".equals(rol)){
+            Usuarios us = new Usuarios();
+            showPanel(us);
+        }else{
+            JOptionPane.showMessageDialog(this, "No tienes permisos suficientes para esta funcion.", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
         // TODO add your handling code here:
-        Productos pr = new Productos();
-        showPanel(pr);
+        if("super_admin".equals(rol)){
+            Productos pr = new Productos();
+            showPanel(pr);
+        }else{
+            JOptionPane.showMessageDialog(this, "No tienes permisos suficientes para esta funcion.", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
@@ -674,10 +692,9 @@ public class index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasMouseClicked
 
     
-    public void runView() {
-        
+    public void runView(String rol) {
+        this.rol = rol;
         this.setVisible(true);
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

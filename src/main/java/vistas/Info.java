@@ -21,6 +21,7 @@ public class Info extends javax.swing.JPanel {
         mostrarNumUsuariosEnVista();
         mostrarNumProductosEnVista();
         mostrarNumPedidosEnVista();
+        mostrarNumMesasEnVista();
     }
 
     ControladorInfo controlador = new ControladorInfo();
@@ -37,6 +38,11 @@ public class Info extends javax.swing.JPanel {
      private void mostrarNumPedidosEnVista() {
          int numPedidos = controlador.contar_num_pedidos(); // Manejar excepciones
          cantPedidos.setText(String.valueOf(numPedidos));
+    }
+    
+     private void mostrarNumMesasEnVista() {
+         int numMesas = controlador.contar_num_mesas(); // Manejar excepciones
+         cantReservas.setText(String.valueOf(numMesas));
     }
     /**
      * This method is called from within the constructor to initialize the form.

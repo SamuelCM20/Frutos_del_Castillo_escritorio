@@ -5,6 +5,10 @@
 package vistas;
 
 import java.awt.FlowLayout;
+import controladores.ControladorMesas;
+import java.util.List;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +21,62 @@ public class Mesas extends javax.swing.JPanel {
      */
     public Mesas() {
         initComponents();
-        content.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
+        tableModel();
+        fillRows();
+    }
+    
+    private DefaultTableModel modelTable;
+    private List<Modelo.Mesas> listaMesas;
+    private ControladorMesas conObject = new ControladorMesas();
+
+    int rowSelected = -1;
+    
+    public void tableModel() {
+        modelTable = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+        modelTable.addColumn("Numero");
+        modelTable.addColumn("Nombre");
+        modelTable.addColumn("Estado");
+
+        tableMesas.setModel(modelTable);
+        
+        tableMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+    
+    public void fillRows() {
+
+        modelTable.setRowCount(0);
+        listaMesas = conObject.getListaMesas();
+        
+        listaMesas.forEach(l -> {
+            String estado = getNombreDisponibilidad(l.getEstado());
+            modelTable.addRow(new Object[]{l.getIdMesa(),getNombreMesa(l.getNumero_mesa()), estado});
+        });
+    }
+    public String getNombreDisponibilidad(int state) {
+
+        String nombre = "";
+        if (state== 0) {
+            nombre = "Ocupado";
+        } else if (state == 1) {
+            nombre = "disponible";
+        }
+
+        return nombre;
+
+    }
+    
+    public String getNombreMesa(int id){
+        
+        String nombreMesa = "Mesa " + String.valueOf(id);
+        
+        return nombreMesa;
+        
     }
 
     /**
@@ -31,11 +90,19 @@ public class Mesas extends javax.swing.JPanel {
 
         labelTitlePedidos = new javax.swing.JLabel();
         panelReservas = new javax.swing.JPanel();
-        btnAddMesa = new javax.swing.JButton();
         contentScroll = new javax.swing.JScrollPane();
-        labelTitleReserv = new javax.swing.JLabel();
-        scrollReservas = new javax.swing.JScrollPane();
-        content = new javax.swing.JPanel();
+        labelTitleMesas = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNumMesa = new javax.swing.JTextField();
+        txtNombreMesa = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableMesas = new javax.swing.JTable();
+        cmbState = new javax.swing.JComboBox<>();
+        btnEditarMesa = new javax.swing.JButton();
+        btnAgregarMesa = new javax.swing.JButton();
+        btnEliminarMesa = new javax.swing.JButton();
 
         labelTitlePedidos.setBackground(new java.awt.Color(255, 255, 255));
         labelTitlePedidos.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
@@ -45,78 +112,123 @@ public class Mesas extends javax.swing.JPanel {
         panelReservas.setBackground(new java.awt.Color(245, 245, 220));
         panelReservas.setForeground(new java.awt.Color(96, 29, 73));
 
-        btnAddMesa.setBackground(new java.awt.Color(96, 29, 73));
-        btnAddMesa.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        btnAddMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddMesa.setText("+");
-        btnAddMesa.addActionListener(new java.awt.event.ActionListener() {
+        labelTitleMesas.setBackground(new java.awt.Color(255, 255, 255));
+        labelTitleMesas.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
+        labelTitleMesas.setForeground(new java.awt.Color(96, 29, 73));
+        labelTitleMesas.setText("Gestion de mesas");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Numero mesa:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Nombre mesa(opcional):");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Estado:");
+
+        txtNumMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMesaActionPerformed(evt);
+                txtNumMesaActionPerformed(evt);
             }
         });
 
-        labelTitleReserv.setBackground(new java.awt.Color(255, 255, 255));
-        labelTitleReserv.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
-        labelTitleReserv.setForeground(new java.awt.Color(96, 29, 73));
-        labelTitleReserv.setText("Gestionar reservas");
+        tableMesas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tableMesas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Numero", "Nombre", "Estado"
+            }
+        ));
+        tableMesas.setShowHorizontalLines(true);
+        tableMesas.setShowVerticalLines(true);
+        tableMesas.getTableHeader().setResizingAllowed(false);
+        tableMesas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tableMesas);
 
-        scrollReservas.setBackground(new java.awt.Color(255, 255, 255));
-        scrollReservas.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollReservas.setPreferredSize(new java.awt.Dimension(851, 380));
+        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setMinimumSize(new java.awt.Dimension(100, 111));
-        content.setPreferredSize(new java.awt.Dimension(851, 5000));
+        btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
+        btnEditarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarMesa.setText("Editar");
+        btnEditarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarMesaActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 851, Short.MAX_VALUE)
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5000, Short.MAX_VALUE)
-        );
+        btnAgregarMesa.setBackground(new java.awt.Color(96, 29, 73));
+        btnAgregarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarMesa.setText("Agregar");
 
-        scrollReservas.setViewportView(content);
+        btnEliminarMesa.setBackground(new java.awt.Color(133, 33, 33));
+        btnEliminarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarMesa.setText("Eliminar");
 
         javax.swing.GroupLayout panelReservasLayout = new javax.swing.GroupLayout(panelReservas);
         panelReservas.setLayout(panelReservasLayout);
         panelReservasLayout.setHorizontalGroup(
             panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReservasLayout.createSequentialGroup()
-                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(scrollReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addContainerGap(30, Short.MAX_VALUE)
-                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelReservasLayout.createSequentialGroup()
-                                .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))
-                            .addGroup(panelReservasLayout.createSequentialGroup()
-                                .addComponent(labelTitleReserv, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                                .addGap(336, 336, 336)))
-                        .addComponent(btnAddMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40))
+            .addGroup(panelReservasLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelReservasLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(39, 39, 39)
+                            .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(182, 182, 182)
+                            .addComponent(btnAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(31, 31, 31)
+                            .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelReservasLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelTitleMesas, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
         panelReservasLayout.setVerticalGroup(
             panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReservasLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTitleMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnAddMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(labelTitleReserv, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 1, 1)
-                .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -131,20 +243,31 @@ public class Mesas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMesaActionPerformed
-      
-            // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddMesaActionPerformed
+    private void btnEditarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarMesaActionPerformed
+
+    private void txtNumMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumMesaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddMesa;
-    private javax.swing.JPanel content;
+    private javax.swing.JButton btnAgregarMesa;
+    private javax.swing.JButton btnEditarMesa;
+    private javax.swing.JButton btnEliminarMesa;
+    private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JScrollPane contentScroll;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelTitleMesas;
     private javax.swing.JLabel labelTitlePedidos;
-    private javax.swing.JLabel labelTitleReserv;
     private javax.swing.JPanel panelReservas;
-    private javax.swing.JScrollPane scrollReservas;
+    private javax.swing.JTable tableMesas;
+    private javax.swing.JTextField txtNombreMesa;
+    private javax.swing.JTextField txtNumMesa;
     // End of variables declaration//GEN-END:variables
     
    

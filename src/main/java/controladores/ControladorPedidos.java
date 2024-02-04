@@ -8,6 +8,8 @@ import Modelo.Conexion;
 import Modelo.Compra;
 import Modelo.Factura;
 import Modelo.Users;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -118,5 +120,4 @@ public class ControladorPedidos {
         }
         return new Users();
     }
-
 }

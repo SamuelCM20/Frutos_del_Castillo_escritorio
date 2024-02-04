@@ -36,8 +36,7 @@ public class Controlador implements ActionListener {
     private login vistaLogin;
     private Users modeloLogin;
 
-    vistas.index x = new vistas.index();
-    Perfil p = new Perfil(x, true);
+    
 
     public Controlador(login vistaLogin, Users modeloLogin) {
         this.vistaLogin = vistaLogin;
@@ -53,7 +52,9 @@ public class Controlador implements ActionListener {
             }
         });
     }
-
+    vistas.index x = new vistas.index();
+    Perfil p = new Perfil(x, true);
+    
     public Controlador() {
         //Poder crear herencias de la funcion obtenerRol()
     }
@@ -111,7 +112,7 @@ public class Controlador implements ActionListener {
                     if (verEstado(state)) {
                         this.vistaLogin.setVisible(false);
                         x.setUserName(modeloLogin.getNombre());
-                        x.runView();
+                        x.runView(obtenerRol(modeloLogin.getIdUsuario()));
                     } else {
 
                         JOptionPane.showMessageDialog(null, "El usuario ingresado esta inactivo");
