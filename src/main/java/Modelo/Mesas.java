@@ -11,7 +11,6 @@ package Modelo;
 public class Mesas {
     private int idMesa;
     private int numero_mesa;
-    private int cantidad_sillas;
     private int estado;
 
     public Mesas(int id, int numero_mesa, int estado){
@@ -40,14 +39,6 @@ public class Mesas {
 
     public void setNumero_mesa(int numero_mesa) {
         this.numero_mesa = numero_mesa;
-    }
-
-    public int getCantidad_sillas() {
-        return cantidad_sillas;
-    }
-
-    public void setCantidad_sillas(int cantidad_sillas) {
-        this.cantidad_sillas = cantidad_sillas;
     }
 
     public int getEstado() {

@@ -96,7 +96,7 @@ public class ControladorProductos {
 
         // Filtro para aceptar solo archivos de imagen
         FileNameExtensionFilter imageFilter = new FileNameExtensionFilter(
-                "Archivos de imagen", "jpg", "jpeg", "png", "gif");
+                "Archivos de imagen", "jpg", "jpeg", "png", "gif", "webp", "avif");
         fileChooser.setFileFilter(imageFilter);
 
         int result = fileChooser.showOpenDialog(null);

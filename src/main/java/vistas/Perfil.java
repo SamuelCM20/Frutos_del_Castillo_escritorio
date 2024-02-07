@@ -5,7 +5,10 @@
 package vistas;
 
 import com.toedter.calendar.JDateChooser;
+import controladores.ControladorUtils;
 import controladores.controladorUsers;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -233,6 +236,10 @@ public class Perfil extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         String accion = btnEditar.getText();
+        String expression = "[a-zA-Z]{1,30}";
+        String name = txtNombre.getText();
+        String lastName = txtApellido.getText();
+        ControladorUtils objUtils = new ControladorUtils();
 
         if (accion.equals("Editar")) {
 
@@ -242,19 +249,22 @@ public class Perfil extends javax.swing.JDialog {
         } else {
 
             if (ctrlu.validarCamposPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate())) {
-                if(ctrlu.validarFecha(dateChooser.getDate())){
-                    ctrlu.actualizarPerfil(txtNombre.getText(),txtApellido.getText(),dateChooser.getDate(),txtCorreo.getText());
-                    
-                    JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
-                    btnEditar.setText("Editar");
-                    this.setVisible(false);
-                }else{
-                    JOptionPane.showMessageDialog(null, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                if (objUtils.evaluarExpresion(expression, name) &&  objUtils.evaluarExpresion(expression, lastName)) {
+                    if (ctrlu.validarFecha(dateChooser.getDate())) {
+                        ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText());
+
+                        JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
+                        btnEditar.setText("Editar");
+                        this.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El nombre solo debe contener letras.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Todos los campos son requeridos");
             }
-
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -274,7 +284,7 @@ public class Perfil extends javax.swing.JDialog {
         txtApellido.setEditable(true);
         dateChooser.setEnabled(true);
     }
-    
+
     private void deshabilitarPerfil() {
         txtNombre.setEditable(false);
         txtApellido.setEditable(false);

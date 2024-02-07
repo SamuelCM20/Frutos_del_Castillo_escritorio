@@ -12,7 +12,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import controladores.ControladorUtils;
 
 /**
  *
@@ -336,43 +339,51 @@ public class EditarUsuarios extends javax.swing.JDialog {
         boolean validacionCampoEstado = ctrlu.validarCampoEstado(cbxEditState);
         if (validacionCampos && validacionCampoEstado) {
 
-            try {
+            String expression = "[a-zA-Z]{1,30}";
+            String name = txtEditNameUsers.getText();
+            String lastName = txtEditLastnameUsers.getText();
+            ControladorUtils objUtils = new ControladorUtils();
+            
+            if (objUtils.evaluarExpresion(expression, name) &&  objUtils.evaluarExpresion(expression, lastName)) {
+                try {
+                    int cel = Integer.parseInt(txtEditCelUsers.getText().trim());
 
-                int cel = Integer.parseInt(txtEditCelUsers.getText().trim());
+                    if (ctrlu.validarFecha(dateChooser.getDate())) {
 
-                if (ctrlu.validarFecha(dateChooser.getDate())) {
+                        int rol = ctrlu.obtenerRol(cbxEditRol);
+                        int estado = ctrlu.obtenerEstado(cbxEditState);
 
-                    int rol = ctrlu.obtenerRol(cbxEditRol);
-                    int estado = ctrlu.obtenerEstado(cbxEditState);
+                        if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                            if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
 
-                    if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
-                        if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                                JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
 
-                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
+                                usuarios.fillRows();
+
+                                JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                this.setVisible(false);
+                            }
 
                         } else {
                             ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
                             usuarios.fillRows();
-
                             JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                             this.setVisible(false);
                         }
 
                     } else {
-                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
-                        usuarios.fillRows();
-                        JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                        this.setVisible(false);
+                        JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                     }
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+
+                    JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
+
                 }
-
-            } catch (NumberFormatException e) {
-
-                JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
-
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre y apellidos solo letras");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Todos los campos son requeridos");

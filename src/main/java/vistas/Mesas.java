@@ -21,7 +21,6 @@ public class Mesas extends javax.swing.JPanel {
      */
     public Mesas() {
         initComponents();
-        
         tableModel();
         fillRows();
     }
@@ -39,8 +38,7 @@ public class Mesas extends javax.swing.JPanel {
                 return false;
             }
         };
-        modelTable.addColumn("Numero");
-        modelTable.addColumn("Nombre");
+        modelTable.addColumn("mesa");
         modelTable.addColumn("Estado");
 
         tableMesas.setModel(modelTable);
@@ -55,7 +53,7 @@ public class Mesas extends javax.swing.JPanel {
         
         listaMesas.forEach(l -> {
             String estado = getNombreDisponibilidad(l.getEstado());
-            modelTable.addRow(new Object[]{l.getIdMesa(),getNombreMesa(l.getNumero_mesa()), estado});
+            modelTable.addRow(new Object[]{l.getIdMesa(), estado});
         });
     }
     public String getNombreDisponibilidad(int state) {
@@ -71,13 +69,6 @@ public class Mesas extends javax.swing.JPanel {
 
     }
     
-    public String getNombreMesa(int id){
-        
-        String nombreMesa = "Mesa " + String.valueOf(id);
-        
-        return nombreMesa;
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,10 +84,8 @@ public class Mesas extends javax.swing.JPanel {
         contentScroll = new javax.swing.JScrollPane();
         labelTitleMesas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNumMesa = new javax.swing.JTextField();
-        txtNombreMesa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMesas = new javax.swing.JTable();
         cmbState = new javax.swing.JComboBox<>();
@@ -118,10 +107,7 @@ public class Mesas extends javax.swing.JPanel {
         labelTitleMesas.setText("Gestion de mesas");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Numero mesa:");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Nombre mesa(opcional):");
+        jLabel1.setText("mesas:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Estado:");
@@ -135,13 +121,13 @@ public class Mesas extends javax.swing.JPanel {
         tableMesas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tableMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Numero", "Nombre", "Estado"
+                "mesa", "Estado"
             }
         ));
         tableMesas.setShowHorizontalLines(true);
@@ -151,6 +137,11 @@ public class Mesas extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tableMesas);
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbState.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbStateItemStateChanged(evt);
+            }
+        });
 
         btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
         btnEditarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -166,6 +157,11 @@ public class Mesas extends javax.swing.JPanel {
         btnAgregarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregarMesa.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarMesa.setText("Agregar");
+        btnAgregarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMesaActionPerformed(evt);
+            }
+        });
 
         btnEliminarMesa.setBackground(new java.awt.Color(133, 33, 33));
         btnEliminarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -182,23 +178,23 @@ public class Mesas extends javax.swing.JPanel {
                     .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelReservasLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(39, 39, 39)
-                            .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(182, 182, 182)
-                            .addComponent(btnAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(31, 31, 31)
-                            .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelReservasLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReservasLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(39, 39, 39))
+                                .addGroup(panelReservasLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(42, 42, 42)))
+                            .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelReservasLayout.createSequentialGroup()
+                                    .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(182, 182, 182)
+                                    .addComponent(btnAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31)
+                                    .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(labelTitleMesas, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,9 +210,7 @@ public class Mesas extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -252,6 +246,14 @@ public class Mesas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumMesaActionPerformed
 
+    private void cmbStateItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbStateItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStateItemStateChanged
+
+    private void btnAgregarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarMesaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarMesa;
@@ -260,14 +262,12 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JScrollPane contentScroll;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitleMesas;
     private javax.swing.JLabel labelTitlePedidos;
     private javax.swing.JPanel panelReservas;
     private javax.swing.JTable tableMesas;
-    private javax.swing.JTextField txtNombreMesa;
     private javax.swing.JTextField txtNumMesa;
     // End of variables declaration//GEN-END:variables
     
