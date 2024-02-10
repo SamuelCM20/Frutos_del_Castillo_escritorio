@@ -32,7 +32,10 @@ public class controladorUsers {
         List<Users> lista = new ArrayList<>();
 
         try ( Conexion con = new Conexion()) {
-            String consulta = "select * from users";
+            
+            
+            String consulta = "SELECT * FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id "
+                    + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario'";
 
             ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {

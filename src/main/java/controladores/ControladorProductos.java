@@ -237,6 +237,23 @@ public class ControladorProductos {
         
 
     }
+    
+    public void eliminarProducto(int id){
+        
+        String consulta = "DELETE FROM productos WHERE id = "+id + ";";
+        try ( Conexion objConexion = new Conexion()) {
+            boolean res = objConexion.ejecutar(consulta);
+
+            if (res) {
+                System.out.println("producto eliminado");
+            } else {
+                System.out.println("Error al eliminar producto.");
+            }
+
+        } catch (Exception e) {
+        }
+        
+    }
 
     public void fillComboBox(List<Categorias> lista, JComboBox comboBoxCategorias, DefaultComboBoxModel<Categorias> modelComboBox) {
         lista.forEach(l -> modelComboBox.addElement(l));

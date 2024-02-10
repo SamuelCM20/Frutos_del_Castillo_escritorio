@@ -9,6 +9,9 @@ import controladores.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -27,6 +30,7 @@ public class index extends javax.swing.JFrame {
     public index() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.addWindowListener(new MiWindowAdapter());
 
         Info in = new Info();
         showPanel(in);
@@ -36,7 +40,20 @@ public class index extends javax.swing.JFrame {
         btnLogout.setContentAreaFilled(false);
         btnLogout.setOpaque(true);
         btnLogout.setBackground(new Color(133,33,33));
+        
+       
 
+    }
+    
+    private static class MiWindowAdapter extends WindowAdapter {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            int opc = JOptionPane.showConfirmDialog(null, "Quiere cerrar sesion y salir?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+            if (opc == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
     }
     
     private String rol;
@@ -91,6 +108,7 @@ public class index extends javax.swing.JFrame {
         labelPerfil9 = new javax.swing.JLabel();
         iconReservas = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
+        btnPantallaCompleta = new javax.swing.JButton();
         jpanelMain = new javax.swing.JPanel();
         papelTapiz = new javax.swing.JLabel();
 
@@ -445,6 +463,13 @@ public class index extends javax.swing.JFrame {
             }
         });
 
+        btnPantallaCompleta.setText("pantalla");
+        btnPantallaCompleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPantallaCompletaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
         menuLateralLayout.setHorizontalGroup(
@@ -463,7 +488,9 @@ public class index extends javax.swing.JFrame {
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(2, 2, 2)))
                 .addContainerGap())
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -476,9 +503,12 @@ public class index extends javax.swing.JFrame {
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLateralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addComponent(btnPantallaCompleta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
@@ -525,7 +555,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
+                    .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
                     .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 912, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -633,23 +663,16 @@ public class index extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
-        if("super_admin".equals(rol)){
             Usuarios us = new Usuarios();
             showPanel(us);
-        }else{
-            JOptionPane.showMessageDialog(this, "No tienes permisos suficientes para esta funcion.", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
-        }
+        
         
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
         // TODO add your handling code here:
-        if("super_admin".equals(rol)){
             Productos pr = new Productos();
             showPanel(pr);
-        }else{
-            JOptionPane.showMessageDialog(this, "No tienes permisos suficientes para esta funcion.", "Permisos insuficientes", JOptionPane.ERROR_MESSAGE);
-        }
         
     }//GEN-LAST:event_btnProductosMouseClicked
 
@@ -691,9 +714,25 @@ public class index extends javax.swing.JFrame {
         showPanel(rs);
     }//GEN-LAST:event_btnReservasMouseClicked
 
+    private void btnPantallaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPantallaCompletaActionPerformed
+        // TODO add your handling code here:
+        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+
+            this.setExtendedState(JFrame.NORMAL);
+
+        } else {
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        }
+    }//GEN-LAST:event_btnPantallaCompletaActionPerformed
+
     
     public void runView(String rol) {
         this.rol = rol;
+        if (!rol.equals("super_admin")) {
+            System.out.println(rol);
+            btnUsuarios.setVisible(false);
+            btnProductos.setVisible(false);
+        }
         this.setVisible(true);
     }
 
@@ -702,6 +741,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel btnGesUsuarios5;
     private javax.swing.JPanel btnInicio;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPantallaCompleta;
     private javax.swing.JPanel btnPedidos;
     public javax.swing.JPanel btnPerfil;
     private javax.swing.JPanel btnProductos;
@@ -751,5 +791,11 @@ public class index extends javax.swing.JFrame {
         jpanelMain.add(p, BorderLayout.CENTER);
         jpanelMain.revalidate();
         jpanelMain.repaint();
+    }
+    
+    @Override
+    public void setDefaultCloseOperation(int operation) {
+        super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+
     }
 }
