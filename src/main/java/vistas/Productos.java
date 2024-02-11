@@ -43,9 +43,9 @@ public class Productos extends javax.swing.JPanel {
     }
 
     public void setColorBotones(){
-        btnActualizar.setContentAreaFilled(false);
-        btnActualizar.setOpaque(true);
-        btnActualizar.setBackground(new Color(96,29,73));
+        btnEditar.setContentAreaFilled(false);
+        btnEditar.setOpaque(true);
+        btnEditar.setBackground(new Color(96,29,73));
 
         btnImg1.setContentAreaFilled(false);
         btnImg1.setOpaque(true);
@@ -158,7 +158,7 @@ public class Productos extends javax.swing.JPanel {
         labelDispo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProducts = new javax.swing.JTable();
-        btnActualizar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         labelNameP1.setBackground(new java.awt.Color(255, 255, 255));
         labelNameP1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -389,14 +389,14 @@ public class Productos extends javax.swing.JPanel {
             tableProducts.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        btnActualizar.setBackground(new java.awt.Color(96, 29, 73));
-        btnActualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setFocusPainted(false);
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setBackground(new java.awt.Color(96, 29, 73));
+        btnEditar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.setFocusPainted(false);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -410,7 +410,7 @@ public class Productos extends javax.swing.JPanel {
                     .addGroup(panelProductsLayout.createSequentialGroup()
                         .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActualizar))
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelProductsLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -423,7 +423,7 @@ public class Productos extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTitleProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(panelProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -508,7 +508,7 @@ public class Productos extends javax.swing.JPanel {
         rowSelected = tableProducts.getSelectedRow();
     }//GEN-LAST:event_tableProductsMouseClicked
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if(objControlador.validarSeleccionTabla(rowSelected)){
             
             Modelo.Productos producto = (Modelo.Productos) listaProductos.get(rowSelected);
@@ -521,11 +521,11 @@ public class Productos extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(this, "Se necesita seleccionar una fila de la tabla.");
         }
-    }//GEN-LAST:event_btnActualizarActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnImg1;
     private javax.swing.JComboBox<String> comboBoxCategoria;

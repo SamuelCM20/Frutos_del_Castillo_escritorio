@@ -421,14 +421,22 @@ public class Pedidos extends javax.swing.JPanel {
                 .addGap(14, 14, 14))
         );
 
+        jButton1.setBackground(new java.awt.Color(96, 29, 73));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Actualizar");
+        jButton1.setFocusPainted(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(96, 29, 73));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Historial");
+        jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

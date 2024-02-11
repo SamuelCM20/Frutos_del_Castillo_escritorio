@@ -4,13 +4,22 @@
  */
 package vistas;
 
+import controladores.ControladorReportes;
 import controladores.ControladorFacturas;
 import controladores.ControladorMesas;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
+import java.io.FileOutputStream;
 import java.util.List;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -24,7 +33,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
     public HistorialPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         tableModel();
         fillRows();
     }
@@ -35,7 +44,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
     private ControladorMesas objControladorMesas = new ControladorMesas();
     private ControladorFacturas objControladorFacturas = new ControladorFacturas();
     private List<Modelo.Compra> listaPedidos;
-    
+
     public void tableModel() {
         modelTable = new DefaultTableModel() {
             @Override
@@ -46,13 +55,12 @@ public class HistorialPedidos extends javax.swing.JDialog {
         modelTable.addColumn("Fecha");
         modelTable.addColumn("Empleado");
         modelTable.addColumn("Mesa");
-        
-        //modelTable.addColumn("Tipos de productos");
 
+        //modelTable.addColumn("Tipos de productos");
         tablaPedidos.setModel(modelTable);
         tablaPedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
-    
+
     public void fillRows() {
         modelTable.setRowCount(0);
         listaPedidos = objControlador.getPedidosHistorial();
@@ -63,12 +71,13 @@ public class HistorialPedidos extends javax.swing.JDialog {
             modelTable.addRow(new Object[]{l.getFecha_hora(), objUser.getNombre(), objMesa});
         });
     }
-    
-    public void runView(){
+
+    public void runView() {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,19 +90,20 @@ public class HistorialPedidos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPedidos = new javax.swing.JTable();
         labelTitlePedidos = new javax.swing.JLabel();
+        btnReportes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Historial de pedidos");
 
         tablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Fecha", "Empleado", "Mesa", "Tipos de productos"
+                "Fecha", "Empleado", "Mesa"
             }
         ));
         tablaPedidos.setSelectionBackground(new java.awt.Color(173, 0, 113));
@@ -105,19 +115,32 @@ public class HistorialPedidos extends javax.swing.JDialog {
         labelTitlePedidos.setForeground(new java.awt.Color(96, 29, 73));
         labelTitlePedidos.setText("Historial de pedidos");
 
+        btnReportes.setBackground(new java.awt.Color(96, 29, 73));
+        btnReportes.setForeground(new java.awt.Color(255, 255, 255));
+        btnReportes.setText("Reporte");
+        btnReportes.setFocusPainted(false);
+        btnReportes.setFocusable(false);
+        btnReportes.setMinimumSize(new java.awt.Dimension(88, 28));
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(labelTitlePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(labelTitlePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,18 +148,45 @@ public class HistorialPedidos extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addComponent(labelTitlePedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar como");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Excel Files (*.xlsx)", "xlsx"));
+
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            String fileName = fileChooser.getSelectedFile().getName().replaceFirst("[.][^.]+$", "");
+            String filePath = fileChooser.getSelectedFile().getParent();
+
+            ControladorReportes objReportes = new ControladorReportes();
+            boolean generado = objReportes.generarReporteExcel(listaPedidos, fileName, filePath);
+            
+            if(generado){
+                JOptionPane.showMessageDialog(null, "Reporte guardado con exito.");
+            }else{
+                JOptionPane.showMessageDialog(this, "Hubo un error al guardar el reporte.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
+    }//GEN-LAST:event_btnReportesActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReportes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitlePedidos;
     private javax.swing.JTable tablaPedidos;
