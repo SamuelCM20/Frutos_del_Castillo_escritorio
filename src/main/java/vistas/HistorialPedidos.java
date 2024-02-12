@@ -158,26 +158,30 @@ public class HistorialPedidos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar como");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Excel Files (*.xlsx)", "xlsx"));
 
-        int userSelection = fileChooser.showSaveDialog(null);
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            String fileName = fileChooser.getSelectedFile().getName().replaceFirst("[.][^.]+$", "");
-            String filePath = fileChooser.getSelectedFile().getParent();
+        if (modelTable.getRowCount() != 0) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar como");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Excel Files (*.xlsx)", "xlsx"));
 
-            ControladorReportes objReportes = new ControladorReportes();
-            boolean generado = objReportes.generarReporteExcel(listaPedidos, fileName, filePath);
-            
-            if(generado){
-                JOptionPane.showMessageDialog(null, "Reporte guardado con exito.");
-            }else{
-                JOptionPane.showMessageDialog(this, "Hubo un error al guardar el reporte.", "Error", JOptionPane.ERROR_MESSAGE);
+            int userSelection = fileChooser.showSaveDialog(null);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                String fileName = fileChooser.getSelectedFile().getName().replaceFirst("[.][^.]+$", "");
+                String filePath = fileChooser.getSelectedFile().getParent();
+
+                ControladorReportes objReportes = new ControladorReportes();
+                boolean generado = objReportes.generarReporteExcel(listaPedidos, fileName, filePath);
+
+                if (generado) {
+                    JOptionPane.showMessageDialog(null, "Reporte guardado con exito.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al guardar el reporte.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay datos para imprimir.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnReportesActionPerformed
 
