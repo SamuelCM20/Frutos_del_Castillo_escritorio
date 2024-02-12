@@ -159,6 +159,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
 
+        //validación
         if (modelTable.getRowCount() != 0) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Guardar como");
