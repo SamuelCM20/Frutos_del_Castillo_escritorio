@@ -78,7 +78,7 @@ public class login extends javax.swing.JFrame {
         contraseniaUser.setFont(new java.awt.Font("Mollen Personal Use Cond", 0, 18)); // NOI18N
         contraseniaUser.setMargin(new java.awt.Insets(2, 8, 2, 8));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copiaLogin.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/loginMadera.jpg"))); // NOI18N
 
         btnEntrar.setBackground(new java.awt.Color(96, 29, 73));
         btnEntrar.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N

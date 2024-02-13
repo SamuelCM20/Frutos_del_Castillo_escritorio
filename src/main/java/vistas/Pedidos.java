@@ -342,7 +342,7 @@ public class Pedidos extends javax.swing.JPanel {
         labelPrecio.setText("Total:");
 
         labelValorTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelValorTotal.setText("$0");
+        labelValorTotal.setText("$");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
