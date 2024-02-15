@@ -6,6 +6,8 @@ package vistas;
 
 import Modelo.Users;
 import controladores.Controlador;
+import controladores.controladorIndex;
+import vistas.Perfil;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -23,10 +25,12 @@ import javax.swing.table.JTableHeader;
  */
 public class index extends javax.swing.JFrame {
 
-    public String principalColor = "#852121", segundoColor = "#531415", tercerColor= "#601d49";
+    public String principalColor = "#852121", segundoColor = "#531415", tercerColor = "#601d49";
+
     /**
      * Creates new form index
      */
+    private Modelo.Users user;
     public index() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,12 +38,16 @@ public class index extends javax.swing.JFrame {
 
         Info in = new Info();
         showPanel(in);
-        
-        UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));      
-       
+
+        UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
+
+        btnPantallaCompleta.setContentAreaFilled(false);
+        btnPantallaCompleta.setOpaque(true);
+        btnPantallaCompleta.setBackground(new Color(133, 33, 33));
 
     }
-    
+    controladorIndex objControladorIndex = new controladorIndex();
+
     private static class MiWindowAdapter extends WindowAdapter {
 
         @Override
@@ -50,18 +58,18 @@ public class index extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private String rol;
-    
+
     /*public index(int rol){
         this.rol = rol;
     //Constructor para obtener el rol
     
     }*/
-    public void setUserName(String name){
+    public void setUserName(String name) {
         this.userName.setText(name);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,7 +193,7 @@ public class index extends javax.swing.JFrame {
 
         menuLateral.setBackground(new java.awt.Color(133, 33, 33));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoCircle.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prueba2.png"))); // NOI18N
 
         btnInicio.setBackground(new java.awt.Color(133, 33, 33));
         btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -452,6 +460,9 @@ public class index extends javax.swing.JFrame {
         btnPantallaCompleta.setBackground(new java.awt.Color(133, 33, 33));
         btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximizar.png"))); // NOI18N
         btnPantallaCompleta.setBorder(null);
+        btnPantallaCompleta.setBorderPainted(false);
+        btnPantallaCompleta.setContentAreaFilled(false);
+        btnPantallaCompleta.setFocusPainted(false);
         btnPantallaCompleta.setPreferredSize(new java.awt.Dimension(40, 40));
         btnPantallaCompleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,7 +500,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(labelSalir)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         btnSalirLayout.setVerticalGroup(
             btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,7 +548,7 @@ public class index extends javax.swing.JFrame {
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -596,7 +607,7 @@ public class index extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBodyLayout.createSequentialGroup()
                         .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)))
+                        .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)))
                 .addGap(105, 105, 105))
         );
 
@@ -697,17 +708,17 @@ public class index extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
-            Usuarios us = new Usuarios();
-            showPanel(us);
-        
-        
+        Usuarios us = new Usuarios();
+        showPanel(us);
+
+
     }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
         // TODO add your handling code here:
-            Productos pr = new Productos();
-            showPanel(pr);
-        
+        Productos pr = new Productos();
+        showPanel(pr);
+
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
@@ -718,7 +729,11 @@ public class index extends javax.swing.JFrame {
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
-                   
+        Perfil p = new Perfil(this, true, this);
+        objControladorIndex.mostrarDatos(p, user.getIdUsuario());
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
+        
     }//GEN-LAST:event_btnPerfilMouseClicked
 
     private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
@@ -761,17 +776,22 @@ public class index extends javax.swing.JFrame {
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
 
         Users modLogin = new Users();
         login visLogin = new login();
 
-        Controlador ctrl = new Controlador(visLogin, modLogin);
-        ctrl.iniciar();
+        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion??", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            Controlador ctrl = new Controlador(visLogin, modLogin);
+            ctrl.iniciar();
+        }
+
+
     }//GEN-LAST:event_btnSalirMouseClicked
 
-    
-    public void runView(String rol) {
+    public void runView(String rol, Modelo.Users user) {
+        this.user = user;
         this.rol = rol;
         if (!rol.equals("super_admin")) {
             System.out.println(rol);
@@ -821,12 +841,12 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
 
-    protected void tableColor(JTableHeader t){
+    protected void tableColor(JTableHeader t) {
         t.setForeground(Color.WHITE);
 
         Font headerFont = new Font("Boring sans", Font.BOLD, 14);
         t.setFont(headerFont);
-       
+
         t.repaint();
     }
 
@@ -839,7 +859,7 @@ public class index extends javax.swing.JFrame {
         jpanelMain.revalidate();
         jpanelMain.repaint();
     }
-    
+
     @Override
     public void setDefaultCloseOperation(int operation) {
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody

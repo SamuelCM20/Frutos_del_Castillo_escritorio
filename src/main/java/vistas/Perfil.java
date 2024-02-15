@@ -10,6 +10,7 @@ import controladores.controladorUsers;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import vistas.index;
 
 /**
  *
@@ -21,11 +22,13 @@ public class Perfil extends javax.swing.JDialog {
      * pri Creates new form Perfil
      */
     public JDateChooser dateChooser;
+    private index objVistaIndex = new index();
     controladorUsers ctrlu = new controladorUsers();
 
-    public Perfil(java.awt.Frame parent, boolean modal) {
+    public Perfil(java.awt.Frame parent, boolean modal, index objVistaIndex) {
 
         super(parent, modal);
+        this.objVistaIndex = objVistaIndex;
         initComponents();
         initDateChooser();
 
@@ -253,6 +256,7 @@ public class Perfil extends javax.swing.JDialog {
                     if (ctrlu.validarFecha(dateChooser.getDate())) {
                         ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText());
 
+                        objVistaIndex.setUserName(txtNombre.getText());
                         JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
                         btnEditar.setText("Editar");
                         this.setVisible(false);
