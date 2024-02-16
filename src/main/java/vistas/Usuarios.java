@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.CustomHeaderRenderer;
 import controladores.controladorUsers;
 import controladores.controladorIndex;
 import java.text.ParseException;
@@ -27,13 +28,10 @@ public class Usuarios extends javax.swing.JPanel {
      */
     public Usuarios() {
         initComponents();
-
-        JTableHeader header = tableUsuarios.getTableHeader();
-        index i = new index();
-        i.tableColor(header);
         
         tableModel();
         fillRows();
+        tableUsuarios.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
     }
     
     /**

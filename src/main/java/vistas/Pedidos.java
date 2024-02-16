@@ -9,6 +9,7 @@ import controladores.ControladorFacturas;
 import controladores.ControladorMesas;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
+import controladores.CustomHeaderRenderer;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
@@ -42,6 +43,8 @@ public class Pedidos extends javax.swing.JPanel {
 
         tableModel();
         fillRows();
+        tablePedidos.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
+        tablePediProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
     }
 
     int rowSelected = -1;

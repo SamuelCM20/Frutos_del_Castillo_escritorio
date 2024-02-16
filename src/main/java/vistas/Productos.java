@@ -7,15 +7,23 @@ package vistas;
 import Modelo.Categorias;
 
 import controladores.ControladorProductos;
+import controladores.CustomHeaderRenderer;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -39,9 +47,9 @@ public class Productos extends javax.swing.JPanel {
         llenarComboBoxCategorias();
         
         setColorBotones();
+        tableProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         
     }
-
     public void setColorBotones(){
         btnEditar.setContentAreaFilled(false);
         btnEditar.setOpaque(true);

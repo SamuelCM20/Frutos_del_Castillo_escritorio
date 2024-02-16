@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
+import controladores.CustomHeaderRenderer;
 import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -36,6 +37,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
 
         tableModel();
         fillRows();
+        tablaPedidos.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
     }
 
     private DefaultTableModel modelTable;
