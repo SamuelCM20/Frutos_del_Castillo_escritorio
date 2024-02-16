@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -59,4 +60,57 @@ public class ControladorMesas {
         return lista;
     }
     
+    public boolean validarCampos(String number,JComboBox state){
+        
+        boolean validacionCampos = validarOpcionDisponibilidad(state);
+        
+        return !(number.equals("")|| !validacionCampos);
+        
+    }
+    
+    public boolean validarOpcionDisponibilidad(JComboBox item){
+        String opcion = (String) item.getSelectedItem();
+        
+        return opcion.equalsIgnoreCase("disponible") || opcion.equalsIgnoreCase("ocupada");
+    }
+    
+    public boolean validarNumMesa(int num){
+        String consulta = "SELECT COUNT(*)AS numero FROM mesas WHERE numero_mesa = " + num +";";
+        try ( Conexion objConexion = new Conexion()) {
+            ResultSet res = objConexion.consulta(consulta);
+            if(res.next()){
+                return res.getInt("numero") != 0;
+            }
+
+        } catch (Exception e) {
+        }
+        return false;
+        
+    }
+    
+    public int getValorDisponibilidad(JComboBox dispo) {
+        String opcion = (String) dispo.getSelectedItem();
+        if (opcion.equalsIgnoreCase("Disponible")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    public void agregarMesa(int numero,int estado){
+        
+         String consulta = "INSERT INTO mesas(numero_mesa,estado) VALUES ("+numero+","+estado+");";
+         
+         try ( Conexion objConexion = new Conexion()) {
+            boolean res = objConexion.ejecutar(consulta);
+
+            if (res) {
+                System.out.println("Mesa agreagado");
+            } else {
+                System.out.println("Error al agregar mesa");
+            }
+
+        } catch (Exception e) {
+        }
+    }
 }

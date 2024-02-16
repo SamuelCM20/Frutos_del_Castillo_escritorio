@@ -7,6 +7,7 @@ package vistas;
 import java.awt.FlowLayout;
 import controladores.ControladorMesas;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -136,7 +137,7 @@ public class Mesas extends javax.swing.JPanel {
         tableMesas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableMesas);
 
-        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "ocupada" }));
         cmbState.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbStateItemStateChanged(evt);
@@ -252,6 +253,29 @@ public class Mesas extends javax.swing.JPanel {
 
     private void btnAgregarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMesaActionPerformed
         // TODO add your handling code here:
+        
+        boolean validarCampos = conObject.validarCampos(txtNumMesa.getText(),cmbState);
+        
+        if(validarCampos){
+            try {
+               int numeroMesa =Integer.parseInt(txtNumMesa.getText());
+               if (!conObject.validarNumMesa(numeroMesa)){
+                   int estado = conObject.getValorDisponibilidad(cmbState);
+                   
+                   conObject.agregarMesa(numeroMesa,estado);
+                   JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
+                   fillRows();
+               }else{
+                   JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
+               }
+               
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo se aceptan numeros como parametros");
+            }
+        }else{
+             JOptionPane.showMessageDialog(null,"Todos los campos son necesarios");
+            
+        }
     }//GEN-LAST:event_btnAgregarMesaActionPerformed
 
 
