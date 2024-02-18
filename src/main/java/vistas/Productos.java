@@ -76,6 +76,8 @@ public class Productos extends javax.swing.JPanel {
         comboBoxDispo.setSelectedIndex(0);
         iconProduct.setIcon(null);
         objControlador.setNullFile();
+        
+        rowSelected = -1;
     }
 
     public void tableModel() {
@@ -548,6 +550,7 @@ public class Productos extends javax.swing.JPanel {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         fillRows();
+        limpiarCampos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
 

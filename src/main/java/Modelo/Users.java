@@ -115,6 +115,9 @@ public class Users {
         return getRol_id;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.nombre + this.apellido;
+    }
  
 }

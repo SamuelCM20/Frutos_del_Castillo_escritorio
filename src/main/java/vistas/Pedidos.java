@@ -10,20 +10,21 @@ import controladores.ControladorMesas;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
 import controladores.CustomHeaderRenderer;
-import java.awt.Color;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
  * @author samue
  */
 public class Pedidos extends javax.swing.JPanel {
+
     //hola
     String tercerColor = "#601d49";
     String cuartoColor = "#491738";
@@ -33,13 +34,6 @@ public class Pedidos extends javax.swing.JPanel {
      */
     public Pedidos() {
         initComponents();
-        /*JTableHeader header = tablePedidos.getTableHeader();
-        JTableHeader headerP = tablePediProducts.getTableHeader();
-        
-        index i = new index();
-        i.tableColor(header);
-        i.tableColor(headerP);
-         */
 
         tableModel();
         fillRows();
@@ -48,10 +42,14 @@ public class Pedidos extends javax.swing.JPanel {
     }
 
     int rowSelected = -1;
-    private ControladorPedidos objControlador = new ControladorPedidos();
+    private ControladorPedidos objControladorPedidos = new ControladorPedidos();
     private ControladorProductos objControladorProductos = new ControladorProductos();
     private ControladorMesas objControladorMesas = new ControladorMesas();
     private ControladorFacturas objControladorFacturas = new ControladorFacturas();
+
+    //se utilizan para imprimir la factura
+    Users usuarioEmpleadoPedido;
+    List<Modelo.Factura> listaPedidosFacturas;
 
     private DefaultTableModel modelTable2;
     private DefaultTableModel modelTable1;
@@ -89,7 +87,7 @@ public class Pedidos extends javax.swing.JPanel {
 
     public void fillRows() {
         modelTable2.setRowCount(0);
-        listaPedidos = objControlador.getPedidos();
+        listaPedidos = objControladorPedidos.getPedidos();
 
         listaPedidos.forEach(l -> {
             Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
@@ -99,13 +97,13 @@ public class Pedidos extends javax.swing.JPanel {
 
     public void fillRowsPedidosProductos(int idCompra) {
         modelTable1.setRowCount(0);
-        
-        Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
-        labelValorTotal.setText("$"+String.valueOf(pedido.getCosto_total()));
-        
-        List<Modelo.Factura> listaPedidos = objControladorFacturas.getFacturas(idCompra);
 
-        listaPedidos.forEach(l -> {
+        Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
+        labelValorTotal.setText("$" + String.valueOf(pedido.getCosto_total()));
+
+        listaPedidosFacturas = objControladorFacturas.getFacturas(idCompra);
+
+        listaPedidosFacturas.forEach(l -> {
             Modelo.Productos objProducto = objControladorProductos.getProducto(l.getProductos_id());
 
             modelTable1.addRow(new Object[]{l.getIdFactura(), objProducto.getNombre(), l.getCantidad_producto()});
@@ -116,9 +114,9 @@ public class Pedidos extends javax.swing.JPanel {
         Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
         Modelo.Mesas mesa = (Modelo.Mesas) tablePedidos.getValueAt(rowSelected, 1);
 
-        Users usuario = objControlador.getUsuario(pedido.getUsuarios_id());
+        usuarioEmpleadoPedido = objControladorPedidos.getUsuario(pedido.getUsuarios_id());
 
-        fieldEmpleado.setText(usuario.getNombre().toUpperCase());
+        fieldEmpleado.setText(usuarioEmpleadoPedido.getNombre().toUpperCase() + " " + usuarioEmpleadoPedido.getApellido().toUpperCase());
 
         fieldMesa.setText(String.valueOf(mesa.getNumero_mesa()));
         fieldComentario.setText(pedido.getComentario());
@@ -139,7 +137,7 @@ public class Pedidos extends javax.swing.JPanel {
     public void validacionCampos() {
         if (rowSelected != -1) {
             Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
-            if (objControlador.actualizarPedido(pedido.getIdCompra())) {
+            if (objControladorPedidos.actualizarPedido(pedido.getIdCompra())) {
                 fillRows();
                 limpiarCampos();
                 JOptionPane.showMessageDialog(this, "Pedido tomado con exito.");
@@ -509,7 +507,32 @@ public class Pedidos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCompletarPActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        // TODO add your handling code here:
+
+        if (rowSelected != -1) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar como");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+
+                String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                Modelo.Mesas objMesa = (Modelo.Mesas) modelTable2.getValueAt(rowSelected, 1);
+                Modelo.Compra objPedido = (Modelo.Compra) listaPedidos.get(rowSelected);
+
+                boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, objMesa, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);
+
+                if (facturaGenerada) {
+                    JOptionPane.showMessageDialog(null, "Factura guardada con exito.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al guardar la factura.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una compra primero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void tablePedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePedidosMouseClicked
@@ -531,7 +554,7 @@ public class Pedidos extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if(frame != null){
+        if (frame != null) {
             HistorialPedidos obj = new HistorialPedidos(frame, true);
             obj.runView();
         }

@@ -4,6 +4,8 @@
  */
 package controladores;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,11 +15,18 @@ import java.util.regex.Pattern;
  */
 public class ControladorUtils {
 
-    public boolean evaluarExpresion(String expresion, String valor) {
+    public static boolean evaluarExpresion(String expresion, String valor) {
 
         Pattern p = Pattern.compile(expresion);
         Matcher field = p.matcher(valor);
-        
+
         return field.matches();
+    }
+
+    public static String getFecha() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formattedDate = now.format(formatter);
+        return formattedDate;
     }
 }
