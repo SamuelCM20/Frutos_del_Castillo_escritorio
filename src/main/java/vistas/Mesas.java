@@ -25,13 +25,13 @@ public class Mesas extends javax.swing.JPanel {
         tableModel();
         fillRows();
     }
-    
+
     private DefaultTableModel modelTable;
     private List<Modelo.Mesas> listaMesas;
     private ControladorMesas conObject = new ControladorMesas();
 
     int rowSelected = -1;
-    
+
     public void tableModel() {
         modelTable = new DefaultTableModel() {
             @Override
@@ -43,33 +43,44 @@ public class Mesas extends javax.swing.JPanel {
         modelTable.addColumn("Estado");
 
         tableMesas.setModel(modelTable);
-        
+
         tableMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
-    
+
     public void fillRows() {
 
         modelTable.setRowCount(0);
         listaMesas = conObject.getListaMesas();
-        
+
         listaMesas.forEach(l -> {
             String estado = getNombreDisponibilidad(l.getEstado());
-            modelTable.addRow(new Object[]{l.getIdMesa(), estado});
+            modelTable.addRow(new Object[]{l.getNumero_mesa(), estado});
         });
     }
+
+    public void fillFields() {
+        Modelo.Mesas mesas = (Modelo.Mesas) listaMesas.get(rowSelected);
+
+        txtNumMesa.setText(String.valueOf(mesas.getNumero_mesa()));
+        cmbState.setSelectedItem(getNombreDisponibilidad(mesas.getEstado()));
+        
+    }
+
     public String getNombreDisponibilidad(int state) {
-
         String nombre = "";
-        if (state== 0) {
-            nombre = "Ocupado";
+        if (state == 0) {
+            nombre = "Ocupada";
         } else if (state == 1) {
-            nombre = "disponible";
+            nombre = "Disponible";
         }
-
         return nombre;
-
     }
     
+    public void limpiarCampos(){
+        txtNumMesa.setText("");
+        cmbState.setSelectedIndex(0);
+        rowSelected = -1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,9 +146,14 @@ public class Mesas extends javax.swing.JPanel {
         tableMesas.setShowVerticalLines(true);
         tableMesas.getTableHeader().setResizingAllowed(false);
         tableMesas.getTableHeader().setReorderingAllowed(false);
+        tableMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMesasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableMesas);
 
-        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "ocupada" }));
+        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "Ocupada" }));
         cmbState.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbStateItemStateChanged(evt);
@@ -168,6 +184,11 @@ public class Mesas extends javax.swing.JPanel {
         btnEliminarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarMesa.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarMesa.setText("Eliminar");
+        btnEliminarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMesaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelReservasLayout = new javax.swing.GroupLayout(panelReservas);
         panelReservas.setLayout(panelReservasLayout);
@@ -240,7 +261,48 @@ public class Mesas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMesaActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:}
+        if(rowSelected != -1){
+            Modelo.Mesas infoMesa = (Modelo.Mesas) listaMesas.get(rowSelected);
+            boolean validarCampos = conObject.validarCampos(txtNumMesa.getText(), cmbState);
+            int idMesa = infoMesa.getIdMesa();
+            
+            if (validarCampos) {
+            try {
+                int numeroMesa = Integer.parseInt(txtNumMesa.getText());
+                int numeroAnterior = infoMesa.getIdMesa();
+                
+                if(numeroAnterior != numeroMesa){
+                    if (!conObject.validarNumMesa(numeroMesa)) {
+                        
+                        JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
+
+                    } else {
+                        int estado = conObject.getValorDisponibilidad(cmbState);
+                        conObject.EditarMesa(idMesa,numeroMesa, estado);
+                        JOptionPane.showMessageDialog(null, "Mesa editada exitosamente");
+                        limpiarCampos();
+                        fillRows();
+                    }
+                }else{
+                    int estado = conObject.getValorDisponibilidad(cmbState);
+                        conObject.EditarMesa(idMesa,numeroMesa, estado);
+                        JOptionPane.showMessageDialog(null, "Mesa editada exitosamente");
+                        limpiarCampos();
+                        fillRows();
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo se aceptan numeros como parametros");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Todos los campos son necesarios");
+
+        }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes presionar la columna que quieres editar primero");
+        }
     }//GEN-LAST:event_btnEditarMesaActionPerformed
 
     private void txtNumMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumMesaActionPerformed
@@ -253,30 +315,54 @@ public class Mesas extends javax.swing.JPanel {
 
     private void btnAgregarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMesaActionPerformed
         // TODO add your handling code here:
-        
-        boolean validarCampos = conObject.validarCampos(txtNumMesa.getText(),cmbState);
-        
-        if(validarCampos){
+
+        boolean validarCampos = conObject.validarCampos(txtNumMesa.getText(), cmbState);
+
+        if (validarCampos) {
             try {
-               int numeroMesa =Integer.parseInt(txtNumMesa.getText());
-               if (!conObject.validarNumMesa(numeroMesa)){
-                   int estado = conObject.getValorDisponibilidad(cmbState);
-                   
-                   conObject.agregarMesa(numeroMesa,estado);
-                   JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
-                   fillRows();
-               }else{
-                   JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
-               }
-               
+                int numeroMesa = Integer.parseInt(txtNumMesa.getText());
+                if (conObject.validarNumMesa(numeroMesa)) {
+                    int estado = conObject.getValorDisponibilidad(cmbState);
+
+                    conObject.agregarMesa(numeroMesa, estado);
+                    JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
+                    fillRows();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
+                }
+
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Solo se aceptan numeros como parametros");
             }
-        }else{
-             JOptionPane.showMessageDialog(null,"Todos los campos son necesarios");
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "Todos los campos son necesarios");
+
         }
     }//GEN-LAST:event_btnAgregarMesaActionPerformed
+
+    private void tableMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMesasMouseClicked
+        // TODO add your handling code here:
+        rowSelected = tableMesas.getSelectedRow();
+        fillFields();
+    }//GEN-LAST:event_tableMesasMouseClicked
+
+    private void btnEliminarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMesaActionPerformed
+        // TODO add your handling code here:
+        
+        if(rowSelected != -1){
+        Modelo.Mesas infoMesa = (Modelo.Mesas) listaMesas.get(rowSelected);
+        int opc = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta mesa?", "Eliminar mesa", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            conObject.eliminarMesa(infoMesa.getIdMesa());
+            fillRows();
+            rowSelected = -1;
+            limpiarCampos();
+            JOptionPane.showMessageDialog(null, "Mesa eliminada exitosamente");
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes presionar la columna que quieres eliminar primero");
+        }
+    }//GEN-LAST:event_btnEliminarMesaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -294,7 +380,5 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JTable tableMesas;
     private javax.swing.JTextField txtNumMesa;
     // End of variables declaration//GEN-END:variables
-    
-   
-}
 
+}

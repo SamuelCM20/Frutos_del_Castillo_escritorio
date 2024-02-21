@@ -205,6 +205,9 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMesasMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -214,7 +217,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Elige..."/>
                 <StringItem index="1" value="Disponible"/>
-                <StringItem index="2" value="ocupada"/>
+                <StringItem index="2" value="Ocupada"/>
               </StringArray>
             </Property>
           </Properties>
@@ -272,6 +275,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarMesaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
