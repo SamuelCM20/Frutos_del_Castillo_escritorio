@@ -233,11 +233,11 @@ public class index extends javax.swing.JFrame {
             .addComponent(labelInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        textBiene.setFont(new java.awt.Font("Boring Sans A Trial", 0, 14)); // NOI18N
+        textBiene.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
         textBiene.setForeground(new java.awt.Color(255, 255, 255));
         textBiene.setText("Bienvenido:");
 
-        userName.setFont(new java.awt.Font("Boring Sans A Trial", 0, 14)); // NOI18N
+        userName.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
         userName.setForeground(new java.awt.Color(255, 255, 255));
         userName.setText("Usuario");
 
@@ -500,7 +500,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(labelSalir)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         btnSalirLayout.setVerticalGroup(
             btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +607,7 @@ public class index extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBodyLayout.createSequentialGroup()
                         .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)))
+                        .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)))
                 .addGap(105, 105, 105))
         );
 

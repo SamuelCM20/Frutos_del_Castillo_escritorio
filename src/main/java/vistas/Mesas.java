@@ -270,7 +270,7 @@ public class Mesas extends javax.swing.JPanel {
             if (validarCampos) {
             try {
                 int numeroMesa = Integer.parseInt(txtNumMesa.getText());
-                int numeroAnterior = infoMesa.getIdMesa();
+                int numeroAnterior = infoMesa.getNumero_mesa();
                 
                 if(numeroAnterior != numeroMesa){
                     if (!conObject.validarNumMesa(numeroMesa)) {
@@ -326,6 +326,7 @@ public class Mesas extends javax.swing.JPanel {
 
                     conObject.agregarMesa(numeroMesa, estado);
                     JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
+                    limpiarCampos();
                     fillRows();
                 } else {
                     JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
