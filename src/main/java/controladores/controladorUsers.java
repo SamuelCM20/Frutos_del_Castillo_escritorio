@@ -11,10 +11,12 @@ package controladores;
 import Modelo.Conexion;
 import Modelo.Users;
 import vistas.Usuarios;
+import controladores.ControladorUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class controladorUsers {
     //hola
+    
+    ControladorUtils ctrlu = new ControladorUtils();
     public List<Users> getUsers() {
         List<Users> lista = new ArrayList<>();
 
@@ -56,14 +60,13 @@ public class controladorUsers {
     }
 
     public void agregarUsuario(String nombre, String apellido, String celular, Date selectedDate, String correo, String contrasenia, int rol) {
-
+        
+        Timestamp timestamp = ctrlu.crearTimestamp();
+        String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
+        java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
+        String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,estado,created_at,updated_at) "
+                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "'," + 1 + ",'"+timestamp+"','"+timestamp+"');";
         try ( Conexion con = new Conexion()) {
-            String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
-            java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
-
-            String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,estado) "
-                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "'," + 1 + ");";
-
             boolean res = con.ejecutar(consulta);
 
             if (res) {
@@ -82,11 +85,11 @@ public class controladorUsers {
     }
 
     public void actualizarUsuario(int id, String nombre, String apellido, String celular, Date selectedDate, String correo, int rol, int estado) {
-
+        
         try ( Conexion con = new Conexion()) {
             java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
-            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "', estado =" + estado + " WHERE id = " + id;
+            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "', estado =" + estado + ",updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id;
 
             boolean res = con.ejecutar(consulta);
 
@@ -155,7 +158,7 @@ public class controladorUsers {
                     
             java.sql.Date fechaNacimiento = new java.sql.Date(date.getTime());
             
-            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento +"' WHERE email = '" + email+"';";
+            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento +"',updated_at = '"+ctrlu.crearTimestamp()+"' WHERE email = '" + email+"';";
             
                 user.setNombre(name);
                 user.setApellido(lastname);
@@ -296,7 +299,7 @@ public class controladorUsers {
 
         String newPassEncryp = encriptarContrasenia(newPass);
 
-        String consulta = "UPDATE users SET password = '" + newPassEncryp + "'WHERE id =  " + id;
+        String consulta = "UPDATE users SET password = '" + newPassEncryp + "', updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id =  " + id;
 
         try ( Conexion con = new Conexion()) {
             boolean res = con.ejecutar(consulta);

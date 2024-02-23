@@ -6,10 +6,13 @@ package controladores;
 
 import Modelo.Conexion;
 import Modelo.Mesas;
+import controladores.ControladorUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
 
@@ -18,6 +21,8 @@ import javax.swing.JComboBox;
  * @author jd
  */
 public class ControladorMesas {
+    
+    ControladorUtils ctrlu = new ControladorUtils();
 
     public Mesas getMesa(int mesaId) {
 
@@ -110,11 +115,12 @@ public class ControladorMesas {
 
     public void agregarMesa(int numero, int estado) {
 
-        String consulta = "INSERT INTO mesas(numero_mesa,estado) VALUES (" + numero + "," + estado + ");";
+        Timestamp timestamp = ctrlu.crearTimestamp();
+        String consulta = "INSERT INTO mesas(numero_mesa,estado,created_at,updated_at) VALUES (" + numero + "," + estado + ",'"+timestamp+"','"+timestamp+"');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
-
+            
             if (res) {
                 System.out.println("Mesa agreagado");
             } else {
@@ -125,8 +131,8 @@ public class ControladorMesas {
         }
     }
     public void EditarMesa(int id,int numero, int estado) {
-
-        String consulta = "UPDATE mesas set numero_mesa =  " + numero + ",estado =" + estado + " WHERE id = " + id + ";";
+        
+        String consulta = "UPDATE mesas set numero_mesa =  " + numero + ",estado =" + estado + ",updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id + ";";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);

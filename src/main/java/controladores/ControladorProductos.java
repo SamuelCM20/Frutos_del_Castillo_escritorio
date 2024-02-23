@@ -19,8 +19,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Modelo.Conexion;
 import Modelo.Productos;
+import controladores.ControladorUtils;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -34,6 +37,7 @@ import javax.swing.JTextField;
 public class ControladorProductos {
 
     private File selectedFile;
+    ControladorUtils ctrlu = new ControladorUtils();
 
     public void setNullFile() {
         selectedFile = null;
@@ -186,9 +190,10 @@ public class ControladorProductos {
     }
 
     public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen) {
-
-        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id) "
-                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ")";
+        
+        Timestamp timestamp = ctrlu.crearTimestamp();
+        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id,created_at,updated_at) "
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
@@ -207,18 +212,18 @@ public class ControladorProductos {
     public void actualizarProducto(int id, String nombre, double precio, int disponibilidad, int categoria, String descripcion, String[] imagen) {
 
         String consulta;
-
+        Timestamp timestamp = ctrlu.crearTimestamp();
         if (imagen[0].equalsIgnoreCase("true")) {
 
             String rutaImagen = obtenerRutaImagen(imagen[1]);
 
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
-                    + ", imagen_1 = '" + rutaImagen + "', imagen_2 = '" + rutaImagen + "' WHERE id = " + id;
+                    + ", imagen_1 = '" + rutaImagen + "', imagen_2 = '" + rutaImagen + "',updated_at = '"+timestamp+"' WHERE id = " + id;
         } else {
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
-                    + " WHERE id = " + id;
+                    + ",updated_at = '"+timestamp+"' WHERE id = " + id;
         }
 
         try (Conexion objConexion = new Conexion()) {
