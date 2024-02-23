@@ -23,7 +23,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -171,12 +170,11 @@ public class ControladorFacturas {
 
     public List<Factura> getFacturas(int idCompra) {
         List<Factura> lista = new ArrayList<>();
-         String consulta = "select * from factura where compra_id = ?";
-        try ( Conexion objConexion = new Conexion();PreparedStatement ps = objConexion.prepareStatement(consulta)) {
+         String consulta = "select * from facturas where compra_id = " + idCompra + ";";
+        try ( Conexion objConexion = new Conexion();) {
 
            
-            ps.setInt(1, idCompra);
-            ResultSet rc = ps.executeQuery();
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
                 int id = rc.getInt("id");

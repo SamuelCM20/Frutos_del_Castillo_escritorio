@@ -7,7 +7,6 @@ package controladores;
 import Modelo.Conexion;
 import Modelo.Mesas;
 import controladores.ControladorUtils;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -26,12 +25,10 @@ public class ControladorMesas {
 
     public Mesas getMesa(int mesaId) {
 
-        String consulta = "select * from mesas where id = ?";
-        try ( Conexion objConexion = new Conexion();  PreparedStatement ps = objConexion.prepareStatement(consulta)) {
+        String consulta = "select * from mesas where id = " + mesaId + ";";
+        try ( Conexion objConexion = new Conexion();) {
 
-            ps.setInt(1, mesaId);
-
-            ResultSet rc = ps.executeQuery();
+            ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
                 int id = rc.getInt("id");
