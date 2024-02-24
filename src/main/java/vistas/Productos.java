@@ -7,6 +7,7 @@ package vistas;
 import Modelo.Categorias;
 
 import controladores.ControladorProductos;
+import controladores.ControladorUtils;
 import controladores.CustomHeaderRenderer;
 import java.awt.Color;
 import java.awt.Component;
@@ -32,6 +33,7 @@ import javax.swing.table.JTableHeader;
  * @author samue
  */
 public class Productos extends javax.swing.JPanel {
+
     //hola
     /**
      * Creates new form Productos
@@ -45,26 +47,29 @@ public class Productos extends javax.swing.JPanel {
         tableModel();
         fillRows();
         llenarComboBoxCategorias();
-        
+
         setColorBotones();
         tableProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
-        
+
     }
-    public void setColorBotones(){
+
+    public void setColorBotones() {
         btnEditar.setContentAreaFilled(false);
         btnEditar.setOpaque(true);
-        btnEditar.setBackground(new Color(96,29,73));
+        btnEditar.setBackground(new Color(96, 29, 73));
 
         btnImg1.setContentAreaFilled(false);
         btnImg1.setOpaque(true);
-        btnImg1.setBackground(new Color(96,29,73));
+        btnImg1.setBackground(new Color(96, 29, 73));
     }
     private ControladorProductos objControlador = new ControladorProductos();
 
     private DefaultComboBoxModel<Categorias> modelComboBox = new DefaultComboBoxModel<>();
-    private DefaultTableModel modelTable;
+    private DefaultTableModel modelTableProductos;
     private List<Modelo.Productos> listaProductos;
-    
+
+    private ControladorUtils objControladorUtils = new ControladorUtils();
+
     int rowSelected = -1;
 
     public void limpiarCampos() {
@@ -76,26 +81,14 @@ public class Productos extends javax.swing.JPanel {
         comboBoxDispo.setSelectedIndex(0);
         iconProduct.setIcon(null);
         objControlador.setNullFile();
-        
+
         rowSelected = -1;
     }
 
     public void tableModel() {
-        modelTable = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        };
-        modelTable.addColumn("Codigo");
-        modelTable.addColumn("nombre");
-        modelTable.addColumn("precio");
-        modelTable.addColumn("categoria");
-        modelTable.addColumn("disponibilidad");
-
-        tableProducts.setModel(modelTable);
         
-        tableProducts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] titulosTablaProductos = {"Codigo", "Nombre", "Precio", "Categoria", "Disponibilidad"};
+        modelTableProductos = objControladorUtils.addTableModel(modelTableProductos, tableProducts, titulosTablaProductos);
     }
 
     public String getNombreCategoria(int id) {
@@ -126,13 +119,13 @@ public class Productos extends javax.swing.JPanel {
 
     public void fillRows() {
 
-        modelTable.setRowCount(0);
+        modelTableProductos.setRowCount(0);
         listaProductos = objControlador.getProductos();
 
         listaProductos.forEach(l -> {
             String cat = getNombreCategoria(l.getCategorias_id());
             String disponibilidad = getNombreDisponibilidad(l.getDisponibilidad());
-            modelTable.addRow(new Object[]{l.getIdProductos(), l.getNombre(), l.getPrecio(), cat, disponibilidad});
+            modelTableProductos.addRow(new Object[]{l.getIdProductos(), l.getNombre(), l.getPrecio(), cat, disponibilidad});
         });
 
     }
@@ -414,7 +407,7 @@ public class Productos extends javax.swing.JPanel {
         btnActualizar.setBackground(new java.awt.Color(96, 29, 73));
         btnActualizar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setText("Refrescar");
         btnActualizar.setFocusPainted(false);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,9 +477,9 @@ public class Productos extends javax.swing.JPanel {
                 String[] data = objControlador.copiarImagen();
 
                 if (data[0].equalsIgnoreCase("true")) {
-                    
+
                     String newRuta = objControlador.obtenerRutaImagen(data[1]);
-                    
+
                     int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDispo);
 
                     Categorias categoria = (Categorias) comboBoxCategoria.getSelectedItem();
@@ -534,16 +527,16 @@ public class Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_tableProductsMouseClicked
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if(objControlador.validarSeleccionTabla(rowSelected)){
-            
+        if (objControlador.validarSeleccionTabla(rowSelected)) {
+
             Modelo.Productos producto = (Modelo.Productos) listaProductos.get(rowSelected);
-            
+
             index prn = new index();
             editarProducto obj = new editarProducto(prn, true, producto, this);
             obj.setLocationRelativeTo(null);
             obj.setResizable(false);
             obj.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Se necesita seleccionar una fila de la tabla.");
         }
     }//GEN-LAST:event_btnEditarActionPerformed

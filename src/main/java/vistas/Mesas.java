@@ -6,6 +6,8 @@ package vistas;
 
 import java.awt.FlowLayout;
 import controladores.ControladorMesas;
+import controladores.ControladorUtils;
+import controladores.CustomHeaderRenderer;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -24,37 +26,29 @@ public class Mesas extends javax.swing.JPanel {
         initComponents();
         tableModel();
         fillRows();
+        tableMesas.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
     }
 
-    private DefaultTableModel modelTable;
+    private DefaultTableModel modelTableMesas;
     private List<Modelo.Mesas> listaMesas;
     private ControladorMesas conObject = new ControladorMesas();
+    
+    private ControladorUtils objControladorUtils = new ControladorUtils();
 
     int rowSelected = -1;
 
     public void tableModel() {
-        modelTable = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        };
-        modelTable.addColumn("mesa");
-        modelTable.addColumn("Estado");
-
-        tableMesas.setModel(modelTable);
-
-        tableMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] titulosTablaMesa = {"Mesa", "Estado"};
+        modelTableMesas = objControladorUtils.addTableModel(modelTableMesas, tableMesas, titulosTablaMesa);
     }
 
     public void fillRows() {
-
-        modelTable.setRowCount(0);
+        modelTableMesas.setRowCount(0);
         listaMesas = conObject.getListaMesas();
 
         listaMesas.forEach(l -> {
             String estado = getNombreDisponibilidad(l.getEstado());
-            modelTable.addRow(new Object[]{l.getNumero_mesa(), estado});
+            modelTableMesas.addRow(new Object[]{l.getNumero_mesa(), estado});
         });
     }
 

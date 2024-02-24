@@ -11,6 +11,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
+import controladores.ControladorUtils;
 import controladores.CustomHeaderRenderer;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -40,37 +41,30 @@ public class HistorialPedidos extends javax.swing.JDialog {
         tablaPedidos.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
     }
 
-    private DefaultTableModel modelTable;
+    private DefaultTableModel modelTableHistorial;
     private ControladorPedidos objControlador = new ControladorPedidos();
     private ControladorProductos objControladorProductos = new ControladorProductos();
     private ControladorMesas objControladorMesas = new ControladorMesas();
     private ControladorFacturas objControladorFacturas = new ControladorFacturas();
     private List<Modelo.Compra> listaPedidos;
+    
+    private ControladorUtils objControladorUtils = new ControladorUtils();
+    
 
     public void tableModel() {
-        modelTable = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        };
-        modelTable.addColumn("Fecha");
-        modelTable.addColumn("Empleado");
-        modelTable.addColumn("Mesa");
-
-        //modelTable.addColumn("Tipos de productos");
-        tablaPedidos.setModel(modelTable);
-        tablaPedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        String[] titulosTablaHistorial = {"Fecha", "Empleado", "Mesa"};
+        modelTableHistorial = objControladorUtils.addTableModel(modelTableHistorial, tablaPedidos, titulosTablaHistorial);
     }
 
     public void fillRows() {
-        modelTable.setRowCount(0);
+        modelTableHistorial.setRowCount(0);
         listaPedidos = objControlador.getPedidosHistorial();
 
         listaPedidos.forEach(l -> {
             Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
             Modelo.Users objUser = objControlador.getUsuario(l.getUsuarios_id());
-            modelTable.addRow(new Object[]{l.getFecha_hora(), objUser.getNombre(), objMesa});
+            modelTableHistorial.addRow(new Object[]{l.getFecha_hora(), objUser.getNombre(), objMesa});
         });
     }
 
@@ -180,7 +174,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
 
         //validación
-        if (modelTable.getRowCount() != 0) {
+        if (modelTableHistorial.getRowCount() != 0) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Guardar como");
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
