@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.ControladorUtils;
 import controladores.CustomHeaderRenderer;
 import controladores.controladorUsers;
 import controladores.controladorIndex;
@@ -41,37 +42,27 @@ public class Usuarios extends javax.swing.JPanel {
      */
     private controladorUsers conObject = new controladorUsers();
     private controladorIndex ctrl = new controladorIndex();
-    private DefaultTableModel modelTable;
+    private ControladorUtils objControladorUtils = new ControladorUtils();
+    
+    private DefaultTableModel modelTableUsuarios;
     private List<Modelo.Users> listaUsers;
   
     int rowSelected = -1;
     
     public void tableModel() {
-        modelTable = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        };
-        modelTable.addColumn("Identificación");
-        modelTable.addColumn("Nombre");
-        modelTable.addColumn("Apellido");
-        modelTable.addColumn("Rol");
-
-        tableUsuarios.setModel(modelTable);
-        
-        tableUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        String[] titulosTablaUsuarios = {"Identificación", "Nombre", "Apellido", "Rol"};
+        modelTableUsuarios = objControladorUtils.addTableModel(modelTableUsuarios, tableUsuarios, titulosTablaUsuarios);  
     }
     
     public void fillRows() {
 
-        modelTable.setRowCount(0);
+        modelTableUsuarios.setRowCount(0);
         listaUsers = conObject.getUsers();
         
         listaUsers.forEach(l -> {
             String rol = ctrl.obtenerRol(l.getIdUsuario());
 
-            modelTable.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), rol});
+            modelTableUsuarios.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), rol});
         });
 
     }
