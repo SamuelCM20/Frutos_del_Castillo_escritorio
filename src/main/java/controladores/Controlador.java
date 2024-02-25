@@ -37,7 +37,6 @@ public class Controlador implements ActionListener {
     private login vistaLogin;
     private Users modeloLogin;
     private controladorIndex objControladorIndex = new controladorIndex();
-    
 
     public Controlador(login vistaLogin, Users modeloLogin) {
         this.vistaLogin = vistaLogin;
@@ -45,7 +44,7 @@ public class Controlador implements ActionListener {
         this.vistaLogin.btnEntrar.addActionListener(this);
     }
     vistas.index x = new vistas.index();
-    
+
     public Controlador() {
         //Poder crear herencias de la funcion obtenerRol()
     }
@@ -80,7 +79,6 @@ public class Controlador implements ActionListener {
             ResultSet rc = conex.consulta(consulta);
             if (rc != null && rc.next()) {
                 String passwordOld = rc.getString("password");
-                int state = rc.getInt("estado");
                 String UserName = rc.getString("nombre");
                 String Lastname = rc.getString("apellido");
                 int UserId = rc.getInt("id");
@@ -94,21 +92,15 @@ public class Controlador implements ActionListener {
                 modeloLogin.setFecha_nacimiento(Birthday);
                 modeloLogin.setEmail(Useremail);
                 modeloLogin.setCelular(phone);
-                modeloLogin.setEstado(state);
 
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
 
-                    if (objControladorIndex.verEstado(state)) {
-                        this.vistaLogin.setVisible(false);
-                        x.setUserName(modeloLogin.getNombre());
-                        x.runView(objControladorIndex.obtenerRol(modeloLogin.getIdUsuario()), modeloLogin);
-                    } else {
+                    this.vistaLogin.setVisible(false);
+                    x.setUserName(modeloLogin.getNombre());
+                    x.runView(objControladorIndex.obtenerRol(modeloLogin.getIdUsuario()), modeloLogin);
 
-                        JOptionPane.showMessageDialog(null, "El usuario ingresado esta inactivo");
-
-                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
                 }

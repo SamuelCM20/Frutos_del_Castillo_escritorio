@@ -50,8 +50,7 @@ public class controladorUsers {
                 String fecha_na = rc.getString("fecha_nacimiento");
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
-                int estado = rc.getInt("estado");
-                lista.add(new Users(id, nombre, apellido, fecha_na, email, celular, estado));
+                lista.add(new Users(id, nombre, apellido, fecha_na, email, celular));
             }
         } catch (SQLException e) {
         }
@@ -64,8 +63,8 @@ public class controladorUsers {
         Timestamp timestamp = ctrlu.crearTimestamp();
         String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
         java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
-        String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,estado,created_at,updated_at) "
-                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "'," + 1 + ",'"+timestamp+"','"+timestamp+"');";
+        String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,created_at,updated_at) "
+                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "','"+timestamp+"','"+timestamp+"');";
         try ( Conexion con = new Conexion()) {
             boolean res = con.ejecutar(consulta);
 
@@ -84,12 +83,12 @@ public class controladorUsers {
 
     }
 
-    public void actualizarUsuario(int id, String nombre, String apellido, String celular, Date selectedDate, String correo, int rol, int estado) {
+    public void actualizarUsuario(int id, String nombre, String apellido, String celular, Date selectedDate, String correo, int rol) {
         
         try ( Conexion con = new Conexion()) {
             java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
-            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "', estado =" + estado + ",updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id;
+            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "',updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id;
 
             boolean res = con.ejecutar(consulta);
 
@@ -211,26 +210,10 @@ public class controladorUsers {
         return 0;
     }
 
-    public int obtenerEstado(JComboBox state) {
-
-        String opcion = (String) state.getSelectedItem();
-        if (opcion.equalsIgnoreCase("Activo")) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
     public boolean validarCampos(String nombre, String apellido, String celular, Date selectedDate, String correo, String contrasenia, JComboBox rol) {
         boolean validacionRol = validarOpcionRol(rol);
 
         return !(nombre.equals("") || apellido.equals("") || celular.equals("") || selectedDate == null || correo.equals("") || contrasenia.equals("") || !validacionRol);
-    }
-
-    public boolean validarCampoEstado(JComboBox item) {
-        String opcion = (String) item.getSelectedItem();
-
-        return opcion.equalsIgnoreCase("Activo") || opcion.equalsIgnoreCase("Inactivo");
     }
 
     public boolean validarOpcionRol(JComboBox item) {

@@ -110,9 +110,8 @@ public class ControladorPedidos {
                 String fechaNacimiento = rc.getString("fecha_nacimiento");
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
-                int estado = rc.getInt("estado");
 
-                return new Users(id, nombre, apellido, fechaNacimiento, email, celular, estado);
+                return new Users(id, nombre, apellido, fechaNacimiento, email, celular);
             }
 
         } catch (SQLException s) {

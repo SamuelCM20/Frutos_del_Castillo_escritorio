@@ -237,6 +237,7 @@ public class index extends javax.swing.JFrame {
         textBiene.setForeground(new java.awt.Color(255, 255, 255));
         textBiene.setText("Bienvenido:");
 
+        userName.setBackground(new java.awt.Color(245, 245, 205));
         userName.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
         userName.setForeground(new java.awt.Color(255, 255, 255));
         userName.setText("Usuario");
@@ -604,7 +605,7 @@ public class index extends javax.swing.JFrame {
             .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBodyLayout.createSequentialGroup()
                 .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jpanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

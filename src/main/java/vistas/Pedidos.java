@@ -9,7 +9,6 @@ import controladores.ControladorFacturas;
 import controladores.ControladorMesas;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
-import controladores.ControladorUtils;
 import controladores.CustomHeaderRenderer;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -47,36 +46,57 @@ public class Pedidos extends javax.swing.JPanel {
     private ControladorProductos objControladorProductos = new ControladorProductos();
     private ControladorMesas objControladorMesas = new ControladorMesas();
     private ControladorFacturas objControladorFacturas = new ControladorFacturas();
-    private ControladorUtils objControladorUtils = new ControladorUtils();
 
     //se utilizan para imprimir la factura
     Users usuarioEmpleadoPedido;
     List<Modelo.Factura> listaPedidosFacturas;
 
-    private DefaultTableModel modelTablePedidos;
-    private DefaultTableModel modelTableCompras;
+    private DefaultTableModel modelTable2;
+    private DefaultTableModel modelTable1;
     private List<Modelo.Compra> listaPedidos;
 
     public void tableModel() {
-        String[] titulosTablaCompras = {"Pedido", "Mesa", "Disponibilidad", "Fecha"};
-        modelTableCompras = objControladorUtils.addTableModel(modelTableCompras, tablePedidos, titulosTablaCompras);
-        
-        String[] titulosTablaProductos = {"Codigo", "Producto", "Cantidad"};
-        modelTablePedidos = objControladorUtils.addTableModel(modelTablePedidos, tablePediProducts, titulosTablaProductos);
+        modelTable1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+        modelTable1.addColumn("Codigo");
+        modelTable1.addColumn("Producto");
+        modelTable1.addColumn("Cantidad");
+
+        tablePediProducts.setModel(modelTable1);
+        tablePediProducts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        modelTable2 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+
+        modelTable2.addColumn("Pedido");
+        modelTable2.addColumn("Mesa");
+        modelTable2.addColumn("Disponibilidad");
+        modelTable2.addColumn("Fecha");
+
+        tablePedidos.setModel(modelTable2);
+        tablePedidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     public void fillRows() {
-        modelTableCompras.setRowCount(0);
+        modelTable2.setRowCount(0);
         listaPedidos = objControladorPedidos.getPedidos();
 
         listaPedidos.forEach(l -> {
             Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
-            modelTableCompras.addRow(new Object[]{"¡Nuevo pedido!", objMesa, "en proceso...", l.getFecha_hora()});
+            modelTable2.addRow(new Object[]{"¡Nuevo pedido!", objMesa, "en proceso...", l.getFecha_hora()});
         });
     }
 
     public void fillRowsPedidosProductos(int idCompra) {
-        modelTablePedidos.setRowCount(0);
+        modelTable1.setRowCount(0);
 
         Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
         labelValorTotal.setText("$" + String.valueOf(pedido.getCosto_total()));
@@ -86,7 +106,7 @@ public class Pedidos extends javax.swing.JPanel {
         listaPedidosFacturas.forEach(l -> {
             Modelo.Productos objProducto = objControladorProductos.getProducto(l.getProductos_id());
 
-            modelTablePedidos.addRow(new Object[]{l.getIdFactura(), objProducto.getNombre(), l.getCantidad_producto()});
+            modelTable1.addRow(new Object[]{l.getIdFactura(), objProducto.getNombre(), l.getCantidad_producto()});
         });
     }
 
@@ -110,7 +130,7 @@ public class Pedidos extends javax.swing.JPanel {
         fieldEmpleado.setText("");
         labelValorTotal.setText("$");
 
-        modelTablePedidos.setRowCount(0);
+        modelTable1.setRowCount(0);
         rowSelected = -1;
     }
 
@@ -404,7 +424,7 @@ public class Pedidos extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(96, 29, 73));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Refrescar");
+        jButton1.setText("Actualizar");
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -499,7 +519,7 @@ public class Pedidos extends javax.swing.JPanel {
 
                 String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
 
-                Modelo.Mesas objMesa = (Modelo.Mesas) modelTableCompras.getValueAt(rowSelected, 1);
+                Modelo.Mesas objMesa = (Modelo.Mesas) modelTable2.getValueAt(rowSelected, 1);
                 Modelo.Compra objPedido = (Modelo.Compra) listaPedidos.get(rowSelected);
 
                 boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, objMesa, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);

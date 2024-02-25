@@ -170,7 +170,7 @@ public class ControladorFacturas {
 
     public List<Factura> getFacturas(int idCompra) {
         List<Factura> lista = new ArrayList<>();
-         String consulta = "select * from factura where compra_id = " + idCompra + ";";
+         String consulta = "select * from facturas where compra_id = " + idCompra + ";";
         try ( Conexion objConexion = new Conexion();) {
 
            

@@ -192,8 +192,8 @@ public class ControladorProductos {
     public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen) {
         
         Timestamp timestamp = ctrlu.crearTimestamp();
-        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, imagen_2, categoria_id,created_at,updated_at) "
-                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
+        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id,created_at,updated_at) "
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
@@ -219,7 +219,7 @@ public class ControladorProductos {
 
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
-                    + ", imagen_1 = '" + rutaImagen + "', imagen_2 = '" + rutaImagen + "',updated_at = '"+timestamp+"' WHERE id = " + id;
+                    + ", imagen_1 = '" + rutaImagen + "',updated_at = '"+timestamp+"' WHERE id = " + id;
         } else {
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"

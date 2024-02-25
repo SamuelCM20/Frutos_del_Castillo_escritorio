@@ -17,8 +17,6 @@ public class Productos {
    //verificar el tipo de dato
    private int disponibilidad;
    private String imagen_1;
-   private String imagen_2;
-   private int descuento;
    private int categorias_id;
 
    
@@ -91,21 +89,6 @@ public class Productos {
         this.imagen_1 = imagen_1;
     }
 
-    public String getImagen_2() {
-        return imagen_2;
-    }
-
-    public void setImagen_2(String imagen_2) {
-        this.imagen_2 = imagen_2;
-    }
-
-    public int getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(int descuento) {
-        this.descuento = descuento;
-    }
 
     public int getCategorias_id() {
         return categorias_id;

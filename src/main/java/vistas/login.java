@@ -55,15 +55,18 @@ public class login extends javax.swing.JFrame {
 
         labelInicioSesion.setBackground(new java.awt.Color(0, 0, 0));
         labelInicioSesion.setFont(new java.awt.Font("Boring Sans A Trial", 0, 36)); // NOI18N
+        labelInicioSesion.setForeground(new java.awt.Color(84, 20, 21));
         labelInicioSesion.setText("Inicia sesión");
         labelInicioSesion.setToolTipText("");
 
         id.setBackground(new java.awt.Color(0, 0, 0));
         id.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
+        id.setForeground(new java.awt.Color(84, 20, 21));
         id.setText("Correo eléctronico");
 
         contrasenia.setBackground(new java.awt.Color(0, 0, 0));
         contrasenia.setFont(new java.awt.Font("Boring Sans A Trial", 0, 18)); // NOI18N
+        contrasenia.setForeground(new java.awt.Color(84, 20, 21));
         contrasenia.setText("Contraseña");
 
         txtEmail.setFont(new java.awt.Font("Mollen Personal Use Cond", 0, 18)); // NOI18N

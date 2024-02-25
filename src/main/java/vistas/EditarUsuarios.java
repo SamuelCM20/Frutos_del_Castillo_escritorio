@@ -80,20 +80,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
         int rol = ctrlu.getRol(user.getIdUsuario());
         cbxEditRol.setSelectedIndex(rol);
 
-        getEstado();
-
-    }
-
-    public void getEstado() {
-
-        int state = user.getEstado();
-
-        if (state == 0) {
-            cbxEditState.setSelectedIndex(2);
-        } else {
-            cbxEditState.setSelectedIndex(1);
-        }
-
     }
 
     public boolean correoModificado(String correoActual, String correoNuevo) {
@@ -116,8 +102,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditEmailUsers = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cbxEditRol = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        cbxEditState = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         titleEditUsers = new javax.swing.JLabel();
         btnPasswordRestore = new javax.swing.JButton();
@@ -148,12 +132,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jLabel7.setText("Rol");
 
         cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(97, 29, 73));
-        jLabel8.setText("Estado");
-
-        cbxEditState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Activo", "Inactivo" }));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
@@ -217,7 +195,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
                 .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator1)
                     .addComponent(titleEditUsers)
-                    .addComponent(jLabel8)
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
                         .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditUsersLayout.createSequentialGroup()
@@ -228,9 +205,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
                                     .addComponent(jLabel3))
                                 .addGap(45, 45, 45))
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbxEditState, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
@@ -286,16 +262,10 @@ public class EditarUsuarios extends javax.swing.JDialog {
                         .addComponent(jLabel6)
                         .addGap(5, 5, 5)
                         .addComponent(txtEditEmailUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel8))
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbxEditState, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPasswordRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(59, 59, 59)
+                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPasswordRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -336,8 +306,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         boolean validacionCampos = ctrlu.validarCampos(txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), txtEditCelUsers.getText(), dateChooser.getDate(), txtEditEmailUsers.getText(), txtEditNameUsers.getText(), cbxEditRol);
-        boolean validacionCampoEstado = ctrlu.validarCampoEstado(cbxEditState);
-        if (validacionCampos && validacionCampoEstado) {
+        if (validacionCampos) {
 
             String expression = "[a-zA-Z]{1,30}";
             String name = txtEditNameUsers.getText();
@@ -351,7 +320,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
                     if (ctrlu.validarFecha(dateChooser.getDate())) {
 
                         int rol = ctrlu.obtenerRol(cbxEditRol);
-                        int estado = ctrlu.obtenerEstado(cbxEditState);
 
                         if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
                             if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
@@ -359,7 +327,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
 
                             } else {
-                                ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
+                                ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                 usuarios.fillRows();
 
                                 JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
@@ -367,7 +335,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
                             }
 
                         } else {
-                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol, estado);
+                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                             usuarios.fillRows();
                             JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                             this.setVisible(false);
@@ -398,7 +366,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton btnEditSave;
     private javax.swing.JButton btnPasswordRestore;
     private javax.swing.JComboBox<String> cbxEditRol;
-    private javax.swing.JComboBox<String> cbxEditState;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -406,7 +373,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel panelEditUsers;
     private javax.swing.JLabel titleEditUsers;
