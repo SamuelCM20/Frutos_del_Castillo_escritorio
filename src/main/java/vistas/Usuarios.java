@@ -6,6 +6,7 @@ package vistas;
 
 import controladores.ControladorUtils;
 import controladores.CustomHeaderRenderer;
+import controladores.CustomCellRenderer;
 import controladores.controladorUsers;
 import controladores.controladorIndex;
 import java.text.ParseException;
@@ -33,6 +34,7 @@ public class Usuarios extends javax.swing.JPanel {
         tableModel();
         fillRows();
         tableUsuarios.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
+        tableUsuarios.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
     
     /**
@@ -72,21 +74,51 @@ public class Usuarios extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
+        panelHeader = new javax.swing.JPanel();
+        addUsers = new javax.swing.JLabel();
         labelTitleUsers = new javax.swing.JLabel();
+        panelBody = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsuarios = new javax.swing.JTable();
-        addUsers = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(238, 238, 213));
+        setPreferredSize(new java.awt.Dimension(967, 549));
+        setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel1.setMaximumSize(new java.awt.Dimension(980, 580));
+        jPanel1.setMinimumSize(new java.awt.Dimension(980, 580));
+        jPanel1.setPreferredSize(new java.awt.Dimension(980, 580));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        panelHeader.setBackground(new java.awt.Color(245, 245, 220));
+        panelHeader.setPreferredSize(new java.awt.Dimension(565, 100));
+        panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mas.png"))); // NOI18N
+        addUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addUsersMouseClicked(evt);
+            }
+        });
+        panelHeader.add(addUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(933, 31, -1, -1));
 
         labelTitleUsers.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleUsers.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
         labelTitleUsers.setForeground(new java.awt.Color(96, 29, 73));
         labelTitleUsers.setText("Usuarios del sistema");
+        labelTitleUsers.setPreferredSize(new java.awt.Dimension(352, 47));
+        panelHeader.add(labelTitleUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, 470, 56));
 
-        tableUsuarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
+        jPanel1.add(panelHeader, java.awt.BorderLayout.PAGE_START);
+
+        panelBody.setBackground(new java.awt.Color(245, 245, 220));
+        panelBody.setLayout(new java.awt.CardLayout(20, 20));
+
         tableUsuarios.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +140,7 @@ public class Usuarios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tableUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tableUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableUsuarios.setGridColor(new java.awt.Color(204, 204, 204));
         tableUsuarios.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tableUsuarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -131,50 +163,17 @@ public class Usuarios extends javax.swing.JPanel {
             tableUsuarios.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        addUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mas.png"))); // NOI18N
-        addUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addUsers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addUsersMouseClicked(evt);
-            }
-        });
+        panelBody.add(jScrollPane1, "card2");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTitleUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addUsers))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTitleUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addUsers))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jPanel1.add(panelBody, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 24;
+        gridBagConstraints.ipady = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
@@ -208,6 +207,8 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitleUsers;
+    private javax.swing.JPanel panelBody;
+    private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tableUsuarios;
     // End of variables declaration//GEN-END:variables
 }

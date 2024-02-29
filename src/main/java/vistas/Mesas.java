@@ -7,6 +7,7 @@ package vistas;
 import java.awt.FlowLayout;
 import controladores.ControladorMesas;
 import controladores.ControladorUtils;
+import controladores.CustomCellRenderer;
 import controladores.CustomHeaderRenderer;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ public class Mesas extends javax.swing.JPanel {
         fillRows();
 
         tableMesas.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
+        tableMesas.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
 
     private DefaultTableModel modelTableMesas;
@@ -85,47 +87,158 @@ public class Mesas extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         labelTitlePedidos = new javax.swing.JLabel();
         panelReservas = new javax.swing.JPanel();
-        contentScroll = new javax.swing.JScrollPane();
+        panelHeader = new javax.swing.JPanel();
         labelTitleMesas = new javax.swing.JLabel();
+        btnEliminarMesa = new javax.swing.JButton();
+        btnEditarMesa = new javax.swing.JButton();
+        panelBody = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        panelHeaderProducts = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNumMesa = new javax.swing.JTextField();
+        cmbState = new javax.swing.JComboBox<>();
+        btnAgregarMesa = new javax.swing.JButton();
+        panelTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMesas = new javax.swing.JTable();
-        cmbState = new javax.swing.JComboBox<>();
-        btnEditarMesa = new javax.swing.JButton();
-        btnAgregarMesa = new javax.swing.JButton();
-        btnEliminarMesa = new javax.swing.JButton();
 
         labelTitlePedidos.setBackground(new java.awt.Color(255, 255, 255));
         labelTitlePedidos.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
         labelTitlePedidos.setForeground(new java.awt.Color(96, 29, 73));
         labelTitlePedidos.setText("Gestionar Pedidos");
 
+        setBackground(new java.awt.Color(238, 238, 213));
+        setPreferredSize(new java.awt.Dimension(967, 549));
+        setLayout(new java.awt.GridBagLayout());
+
         panelReservas.setBackground(new java.awt.Color(245, 245, 220));
         panelReservas.setForeground(new java.awt.Color(96, 29, 73));
+        panelReservas.setMaximumSize(new java.awt.Dimension(980, 580));
+        panelReservas.setMinimumSize(new java.awt.Dimension(980, 580));
+        panelReservas.setPreferredSize(new java.awt.Dimension(980, 580));
+        panelReservas.setLayout(new java.awt.BorderLayout());
+
+        panelHeader.setBackground(new java.awt.Color(245, 245, 220));
+        panelHeader.setPreferredSize(new java.awt.Dimension(565, 100));
+        panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTitleMesas.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleMesas.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
         labelTitleMesas.setForeground(new java.awt.Color(96, 29, 73));
         labelTitleMesas.setText("Gestion de mesas");
+        panelHeader.add(labelTitleMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, 56));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("mesas:");
+        btnEliminarMesa.setBackground(new java.awt.Color(133, 33, 33));
+        btnEliminarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnEliminarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarMesa.setText("Eliminar");
+        btnEliminarMesa.setBorderPainted(false);
+        btnEliminarMesa.setFocusPainted(false);
+        btnEliminarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMesaActionPerformed(evt);
+            }
+        });
+        panelHeader.add(btnEliminarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 35, 112, 34));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
+        btnEditarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnEditarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarMesa.setText("Editar");
+        btnEditarMesa.setBorderPainted(false);
+        btnEditarMesa.setFocusPainted(false);
+        btnEditarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarMesaActionPerformed(evt);
+            }
+        });
+        panelHeader.add(btnEditarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 35, 112, 34));
+
+        panelReservas.add(panelHeader, java.awt.BorderLayout.PAGE_START);
+
+        panelBody.setLayout(new java.awt.GridLayout(1, 4));
+
+        jPanel3.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel3.setLayout(new java.awt.CardLayout(20, 20));
+
+        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelHeaderProducts.setBackground(new java.awt.Color(96, 29, 73));
+        panelHeaderProducts.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Añadir mesas");
+
+        javax.swing.GroupLayout panelHeaderProductsLayout = new javax.swing.GroupLayout(panelHeaderProducts);
+        panelHeaderProducts.setLayout(panelHeaderProductsLayout);
+        panelHeaderProductsLayout.setHorizontalGroup(
+            panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHeaderProductsLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelHeaderProductsLayout.setVerticalGroup(
+            panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(panelHeaderProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 460, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setText("Mesa:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("Estado:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         txtNumMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumMesaActionPerformed(evt);
             }
         });
+        jPanel1.add(txtNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 138, 170, 27));
 
-        tableMesas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "Ocupada" }));
+        cmbState.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbStateItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cmbState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 197, 170, 27));
+
+        btnAgregarMesa.setBackground(new java.awt.Color(96, 29, 73));
+        btnAgregarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        btnAgregarMesa.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarMesa.setText("Agregar");
+        btnAgregarMesa.setBorderPainted(false);
+        btnAgregarMesa.setFocusPainted(false);
+        btnAgregarMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMesaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 260, 34));
+
+        jPanel3.add(jPanel1, "card2");
+
+        panelBody.add(jPanel3);
+
+        panelTable.setBackground(new java.awt.Color(245, 245, 220));
+        panelTable.setLayout(new java.awt.CardLayout(20, 20));
+
+        tableMesas.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tableMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -150,114 +263,19 @@ public class Mesas extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableMesas);
 
-        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "Ocupada" }));
-        cmbState.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbStateItemStateChanged(evt);
-            }
-        });
+        panelTable.add(jScrollPane1, "card2");
 
-        btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
-        btnEditarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEditarMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditarMesa.setText("Editar");
-        btnEditarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarMesaActionPerformed(evt);
-            }
-        });
+        panelBody.add(panelTable);
 
-        btnAgregarMesa.setBackground(new java.awt.Color(96, 29, 73));
-        btnAgregarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregarMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarMesa.setText("Agregar");
-        btnAgregarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarMesaActionPerformed(evt);
-            }
-        });
+        panelReservas.add(panelBody, java.awt.BorderLayout.CENTER);
 
-        btnEliminarMesa.setBackground(new java.awt.Color(133, 33, 33));
-        btnEliminarMesa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEliminarMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarMesa.setText("Eliminar");
-        btnEliminarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarMesaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelReservasLayout = new javax.swing.GroupLayout(panelReservas);
-        panelReservas.setLayout(panelReservasLayout);
-        panelReservasLayout.setHorizontalGroup(
-            panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelReservasLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addComponent(labelTitleMesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(125, 125, 125)
-                        .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelReservasLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(42, 42, 42)
-                                .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelReservasLayout.createSequentialGroup()
-                                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelReservasLayout.createSequentialGroup()
-                                        .addComponent(btnAgregarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelReservasLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 22, Short.MAX_VALUE))
-                                    .addComponent(btnEliminarMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(30, 30, 30)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
-        );
-        panelReservasLayout.setVerticalGroup(
-            panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelReservasLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contentScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTitleMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelReservasLayout.createSequentialGroup()
-                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtNumMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(163, 163, 163)
-                        .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addComponent(btnEliminarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 24;
+        gridBagConstraints.ipady = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(panelReservas, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMesaActionPerformed
@@ -371,13 +389,19 @@ public class Mesas extends javax.swing.JPanel {
     private javax.swing.JButton btnEditarMesa;
     private javax.swing.JButton btnEliminarMesa;
     private javax.swing.JComboBox<String> cmbState;
-    private javax.swing.JScrollPane contentScroll;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitleMesas;
     private javax.swing.JLabel labelTitlePedidos;
+    private javax.swing.JPanel panelBody;
+    private javax.swing.JPanel panelHeader;
+    private javax.swing.JPanel panelHeaderProducts;
     private javax.swing.JPanel panelReservas;
+    private javax.swing.JPanel panelTable;
     private javax.swing.JTable tableMesas;
     private javax.swing.JTextField txtNumMesa;
     // End of variables declaration//GEN-END:variables

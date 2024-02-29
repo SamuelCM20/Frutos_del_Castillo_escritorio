@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorUtils {
 
     public static boolean evaluarExpresion(String expresion, String valor) {
-
         Pattern p = Pattern.compile(expresion);
         Matcher field = p.matcher(valor);
 

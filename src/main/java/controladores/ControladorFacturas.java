@@ -4,12 +4,14 @@
  */
 package controladores;
 
+import Modelo.Configs;
 import Modelo.Conexion;
 import Modelo.Factura;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
@@ -55,13 +57,9 @@ public class ControladorFacturas {
         Image imagen;
         try {
             imagen = Image.getInstance(ControladorFacturas.class.getClassLoader().getResource(rutaImagen));
-            imagen.scaleToFit(80, 80);
+            imagen.scaleToFit(100, 100);
 
-            // Calcular las coordenadas para la esquina superior derecha
-            float x = documento.getPageSize().getWidth() - imagen.getScaledWidth() - 10;
-            float y = documento.getPageSize().getHeight() - imagen.getScaledHeight() - 30;
-
-            imagen.setAbsolutePosition(x, y);
+            imagen.setAlignment(Element.ALIGN_CENTER);
 
             try {
                 documento.add(imagen);
@@ -78,6 +76,7 @@ public class ControladorFacturas {
     public boolean generarFacturaPDF(Modelo.Compra objCompra, Modelo.Mesas objMesa, Modelo.Users objUsuario, List<Modelo.Factura> listaPedidos, String folderPath) {
 
         ControladorProductos objControladorProductos = new ControladorProductos();
+        Configs objConfig = getNit();
 
         String fecha = ControladorUtils.getFecha();
 
@@ -98,19 +97,17 @@ public class ControladorFacturas {
 
             PdfContentByte cb = writer.getDirectContent();
             dibujarLinea(cb, documento, 25f, 32f);
-
             String rutaImagen = "img/laromanaRojo.png";
             cargarImagen(rutaImagen, documento);
 
-            Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA, 18, new BaseColor(133, 33, 33));
-            Font fontPrecioTotal = FontFactory.getFont(FontFactory.HELVETICA, 23, new BaseColor(133, 33, 33));
-            Font fontTableTitles = FontFactory.getFont(FontFactory.HELVETICA, 16, new BaseColor(133, 33, 33));
-
-            Paragraph texto = new Paragraph("La Romana Pizza", fontTitle);
+            Font fontPrecioTotal = FontFactory.getFont(FontFactory.HELVETICA, 23, new BaseColor(0, 0, 0));
+            Font fontTableTitles = FontFactory.getFont(FontFactory.HELVETICA, 14, new BaseColor(0, 0, 0));
 
             String empleado = objUsuario.getNombre() + " " + objUsuario.getApellido();
-            documento.add(texto);
-            documento.add(new Paragraph(" "));
+
+            //documento.add(new Paragraph(" "));
+            documento.add(new Paragraph("Nit: " + objConfig.getDescripcion()));
+            documento.add(new Paragraph("Codigo factura:  FV0001"));
             documento.add(new Paragraph("Fecha factura: " + fecha));
             documento.add(new Paragraph("Empleado: " + empleado));
             documento.add(new Paragraph("No mesa: " + objMesa.getNumero_mesa()));
@@ -118,13 +115,15 @@ public class ControladorFacturas {
             documento.add(new Paragraph(" "));
 
             // Crear una tabla sin bordes
-            PdfPTable tabla = new PdfPTable(3);
+            PdfPTable tabla = new PdfPTable(4);
             tabla.setWidthPercentage(100);
 
             String[][] titles = {
                 {"CANTIDAD"},
                 {"PRODUCTO"},
-                {"PRECIO UNIDAD"}
+                {"PRECIO UNIDAD"},
+                {"SUBTOTAL"}
+
             };
 
             for (String[] fila : titles) {
@@ -133,29 +132,41 @@ public class ControladorFacturas {
                     PdfPCell celda = new PdfPCell();
                     celda.addElement(txtCelda);
                     celda.setBorderWidth(0);
-                    celda.setPadding(10);
+                    celda.setPadding(6);
                     tabla.addCell(celda);
                 }
             }
 
             for (int i = 0; i < listaPedidos.size(); i++) {
                 Modelo.Productos objProducto = objControladorProductos.getProducto(listaPedidos.get(i).getProductos_id());
-                String[] valores = {String.valueOf(listaPedidos.get(i).getCantidad_producto()), objProducto.getNombre(), String.valueOf(objProducto.getPrecio())};
+                String[] valores = {String.valueOf(listaPedidos.get(i).getCantidad_producto()), objProducto.getNombre(), String.valueOf(objProducto.getPrecio()),
+                    String.valueOf(listaPedidos.get(i).getSubtotal())};
 
-                for (String v : valores) {       
+                for (String v : valores) {
                     PdfPCell celda = new PdfPCell(new com.itextpdf.text.Paragraph(v));
                     celda.setBorderWidth(0);
                     celda.setPadding(10);
                     tabla.addCell(celda);
                 }
+
+                if (i + 1 == listaPedidos.size()) {
+                    String[] lastRow = {"", "", "TOTAL", String.valueOf(objCompra.getCosto_total())};
+                    for (String text : lastRow) {
+                        PdfPCell celda = new PdfPCell(new com.itextpdf.text.Paragraph(text, fontTableTitles));
+                        celda.setBorderWidth(0);
+                        celda.setPadding(10);
+                        tabla.addCell(celda);
+                    }
+                }
             }
 
-            PdfContentByte cb2 = writer.getDirectContent();
-            dibujarLinea(cb2, documento, 1f, -120f);
+            //PdfContentByte cb2 = writer.getDirectContent();
+            //dibujarLinea(cb2, documento, 1f, -120f);
 
-            Paragraph txtPrecioTotal = new Paragraph("TOTAL FACTURA: $" + objCompra.getCosto_total(), fontPrecioTotal);
-            documento.add(txtPrecioTotal);
-            documento.add(new Paragraph(" "));
+//            documento.add(new Paragraph(" "));
+//            Paragraph txtPrecioTotal = new Paragraph("TOTAL FACTURA: $" + objCompra.getCosto_total(), fontPrecioTotal);
+//            documento.add(txtPrecioTotal);
+//            documento.add(new Paragraph(" "));
 
             documento.add(tabla);
             documento.close();
@@ -170,10 +181,9 @@ public class ControladorFacturas {
 
     public List<Factura> getFacturas(int idCompra) {
         List<Factura> lista = new ArrayList<>();
-         String consulta = "select * from facturas where compra_id = " + idCompra + ";";
+        String consulta = "select * from facturas where compra_id = " + idCompra + ";";
         try ( Conexion objConexion = new Conexion();) {
 
-           
             ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
@@ -193,6 +203,29 @@ public class ControladorFacturas {
         }
         return lista;
 
+    }
+
+    public Configs getNit() {
+
+        String consulta = "select * from config where nombre = 'nit';";
+        try ( Conexion objConexion = new Conexion();) {
+            ResultSet rc = objConexion.consulta(consulta);
+            while (rc != null && rc.next()) {
+
+                int idConfig = rc.getInt("id");
+                String nombre = rc.getString("nombre");
+                String descripcion = rc.getString("descripcion");
+
+                Configs objConfig = new Configs(idConfig, nombre, descripcion);
+
+                return objConfig;
+            }
+
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
+
+        return null;
     }
 
 }

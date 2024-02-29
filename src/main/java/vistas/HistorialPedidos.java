@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import controladores.ControladorPedidos;
 import controladores.ControladorProductos;
 import controladores.ControladorUtils;
+import controladores.CustomCellRenderer;
 import controladores.CustomHeaderRenderer;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -39,6 +40,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
         tableModel();
         fillRows();
         tablaPedidos.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
+        tablaPedidos.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
 
     private DefaultTableModel modelTableHistorial;

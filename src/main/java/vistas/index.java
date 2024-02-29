@@ -86,7 +86,6 @@ public class index extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         iconUsers1 = new javax.swing.JLabel();
         iconUsers2 = new javax.swing.JLabel();
-        panelBody = new javax.swing.JPanel();
         menuLateral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnInicio = new javax.swing.JPanel();
@@ -114,8 +113,10 @@ public class index extends javax.swing.JFrame {
         btnSalir = new javax.swing.JPanel();
         labelSalir = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        panelRight = new javax.swing.JPanel();
+        panelHeader = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jpanelMain = new javax.swing.JPanel();
-        papelTapiz = new javax.swing.JLabel();
 
         btnGesUsuarios3.setBackground(new java.awt.Color(133, 33, 33));
         btnGesUsuarios3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -186,12 +187,12 @@ public class index extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("¡Pizzeria La Romana le da la bienvenida!");
         setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(1330, 855));
+        setPreferredSize(new java.awt.Dimension(1330, 855));
         setResizable(false);
 
-        panelBody.setBackground(new java.awt.Color(245, 245, 205));
-        panelBody.setMinimumSize(new java.awt.Dimension(1193, 762));
-
         menuLateral.setBackground(new java.awt.Color(133, 33, 33));
+        menuLateral.setPreferredSize(new java.awt.Dimension(260, 602));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prueba2.png"))); // NOI18N
 
@@ -501,15 +502,15 @@ public class index extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(labelSalir)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         btnSalirLayout.setVerticalGroup(
             btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSalirLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(labelSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -521,18 +522,21 @@ public class index extends javax.swing.JFrame {
             .addGroup(menuLateralLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
                             .addGroup(menuLateralLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(textBiene)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userName))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(userName)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))))
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -569,85 +573,36 @@ public class index extends javax.swing.JFrame {
                 .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        getContentPane().add(menuLateral, java.awt.BorderLayout.LINE_START);
+
+        panelRight.setBackground(new java.awt.Color(245, 245, 205));
+        panelRight.setPreferredSize(new java.awt.Dimension(500, 550));
+        panelRight.setLayout(new java.awt.BorderLayout());
+
+        panelHeader.setBackground(new java.awt.Color(133, 33, 33));
+        panelHeader.setPreferredSize(new java.awt.Dimension(100, 150));
+        panelHeader.setLayout(new java.awt.CardLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/papelTapiz3.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setMinimumSize(new java.awt.Dimension(204, 300));
+        jLabel4.setPreferredSize(new java.awt.Dimension(254, 300));
+        panelHeader.add(jLabel4, "card2");
+
+        panelRight.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
         jpanelMain.setBackground(new java.awt.Color(245, 245, 205));
-        jpanelMain.setMaximumSize(new java.awt.Dimension(657, 657));
-        jpanelMain.setPreferredSize(new java.awt.Dimension(921, 505));
+        jpanelMain.setPreferredSize(new java.awt.Dimension(777, 396));
+        jpanelMain.setLayout(new java.awt.CardLayout());
+        panelRight.add(jpanelMain, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout jpanelMainLayout = new javax.swing.GroupLayout(jpanelMain);
-        jpanelMain.setLayout(jpanelMainLayout);
-        jpanelMainLayout.setHorizontalGroup(
-            jpanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jpanelMainLayout.setVerticalGroup(
-            jpanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-
-        papelTapiz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/papelTapiza.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
-        panelBody.setLayout(panelBodyLayout);
-        panelBodyLayout.setHorizontalGroup(
-            panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBodyLayout.createSequentialGroup()
-                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 924, Short.MAX_VALUE)
-                    .addComponent(jpanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
-        );
-        panelBodyLayout.setVerticalGroup(
-            panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBodyLayout.createSequentialGroup()
-                .addComponent(papelTapiz, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jpanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(panelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(panelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(panelRight, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseEntered
-        btnPerfil.setBackground(Color.decode(segundoColor));
-
-    }//GEN-LAST:event_btnPerfilMouseEntered
-
-    private void btnPerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseExited
-        btnPerfil.setBackground(Color.decode(principalColor));
-
-    }//GEN-LAST:event_btnPerfilMouseExited
-
-    private void btnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseEntered
-        // TODO add your handling code here:
-        btnProductos.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnProductosMouseEntered
-
-    private void btnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseExited
-        // TODO add your handling code here:
-        btnProductos.setBackground(Color.decode(principalColor));
-
-    }//GEN-LAST:event_btnProductosMouseExited
 
     private void btnGesUsuarios3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGesUsuarios3MouseEntered
         // TODO add your handling code here:
@@ -657,16 +612,6 @@ public class index extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGesUsuarios3MouseExited
 
-    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
-        // TODO add your handling code 
-        btnUsuarios.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnUsuariosMouseEntered
-
-    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
-        // TODO add your handling code here:
-        btnUsuarios.setBackground(Color.decode(principalColor));
-    }//GEN-LAST:event_btnUsuariosMouseExited
-
     private void btnGesUsuarios5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGesUsuarios5MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGesUsuarios5MouseEntered
@@ -675,64 +620,42 @@ public class index extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGesUsuarios5MouseExited
 
-    private void btnPedidosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseEntered
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
         // TODO add your handling code here:
-        btnPedidos.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnPedidosMouseEntered
+        btnSalir.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnSalirMouseExited
 
-    private void btnPedidosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseExited
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
         // TODO add your handling code here:
-        btnPedidos.setBackground(Color.decode(principalColor));
-    }//GEN-LAST:event_btnPedidosMouseExited
+        btnSalir.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnSalirMouseEntered
 
-    private void btnInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseExited
-        // TODO add your handling code here:    String principalColor = "852121";
-
-        btnInicio.setBackground(Color.decode(principalColor));
-
-    }//GEN-LAST:event_btnInicioMouseExited
-
-    private void btnInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseEntered
+    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         // TODO add your handling code here:
 
-        btnInicio.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnInicioMouseEntered
+        Users modLogin = new Users();
+        login visLogin = new login();
 
-    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
+        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion??", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        if (opc == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            Controlador ctrl = new Controlador(visLogin, modLogin);
+            ctrl.iniciar();
+        }
+
+    }//GEN-LAST:event_btnSalirMouseClicked
+
+    private void btnPantallaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPantallaCompletaActionPerformed
         // TODO add your handling code here:
-        Info info = new Info();
-        showPanel(info);
-    }//GEN-LAST:event_btnInicioMouseClicked
+        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
 
-    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
-        // TODO add your handling code here:
-        Usuarios us = new Usuarios();
-        showPanel(us);
-
-
-    }//GEN-LAST:event_btnUsuariosMouseClicked
-
-    private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
-        // TODO add your handling code here:
-        Productos pr = new Productos();
-        showPanel(pr);
-
-    }//GEN-LAST:event_btnProductosMouseClicked
-
-    private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
-        // TODO add your handling code here:
-        Pedidos pd = new Pedidos();
-        showPanel(pd);
-    }//GEN-LAST:event_btnPedidosMouseClicked
-
-    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
-        // TODO add your handling code here:
-        Perfil p = new Perfil(this, true, this);
-        objControladorIndex.mostrarDatos(p, user.getIdUsuario());
-        p.setLocationRelativeTo(null);
-        p.setVisible(true);
-        
-    }//GEN-LAST:event_btnPerfilMouseClicked
+            this.setExtendedState(JFrame.NORMAL);
+            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximizar.png")));
+        } else {
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar.png")));
+        }
+    }//GEN-LAST:event_btnPantallaCompletaActionPerformed
 
     private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
         // TODO add your handling code here:
@@ -750,43 +673,89 @@ public class index extends javax.swing.JFrame {
         showPanel(rs);
     }//GEN-LAST:event_btnReservasMouseClicked
 
-    private void btnPantallaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPantallaCompletaActionPerformed
+    private void btnPedidosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseExited
         // TODO add your handling code here:
-        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+        btnPedidos.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnPedidosMouseExited
 
-            this.setExtendedState(JFrame.NORMAL);
-            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximizar.png")));
-        } else {
-            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar.png")));
-        }
-    }//GEN-LAST:event_btnPantallaCompletaActionPerformed
-
-    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+    private void btnPedidosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseEntered
         // TODO add your handling code here:
-        btnSalir.setBackground(Color.decode(segundoColor));
-    }//GEN-LAST:event_btnSalirMouseEntered
+        btnPedidos.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnPedidosMouseEntered
 
-    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+    private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
         // TODO add your handling code here:
-        btnSalir.setBackground(Color.decode(principalColor));
-    }//GEN-LAST:event_btnSalirMouseExited
+        Pedidos pd = new Pedidos();
+        showPanel(pd);
+    }//GEN-LAST:event_btnPedidosMouseClicked
 
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
+    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
+        // TODO add your handling code here:
+        btnUsuarios.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnUsuariosMouseExited
+
+    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
+        // TODO add your handling code
+        btnUsuarios.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnUsuariosMouseEntered
+
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        // TODO add your handling code here:
+        Usuarios us = new Usuarios();
+        showPanel(us);
+
+    }//GEN-LAST:event_btnUsuariosMouseClicked
+
+    private void btnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseExited
+        // TODO add your handling code here:
+        btnProductos.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnProductosMouseExited
+
+    private void btnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseEntered
+        // TODO add your handling code here:
+        btnProductos.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnProductosMouseEntered
+
+    private void btnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseClicked
+        // TODO add your handling code here:
+        Productos pr = new Productos();
+        showPanel(pr);
+    }//GEN-LAST:event_btnProductosMouseClicked
+
+    private void btnPerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseExited
+        btnPerfil.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnPerfilMouseExited
+
+    private void btnPerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseEntered
+        btnPerfil.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnPerfilMouseEntered
+
+    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
+        // TODO add your handling code here:
+        Perfil p = new Perfil(this, true, this);
+        objControladorIndex.mostrarDatos(p, user.getIdUsuario());
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
+
+    }//GEN-LAST:event_btnPerfilMouseClicked
+
+    private void btnInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseExited
+        // TODO add your handling code here:    String principalColor = "852121";
+
+        btnInicio.setBackground(Color.decode(principalColor));
+    }//GEN-LAST:event_btnInicioMouseExited
+
+    private void btnInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseEntered
         // TODO add your handling code here:
 
-        Users modLogin = new Users();
-        login visLogin = new login();
+        btnInicio.setBackground(Color.decode(segundoColor));
+    }//GEN-LAST:event_btnInicioMouseEntered
 
-        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion??", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
-        if (opc == JOptionPane.YES_OPTION) {
-            this.setVisible(false);
-            Controlador ctrl = new Controlador(visLogin, modLogin);
-            ctrl.iniciar();
-        }
-
-
-    }//GEN-LAST:event_btnSalirMouseClicked
+    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
+        // TODO add your handling code here:
+        Info info = new Info();
+        showPanel(info);
+    }//GEN-LAST:event_btnInicioMouseClicked
 
     public void runView(String rol, Modelo.Users user) {
         this.user = user;
@@ -821,6 +790,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpanelMain;
     private javax.swing.JLabel labelInicio;
@@ -833,8 +803,8 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel labelSalir;
     private javax.swing.JLabel labelUsuarios;
     private javax.swing.JPanel menuLateral;
-    private javax.swing.JPanel panelBody;
-    private javax.swing.JLabel papelTapiz;
+    private javax.swing.JPanel panelHeader;
+    private javax.swing.JPanel panelRight;
     private javax.swing.JLabel textBiene;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
@@ -849,8 +819,8 @@ public class index extends javax.swing.JFrame {
     }
 
     private void showPanel(JPanel p) {
-        p.setSize(921, 505);
-        p.setLocation(0, 0);
+//        p.setSize(921, 505);
+//        p.setLocation(0, 0);
 
         jpanelMain.removeAll();
         jpanelMain.add(p, BorderLayout.CENTER);
