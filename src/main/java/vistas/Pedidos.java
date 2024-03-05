@@ -186,13 +186,13 @@ public class Pedidos extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         panelPedidos.setBackground(new java.awt.Color(245, 245, 220));
-        panelPedidos.setMinimumSize(new java.awt.Dimension(980, 580));
-        panelPedidos.setPreferredSize(new java.awt.Dimension(980, 580));
+        panelPedidos.setMinimumSize(new java.awt.Dimension(940, 480));
+        panelPedidos.setPreferredSize(new java.awt.Dimension(940, 480));
         panelPedidos.setLayout(new java.awt.BorderLayout());
 
         panelHeader.setBackground(new java.awt.Color(245, 245, 220));
         panelHeader.setMinimumSize(new java.awt.Dimension(986, 81));
-        panelHeader.setPreferredSize(new java.awt.Dimension(565, 100));
+        panelHeader.setPreferredSize(new java.awt.Dimension(565, 80));
         panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTitlePedidos.setBackground(new java.awt.Color(255, 255, 255));
@@ -213,7 +213,7 @@ public class Pedidos extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        panelHeader.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 35, 112, 34));
+        panelHeader.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 35, 112, 34));
 
         jButton2.setBackground(new java.awt.Color(96, 29, 73));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -227,7 +227,7 @@ public class Pedidos extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        panelHeader.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 35, 112, 34));
+        panelHeader.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 35, 112, 34));
 
         panelPedidos.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -284,7 +284,7 @@ public class Pedidos extends javax.swing.JPanel {
         fieldEmpleado.setEditable(false);
         fieldEmpleado.setBackground(new java.awt.Color(255, 255, 255));
         fieldEmpleado.setMargin(new java.awt.Insets(2, 7, 2, 7));
-        jPanel1.add(fieldEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 84, 330, -1));
+        jPanel1.add(fieldEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 84, 308, -1));
 
         labelCliente.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelCliente.setText("Comentario:");
@@ -298,7 +298,7 @@ public class Pedidos extends javax.swing.JPanel {
                 fieldComentarioActionPerformed(evt);
             }
         });
-        jPanel1.add(fieldComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 122, 330, -1));
+        jPanel1.add(fieldComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 122, 308, -1));
 
         labelCliente2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelCliente2.setText("Pedido:");
@@ -325,7 +325,7 @@ public class Pedidos extends javax.swing.JPanel {
         tablePediProducts.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablePediProducts);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 197, 420, 129));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 197, 405, 91));
 
         btnCancelarP.setBackground(new java.awt.Color(133, 33, 33));
         btnCancelarP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -338,7 +338,7 @@ public class Pedidos extends javax.swing.JPanel {
                 btnCancelarPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 98, 35));
+        jPanel1.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 325, 105, 35));
 
         btnCompletarP.setBackground(new java.awt.Color(96, 29, 73));
         btnCompletarP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -351,7 +351,7 @@ public class Pedidos extends javax.swing.JPanel {
                 btnCompletarPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 390, -1, 35));
+        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 325, 105, 35));
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
         btnFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -360,7 +360,7 @@ public class Pedidos extends javax.swing.JPanel {
                 btnFacturaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 90, 80));
+        jPanel1.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 320, 90, 40));
 
         labelPrecio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelPrecio.setText("Total:");

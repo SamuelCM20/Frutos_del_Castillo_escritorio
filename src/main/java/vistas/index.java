@@ -187,9 +187,8 @@ public class index extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("¡Pizzeria La Romana le da la bienvenida!");
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(1330, 855));
-        setPreferredSize(new java.awt.Dimension(1330, 855));
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(1250, 700));
+        setPreferredSize(new java.awt.Dimension(1250, 700));
 
         menuLateral.setBackground(new java.awt.Color(133, 33, 33));
         menuLateral.setPreferredSize(new java.awt.Dimension(260, 602));

@@ -121,12 +121,13 @@ public class Mesas extends javax.swing.JPanel {
         panelReservas.setBackground(new java.awt.Color(245, 245, 220));
         panelReservas.setForeground(new java.awt.Color(96, 29, 73));
         panelReservas.setMaximumSize(new java.awt.Dimension(980, 580));
-        panelReservas.setMinimumSize(new java.awt.Dimension(980, 580));
-        panelReservas.setPreferredSize(new java.awt.Dimension(980, 580));
+        panelReservas.setMinimumSize(new java.awt.Dimension(940, 480));
+        panelReservas.setPreferredSize(new java.awt.Dimension(940, 480));
         panelReservas.setLayout(new java.awt.BorderLayout());
 
         panelHeader.setBackground(new java.awt.Color(245, 245, 220));
-        panelHeader.setPreferredSize(new java.awt.Dimension(565, 100));
+        panelHeader.setMinimumSize(new java.awt.Dimension(986, 80));
+        panelHeader.setPreferredSize(new java.awt.Dimension(565, 80));
         panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTitleMesas.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,7 +147,7 @@ public class Mesas extends javax.swing.JPanel {
                 btnEliminarMesaActionPerformed(evt);
             }
         });
-        panelHeader.add(btnEliminarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(874, 35, 112, 34));
+        panelHeader.add(btnEliminarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 35, 112, 34));
 
         btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
         btnEditarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -159,7 +160,7 @@ public class Mesas extends javax.swing.JPanel {
                 btnEditarMesaActionPerformed(evt);
             }
         });
-        panelHeader.add(btnEditarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 35, 112, 34));
+        panelHeader.add(btnEditarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 35, 112, 34));
 
         panelReservas.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -197,18 +198,18 @@ public class Mesas extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Mesa:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("Estado:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         txtNumMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumMesaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 138, 170, 27));
+        jPanel1.add(txtNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 170, 27));
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "Ocupada" }));
         cmbState.addItemListener(new java.awt.event.ItemListener() {
@@ -216,7 +217,7 @@ public class Mesas extends javax.swing.JPanel {
                 cmbStateItemStateChanged(evt);
             }
         });
-        jPanel1.add(cmbState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 197, 170, 27));
+        jPanel1.add(cmbState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, 27));
 
         btnAgregarMesa.setBackground(new java.awt.Color(96, 29, 73));
         btnAgregarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -229,7 +230,7 @@ public class Mesas extends javax.swing.JPanel {
                 btnAgregarMesaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 260, 34));
+        jPanel1.add(btnAgregarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 260, 34));
 
         jPanel3.add(jPanel1, "card2");
 

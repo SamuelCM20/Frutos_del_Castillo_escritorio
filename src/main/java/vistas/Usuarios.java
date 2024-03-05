@@ -90,12 +90,13 @@ public class Usuarios extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
         jPanel1.setMaximumSize(new java.awt.Dimension(980, 580));
-        jPanel1.setMinimumSize(new java.awt.Dimension(980, 580));
-        jPanel1.setPreferredSize(new java.awt.Dimension(980, 580));
+        jPanel1.setMinimumSize(new java.awt.Dimension(940, 480));
+        jPanel1.setPreferredSize(new java.awt.Dimension(940, 480));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         panelHeader.setBackground(new java.awt.Color(245, 245, 220));
-        panelHeader.setPreferredSize(new java.awt.Dimension(565, 100));
+        panelHeader.setMinimumSize(new java.awt.Dimension(979, 80));
+        panelHeader.setPreferredSize(new java.awt.Dimension(565, 80));
         panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         addUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mas.png"))); // NOI18N
@@ -105,7 +106,7 @@ public class Usuarios extends javax.swing.JPanel {
                 addUsersMouseClicked(evt);
             }
         });
-        panelHeader.add(addUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(933, 31, -1, -1));
+        panelHeader.add(addUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 31, -1, -1));
 
         labelTitleUsers.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleUsers.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
