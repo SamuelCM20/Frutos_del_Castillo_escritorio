@@ -131,7 +131,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(97, 29, 73));
         jLabel7.setText("Rol");
 
-        cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
+        cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado", "Usuario" }));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));

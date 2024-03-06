@@ -501,7 +501,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(labelSalir)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         btnSalirLayout.setVerticalGroup(
             btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,7 +760,6 @@ public class index extends javax.swing.JFrame {
         this.user = user;
         this.rol = rol;
         if (!rol.equals("super_admin")) {
-            System.out.println(rol);
             btnUsuarios.setVisible(false);
             btnProductos.setVisible(false);
         }

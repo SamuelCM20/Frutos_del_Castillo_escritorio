@@ -89,14 +89,19 @@ public class controladorUsers {
             java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
             String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "',updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id;
+            
+            int opc = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
+            if (opc == JOptionPane.YES_OPTION) {
+                boolean res = con.ejecutar(consulta);
 
-            boolean res = con.ejecutar(consulta);
-
-            if (res) {
-                actualizarRol(id, rol);
-                System.out.println("usuario actualizado");
-            } else {
-                System.out.println("Error al actualizar usuario.");
+                if (res) {
+                    actualizarRol(id, rol);
+                    System.out.println("usuario actualizado");
+                } else {
+                    System.out.println("Error al actualizar usuario.");
+            }
+            }else{
+                
             }
 
         } catch (Exception e) {
@@ -179,8 +184,10 @@ public class controladorUsers {
         String opcion = (String) rol.getSelectedItem();
         if (opcion.equalsIgnoreCase("Administrador")) {
             return 2;
-        } else {
+        } else if (opcion.equalsIgnoreCase("Empleado")){
             return 3;
+        }else{
+            return 1;
         }
 
     }
@@ -220,7 +227,7 @@ public class controladorUsers {
 
         String opcion = (String) item.getSelectedItem();
 
-        return opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado");
+        return opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado")||opcion.equalsIgnoreCase("Usuario");
 
     }
 

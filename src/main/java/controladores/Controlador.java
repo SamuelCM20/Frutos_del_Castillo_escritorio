@@ -95,12 +95,16 @@ public class Controlador implements ActionListener {
 
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
+                String rolUsuario = objControladorIndex.obtenerRol(modeloLogin.getIdUsuario());
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
-
-                    this.vistaLogin.setVisible(false);
-                    x.setUserName(modeloLogin.getNombre());
-                    x.runView(objControladorIndex.obtenerRol(modeloLogin.getIdUsuario()), modeloLogin);
-
+                    if(!rolUsuario.equalsIgnoreCase("Usuario")){
+                        this.vistaLogin.setVisible(false);
+                        x.setUserName(modeloLogin.getNombre());
+                        x.runView(rolUsuario, modeloLogin);
+                    }else{
+                        
+                        JOptionPane.showMessageDialog(null, "El usuario ingresado no tiene los permisos suficientes para iniciar sesión", "Error en iniciar sesión", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incorrectos.");
                 }
