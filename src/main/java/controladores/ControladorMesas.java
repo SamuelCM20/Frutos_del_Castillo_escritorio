@@ -78,7 +78,7 @@ public class ControladorMesas {
 
         return opcion.equalsIgnoreCase("disponible") || opcion.equalsIgnoreCase("ocupada");
     }
-
+    
     public boolean validarNumMesa(int num) {
         String consulta = "SELECT COUNT(*)AS numero FROM mesas WHERE numero_mesa = " + num + ";";
         try ( Conexion objConexion = new Conexion()) {
@@ -110,6 +110,7 @@ public class ControladorMesas {
         }
     }
 
+    //Funcion para crear una mesa
     public void agregarMesa(int numero, int estado) {
 
         Timestamp timestamp = ctrlu.crearTimestamp();
@@ -127,6 +128,8 @@ public class ControladorMesas {
         } catch (Exception e) {
         }
     }
+    
+    //Funcion para editar el estado y numero de la mesa
     public void EditarMesa(int id,int numero, int estado) {
         
         String consulta = "UPDATE mesas set numero_mesa =  " + numero + ",estado =" + estado + ",updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id + ";";
@@ -138,21 +141,6 @@ public class ControladorMesas {
                 System.out.println("Mesa editada exitosamente");
             } else {
                 System.out.println("Error al editar mesa");
-            }
-
-        } catch (Exception e) {
-        }
-    }
-    
-    public void eliminarMesa(int id){
-        String consulta = "DELETE FROM mesas WHERE id = "+id + ";";
-        try ( Conexion objConexion = new Conexion()) {
-            boolean res = objConexion.ejecutar(consulta);
-
-            if (res) {
-                System.out.println("Mesa eliminado");
-            } else {
-                System.out.println("Error al eliminar mesa.");
             }
 
         } catch (Exception e) {

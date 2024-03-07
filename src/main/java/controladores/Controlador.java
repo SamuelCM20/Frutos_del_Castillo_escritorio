@@ -33,11 +33,13 @@ import sun.awt.www.content.audio.x_aiff;
  * @author samuel, Jd
  */
 public class Controlador implements ActionListener {
-
+    
+    //variables de modelos y vistas
     private login vistaLogin;
     private Users modeloLogin;
     private controladorIndex objControladorIndex = new controladorIndex();
 
+    //Constructor que hereda el modelo User y la vista Login
     public Controlador(login vistaLogin, Users modeloLogin) {
         this.vistaLogin = vistaLogin;
         this.modeloLogin = modeloLogin;
@@ -46,31 +48,33 @@ public class Controlador implements ActionListener {
     vistas.index x = new vistas.index();
 
     public Controlador() {
-        //Poder crear herencias de la funcion obtenerRol()
+        //COnstructor para poder crear herencias de la funcion obtenerRol()
     }
 
+    //Funcion para mostrar la vista login
     public void iniciar() {
         vistaLogin.runLogin();
     }
 
     @Override
-
+    //Funcion para poder iniciar sesion
     public void actionPerformed(ActionEvent e) {
-
+        //validar casillas vacias
         if (vistaLogin.txtEmail.getText().equals("") || vistaLogin.contraseniaUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Por favor, llene todas las casilla.");
 
             return;
 
         }
-
+        
         try {
             modeloLogin.setEmail(vistaLogin.txtEmail.getText());
         } catch (Exception error) {
             JOptionPane.showMessageDialog(null, "error");
             return;
         }
-
+        
+        //Obtener la informacion del usuario e iniciar sesion
         modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
 
         String consulta = "select * from users where email = '" + modeloLogin.getEmail() + "'";

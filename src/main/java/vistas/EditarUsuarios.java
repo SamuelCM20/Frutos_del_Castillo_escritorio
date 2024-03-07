@@ -319,26 +319,53 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
                     if (ctrlu.validarFecha(dateChooser.getDate())) {
 
-                        int rol = ctrlu.obtenerRol(cbxEditRol);
+                       int rol = ctrlu.obtenerRol(cbxEditRol);
 
-                        if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
-                            if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                        // Validar si rol es igual a 1
+                        if (rol == 1) {
+                            // Mostrar JOptionPane de confirmación
+                            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
 
-                                JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                            // Verificar la respuesta del usuario
+                            if (confirmacion == JOptionPane.YES_OPTION) {
+                                // Continuar con el resto del código
 
+
+                                if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                                    if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                                        JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                                    } else {
+                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                        usuarios.fillRows();
+                                        JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                        this.setVisible(false);
+                                    }
+                                } else {
+                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                    usuarios.fillRows();
+                                    JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                    this.setVisible(false);
+                                }
+                            }
+                        } else {
+                            // Continuar con el resto del código sin mostrar el JOptionPane
+                       
+
+                            if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                                if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                                    JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                    usuarios.fillRows();
+                                    JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                    this.setVisible(false);
+                                }
                             } else {
                                 ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                 usuarios.fillRows();
-
                                 JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                                 this.setVisible(false);
                             }
-
-                        } else {
-                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
-                            usuarios.fillRows();
-                            JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                            this.setVisible(false);
                         }
 
                     } else {

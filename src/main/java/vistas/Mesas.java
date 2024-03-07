@@ -93,7 +93,6 @@ public class Mesas extends javax.swing.JPanel {
         panelReservas = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         labelTitleMesas = new javax.swing.JLabel();
-        btnEliminarMesa = new javax.swing.JButton();
         btnEditarMesa = new javax.swing.JButton();
         panelBody = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -136,19 +135,6 @@ public class Mesas extends javax.swing.JPanel {
         labelTitleMesas.setText("Gestion de mesas");
         panelHeader.add(labelTitleMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, 56));
 
-        btnEliminarMesa.setBackground(new java.awt.Color(133, 33, 33));
-        btnEliminarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnEliminarMesa.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarMesa.setText("Eliminar");
-        btnEliminarMesa.setBorderPainted(false);
-        btnEliminarMesa.setFocusPainted(false);
-        btnEliminarMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarMesaActionPerformed(evt);
-            }
-        });
-        panelHeader.add(btnEliminarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 35, 112, 34));
-
         btnEditarMesa.setBackground(new java.awt.Color(96, 29, 73));
         btnEditarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnEditarMesa.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,7 +146,7 @@ public class Mesas extends javax.swing.JPanel {
                 btnEditarMesaActionPerformed(evt);
             }
         });
-        panelHeader.add(btnEditarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 35, 112, 34));
+        panelHeader.add(btnEditarMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 112, 34));
 
         panelReservas.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -366,29 +352,10 @@ public class Mesas extends javax.swing.JPanel {
         fillFields();
     }//GEN-LAST:event_tableMesasMouseClicked
 
-    private void btnEliminarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMesaActionPerformed
-        // TODO add your handling code here:
-
-        if (rowSelected != -1) {
-            Modelo.Mesas infoMesa = (Modelo.Mesas) listaMesas.get(rowSelected);
-            int opc = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar esta mesa?", "Eliminar mesa", JOptionPane.YES_NO_OPTION);
-            if (opc == JOptionPane.YES_OPTION) {
-                conObject.eliminarMesa(infoMesa.getIdMesa());
-                fillRows();
-                rowSelected = -1;
-                limpiarCampos();
-                JOptionPane.showMessageDialog(null, "Mesa eliminada exitosamente");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Debes presionar la columna que quieres eliminar primero");
-        }
-    }//GEN-LAST:event_btnEliminarMesaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarMesa;
     private javax.swing.JButton btnEditarMesa;
-    private javax.swing.JButton btnEliminarMesa;
     private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

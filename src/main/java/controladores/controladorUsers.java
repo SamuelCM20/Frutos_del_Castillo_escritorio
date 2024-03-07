@@ -30,14 +30,14 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class controladorUsers {
     //hola
-    
+
     ControladorUtils ctrlu = new ControladorUtils();
+
     public List<Users> getUsers() {
         List<Users> lista = new ArrayList<>();
 
         try ( Conexion con = new Conexion()) {
-            
-            
+
             String consulta = "SELECT * FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id "
                     + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario'";
 
@@ -59,12 +59,12 @@ public class controladorUsers {
     }
 
     public void agregarUsuario(String nombre, String apellido, String celular, Date selectedDate, String correo, String contrasenia, int rol) {
-        
+
         Timestamp timestamp = ctrlu.crearTimestamp();
         String ContraseniaEncrypt = encriptarContrasenia(contrasenia);
         java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
         String consulta = "INSERT INTO users(nombre,apellido,fecha_nacimiento,email,password,celular,created_at,updated_at) "
-                    + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "','"+timestamp+"','"+timestamp+"');";
+                + "VALUES('" + nombre + "', '" + apellido + "', '" + fechaNacimiento + "','" + correo + "','" + ContraseniaEncrypt + "','" + celular + "','" + timestamp + "','" + timestamp + "');";
         try ( Conexion con = new Conexion()) {
             boolean res = con.ejecutar(consulta);
 
@@ -84,24 +84,19 @@ public class controladorUsers {
     }
 
     public void actualizarUsuario(int id, String nombre, String apellido, String celular, Date selectedDate, String correo, int rol) {
-        
+
         try ( Conexion con = new Conexion()) {
             java.sql.Date fechaNacimiento = new java.sql.Date(selectedDate.getTime());
 
-            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "',updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id = " + id;
-            
-            int opc = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
-            if (opc == JOptionPane.YES_OPTION) {
-                boolean res = con.ejecutar(consulta);
+            String consulta = "UPDATE users SET nombre = '" + nombre + "', apellido = '" + apellido + "', fecha_nacimiento  = '" + fechaNacimiento + "', email = '" + correo + "', celular = '" + celular + "',updated_at = '" + ctrlu.crearTimestamp() + "' WHERE id = " + id;
 
-                if (res) {
-                    actualizarRol(id, rol);
-                    System.out.println("usuario actualizado");
-                } else {
-                    System.out.println("Error al actualizar usuario.");
-            }
-            }else{
-                
+            boolean res = con.ejecutar(consulta);
+
+            if (res) {
+                actualizarRol(id, rol);
+                System.out.println("usuario actualizado");
+            } else {
+                System.out.println("Error al actualizar usuario.");
             }
 
         } catch (Exception e) {
@@ -154,18 +149,18 @@ public class controladorUsers {
         }
 
     }
-    
-    public void actualizarPerfil(String name,String lastname, Date date,String email){
-        
+
+    public void actualizarPerfil(String name, String lastname, Date date, String email) {
+
         Modelo.Users user = new Users();
         try ( Conexion con = new Conexion()) {
-                    
+
             java.sql.Date fechaNacimiento = new java.sql.Date(date.getTime());
-            
-            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento +"',updated_at = '"+ctrlu.crearTimestamp()+"' WHERE email = '" + email+"';";
-            
-                user.setNombre(name);
-                user.setApellido(lastname);
+
+            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento + "',updated_at = '" + ctrlu.crearTimestamp() + "' WHERE email = '" + email + "';";
+
+            user.setNombre(name);
+            user.setApellido(lastname);
             boolean res = con.ejecutar(consulta);
 
             if (res) {
@@ -176,7 +171,7 @@ public class controladorUsers {
 
         } catch (Exception e) {
         }
-        
+
     }
 
     public int obtenerRol(JComboBox rol) {
@@ -184,9 +179,9 @@ public class controladorUsers {
         String opcion = (String) rol.getSelectedItem();
         if (opcion.equalsIgnoreCase("Administrador")) {
             return 2;
-        } else if (opcion.equalsIgnoreCase("Empleado")){
+        } else if (opcion.equalsIgnoreCase("Empleado")) {
             return 3;
-        }else{
+        } else {
             return 1;
         }
 
@@ -227,7 +222,7 @@ public class controladorUsers {
 
         String opcion = (String) item.getSelectedItem();
 
-        return opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado")||opcion.equalsIgnoreCase("Usuario");
+        return opcion.equalsIgnoreCase("Administrador") || opcion.equalsIgnoreCase("Empleado") || opcion.equalsIgnoreCase("Usuario");
 
     }
 
@@ -243,7 +238,7 @@ public class controladorUsers {
 
         String consulta = "SELECT COUNT(*) AS cantidad FROM users WHERE email = '" + email + "'";
         try ( Conexion con = new Conexion()) {
-            
+
             Pattern patron = Pattern.compile(patronCorreo);
             Matcher matcher = patron.matcher(email);
 
@@ -253,10 +248,10 @@ public class controladorUsers {
                     ResultSet rs = con.consulta(consulta);
                     if (rs.next()) {
                         int cantidad = rs.getInt("cantidad");
-                        
-                        if(cantidad > 0){
+
+                        if (cantidad > 0) {
                             return false;
-                        }else{
+                        } else {
                             return true;
                         }
                     }
@@ -289,7 +284,7 @@ public class controladorUsers {
 
         String newPassEncryp = encriptarContrasenia(newPass);
 
-        String consulta = "UPDATE users SET password = '" + newPassEncryp + "', updated_at = '"+ctrlu.crearTimestamp()+"' WHERE id =  " + id;
+        String consulta = "UPDATE users SET password = '" + newPassEncryp + "', updated_at = '" + ctrlu.crearTimestamp() + "' WHERE id =  " + id;
 
         try ( Conexion con = new Conexion()) {
             boolean res = con.ejecutar(consulta);
@@ -304,9 +299,10 @@ public class controladorUsers {
         }
 
     }
-    public boolean validarCamposPerfil(String nombre,String apellido,Date seleDate){
-        
-        return !(nombre.equals("")||apellido.equals("")|| seleDate == null);
+
+    public boolean validarCamposPerfil(String nombre, String apellido, Date seleDate) {
+
+        return !(nombre.equals("") || apellido.equals("") || seleDate == null);
     }
 
 }

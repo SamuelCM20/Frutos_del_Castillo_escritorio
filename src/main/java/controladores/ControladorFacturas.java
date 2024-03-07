@@ -38,6 +38,7 @@ import java.util.logging.Logger;
  */
 public class ControladorFacturas {
 
+    //Dibujar una linea para el diseño de la factura
     public void dibujarLinea(PdfContentByte cb, Document documento, float grosor, float altura) {
         // Establecer el grosor de la línea
         cb.setLineWidth(grosor); // Grosor de 1 punto
@@ -50,7 +51,8 @@ public class ControladorFacturas {
         cb.lineTo(documento.getPageSize().getWidth() + 2f, documento.top() + altura);
         cb.stroke();
     }
-
+    
+    //Insertar el logo del restaurante en la factura
     public static void cargarImagen(String rutaImagen, Document documento) {
         // Cargar la imagen como un objeto Image de iText
 
@@ -73,6 +75,7 @@ public class ControladorFacturas {
         }
     }
 
+    //FUncion para generar la factura
     public boolean generarFacturaPDF(Modelo.Compra objCompra, Modelo.Mesas objMesa, Modelo.Users objUsuario, List<Modelo.Factura> listaPedidos, String folderPath) {
 
         ControladorProductos objControladorProductos = new ControladorProductos();
@@ -159,15 +162,6 @@ public class ControladorFacturas {
                     }
                 }
             }
-
-            //PdfContentByte cb2 = writer.getDirectContent();
-            //dibujarLinea(cb2, documento, 1f, -120f);
-
-//            documento.add(new Paragraph(" "));
-//            Paragraph txtPrecioTotal = new Paragraph("TOTAL FACTURA: $" + objCompra.getCosto_total(), fontPrecioTotal);
-//            documento.add(txtPrecioTotal);
-//            documento.add(new Paragraph(" "));
-
             documento.add(tabla);
             documento.close();
 
