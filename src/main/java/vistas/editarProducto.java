@@ -105,7 +105,6 @@ public class editarProducto extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         btnNewImage = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -184,16 +183,6 @@ public class editarProducto extends javax.swing.JDialog {
             }
         });
 
-        btnEliminar.setBackground(new java.awt.Color(133, 33, 33));
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelEditProductLayout = new javax.swing.GroupLayout(panelEditProduct);
         panelEditProduct.setLayout(panelEditProductLayout);
         panelEditProductLayout.setHorizontalGroup(
@@ -232,8 +221,6 @@ public class editarProducto extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnNewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31))))
         );
@@ -273,8 +260,7 @@ public class editarProducto extends javax.swing.JDialog {
                         .addGap(27, 27, 27)
                         .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -340,23 +326,9 @@ public class editarProducto extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        int opc = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar este producto?", "Eliminar producto", JOptionPane.YES_NO_OPTION);
-        if (opc == JOptionPane.YES_OPTION) {
-            objControlador.eliminarProducto(producto.getIdProductos());
-            vistaProductos.fillRows();
-            vistaProductos.rowSelected = -1;
-            JOptionPane.showMessageDialog(null, "Producto eliminado exitosamente");
-            this.setVisible(false);
-        }
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNewImage;
     private javax.swing.JComboBox<String> comboBoxCategorias;
     private javax.swing.JComboBox<String> comboBoxDisponibilidad;
