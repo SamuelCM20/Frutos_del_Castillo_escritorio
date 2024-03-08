@@ -6,16 +6,12 @@ package controladores;
 
 import Modelo.Conexion;
 import Modelo.Compra;
-import Modelo.Factura;
 import Modelo.Users;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *

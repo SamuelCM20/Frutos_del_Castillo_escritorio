@@ -14,21 +14,15 @@ import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Modelo.Conexion;
 import Modelo.Productos;
-import controladores.ControladorUtils;
-import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *

@@ -40,11 +40,6 @@ public class index extends javax.swing.JFrame {
         showPanel(in);
 
         UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
-
-        btnPantallaCompleta.setContentAreaFilled(false);
-        btnPantallaCompleta.setOpaque(true);
-        btnPantallaCompleta.setBackground(new Color(133, 33, 33));
-
     }
     controladorIndex objControladorIndex = new controladorIndex();
 
@@ -109,7 +104,6 @@ public class index extends javax.swing.JFrame {
         btnReservas = new javax.swing.JPanel();
         labelPerfil9 = new javax.swing.JLabel();
         iconReservas = new javax.swing.JLabel();
-        btnPantallaCompleta = new javax.swing.JButton();
         btnSalir = new javax.swing.JPanel();
         labelSalir = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -223,7 +217,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(btnInicioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(iconInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(63, 63, 63)
+                .addGap(52, 52, 52)
                 .addComponent(labelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(127, 127, 127))
         );
@@ -273,7 +267,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(btnPerfilLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(iconUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(64, 64, 64)
+                .addGap(55, 55, 55)
                 .addComponent(labelPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(129, 129, 129))
         );
@@ -316,7 +310,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnProductosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(iconProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(64, 64, 64)
+                .addGap(53, 53, 53)
                 .addComponent(labelProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(83, 83, 83))
         );
@@ -357,7 +351,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnUsuariosLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(iconUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(63, 63, 63)
+                .addGap(53, 53, 53)
                 .addComponent(labelUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(97, 97, 97))
         );
@@ -400,7 +394,7 @@ public class index extends javax.swing.JFrame {
             .addGroup(btnPedidosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(iconPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(64, 64, 64)
+                .addGap(55, 55, 55)
                 .addComponent(labelPerfil8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(104, 104, 104))
         );
@@ -458,19 +452,6 @@ public class index extends javax.swing.JFrame {
                     .addComponent(iconReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        btnPantallaCompleta.setBackground(new java.awt.Color(133, 33, 33));
-        btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximizar.png"))); // NOI18N
-        btnPantallaCompleta.setBorder(null);
-        btnPantallaCompleta.setBorderPainted(false);
-        btnPantallaCompleta.setContentAreaFilled(false);
-        btnPantallaCompleta.setFocusPainted(false);
-        btnPantallaCompleta.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnPantallaCompleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPantallaCompletaActionPerformed(evt);
-            }
-        });
-
         btnSalir.setBackground(new java.awt.Color(133, 33, 33));
         btnSalir.setPreferredSize(new java.awt.Dimension(281, 52));
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -501,7 +482,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(labelSalir)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         btnSalirLayout.setVerticalGroup(
             btnSalirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,9 +514,7 @@ public class index extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -549,9 +528,7 @@ public class index extends javax.swing.JFrame {
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLateralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPantallaCompleta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
@@ -572,7 +549,7 @@ public class index extends javax.swing.JFrame {
                 .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         getContentPane().add(menuLateral, java.awt.BorderLayout.LINE_START);
@@ -643,18 +620,6 @@ public class index extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSalirMouseClicked
-
-    private void btnPantallaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPantallaCompletaActionPerformed
-        // TODO add your handling code here:
-        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
-
-            this.setExtendedState(JFrame.NORMAL);
-            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximizar.png")));
-        } else {
-            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            btnPantallaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar.png")));
-        }
-    }//GEN-LAST:event_btnPantallaCompletaActionPerformed
 
     private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
         // TODO add your handling code here:
@@ -770,7 +735,6 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel btnGesUsuarios3;
     private javax.swing.JPanel btnGesUsuarios5;
     private javax.swing.JPanel btnInicio;
-    private javax.swing.JButton btnPantallaCompleta;
     private javax.swing.JPanel btnPedidos;
     public javax.swing.JPanel btnPerfil;
     private javax.swing.JPanel btnProductos;

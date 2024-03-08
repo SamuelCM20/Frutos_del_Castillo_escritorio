@@ -154,8 +154,8 @@ public class Perfil extends javax.swing.JDialog {
         });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 181, 342, 28));
 
-        labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconoUsuario.png"))); // NOI18N
-        jPanel1.add(labelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 13, -1, -1));
+        labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/free-user-icon-3296-thumb.png"))); // NOI18N
+        jPanel1.add(labelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
         labelFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel1.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 235, 140, 28));

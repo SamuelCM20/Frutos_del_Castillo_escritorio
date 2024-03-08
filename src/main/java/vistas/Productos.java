@@ -11,23 +11,12 @@ import controladores.ControladorUtils;
 import controladores.CustomCellRenderer;
 import controladores.CustomHeaderRenderer;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -419,30 +408,37 @@ public class Productos extends javax.swing.JPanel {
         boolean validacionCampos = objControlador.validarCampos(txtNameProduct.getText(), txtPrecioP.getText(), comboBoxDispo, comboBoxCategoria, txtDescripcion.getText());
 
         if (validacionCampos) {
-            try {
-                double precio = Double.parseDouble(txtPrecioP.getText().trim());
 
-                String[] data = objControlador.copiarImagen();
+            boolean nombre = ControladorUtils.evaluarExpresion("[a-zA-Z ]{1,50}", txtNameProduct.getText());
+            if (nombre) {
+                try {
 
-                if (data[0].equalsIgnoreCase("true")) {
+                    double precio = Double.parseDouble(txtPrecioP.getText().trim());
 
-                    String newRuta = objControlador.obtenerRutaImagen(data[1]);
+                    String[] data = objControlador.copiarImagen();
 
-                    int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDispo);
+                    if (data[0].equalsIgnoreCase("true")) {
 
-                    Categorias categoria = (Categorias) comboBoxCategoria.getSelectedItem();
-                    int idCategoria = categoria.getIdCategoria();
+                        String newRuta = objControlador.obtenerRutaImagen(data[1]);
 
-                    objControlador.agregarProducto(txtNameProduct.getText().trim(), precio, disponibilidad, idCategoria, txtDescripcion.getText().trim(), newRuta);
+                        int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDispo);
 
-                    fillRows();
+                        Categorias categoria = (Categorias) comboBoxCategoria.getSelectedItem();
+                        int idCategoria = categoria.getIdCategoria();
 
-                    limpiarCampos();
-                } else {
-                    JOptionPane.showMessageDialog(null, "La imagen también es requerida.");
+                        objControlador.agregarProducto(txtNameProduct.getText().trim(), precio, disponibilidad, idCategoria, txtDescripcion.getText().trim(), newRuta);
+
+                        fillRows();
+
+                        limpiarCampos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La imagen también es requerida.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.");
+            }else{
+                JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el campo nombre.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
