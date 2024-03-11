@@ -111,40 +111,40 @@ public class editarProducto extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar producto");
 
-        panelEditProduct.setBackground(new java.awt.Color(255, 255, 255));
+        panelEditProduct.setBackground(new java.awt.Color(245, 245, 220));
 
         titleEditProduct.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        titleEditProduct.setForeground(new java.awt.Color(97, 29, 73));
+        titleEditProduct.setForeground(new java.awt.Color(85, 21, 22));
         titleEditProduct.setText("Editar Producto");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
 
         fieldNombre.setMargin(new java.awt.Insets(2, 7, 2, 7));
 
         labelPrecio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelPrecio.setForeground(new java.awt.Color(97, 29, 73));
+        labelPrecio.setForeground(new java.awt.Color(85, 21, 22));
         labelPrecio.setText("Precio");
 
         fieldPrecio.setMargin(new java.awt.Insets(2, 7, 2, 7));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("Disponibilidad");
 
         comboBoxDisponibilidad.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxDisponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "No disponible" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Categoria");
 
         comboBoxCategorias.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige..." }));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Descripcion");
 
         fieldDescripcion.setColumns(20);

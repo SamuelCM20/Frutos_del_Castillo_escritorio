@@ -37,7 +37,7 @@
     <Container class="javax.swing.JPanel" name="panelEditUsers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="f5" red="f5" type="rgb"/>
         </Property>
       </Properties>
 
@@ -56,10 +56,12 @@
                                   <Component id="txtNewNameUsers" alignment="0" pref="125" max="32767" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbxNewRol" alignment="0" pref="125" max="32767" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace pref="44" max="32767" attributes="0"/>
@@ -111,10 +113,10 @@
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   <Component id="txtNewNameUsers" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -155,7 +157,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha nacimiento"/>
           </Properties>
@@ -166,7 +168,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Correo"/>
           </Properties>
@@ -182,7 +184,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Rol"/>
           </Properties>
@@ -217,7 +219,7 @@
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo usuario"/>
           </Properties>
@@ -228,7 +230,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
@@ -258,7 +260,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Apellido"/>
           </Properties>
@@ -271,7 +273,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Celular"/>
           </Properties>
@@ -289,7 +291,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>

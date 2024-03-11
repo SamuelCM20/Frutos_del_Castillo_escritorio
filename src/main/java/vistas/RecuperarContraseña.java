@@ -52,7 +52,7 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Recuperar contraseña");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
 
         btnPasswordSave.setBackground(new java.awt.Color(97, 29, 73));
         btnPasswordSave.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -64,14 +64,16 @@ public class RecuperarContraseña extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(85, 21, 22));
         jLabel1.setText("Confirmar contraseña");
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nueva contraseña");
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 22)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(97, 0, 63));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Cambio de contraseña");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,7 +96,7 @@ public class RecuperarContraseña extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -141,11 +143,11 @@ public class RecuperarContraseña extends javax.swing.JDialog {
                 this.setVisible(false);
 
             } else {
-                JOptionPane.showMessageDialog(this, "La contraseña debe tener minimo 6 caracteres");
+                JOptionPane.showMessageDialog(this, "La contraseña debe tener minimo 6 caracteres", "Error al cambiar contraseña", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden", "Error al cambiar contraseña", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPasswordSaveActionPerformed
 

@@ -110,7 +110,7 @@ public class Usuarios extends javax.swing.JPanel {
 
         labelTitleUsers.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleUsers.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
-        labelTitleUsers.setForeground(new java.awt.Color(96, 29, 73));
+        labelTitleUsers.setForeground(new java.awt.Color(85, 21, 22));
         labelTitleUsers.setText("Usuarios del sistema");
         labelTitleUsers.setPreferredSize(new java.awt.Dimension(352, 47));
         panelHeader.add(labelTitleUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, 470, 56));

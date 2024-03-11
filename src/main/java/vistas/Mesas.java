@@ -131,7 +131,7 @@ public class Mesas extends javax.swing.JPanel {
 
         labelTitleMesas.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleMesas.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
-        labelTitleMesas.setForeground(new java.awt.Color(96, 29, 73));
+        labelTitleMesas.setForeground(new java.awt.Color(85, 21, 22));
         labelTitleMesas.setText("Gestion de mesas");
         panelHeader.add(labelTitleMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, 56));
 
@@ -157,9 +157,10 @@ public class Mesas extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
+        jPanel1.setForeground(new java.awt.Color(150, 50, 50));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelHeaderProducts.setBackground(new java.awt.Color(96, 29, 73));
+        panelHeaderProducts.setBackground(new java.awt.Color(150, 50, 50));
         panelHeaderProducts.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -171,9 +172,9 @@ public class Mesas extends javax.swing.JPanel {
         panelHeaderProductsLayout.setHorizontalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderProductsLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(151, 151, 151)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         panelHeaderProductsLayout.setVerticalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,10 +184,12 @@ public class Mesas extends javax.swing.JPanel {
         jPanel1.add(panelHeaderProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 460, -1));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(85, 21, 22));
         jLabel1.setText("Mesa:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Estado:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
@@ -279,8 +282,7 @@ public class Mesas extends javax.swing.JPanel {
 
                     if (numeroAnterior != numeroMesa) {
                         if (!conObject.validarNumMesa(numeroMesa)) {
-
-                            JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
+                            JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente", "Error al editar mesa", JOptionPane.ERROR_MESSAGE);
 
                         } else {
                             int estado = conObject.getValorDisponibilidad(cmbState);
@@ -327,12 +329,16 @@ public class Mesas extends javax.swing.JPanel {
             try {
                 int numeroMesa = Integer.parseInt(txtNumMesa.getText());
                 if (conObject.validarNumMesa(numeroMesa)) {
-                    int estado = conObject.getValorDisponibilidad(cmbState);
-
-                    conObject.agregarMesa(numeroMesa, estado);
-                    JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
-                    limpiarCampos();
-                    fillRows();
+                    
+                    if(numeroMesa > 0){
+                        int estado = conObject.getValorDisponibilidad(cmbState);
+                        conObject.agregarMesa(numeroMesa, estado);
+                        JOptionPane.showMessageDialog(null, "Mesa agregada exitosamente");
+                        limpiarCampos();
+                        fillRows();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Numero de mesa ingresada no valido", "Error al ingresar mesa", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "El numero de mesa ya existe, por favor elige uno diferente");
                 }

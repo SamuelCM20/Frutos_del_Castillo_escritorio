@@ -116,19 +116,20 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar usuario");
+        setIconImage(null);
 
-        panelEditUsers.setBackground(new java.awt.Color(255, 255, 255));
+        panelEditUsers.setBackground(new java.awt.Color(245, 245, 220));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Fecha nacimiento");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Correo");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Rol");
 
         cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado", "Usuario" }));
@@ -137,7 +138,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
 
         titleEditUsers.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        titleEditUsers.setForeground(new java.awt.Color(97, 29, 73));
+        titleEditUsers.setForeground(new java.awt.Color(85, 21, 22));
         titleEditUsers.setText("Editar usuario");
 
         btnPasswordRestore.setBackground(new java.awt.Color(150, 50, 50));
@@ -156,7 +157,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
 
         btnEditSave.setBackground(new java.awt.Color(97, 29, 73));
@@ -170,11 +171,11 @@ public class EditarUsuarios extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel4.setForeground(new java.awt.Color(85, 21, 22));
         jLabel4.setText("Apellido");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("celular");
 
         txtEditCelUsers.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +184,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 

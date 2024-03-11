@@ -76,14 +76,14 @@ public class agregarUsuario extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo usuario");
 
-        panelEditUsers.setBackground(new java.awt.Color(255, 255, 255));
+        panelEditUsers.setBackground(new java.awt.Color(245, 245, 220));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Fecha nacimiento");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Correo");
 
         txtNewEmailUsers.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class agregarUsuario extends javax.swing.JDialog {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Rol");
 
         cbxNewRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
@@ -102,11 +102,11 @@ public class agregarUsuario extends javax.swing.JDialog {
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
 
         titleNewUsers.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        titleNewUsers.setForeground(new java.awt.Color(97, 29, 73));
+        titleNewUsers.setForeground(new java.awt.Color(85, 21, 22));
         titleNewUsers.setText("Nuevo usuario");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
 
         btnNewSave.setBackground(new java.awt.Color(97, 29, 73));
@@ -120,11 +120,11 @@ public class agregarUsuario extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel4.setForeground(new java.awt.Color(85, 21, 22));
         jLabel4.setText("Apellido");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("Celular");
 
         txtNewCelUsers.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +134,7 @@ public class agregarUsuario extends javax.swing.JDialog {
         });
 
         labelPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelPass.setForeground(new java.awt.Color(97, 29, 73));
+        labelPass.setForeground(new java.awt.Color(85, 21, 22));
         labelPass.setText("Contraseña");
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,10 +156,11 @@ public class agregarUsuario extends javax.swing.JDialog {
                                 .addComponent(txtNewNameUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addComponent(cbxNewRol, 0, 125, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
                                 .addGroup(panelEditUsersLayout.createSequentialGroup()
                                     .addGap(6, 6, 6)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                             .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(panelEditUsersLayout.createSequentialGroup()
@@ -196,9 +197,9 @@ public class agregarUsuario extends javax.swing.JDialog {
                             .addGroup(panelEditUsersLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(5, 5, 5)
-                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel3)))
+                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEditUsersLayout.createSequentialGroup()
@@ -269,7 +270,7 @@ public class agregarUsuario extends javax.swing.JDialog {
                             this.setVisible(false);
 
                         } else {
-                            JOptionPane.showMessageDialog(this, "La contraseña debe tener como minimo 6 o mas digitos");
+                            JOptionPane.showMessageDialog(this, "La contraseña debe tener como minimo 6 o mas digitos", "Error al agregar usuario", JOptionPane.ERROR_MESSAGE);
                         }
                     }
 

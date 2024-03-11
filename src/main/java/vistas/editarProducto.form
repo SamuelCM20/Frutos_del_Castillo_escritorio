@@ -54,7 +54,7 @@
     <Container class="javax.swing.JPanel" name="panelEditProduct">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="f5" red="f5" type="rgb"/>
         </Property>
       </Properties>
 
@@ -172,7 +172,7 @@
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Editar Producto"/>
           </Properties>
@@ -183,7 +183,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
@@ -201,7 +201,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Precio"/>
           </Properties>
@@ -219,7 +219,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Disponibilidad"/>
           </Properties>
@@ -247,7 +247,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Categoria"/>
           </Properties>
@@ -273,7 +273,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="1d" red="61" type="rgb"/>
+              <Color blue="16" green="15" red="55" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Descripcion"/>
           </Properties>

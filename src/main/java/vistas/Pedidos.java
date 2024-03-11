@@ -197,7 +197,7 @@ public class Pedidos extends javax.swing.JPanel {
 
         labelTitlePedidos.setBackground(new java.awt.Color(255, 255, 255));
         labelTitlePedidos.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
-        labelTitlePedidos.setForeground(new java.awt.Color(96, 29, 73));
+        labelTitlePedidos.setForeground(new java.awt.Color(85, 21, 22));
         labelTitlePedidos.setText("Gestionar Pedidos");
         panelHeader.add(labelTitlePedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, -1, 56));
 
@@ -237,14 +237,15 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel3.setLayout(new java.awt.CardLayout(20, 20));
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMesaN.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelMesaN.setForeground(new java.awt.Color(85, 21, 22));
         labelMesaN.setText("Mesa:");
         jPanel1.add(labelMesaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 52, -1, -1));
 
-        panelHeaderProducts.setBackground(new java.awt.Color(96, 29, 73));
+        panelHeaderProducts.setBackground(new java.awt.Color(150, 50, 50));
         panelHeaderProducts.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -256,9 +257,9 @@ public class Pedidos extends javax.swing.JPanel {
         panelHeaderProductsLayout.setHorizontalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderProductsLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(141, 141, 141)
                 .addComponent(jLabel2)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         panelHeaderProductsLayout.setVerticalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,6 +279,7 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel1.add(fieldMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 44, 76, 30));
 
         labelEmpleado.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelEmpleado.setForeground(new java.awt.Color(85, 21, 22));
         labelEmpleado.setText("Empleado:");
         jPanel1.add(labelEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 90, -1, -1));
 
@@ -287,6 +289,7 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel1.add(fieldEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 84, 308, -1));
 
         labelCliente.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelCliente.setForeground(new java.awt.Color(85, 21, 22));
         labelCliente.setText("Comentario:");
         jPanel1.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 128, -1, -1));
 
@@ -301,6 +304,7 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel1.add(fieldComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 122, 308, -1));
 
         labelCliente2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelCliente2.setForeground(new java.awt.Color(85, 21, 22));
         labelCliente2.setText("Pedido:");
         jPanel1.add(labelCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 166, -1, -1));
 
@@ -363,10 +367,12 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel1.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 320, 90, 40));
 
         labelPrecio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelPrecio.setForeground(new java.awt.Color(85, 21, 22));
         labelPrecio.setText("Total:");
         jPanel1.add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 166, -1, -1));
 
         labelValorTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelValorTotal.setForeground(new java.awt.Color(85, 21, 22));
         labelValorTotal.setText("$");
         jPanel1.add(labelValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 160, 91, 27));
 

@@ -11,12 +11,23 @@ import controladores.ControladorUtils;
 import controladores.CustomCellRenderer;
 import controladores.CustomHeaderRenderer;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -176,7 +187,7 @@ public class Productos extends javax.swing.JPanel {
 
         labelTitleProducts.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleProducts.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
-        labelTitleProducts.setForeground(new java.awt.Color(96, 29, 73));
+        labelTitleProducts.setForeground(new java.awt.Color(85, 21, 22));
         labelTitleProducts.setText("Gestionar Productos");
         panelHeader.add(labelTitleProducts, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, 470, 56));
 
@@ -216,11 +227,11 @@ public class Productos extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(245, 245, 220));
         jPanel3.setLayout(new java.awt.CardLayout(20, 20));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
+        jPanel1.setBackground(new java.awt.Color(238, 238, 213));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelHeaderProducts.setBackground(new java.awt.Color(96, 29, 73));
+        panelHeaderProducts.setBackground(new java.awt.Color(150, 50, 50));
         panelHeaderProducts.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -232,9 +243,9 @@ public class Productos extends javax.swing.JPanel {
         panelHeaderProductsLayout.setHorizontalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderProductsLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(138, 138, 138)
                 .addComponent(jLabel2)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         panelHeaderProductsLayout.setVerticalGroup(
             panelHeaderProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +256,13 @@ public class Productos extends javax.swing.JPanel {
 
         labelNameP.setBackground(new java.awt.Color(255, 255, 255));
         labelNameP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelNameP.setForeground(new java.awt.Color(85, 21, 22));
         labelNameP.setText("Nombre");
         jPanel1.add(labelNameP, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 52, -1, -1));
 
         labelCodigo.setBackground(new java.awt.Color(255, 255, 255));
         labelCodigo.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelCodigo.setForeground(new java.awt.Color(85, 21, 22));
         labelCodigo.setText("Precio");
         jPanel1.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 52, -1, -1));
 
@@ -271,6 +284,7 @@ public class Productos extends javax.swing.JPanel {
 
         labelCategoria.setBackground(new java.awt.Color(255, 255, 255));
         labelCategoria.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelCategoria.setForeground(new java.awt.Color(85, 21, 22));
         labelCategoria.setText("Categoria");
         jPanel1.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 118, -1, -1));
 
@@ -280,6 +294,7 @@ public class Productos extends javax.swing.JPanel {
 
         labelDescripcionP.setBackground(new java.awt.Color(255, 255, 255));
         labelDescripcionP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelDescripcionP.setForeground(new java.awt.Color(85, 21, 22));
         labelDescripcionP.setText("Descripción");
         jPanel1.add(labelDescripcionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 190, -1, -1));
 
@@ -327,6 +342,7 @@ public class Productos extends javax.swing.JPanel {
 
         labelDispo.setBackground(new java.awt.Color(255, 255, 255));
         labelDispo.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        labelDispo.setForeground(new java.awt.Color(85, 21, 22));
         labelDispo.setText("Disponibilidad");
         jPanel1.add(labelDispo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 52, -1, -1));
 

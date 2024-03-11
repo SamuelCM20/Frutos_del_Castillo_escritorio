@@ -110,11 +110,11 @@ public class Controlador implements ActionListener {
                         JOptionPane.showMessageDialog(null, "El usuario ingresado no tiene los permisos suficientes para iniciar sesión", "Error en iniciar sesión", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Datos incorrectos.");
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos.", "Error al iniciar sesión", JOptionPane.ERROR_MESSAGE);
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no existe.");
+                JOptionPane.showMessageDialog(null, "El usuario no existe.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException s) {

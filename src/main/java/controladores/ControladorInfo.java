@@ -29,7 +29,7 @@ public class ControladorInfo {
         try(Conexion conex = new Conexion()) {
             Connection con = conex.getConectarDB();
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT count(*) FROM users");
+            ResultSet rs = stm.executeQuery("SELECT count(*) FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario'");
 
             if (rs.next()) {
                 //Si hay resultados obtengo el valor. 

@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import vistas.index;
+import vistas.index;
 
 /**
  *
@@ -77,19 +78,18 @@ public class Perfil extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mi perfil");
         setMinimumSize(new java.awt.Dimension(477, 420));
-        setPreferredSize(new java.awt.Dimension(477, 420));
 
-        jPanel1.setBackground(new java.awt.Color(250, 250, 250));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
         jPanel1.setMinimumSize(new java.awt.Dimension(410, 389));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelNombre.setForeground(new java.awt.Color(97, 29, 73));
+        labelNombre.setForeground(new java.awt.Color(85, 21, 22));
         labelNombre.setText("Nombre:");
         jPanel1.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 134, 65, -1));
 
         labelApellido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelApellido.setForeground(new java.awt.Color(97, 29, 73));
+        labelApellido.setForeground(new java.awt.Color(85, 21, 22));
         labelApellido.setText("Apellido:");
         jPanel1.add(labelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 134, 65, -1));
 
@@ -99,7 +99,7 @@ public class Perfil extends javax.swing.JDialog {
         jPanel1.add(labelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 186, 60, -1));
 
         labelRol1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelRol1.setForeground(new java.awt.Color(97, 29, 73));
+        labelRol1.setForeground(new java.awt.Color(85, 21, 22));
         labelRol1.setText("Rol:");
         jPanel1.add(labelRol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 237, -1, -1));
 
@@ -135,7 +135,7 @@ public class Perfil extends javax.swing.JDialog {
         jPanel1.add(labelRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 237, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(97, 29, 73));
+        jLabel11.setForeground(new java.awt.Color(85, 21, 22));
         jLabel11.setText("Nacimiento:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 237, -1, -1));
 
