@@ -314,71 +314,69 @@ public class EditarUsuarios extends javax.swing.JDialog {
             String name = txtEditNameUsers.getText();
             String lastName = txtEditLastnameUsers.getText();
             ControladorUtils objUtils = new ControladorUtils();
-            
-            if (objUtils.evaluarExpresion(expression, name) &&  objUtils.evaluarExpresion(expression, lastName)) {
-                try {
-                    int cel = Integer.parseInt(txtEditCelUsers.getText().trim());
 
-                    if (ctrlu.validarFecha(dateChooser.getDate())) {
+            if (objUtils.evaluarExpresion(expression, name) && objUtils.evaluarExpresion(expression, lastName)) {
+               
+                    
+                    boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}",txtEditCelUsers.getText().trim());
+                    if (celValidacion) {
+                        String cel = txtEditCelUsers.getText().trim();
+                        if (ctrlu.validarFecha(dateChooser.getDate())) {
 
-                       int rol = ctrlu.obtenerRol(cbxEditRol);
+                            int rol = ctrlu.obtenerRol(cbxEditRol);
 
-                        // Validar si rol es igual a 1
-                        if (rol == 1) {
-                            // Mostrar JOptionPane de confirmación
-                            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
+                            // Validar si rol es igual a 1
+                            if (rol == 1) {
+                                // Mostrar JOptionPane de confirmación
+                                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
 
-                            // Verificar la respuesta del usuario
-                            if (confirmacion == JOptionPane.YES_OPTION) {
-                                // Continuar con el resto del código
+                                // Verificar la respuesta del usuario
+                                if (confirmacion == JOptionPane.YES_OPTION) {
+                                    // Continuar con el resto del código
 
+                                    if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                                        if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                                        } else {
+                                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                            usuarios.fillRows();
+                                            JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                            this.setVisible(false);
+                                        }
+                                    } else {
+                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                        usuarios.fillRows();
+                                        JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                        this.setVisible(false);
+                                    }
+                                }
+                            } else {
+                                // Continuar con el resto del código sin mostrar el JOptionPane
 
                                 if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
                                     if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
                                         JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
                                     } else {
-                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                         usuarios.fillRows();
                                         JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                                         this.setVisible(false);
                                     }
                                 } else {
-                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                     usuarios.fillRows();
                                     JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                                     this.setVisible(false);
                                 }
                             }
+
                         } else {
-                            // Continuar con el resto del código sin mostrar el JOptionPane
-                       
-
-                            if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
-                                if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
-                                    JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
-                                } else {
-                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
-                                    usuarios.fillRows();
-                                    JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                                    this.setVisible(false);
-                                }
-                            } else {
-                                ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), String.valueOf(cel), dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
-                                usuarios.fillRows();
-                                JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                                this.setVisible(false);
-                            }
+                            JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                         }
-
-                    } else {
-                        JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                     }
 
-                } catch (NumberFormatException e) {
-
-                    JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
-
-                }
             } else {
                 JOptionPane.showMessageDialog(this, "Nombre y apellidos solo letras");
             }

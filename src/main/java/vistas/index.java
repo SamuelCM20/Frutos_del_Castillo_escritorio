@@ -5,6 +5,7 @@
 package vistas;
 
 import Modelo.Users;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import controladores.Controlador;
 import controladores.controladorIndex;
 import java.awt.BorderLayout;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
 
@@ -39,16 +41,36 @@ public class index extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.addWindowListener(new MiWindowAdapter());
         
-        this.setIconImage(new ImageIcon(index.class.getResource("/img/la-romana.png")).getImage());
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/icon.png")).getImage());
         
         Info in = new Info();
         showPanel(in);
         
 
-        UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
+        
+        addFlatLaf();
 
     }
     controladorIndex objControladorIndex = new controladorIndex();
+    private int layoutX;
+    private int layoutY;
+     public void addFlatLaf(){
+        try {
+            Color hoverBckgroundColor = new Color(96,29,73);
+            UIManager.put("nimbusBlueGrey", Color.decode(tercerColor));
+            
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+            UIManager.put("Component.focusWidht",1);
+            SwingUtilities.updateComponentTreeUI(this);      
+            
+            UIManager.put("TableHeader.hoverBackground",hoverBckgroundColor);
+            
+            SwingUtilities.updateComponentTreeUI(this);
+            
+        } catch (Exception e) {
+        }
+    }
+    
 
     private static class MiWindowAdapter extends WindowAdapter {
 
@@ -88,6 +110,7 @@ public class index extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         iconUsers1 = new javax.swing.JLabel();
         iconUsers2 = new javax.swing.JLabel();
+        panelContent = new javax.swing.JPanel();
         menuLateral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnInicio = new javax.swing.JPanel();
@@ -118,6 +141,11 @@ public class index extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jpanelMain = new javax.swing.JPanel();
+        panelTitle = new javax.swing.JPanel();
+        close = new javax.swing.JLabel();
+        maximize = new javax.swing.JLabel();
+        minimize = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         btnGesUsuarios3.setBackground(new java.awt.Color(133, 33, 33));
         btnGesUsuarios3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -189,7 +217,10 @@ public class index extends javax.swing.JFrame {
         setTitle("¡Pizzeria La Romana le da la bienvenida!");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1250, 700));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1250, 700));
+
+        panelContent.setLayout(new java.awt.BorderLayout());
 
         menuLateral.setBackground(new java.awt.Color(133, 33, 33));
         menuLateral.setPreferredSize(new java.awt.Dimension(260, 602));
@@ -549,10 +580,10 @@ public class index extends javax.swing.JFrame {
                 .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(menuLateral, java.awt.BorderLayout.LINE_START);
+        panelContent.add(menuLateral, java.awt.BorderLayout.LINE_START);
 
         panelRight.setBackground(new java.awt.Color(245, 245, 205));
         panelRight.setPreferredSize(new java.awt.Dimension(500, 550));
@@ -571,11 +602,88 @@ public class index extends javax.swing.JFrame {
         panelRight.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
         jpanelMain.setBackground(new java.awt.Color(245, 245, 205));
+        jpanelMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpanelMain.setPreferredSize(new java.awt.Dimension(777, 396));
         jpanelMain.setLayout(new java.awt.CardLayout());
         panelRight.add(jpanelMain, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(panelRight, java.awt.BorderLayout.CENTER);
+        panelContent.add(panelRight, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(panelContent, java.awt.BorderLayout.CENTER);
+
+        panelTitle.setBackground(new java.awt.Color(109, 21, 22));
+        panelTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelTitle.setPreferredSize(new java.awt.Dimension(1037, 40));
+        panelTitle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelTitleMouseDragged(evt);
+            }
+        });
+        panelTitle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelTitleMousePressed(evt);
+            }
+        });
+
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
+        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        close.setPreferredSize(new java.awt.Dimension(35, 50));
+        close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
+            }
+        });
+
+        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximize.png"))); // NOI18N
+        maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maximize.setPreferredSize(new java.awt.Dimension(35, 50));
+        maximize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maximizeMouseClicked(evt);
+            }
+        });
+
+        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
+        minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimize.setPreferredSize(new java.awt.Dimension(35, 50));
+        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimizeMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconBla.png"))); // NOI18N
+        jLabel5.setPreferredSize(new java.awt.Dimension(40, 20));
+
+        javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
+        panelTitle.setLayout(panelTitleLayout);
+        panelTitleLayout.setHorizontalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 885, Short.MAX_VALUE)
+                .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(maximize, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelTitleLayout.setVerticalGroup(
+            panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(maximize, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                        .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
+                .addGap(26, 26, 26))
+        );
+
+        getContentPane().add(panelTitle, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -721,6 +829,42 @@ public class index extends javax.swing.JFrame {
         showPanel(info);
     }//GEN-LAST:event_btnInicioMouseClicked
 
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeMouseClicked
+
+    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
+            if (this.getExtendedState() == MAXIMIZED_BOTH) {
+                this.setExtendedState(NORMAL);
+                //flagExtendedState = false;
+            } else {
+                this.setExtendedState(MAXIMIZED_BOTH);
+                //flagExtendedState = true;
+            }
+        }
+    }//GEN-LAST:event_maximizeMouseClicked
+
+    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
+
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
+            this.setExtendedState(ICONIFIED);
+        }
+    }//GEN-LAST:event_minimizeMouseClicked
+
+    private void panelTitleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTitleMousePressed
+        // TODO add your handling code here:
+        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
+            layoutX = evt.getX();
+            layoutY = evt.getY();
+        }
+    }//GEN-LAST:event_panelTitleMousePressed
+
+    private void panelTitleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTitleMouseDragged
+        // TODO add your handling code here:
+        this.setLocation(evt.getXOnScreen() - layoutX, evt.getYOnScreen() - layoutY);
+    }//GEN-LAST:event_panelTitleMouseDragged
+
     public void runView(String rol, Modelo.Users user) {
         this.user = user;
         this.rol = rol;
@@ -741,6 +885,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JPanel btnReservas;
     private javax.swing.JPanel btnSalir;
     private javax.swing.JPanel btnUsuarios;
+    private javax.swing.JLabel close;
     private javax.swing.JLabel iconInicio;
     private javax.swing.JLabel iconPedidos;
     private javax.swing.JLabel iconProductos;
@@ -753,6 +898,7 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jpanelMain;
     private javax.swing.JLabel labelInicio;
@@ -764,9 +910,13 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JLabel labelProductos;
     private javax.swing.JLabel labelSalir;
     private javax.swing.JLabel labelUsuarios;
+    private javax.swing.JLabel maximize;
     private javax.swing.JPanel menuLateral;
+    private javax.swing.JLabel minimize;
+    private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelRight;
+    private javax.swing.JPanel panelTitle;
     private javax.swing.JLabel textBiene;
     private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables

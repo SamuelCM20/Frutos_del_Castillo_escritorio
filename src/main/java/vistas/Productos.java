@@ -45,21 +45,15 @@ public class Productos extends javax.swing.JPanel {
         fillRows();
         llenarComboBoxCategorias();
 
-        setColorBotones();
+       
         tableProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tableProducts.setDefaultRenderer(Object.class, new CustomCellRenderer());
 
     }
+    
+  
 
-    public void setColorBotones() {
-        btnEditar.setContentAreaFilled(false);
-        btnEditar.setOpaque(true);
-        btnEditar.setBackground(new Color(96, 29, 73));
-
-        btnImg1.setContentAreaFilled(false);
-        btnImg1.setOpaque(true);
-        btnImg1.setBackground(new Color(96, 29, 73));
-    }
+    
     private ControladorProductos objControlador = new ControladorProductos();
     private ControladorUtils objControladorUtils = new ControladorUtils();
 

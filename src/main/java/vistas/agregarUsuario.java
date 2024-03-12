@@ -5,6 +5,7 @@
 package vistas;
 
 import com.toedter.calendar.JDateChooser;
+import controladores.ControladorUtils;
 import vistas.Usuarios;
 import controladores.controladorUsers;
 import javax.swing.BorderFactory;
@@ -252,8 +253,10 @@ public class agregarUsuario extends javax.swing.JDialog {
         boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(), txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
 
         if (validacionCampos) {
-            try {
-                int cel = Integer.parseInt(txtNewCelUsers.getText().trim());
+                boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}",txtNewCelUsers.getText().trim());
+                if (celValidacion) {
+    
+                String cel = txtNewCelUsers.getText().trim();
                 if (ctrlu.validarFecha(dateChooser.getDate())) {
 
                     if (!ctrlu.validarCorreo(txtNewEmailUsers.getText())) {
@@ -278,11 +281,11 @@ public class agregarUsuario extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
 
-            } catch (NumberFormatException e) {
+                }else{
 
-                JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.");
-
-            }
+                JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                }
+            
 
         } else {
 
