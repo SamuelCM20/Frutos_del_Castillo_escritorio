@@ -266,7 +266,7 @@ public class Productos extends javax.swing.JPanel {
                 txtNameProductActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 75, 120, 27));
+        jPanel1.add(txtNameProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 75, 120, 33));
 
         txtPrecioP.setMargin(new java.awt.Insets(2, 7, 2, 7));
         txtPrecioP.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +274,7 @@ public class Productos extends javax.swing.JPanel {
                 txtPrecioPActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 75, 110, 27));
+        jPanel1.add(txtPrecioP, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 75, 110, 33));
 
         labelCategoria.setBackground(new java.awt.Color(255, 255, 255));
         labelCategoria.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -284,7 +284,7 @@ public class Productos extends javax.swing.JPanel {
 
         comboBoxDispo.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxDispo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "No disponible" }));
-        jPanel1.add(comboBoxDispo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 75, 130, 27));
+        jPanel1.add(comboBoxDispo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 75, 130, 33));
 
         labelDescripcionP.setBackground(new java.awt.Color(255, 255, 255));
         labelDescripcionP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -332,7 +332,7 @@ public class Productos extends javax.swing.JPanel {
 
         comboBoxCategoria.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Comida rapida", "Bebidas", "Postres" }));
-        jPanel1.add(comboBoxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 143, 405, -1));
+        jPanel1.add(comboBoxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 143, 405, 33));
 
         labelDispo.setBackground(new java.awt.Color(255, 255, 255));
         labelDispo.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -374,6 +374,7 @@ public class Productos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tableProducts.setFocusable(false);
         tableProducts.setGridColor(new java.awt.Color(204, 204, 204));
         tableProducts.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tableProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));

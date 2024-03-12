@@ -308,6 +308,7 @@ public class Pedidos extends javax.swing.JPanel {
         labelCliente2.setText("Pedido:");
         jPanel1.add(labelCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 166, -1, -1));
 
+        tablePediProducts.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tablePediProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -320,6 +321,7 @@ public class Pedidos extends javax.swing.JPanel {
             }
         ));
         tablePediProducts.setDoubleBuffered(true);
+        tablePediProducts.setFocusable(false);
         tablePediProducts.setGridColor(new java.awt.Color(204, 204, 204));
         tablePediProducts.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tablePediProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -403,6 +405,7 @@ public class Pedidos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablePedidos.setFocusable(false);
         tablePedidos.setGridColor(new java.awt.Color(204, 204, 204));
         tablePedidos.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tablePedidos.setSelectionForeground(new java.awt.Color(255, 255, 255));

@@ -92,6 +92,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Historial de pedidos");
         setBackground(new java.awt.Color(245, 245, 220));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
 
@@ -114,6 +115,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaPedidos.setFocusable(false);
         tablaPedidos.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tablaPedidos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablaPedidos.getTableHeader().setResizingAllowed(false);

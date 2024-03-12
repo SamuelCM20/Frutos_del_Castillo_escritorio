@@ -142,6 +142,7 @@ public class Usuarios extends javax.swing.JPanel {
             }
         });
         tableUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableUsuarios.setFocusable(false);
         tableUsuarios.setGridColor(new java.awt.Color(204, 204, 204));
         tableUsuarios.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tableUsuarios.setSelectionForeground(new java.awt.Color(255, 255, 255));

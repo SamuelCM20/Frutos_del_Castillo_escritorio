@@ -198,7 +198,7 @@ public class Mesas extends javax.swing.JPanel {
                 txtNumMesaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 170, 27));
+        jPanel1.add(txtNumMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 170, 33));
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "Ocupada" }));
         cmbState.addItemListener(new java.awt.event.ItemListener() {
@@ -206,7 +206,7 @@ public class Mesas extends javax.swing.JPanel {
                 cmbStateItemStateChanged(evt);
             }
         });
-        jPanel1.add(cmbState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, 27));
+        jPanel1.add(cmbState, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, 33));
 
         btnAgregarMesa.setBackground(new java.awt.Color(96, 29, 73));
         btnAgregarMesa.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -240,6 +240,7 @@ public class Mesas extends javax.swing.JPanel {
                 "mesa", "Estado"
             }
         ));
+        tableMesas.setFocusable(false);
         tableMesas.setSelectionBackground(new java.awt.Color(173, 0, 113));
         tableMesas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableMesas.setShowHorizontalLines(true);

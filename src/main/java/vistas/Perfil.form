@@ -23,6 +23,7 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[477, 420]"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -234,7 +235,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="95" y="130" width="120" height="28"/>
+              <AbsoluteConstraints x="95" y="130" width="120" height="33"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -244,7 +245,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="309" y="130" width="128" height="28"/>
+              <AbsoluteConstraints x="309" y="130" width="128" height="33"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -257,7 +258,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="95" y="181" width="342" height="28"/>
+              <AbsoluteConstraints x="95" y="181" width="342" height="33"/>
             </Constraint>
           </Constraints>
         </Component>

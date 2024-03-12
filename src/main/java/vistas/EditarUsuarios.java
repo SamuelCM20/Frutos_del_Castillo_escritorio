@@ -42,11 +42,12 @@ public class EditarUsuarios extends javax.swing.JDialog {
         initDateChooser();
 
         llenarCampos();
+        labelFecha.setVisible(false);
     }
 
     private void initDateChooser() {
         dateChooser = new JDateChooser();
-        dateChooser.setBounds(30, 200, 125, 26);
+        dateChooser.setBounds(24, 202, 125, 33);
         dateChooser.setBackground(java.awt.Color.RED);
 
         getContentPane().setLayout(null);
@@ -112,34 +113,46 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditLastnameUsers = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtEditCelUsers = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar usuario");
         setIconImage(null);
+        setPreferredSize(new java.awt.Dimension(525, 427));
+        setResizable(false);
 
         panelEditUsers.setBackground(new java.awt.Color(245, 245, 220));
+        panelEditUsers.setMinimumSize(new java.awt.Dimension(525, 430));
+        panelEditUsers.setPreferredSize(new java.awt.Dimension(525, 430));
+        panelEditUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Fecha nacimiento");
+        panelEditUsers.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 176, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Correo");
+        panelEditUsers.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 176, -1, -1));
+        panelEditUsers.add(txtEditEmailUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 201, 295, 33));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Rol");
+        panelEditUsers.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 260, -1, -1));
 
         cbxEditRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado", "Usuario" }));
+        panelEditUsers.add(cbxEditRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 285, 125, 33));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
+        panelEditUsers.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 374, 465, 13));
 
         titleEditUsers.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         titleEditUsers.setForeground(new java.awt.Color(85, 21, 22));
         titleEditUsers.setText("Editar usuario");
+        panelEditUsers.add(titleEditUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 15, -1, -1));
 
         btnPasswordRestore.setBackground(new java.awt.Color(150, 50, 50));
         btnPasswordRestore.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -155,10 +168,12 @@ public class EditarUsuarios extends javax.swing.JDialog {
                 btnPasswordRestoreActionPerformed(evt);
             }
         });
+        panelEditUsers.add(btnPasswordRestore, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 320, -1, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
+        panelEditUsers.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 88, -1, -1));
 
         btnEditSave.setBackground(new java.awt.Color(97, 29, 73));
         btnEditSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -169,109 +184,31 @@ public class EditarUsuarios extends javax.swing.JDialog {
                 btnEditSaveActionPerformed(evt);
             }
         });
+        panelEditUsers.add(btnEditSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 320, 102, 40));
+        panelEditUsers.add(txtEditNameUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 113, 125, 33));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(85, 21, 22));
         jLabel4.setText("Apellido");
+        panelEditUsers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 88, -1, -1));
+        panelEditUsers.add(txtEditLastnameUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 113, 125, 33));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("celular");
+        panelEditUsers.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 90, -1, -1));
 
         txtEditCelUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEditCelUsersActionPerformed(evt);
             }
         });
+        panelEditUsers.add(txtEditCelUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 113, 125, 33));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        javax.swing.GroupLayout panelEditUsersLayout = new javax.swing.GroupLayout(panelEditUsers);
-        panelEditUsers.setLayout(panelEditUsersLayout);
-        panelEditUsersLayout.setHorizontalGroup(
-            panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator1)
-                    .addComponent(titleEditUsers)
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditUsersLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEditNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(45, 45, 45))
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEditLastnameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtEditEmailUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45)
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbxEditRol, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtEditCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addComponent(btnPasswordRestore)
-                                .addGap(22, 22, 22)
-                                .addComponent(btnEditSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(24, 24, 24))
-        );
-        panelEditUsersLayout.setVerticalGroup(
-            panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addComponent(titleEditUsers)
-                        .addGap(25, 25, 25)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(28, 28, 28))
-                                    .addComponent(txtEditCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel7)
-                                .addGap(5, 5, 5)
-                                .addComponent(cbxEditRol, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(5, 5, 5)
-                                .addComponent(txtEditNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtEditLastnameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel6)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtEditEmailUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(59, 59, 59)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPasswordRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        labelFecha.setBackground(new java.awt.Color(255, 255, 255));
+        labelFecha.setForeground(new java.awt.Color(255, 255, 255));
+        labelFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        panelEditUsers.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -393,7 +330,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton btnEditSave;
     private javax.swing.JButton btnPasswordRestore;
     private javax.swing.JComboBox<String> cbxEditRol;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -401,6 +337,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelFecha;
     private javax.swing.JPanel panelEditUsers;
     private javax.swing.JLabel titleEditUsers;
     private javax.swing.JTextField txtEditCelUsers;

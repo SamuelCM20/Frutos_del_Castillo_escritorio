@@ -78,6 +78,7 @@ public class Perfil extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mi perfil");
         setMinimumSize(new java.awt.Dimension(477, 420));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 220));
         jPanel1.setMinimumSize(new java.awt.Dimension(410, 389));
@@ -144,15 +145,15 @@ public class Perfil extends javax.swing.JDialog {
                 txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 130, 120, 28));
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 130, 128, 28));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 130, 120, 33));
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 130, 128, 33));
 
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 181, 342, 28));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 181, 342, 33));
 
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/free-user-icon-3296-thumb.png"))); // NOI18N
         jPanel1.add(labelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));

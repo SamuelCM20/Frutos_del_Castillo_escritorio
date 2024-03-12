@@ -37,7 +37,7 @@ public class agregarUsuario extends javax.swing.JDialog {
 
     private void initDateChooser() {
         dateChooser = new JDateChooser();
-        dateChooser.setBounds(30, 200, 125, 26);
+        dateChooser.setBounds(24, 202, 125, 33);
         dateChooser.setBackground(java.awt.Color.RED);
 
         getContentPane().setLayout(null);
@@ -76,39 +76,50 @@ public class agregarUsuario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo usuario");
+        setPreferredSize(new java.awt.Dimension(530, 423));
+        setResizable(false);
 
         panelEditUsers.setBackground(new java.awt.Color(245, 245, 220));
+        panelEditUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(85, 21, 22));
         jLabel3.setText("Fecha nacimiento");
+        panelEditUsers.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 176, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Correo");
+        panelEditUsers.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 176, -1, -1));
 
         txtNewEmailUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNewEmailUsersActionPerformed(evt);
             }
         });
+        panelEditUsers.add(txtNewEmailUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 201, 125, 33));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Rol");
+        panelEditUsers.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 259, -1, -1));
 
         cbxNewRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Administrador", "Empleado" }));
+        panelEditUsers.add(cbxNewRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 292, 125, 33));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
+        panelEditUsers.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 366, 464, 13));
 
         titleNewUsers.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         titleNewUsers.setForeground(new java.awt.Color(85, 21, 22));
         titleNewUsers.setText("Nuevo usuario");
+        panelEditUsers.add(titleNewUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 15, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
+        panelEditUsers.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 88, -1, -1));
 
         btnNewSave.setBackground(new java.awt.Color(97, 29, 73));
         btnNewSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -119,112 +130,36 @@ public class agregarUsuario extends javax.swing.JDialog {
                 btnNewSaveActionPerformed(evt);
             }
         });
+        panelEditUsers.add(btnNewSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 309, 125, 40));
+        panelEditUsers.add(txtNewNameUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 113, 125, 33));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(85, 21, 22));
         jLabel4.setText("Apellido");
+        panelEditUsers.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 88, -1, -1));
+        panelEditUsers.add(txtNewLastnameUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 113, 125, 33));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("Celular");
+        panelEditUsers.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 88, -1, -1));
 
         txtNewCelUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNewCelUsersActionPerformed(evt);
             }
         });
+        panelEditUsers.add(txtNewCelUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 111, 125, 33));
+        panelEditUsers.add(newPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 201, 125, 33));
 
         labelPass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelPass.setForeground(new java.awt.Color(85, 21, 22));
         labelPass.setText("Contraseña");
+        panelEditUsers.add(labelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 176, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        javax.swing.GroupLayout panelEditUsersLayout = new javax.swing.GroupLayout(panelEditUsers);
-        panelEditUsers.setLayout(panelEditUsersLayout);
-        panelEditUsersLayout.setHorizontalGroup(
-            panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator1)
-                        .addComponent(titleNewUsers)
-                        .addGroup(panelEditUsersLayout.createSequentialGroup()
-                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(cbxNewRol, 0, 125, Short.MAX_VALUE)
-                                .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                    .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtNewLastnameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel6)
-                                        .addComponent(txtNewEmailUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(45, 45, 45)
-                                    .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel5)
-                                        .addComponent(txtNewCelUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                        .addComponent(newPassword)
-                                        .addComponent(labelPass)))
-                                .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                    .addGap(193, 193, 193)
-                                    .addComponent(btnNewSave, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))))
-                .addGap(24, 24, 24))
-        );
-        panelEditUsersLayout.setVerticalGroup(
-            panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addComponent(titleNewUsers)
-                        .addGap(25, 25, 25)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(28, 28, 28))
-                                .addComponent(txtNewCelUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelEditUsersLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(5, 5, 5)
-                                .addComponent(txtNewNameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelEditUsersLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtNewLastnameUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(labelPass))
-                        .addGap(5, 5, 5)
-                        .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNewEmailUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelEditUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNewSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxNewRol, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        panelEditUsers.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

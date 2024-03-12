@@ -9,37 +9,40 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 
 /**
  *
  * @author samue
  */
 public class login extends javax.swing.JFrame {
+
     Color mainColorButton = new Color(96, 29, 73);
     Color mainColorButtonOpacity = new Color(107, 37, 96);
+
     public login() {
         initComponents();
-       
+
         addFlatLaf();
         this.setIconImage(new ImageIcon(index.class.getResource("/img/icon.png")).getImage());
     }
-    
+
     private int layoutX;
     private int layoutY;
-    public void addFlatLaf(){
+
+    public void addFlatLaf() {
         try {
             UIManager.setLookAndFeel(new FlatMacLightLaf());
-            UIManager.put("Component.focusWidht",1);
-            SwingUtilities.updateComponentTreeUI(this);        
-            
+            UIManager.put("Component.focusWidht", 1);
+            SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,9 +62,9 @@ public class login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         panelTitle = new javax.swing.JPanel();
-        close = new javax.swing.JLabel();
-        minimize = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
+        btnMinimize = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de sesión");
@@ -169,7 +172,7 @@ public class login extends javax.swing.JFrame {
 
         getContentPane().add(panelContent, java.awt.BorderLayout.CENTER);
 
-        panelTitle.setBackground(new java.awt.Color(109, 21, 22));
+        panelTitle.setBackground(new java.awt.Color(87, 20, 64));
         panelTitle.setPreferredSize(new java.awt.Dimension(1077, 40));
         panelTitle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -182,26 +185,32 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
-        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        close.setPreferredSize(new java.awt.Dimension(35, 50));
-        close.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeMouseClicked(evt);
-            }
-        });
-
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
-        minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        minimize.setPreferredSize(new java.awt.Dimension(35, 50));
-        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minimizeMouseClicked(evt);
-            }
-        });
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconBla.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 20));
+
+        btnClose.setBackground(new java.awt.Color(87, 20, 64));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
+        btnClose.setBorderPainted(false);
+        btnClose.setFocusPainted(false);
+        btnClose.setFocusable(false);
+        btnClose.setPreferredSize(new java.awt.Dimension(100, 40));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        btnMinimize.setBackground(new java.awt.Color(87, 20, 64));
+        btnMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
+        btnMinimize.setBorderPainted(false);
+        btnMinimize.setFocusPainted(false);
+        btnMinimize.setFocusable(false);
+        btnMinimize.setPreferredSize(new java.awt.Dimension(100, 40));
+        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTitleLayout = new javax.swing.GroupLayout(panelTitle);
         panelTitle.setLayout(panelTitleLayout);
@@ -210,22 +219,19 @@ public class login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 968, Short.MAX_VALUE)
-                .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 933, Short.MAX_VALUE)
+                .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelTitleLayout.setVerticalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(close, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(btnMinimize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelTitle, java.awt.BorderLayout.PAGE_START);
@@ -262,27 +268,24 @@ public class login extends javax.swing.JFrame {
         this.setLocation(evt.getXOnScreen() - layoutX, evt.getYOnScreen() - layoutY);
     }//GEN-LAST:event_panelTitleMouseDragged
 
-    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_closeMouseClicked
+    }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-
-        if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
-            this.setExtendedState(ICONIFIED);
-        }
-    }//GEN-LAST:event_minimizeMouseClicked
+    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizeActionPerformed
 
     public void runLogin() {
-
         this.setTitle("Inicio de sesión");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
     public javax.swing.JButton btnEntrar;
-    private javax.swing.JLabel close;
+    private javax.swing.JButton btnMinimize;
     private javax.swing.JLabel contrasenia;
     public javax.swing.JPasswordField contraseniaUser;
     private javax.swing.JLabel id;
@@ -290,7 +293,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelInicioSesion;
-    private javax.swing.JLabel minimize;
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelTitle;
     public javax.swing.JTextField txtEmail;

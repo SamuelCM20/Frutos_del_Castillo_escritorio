@@ -141,7 +141,7 @@ public class Info extends javax.swing.JPanel {
         labelPA1.setForeground(new java.awt.Color(150, 50, 50));
         labelPA1.setText("Usuarios añadidos");
 
-        iconUserCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usersCard.png"))); // NOI18N
+        iconUserCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usersCard3.png"))); // NOI18N
 
         cantUsers.setBackground(new java.awt.Color(255, 255, 255));
         cantUsers.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N

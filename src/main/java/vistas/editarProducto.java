@@ -32,15 +32,6 @@ public class editarProducto extends javax.swing.JDialog {
         initComponents();
         llenarComboBoxCategorias();
         llenarCampos();
-
-        setColorBotones();
-
-    }
-
-    public void setColorBotones() {
-        btnNewImage.setContentAreaFilled(false);
-        btnNewImage.setOpaque(true);
-        btnNewImage.setBackground(new Color(96, 29, 73));
     }
     private ControladorProductos objControlador = new ControladorProductos();
     private DefaultComboBoxModel<Categorias> modelComboBox = new DefaultComboBoxModel<>();
@@ -110,54 +101,71 @@ public class editarProducto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar producto");
+        setPreferredSize(new java.awt.Dimension(518, 485));
 
         panelEditProduct.setBackground(new java.awt.Color(245, 245, 220));
+        panelEditProduct.setMinimumSize(new java.awt.Dimension(513, 480));
+        panelEditProduct.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleEditProduct.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         titleEditProduct.setForeground(new java.awt.Color(85, 21, 22));
         titleEditProduct.setText("Editar Producto");
+        panelEditProduct.add(titleEditProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 19, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(85, 21, 22));
         jLabel2.setText("Nombre");
+        panelEditProduct.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 86, -1, -1));
 
         fieldNombre.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        panelEditProduct.add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 111, 125, 33));
 
         labelPrecio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelPrecio.setForeground(new java.awt.Color(85, 21, 22));
         labelPrecio.setText("Precio");
+        panelEditProduct.add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 85, -1, -1));
 
         fieldPrecio.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        panelEditProduct.add(fieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 108, 125, 33));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(85, 21, 22));
         jLabel5.setText("Disponibilidad");
+        panelEditProduct.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 85, -1, -1));
 
         comboBoxDisponibilidad.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxDisponibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige...", "Disponible", "No disponible" }));
+        panelEditProduct.add(comboBoxDisponibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 109, -1, 33));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(85, 21, 22));
         jLabel6.setText("Categoria");
+        panelEditProduct.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 148, -1, -1));
 
         comboBoxCategorias.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         comboBoxCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elige..." }));
+        panelEditProduct.add(comboBoxCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 462, 33));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(85, 21, 22));
         jLabel7.setText("Descripcion");
+        panelEditProduct.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 219, -1, -1));
 
         fieldDescripcion.setColumns(20);
-        fieldDescripcion.setRows(5);
+        fieldDescripcion.setRows(3);
         fieldDescripcion.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldDescripcion.setSelectionColor(new java.awt.Color(173, 0, 113));
         jScrollPane2.setViewportView(fieldDescripcion);
 
+        panelEditProduct.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 249, 462, -1));
+
         newIconProduct.setBackground(new java.awt.Color(255, 255, 255));
         newIconProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelEditProduct.add(newIconProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 60, 60));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
+        panelEditProduct.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 433, 462, 13));
 
         btnNewImage.setBackground(new java.awt.Color(97, 6, 63));
         btnNewImage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -170,6 +178,7 @@ public class editarProducto extends javax.swing.JDialog {
                 btnNewImageActionPerformed(evt);
             }
         });
+        panelEditProduct.add(btnNewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 352, 133, 37));
 
         btnActualizar.setBackground(new java.awt.Color(97, 6, 63));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -182,95 +191,13 @@ public class editarProducto extends javax.swing.JDialog {
                 btnActualizarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout panelEditProductLayout = new javax.swing.GroupLayout(panelEditProduct);
-        panelEditProduct.setLayout(panelEditProductLayout);
-        panelEditProductLayout.setHorizontalGroup(
-            panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditProductLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelEditProductLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelEditProductLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditProductLayout.createSequentialGroup()
-                        .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxCategorias, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEditProductLayout.createSequentialGroup()
-                                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(45, 45, 45)
-                                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelPrecio))
-                                .addGap(45, 45, 45)
-                                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(comboBoxDisponibilidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEditProductLayout.createSequentialGroup()
-                                .addComponent(titleEditProduct)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelEditProductLayout.createSequentialGroup()
-                                .addComponent(newIconProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnNewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(31, 31, 31))))
-        );
-        panelEditProductLayout.setVerticalGroup(
-            panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEditProductLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(titleEditProduct)
-                .addGap(18, 18, 18)
-                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(panelEditProductLayout.createSequentialGroup()
-                        .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelEditProductLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(5, 5, 5)
-                                .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelEditProductLayout.createSequentialGroup()
-                                .addComponent(labelPrecio)
-                                .addGap(3, 3, 3)
-                                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(fieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboBoxCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelEditProductLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(newIconProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelEditProductLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(panelEditProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        panelEditProduct.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 380, 89, 37));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEditProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelEditProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

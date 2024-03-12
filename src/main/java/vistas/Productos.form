@@ -302,7 +302,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="16" y="75" width="120" height="27"/>
+                          <AbsoluteConstraints x="16" y="75" width="120" height="33"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -317,7 +317,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="158" y="75" width="110" height="27"/>
+                          <AbsoluteConstraints x="158" y="75" width="110" height="33"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -358,7 +358,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="290" y="75" width="130" height="27"/>
+                          <AbsoluteConstraints x="290" y="75" width="130" height="33"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -495,7 +495,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="16" y="143" width="405" height="-1"/>
+                          <AbsoluteConstraints x="16" y="143" width="405" height="33"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -609,6 +609,7 @@
                             </Column>
                           </TableColumnModel>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                         <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
