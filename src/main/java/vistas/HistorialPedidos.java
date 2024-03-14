@@ -52,7 +52,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
     private List<Modelo.Compra> listaPedidos;
 
     public void tableModel() {
-        String[] titulosTablaCompras = {"Fecha", "Empleado", "Mesa"};
+        String[] titulosTablaCompras = {"Fecha", "Empleado", "Mesa","Estado"};
         modelTableHistorial = objControladorUtils.addTableModel(modelTableHistorial, tablaPedidos, titulosTablaCompras);
     }
 
@@ -63,8 +63,18 @@ public class HistorialPedidos extends javax.swing.JDialog {
         listaPedidos.forEach(l -> {
             Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
             Modelo.Users objUser = objControlador.getUsuario(l.getUsuarios_id());
-            modelTableHistorial.addRow(new Object[]{l.getFecha_hora(), objUser.getNombre(), objMesa});
+            modelTableHistorial.addRow(new Object[]{l.getFecha_hora(), objUser.getNombre(), objMesa,getNombreEstado(l.getEstado())});
         });
+    }
+    
+    private String getNombreEstado(int state){
+        
+       if(state == 0){
+           return "Completada";
+       }else{
+           return "Cancelado";
+       }
+        
     }
 
     public void runView() {

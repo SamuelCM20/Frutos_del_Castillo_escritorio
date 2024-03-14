@@ -65,7 +65,7 @@ public class ControladorPedidos {
     public List<Compra> getPedidosHistorial() {
         List<Compra> lista = new ArrayList<>();
 
-        String consulta = "select * from compras where estado = 0";
+        String consulta = "select * from compras where estado != 1";
 
         
         try (Conexion objConexion = new Conexion()) {
