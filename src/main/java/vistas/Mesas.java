@@ -155,7 +155,7 @@ public class Mesas extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(245, 245, 220));
         jPanel3.setLayout(new java.awt.CardLayout(20, 20));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel1.setBackground(new java.awt.Color(238, 238, 213));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(96, 29, 73)));
         jPanel1.setForeground(new java.awt.Color(150, 50, 50));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,7 +241,7 @@ public class Mesas extends javax.swing.JPanel {
             }
         ));
         tableMesas.setFocusable(false);
-        tableMesas.setSelectionBackground(new java.awt.Color(173, 0, 113));
+        tableMesas.setSelectionBackground(new java.awt.Color(165, 45, 126));
         tableMesas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableMesas.setShowHorizontalLines(true);
         tableMesas.setShowVerticalLines(true);

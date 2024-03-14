@@ -81,7 +81,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel1" pref="65" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" pref="20" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" pref="24" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cardUsuarios" max="32767" attributes="0"/>
@@ -122,14 +122,7 @@
         <Container class="javax.swing.JPanel" name="cardProductos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="32" green="32" red="96" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Color blue="fd" green="fd" red="fd" type="rgb"/>
             </Property>
           </Properties>
 
@@ -210,14 +203,7 @@
         <Container class="javax.swing.JPanel" name="cardUsuarios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="16" green="15" red="55" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Color blue="fd" green="fd" red="fd" type="rgb"/>
             </Property>
           </Properties>
 
@@ -299,14 +285,7 @@
         <Container class="javax.swing.JPanel" name="cardReservas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="32" green="32" red="96" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Color blue="fd" green="fd" red="fd" type="rgb"/>
             </Property>
           </Properties>
 
@@ -387,14 +366,7 @@
         <Container class="javax.swing.JPanel" name="cardPedidos1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="32" green="32" red="96" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Color blue="fd" green="fd" red="fd" type="rgb"/>
             </Property>
           </Properties>
 

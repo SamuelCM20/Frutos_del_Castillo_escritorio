@@ -116,7 +116,7 @@ public class HistorialPedidos extends javax.swing.JDialog {
             }
         });
         tablaPedidos.setFocusable(false);
-        tablaPedidos.setSelectionBackground(new java.awt.Color(173, 0, 113));
+        tablaPedidos.setSelectionBackground(new java.awt.Color(165, 45, 126));
         tablaPedidos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablaPedidos.getTableHeader().setResizingAllowed(false);
         tablaPedidos.getTableHeader().setReorderingAllowed(false);

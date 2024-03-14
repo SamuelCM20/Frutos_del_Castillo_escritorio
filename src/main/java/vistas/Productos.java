@@ -376,7 +376,7 @@ public class Productos extends javax.swing.JPanel {
         });
         tableProducts.setFocusable(false);
         tableProducts.setGridColor(new java.awt.Color(204, 204, 204));
-        tableProducts.setSelectionBackground(new java.awt.Color(173, 0, 113));
+        tableProducts.setSelectionBackground(new java.awt.Color(165, 45, 126));
         tableProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableProducts.setShowHorizontalLines(true);
         tableProducts.setShowVerticalLines(true);

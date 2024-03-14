@@ -132,7 +132,7 @@ public class Pedidos extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Hubo un error al tomar el pedido.");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Se necesita seleccionar un pedido de la tabla.");
+            JOptionPane.showMessageDialog(this, "Seleccione un pedido de la tabla derecha.");
         }
     }
 
@@ -236,7 +236,7 @@ public class Pedidos extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(245, 245, 220));
         jPanel3.setLayout(new java.awt.CardLayout(20, 20));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 220));
+        jPanel1.setBackground(new java.awt.Color(238, 238, 213));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -357,7 +357,7 @@ public class Pedidos extends javax.swing.JPanel {
                 btnCompletarPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 325, 105, 35));
+        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 325, 110, 35));
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
         btnFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -407,7 +407,7 @@ public class Pedidos extends javax.swing.JPanel {
         });
         tablePedidos.setFocusable(false);
         tablePedidos.setGridColor(new java.awt.Color(204, 204, 204));
-        tablePedidos.setSelectionBackground(new java.awt.Color(173, 0, 113));
+        tablePedidos.setSelectionBackground(new java.awt.Color(165, 45, 126));
         tablePedidos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablePedidos.setShowGrid(true);
         tablePedidos.getTableHeader().setResizingAllowed(false);
@@ -476,7 +476,7 @@ public class Pedidos extends javax.swing.JPanel {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una compra primero.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un pedido de la tabla derecha.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnFacturaActionPerformed
 

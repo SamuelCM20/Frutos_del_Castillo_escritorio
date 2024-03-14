@@ -32,10 +32,10 @@ public class index extends javax.swing.JFrame {
 
     public String principalColor = "#852121", segundoColor = "#531415", tercerColor = "#601d49";
 
-    /**
-     * Creates new form index
-     */
     private Modelo.Users user;
+    controladorIndex objControladorIndex = new controladorIndex();
+    private int layoutX;
+    private int layoutY;
 
     public index() {
         initComponents();
@@ -50,9 +50,6 @@ public class index extends javax.swing.JFrame {
         addFlatLaf();
 
     }
-    controladorIndex objControladorIndex = new controladorIndex();
-    private int layoutX;
-    private int layoutY;
 
     public void addFlatLaf() {
         try {
@@ -90,7 +87,7 @@ public class index extends javax.swing.JFrame {
     
     }*/
     public void setUserName(String name) {
-        this.userName.setText(name);
+        this.userName.setText(name.toUpperCase());
     }
 
     /**
@@ -743,14 +740,9 @@ public class index extends javax.swing.JFrame {
     }//GEN-LAST:event_panelTitleMouseDragged
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        Users modLogin = new Users();
-        login visLogin = new login();
-
-        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere salir de la aplicación?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
-            this.setVisible(false);
-            Controlador ctrl = new Controlador(visLogin, modLogin);
-            ctrl.iniciar();
+            System.exit(0);
         }
     }//GEN-LAST:event_btnCloseActionPerformed
 

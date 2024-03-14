@@ -89,8 +89,7 @@ public class Info extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(85, 21, 22));
 
-        cardProductos.setBackground(new java.awt.Color(255, 255, 255));
-        cardProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
+        cardProductos.setBackground(new java.awt.Color(253, 253, 253));
 
         labelPA.setBackground(new java.awt.Color(255, 255, 255));
         labelPA.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
@@ -133,8 +132,7 @@ public class Info extends javax.swing.JPanel {
                 .addGap(10, 10, 10))
         );
 
-        cardUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        cardUsuarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(85, 21, 22)));
+        cardUsuarios.setBackground(new java.awt.Color(253, 253, 253));
 
         labelPA1.setBackground(new java.awt.Color(255, 255, 255));
         labelPA1.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
@@ -178,8 +176,7 @@ public class Info extends javax.swing.JPanel {
                 .addGap(10, 10, 10))
         );
 
-        cardReservas.setBackground(new java.awt.Color(255, 255, 255));
-        cardReservas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
+        cardReservas.setBackground(new java.awt.Color(253, 253, 253));
 
         labelMR.setBackground(new java.awt.Color(255, 255, 255));
         labelMR.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
@@ -222,8 +219,7 @@ public class Info extends javax.swing.JPanel {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        cardPedidos1.setBackground(new java.awt.Color(255, 255, 255));
-        cardPedidos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 50, 50)));
+        cardPedidos1.setBackground(new java.awt.Color(253, 253, 253));
 
         labelPP.setBackground(new java.awt.Color(255, 255, 255));
         labelPP.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
@@ -297,7 +293,7 @@ public class Info extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cardUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
