@@ -19,36 +19,37 @@ import vistas.splashWindow;
  * @author samue
  */
 public class Main {
-    
-    public static void main(String args[]){
-        
+
+    public static void main(String args[]) {
+
         Users modLogin = new Users();
         login visLogin = new login();
         Conexion con = new Conexion();
-        
-        if(con.isConnected){
-         Runnable mRun = () -> {
-           splashWindow obj = new splashWindow();
-           obj.setVisible(true);
-           
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            obj.dispose();
-            
-            visLogin.setVisible(true);
-            
-        };
-     
-        Thread miHiloSplash = new Thread(mRun);
-        miHiloSplash.start();       
-        }else{
+
+        if (con.isConnected) {
+            Runnable mRun = () -> {
+                splashWindow obj = new splashWindow();
+                obj.setVisible(true);
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                obj.dispose();
+
+                Controlador ctrl = new Controlador(visLogin, modLogin);
+                ctrl.iniciar();
+
+            };
+
+            Thread miHiloSplash = new Thread(mRun);
+            miHiloSplash.start();
+        } else {
             JOptionPane.showMessageDialog(null, "Error al abrir la aplicacion, compruebe su conexión a internet", "Sin conexion", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
     }
-    
+
 }
