@@ -6,6 +6,7 @@ package vistas;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -23,12 +24,14 @@ public class login extends javax.swing.JFrame {
 
     Color mainColorButton = new Color(96, 29, 73);
     Color mainColorButtonOpacity = new Color(107, 37, 96);
+    
 
     public login() {
         initComponents();
 
         addFlatLaf();
-        this.setIconImage(new ImageIcon(index.class.getResource("/img/icon.png")).getImage());
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/iconBla.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
 
     private int layoutX;

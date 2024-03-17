@@ -7,6 +7,12 @@ package Main;
 import Modelo.Users;
 import controladores.Controlador;
 import vistas.login;
+import Modelo.Conexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
+import vistas.splashWindow;
 
 /**
  *
@@ -18,9 +24,31 @@ public class Main {
         
         Users modLogin = new Users();
         login visLogin = new login();
+        Conexion con = new Conexion();
         
-        Controlador ctrl = new Controlador(visLogin, modLogin);
-        ctrl.iniciar();
+        if(con.isConnected){
+         Runnable mRun = () -> {
+           splashWindow obj = new splashWindow();
+           obj.setVisible(true);
+           
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            obj.dispose();
+            
+            visLogin.setVisible(true);
+            
+        };
+     
+        Thread miHiloSplash = new Thread(mRun);
+        miHiloSplash.start();       
+        }else{
+            JOptionPane.showMessageDialog(null, "Error al abrir la aplicacion, compruebe su conexión a internet", "Sin conexion", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
     }
     
 }

@@ -305,4 +305,7 @@ public class controladorUsers {
         return !(nombre.equals("") || apellido.equals("") || seleDate == null);
     }
 
+    public boolean validarSeleccionTabla(int rowSelected) {
+        return rowSelected != -1;
+    }
 }

@@ -42,7 +42,7 @@ public class index extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.addWindowListener(new MiWindowAdapter());
 
-        this.setIconImage(new ImageIcon(index.class.getResource("/img/icon.png")).getImage());
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/iconBla.png")).getImage());
 
         Info in = new Info();
         showPanel(in);
@@ -617,7 +617,7 @@ public class index extends javax.swing.JFrame {
         Users modLogin = new Users();
         login visLogin = new login();
 
-        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion??", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             this.setVisible(false);
             Controlador ctrl = new Controlador(visLogin, modLogin);

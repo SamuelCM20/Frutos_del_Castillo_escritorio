@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -80,6 +81,7 @@ public class Usuarios extends javax.swing.JPanel {
         panelHeader = new javax.swing.JPanel();
         addUsers = new javax.swing.JLabel();
         labelTitleUsers = new javax.swing.JLabel();
+        btnEditarUser = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsuarios = new javax.swing.JTable();
@@ -100,13 +102,13 @@ public class Usuarios extends javax.swing.JPanel {
         panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         addUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mas.png"))); // NOI18N
-        addUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addUsersMouseClicked(evt);
             }
         });
-        panelHeader.add(addUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(893, 31, -1, -1));
+        panelHeader.add(addUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, -1, -1));
 
         labelTitleUsers.setBackground(new java.awt.Color(255, 255, 255));
         labelTitleUsers.setFont(new java.awt.Font("Boring Sans A Trial", 1, 36)); // NOI18N
@@ -114,6 +116,15 @@ public class Usuarios extends javax.swing.JPanel {
         labelTitleUsers.setText("Usuarios del sistema");
         labelTitleUsers.setPreferredSize(new java.awt.Dimension(352, 47));
         panelHeader.add(labelTitleUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 25, 470, 56));
+
+        btnEditarUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
+        btnEditarUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarUserMouseClicked(evt);
+            }
+        });
+        panelHeader.add(btnEditarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, 60, 60));
 
         jPanel1.add(panelHeader, java.awt.BorderLayout.PAGE_START);
 
@@ -179,20 +190,7 @@ public class Usuarios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
-        // TODO add your handling code here:
-        
-        rowSelected = tableUsuarios.getSelectedRow();
-        Modelo.Users user = (Modelo.Users) listaUsers.get(rowSelected);
-        
-        EditarUsuarios eu;
-        try {
-            eu = new EditarUsuarios(prn, true,user,this);
-            eu.setLocationRelativeTo(null);
-            eu.setVisible(true);
-        } catch (ParseException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        // TODO add your handling code here:       
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
     private void addUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUsersMouseClicked
@@ -203,9 +201,32 @@ public class Usuarios extends javax.swing.JPanel {
         as.setVisible(true);
     }//GEN-LAST:event_addUsersMouseClicked
 
+    private void btnEditarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUserMouseClicked
+        // TODO add your handling code here:
+        
+        
+        rowSelected = tableUsuarios.getSelectedRow();
+        if (conObject.validarSeleccionTabla(rowSelected)) {
+        Modelo.Users user = (Modelo.Users) listaUsers.get(rowSelected);
+        
+        EditarUsuarios eu;
+        try {
+            eu = new EditarUsuarios(prn, true,user,this);
+            eu.setLocationRelativeTo(null);
+            eu.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Se necesita seleccionar una fila de la tabla.");
+            
+        }
+    }//GEN-LAST:event_btnEditarUserMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addUsers;
+    private javax.swing.JLabel btnEditarUser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitleUsers;

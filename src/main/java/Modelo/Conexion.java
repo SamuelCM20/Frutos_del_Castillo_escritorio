@@ -18,8 +18,11 @@ import java.sql.Statement;
 public class Conexion  implements AutoCloseable{
 
     Connection conect;
+    public boolean isConnected;
 
     public Conexion() {
+        
+        
         String host = "localhost";
         String puerto = "3306";
         String nameBD = "frutosdelcastillo";
@@ -35,10 +38,12 @@ public class Conexion  implements AutoCloseable{
             
             Class.forName(driver);
             conect = DriverManager.getConnection(dbURL, usuario, pass);
+            isConnected = true;
            
         } catch (Exception e) {
 
             System.out.println("Desconectado");
+            isConnected = false;
 
         }
     }
