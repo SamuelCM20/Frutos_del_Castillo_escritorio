@@ -12,6 +12,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -21,16 +22,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author samue
  */
 public class login extends javax.swing.JFrame {
+    
 
     Color mainColorButton = new Color(96, 29, 73);
     Color mainColorButtonOpacity = new Color(107, 37, 96);
     
-
     public login() {
         initComponents();
 
         addFlatLaf();
-        this.setIconImage(new ImageIcon(index.class.getResource("/img/iconBla.png")).getImage());
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/letraSquare.png")).getImage());
         this.setLocationRelativeTo(null);
     }
 
@@ -188,7 +189,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconBla.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pizzaWhite.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 20));
 
         btnClose.setBackground(new java.awt.Color(87, 20, 64));
@@ -220,9 +221,9 @@ public class login extends javax.swing.JFrame {
         panelTitleLayout.setHorizontalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 941, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 932, Short.MAX_VALUE)
                 .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -247,7 +248,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseEntered
@@ -280,7 +281,6 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizeActionPerformed
 
     public void runLogin() {
-        this.setTitle("Inicio de sesión");
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

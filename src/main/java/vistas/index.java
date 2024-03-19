@@ -42,7 +42,7 @@ public class index extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.addWindowListener(new MiWindowAdapter());
 
-        this.setIconImage(new ImageIcon(index.class.getResource("/img/iconBla.png")).getImage());
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/letraSquare.png")).getImage());
 
         Info in = new Info();
         showPanel(in);
@@ -515,7 +515,7 @@ public class index extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconBla.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pizzaWhite.png"))); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(40, 20));
 
         btnMinimize.setBackground(new java.awt.Color(109, 21, 22));
@@ -560,8 +560,8 @@ public class index extends javax.swing.JFrame {
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 855, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 846, Short.MAX_VALUE)
                 .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnMaximize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

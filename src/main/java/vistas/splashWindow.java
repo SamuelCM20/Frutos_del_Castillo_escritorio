@@ -4,8 +4,16 @@
  */
 package vistas;
 
+import Main.Main;
+import Modelo.Conexion;
+import Modelo.Users;
+import controladores.Controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -20,6 +28,7 @@ public class splashWindow extends javax.swing.JFrame {
     public splashWindow() {
         initComponents();
         runFile();
+        this.setIconImage(new ImageIcon(index.class.getResource("/img/letraSquare.png")).getImage());
         this.setLocationRelativeTo(null);
     }
 
@@ -95,6 +104,42 @@ public class splashWindow extends javax.swing.JFrame {
             progressBar.setString("Cargando..."+progressBar.getValue() + "%");
         });
         mtimer.start();
+    }
+    
+    public void iniciarPrograma(){
+        
+        Users modLogin = new Users();
+        login visLogin = new login();
+
+        Conexion con = new Conexion();
+
+        if (con.isConnected) {
+
+            Runnable mRun = () -> {
+                splashWindow obj = new splashWindow();
+                obj.setVisible(true);
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                obj.dispose();
+
+                Controlador ctrl = new Controlador(visLogin, modLogin);
+                ctrl.iniciar();
+
+            };
+
+            Thread miHiloSplash = new Thread(mRun);
+            miHiloSplash.start();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al abrir la aplicacion, compruebe su conexión a internet", "Sin conexion", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+    
     }
    
 
