@@ -270,6 +270,7 @@ public class Pedidos extends javax.swing.JPanel {
 
         fieldMesa.setEditable(false);
         fieldMesa.setBackground(new java.awt.Color(255, 255, 255));
+        fieldMesa.setFocusable(false);
         fieldMesa.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,6 +286,7 @@ public class Pedidos extends javax.swing.JPanel {
 
         fieldEmpleado.setEditable(false);
         fieldEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        fieldEmpleado.setFocusable(false);
         fieldEmpleado.setMargin(new java.awt.Insets(2, 7, 2, 7));
         jPanel1.add(fieldEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 84, 308, -1));
 
@@ -295,6 +297,7 @@ public class Pedidos extends javax.swing.JPanel {
 
         fieldComentario.setEditable(false);
         fieldComentario.setBackground(new java.awt.Color(255, 255, 255));
+        fieldComentario.setFocusable(false);
         fieldComentario.setMargin(new java.awt.Insets(2, 7, 2, 7));
         fieldComentario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,7 +326,7 @@ public class Pedidos extends javax.swing.JPanel {
         tablePediProducts.setDoubleBuffered(true);
         tablePediProducts.setFocusable(false);
         tablePediProducts.setGridColor(new java.awt.Color(204, 204, 204));
-        tablePediProducts.setSelectionBackground(new java.awt.Color(173, 0, 113));
+        tablePediProducts.setSelectionBackground(new java.awt.Color(165, 45, 126));
         tablePediProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablePediProducts.setShowHorizontalLines(true);
         tablePediProducts.setShowVerticalLines(true);

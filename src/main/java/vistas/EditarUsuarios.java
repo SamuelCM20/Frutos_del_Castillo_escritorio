@@ -7,15 +7,11 @@ package vistas;
 import com.toedter.calendar.JDateChooser;
 import java.text.ParseException;
 import controladores.controladorUsers;
-import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import controladores.ControladorUtils;
+import java.util.Calendar;
 
 /**
  *
@@ -31,7 +27,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
     private Modelo.Users user;
     private vistas.Usuarios usuarios;
-    private JDateChooser dateChooser;
     controladorUsers ctrlu = new controladorUsers();
 
     public EditarUsuarios(java.awt.Frame parent, boolean modal, Modelo.Users user, vistas.Usuarios usuarios) throws ParseException {
@@ -42,17 +37,14 @@ public class EditarUsuarios extends javax.swing.JDialog {
         initDateChooser();
 
         llenarCampos();
-        labelFecha.setVisible(false);
     }
 
     private void initDateChooser() {
-        dateChooser = new JDateChooser();
-        dateChooser.setBounds(24, 202, 125, 33);
-        dateChooser.setBackground(java.awt.Color.RED);
 
-        getContentPane().setLayout(null);
-        getContentPane().add(dateChooser);
-        dateChooser.repaint();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -18);
+        
+        dateChooser.setMaxSelectableDate(cal.getTime());
 
     }
 
@@ -113,7 +105,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditLastnameUsers = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtEditCelUsers = new javax.swing.JTextField();
-        labelFecha = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar usuario");
@@ -204,11 +196,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
             }
         });
         panelEditUsers.add(txtEditCelUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 113, 125, 33));
-
-        labelFecha.setBackground(new java.awt.Color(255, 255, 255));
-        labelFecha.setForeground(new java.awt.Color(255, 255, 255));
-        labelFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        panelEditUsers.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
+        panelEditUsers.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,66 +241,66 @@ public class EditarUsuarios extends javax.swing.JDialog {
             ControladorUtils objUtils = new ControladorUtils();
 
             if (objUtils.evaluarExpresion(expression, name) && objUtils.evaluarExpresion(expression, lastName)) {
-               
-                    
-                    boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}",txtEditCelUsers.getText().trim());
-                    if (celValidacion) {
-                        String cel = txtEditCelUsers.getText().trim();
-                        if (ctrlu.validarFecha(dateChooser.getDate())) {
 
-                            int rol = ctrlu.obtenerRol(cbxEditRol);
+                boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}", txtEditCelUsers.getText().trim());
+                if (celValidacion) {
+                    String cel = txtEditCelUsers.getText().trim();
 
-                            // Validar si rol es igual a 1
-                            if (rol == 1) {
-                                // Mostrar JOptionPane de confirmación
-                                int confirmacion = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
+                    if (ctrlu.validarFecha(dateChooser.getDate())) {
 
-                                // Verificar la respuesta del usuario
-                                if (confirmacion == JOptionPane.YES_OPTION) {
-                                    // Continuar con el resto del código
+                        int rol = ctrlu.obtenerRol(cbxEditRol);
 
-                                    if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
-                                        if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
-                                            JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
-                                        } else {
-                                            ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
-                                            usuarios.fillRows();
-                                            JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                                            this.setVisible(false);
-                                        }
-                                    } else {
-                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
-                                        usuarios.fillRows();
-                                        JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
-                                        this.setVisible(false);
-                                    }
-                                }
-                            } else {
-                                // Continuar con el resto del código sin mostrar el JOptionPane
+                        // Validar si rol es igual a 1
+                        if (rol == 1) {
+                            // Mostrar JOptionPane de confirmación
+                            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Quieres cambiar el rol de usuario?, no se mostrara en la tabla de usuarios", "Confirmar cambio", JOptionPane.YES_NO_OPTION);
+
+                            // Verificar la respuesta del usuario
+                            if (confirmacion == JOptionPane.YES_OPTION) {
+                                // Continuar con el resto del código
 
                                 if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
                                     if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
                                         JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
                                     } else {
-                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                        ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                         usuarios.fillRows();
                                         JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                                         this.setVisible(false);
                                     }
                                 } else {
-                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(),cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
                                     usuarios.fillRows();
                                     JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
                                     this.setVisible(false);
                                 }
                             }
-
                         } else {
-                            JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                            // Continuar con el resto del código sin mostrar el JOptionPane
+
+                            if (!correoModificado(user.getEmail(), txtEditEmailUsers.getText())) {
+                                if (!ctrlu.validarCorreo(txtEditEmailUsers.getText())) {
+                                    JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                    usuarios.fillRows();
+                                    JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                    this.setVisible(false);
+                                }
+                            } else {
+                                ctrlu.actualizarUsuario(user.getIdUsuario(), txtEditNameUsers.getText(), txtEditLastnameUsers.getText(), cel, dateChooser.getDate(), txtEditEmailUsers.getText(), rol);
+                                usuarios.fillRows();
+                                JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
+                                this.setVisible(false);
+                            }
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La fecha seleccionada no es valida.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                }
 
             } else {
                 JOptionPane.showMessageDialog(this, "Nombre y apellidos solo letras");
@@ -330,6 +318,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton btnEditSave;
     private javax.swing.JButton btnPasswordRestore;
     private javax.swing.JComboBox<String> cbxEditRol;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -337,7 +326,6 @@ public class EditarUsuarios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelFecha;
     private javax.swing.JPanel panelEditUsers;
     private javax.swing.JLabel titleEditUsers;
     private javax.swing.JTextField txtEditCelUsers;

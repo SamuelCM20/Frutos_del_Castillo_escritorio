@@ -7,6 +7,7 @@ package vistas;
 import Modelo.Categorias;
 import Modelo.Productos;
 import controladores.ControladorProductos;
+import controladores.ControladorUtils;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
@@ -226,8 +227,9 @@ public class editarProducto extends javax.swing.JDialog {
         boolean validacionCampos = objControlador.validarCampos(fieldNombre.getText(), fieldPrecio.getText(), comboBoxDisponibilidad, comboBoxCategorias, fieldDescripcion.getText());
 
         if (validacionCampos) {
-
-            try {
+            boolean precioValidacion = ControladorUtils.evaluarExpresion("^\\d*\\.?\\d+$", fieldPrecio.getText().trim());
+            
+            if (precioValidacion) {
                 double precio = Double.parseDouble(fieldPrecio.getText().trim());
                 int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDisponibilidad);
 
@@ -243,8 +245,7 @@ public class editarProducto extends javax.swing.JDialog {
 
                 JOptionPane.showMessageDialog(this, "Producto actualizado con exito.");
                 this.setVisible(false);
-
-            } catch (NumberFormatException e) {
+            } else {
                 JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.");
             }
         } else {

@@ -539,7 +539,7 @@ public class index extends javax.swing.JFrame {
         });
 
         btnMaximize.setBackground(new java.awt.Color(109, 21, 22));
-        btnMaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximize2.png"))); // NOI18N
+        btnMaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/maximize0.png"))); // NOI18N
         btnMaximize.setBorderPainted(false);
         btnMaximize.setFocusPainted(false);
         btnMaximize.setFocusable(false);

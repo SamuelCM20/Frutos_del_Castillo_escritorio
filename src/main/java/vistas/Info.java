@@ -90,177 +90,84 @@ public class Info extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(85, 21, 22));
 
         cardProductos.setBackground(new java.awt.Color(253, 253, 253));
+        cardProductos.setPreferredSize(new java.awt.Dimension(252, 155));
+        cardProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelPA.setBackground(new java.awt.Color(255, 255, 255));
         labelPA.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
         labelPA.setForeground(new java.awt.Color(150, 50, 50));
         labelPA.setText("Productos añadidos");
+        cardProductos.add(labelPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 74, -1, 29));
 
         iconProductsCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/productsCard.png"))); // NOI18N
+        cardProductos.add(iconProductsCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 12, 60, -1));
 
         cantProductos.setBackground(new java.awt.Color(255, 255, 255));
         cantProductos.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         cantProductos.setForeground(new java.awt.Color(150, 50, 50));
+        cantProductos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantProductos.setText("1");
-
-        javax.swing.GroupLayout cardProductosLayout = new javax.swing.GroupLayout(cardProductos);
-        cardProductos.setLayout(cardProductosLayout);
-        cardProductosLayout.setHorizontalGroup(
-            cardProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardProductosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(cardProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardProductosLayout.createSequentialGroup()
-                        .addComponent(labelPA)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardProductosLayout.createSequentialGroup()
-                        .addComponent(cantProductos)
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardProductosLayout.createSequentialGroup()
-                        .addComponent(iconProductsCard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))))
-        );
-        cardProductosLayout.setVerticalGroup(
-            cardProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardProductosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(iconProductsCard, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPA, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cantProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
+        cardProductos.add(cantProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 109, 100, 34));
 
         cardUsuarios.setBackground(new java.awt.Color(253, 253, 253));
+        cardUsuarios.setPreferredSize(new java.awt.Dimension(252, 155));
+        cardUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelPA1.setBackground(new java.awt.Color(255, 255, 255));
         labelPA1.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
         labelPA1.setForeground(new java.awt.Color(150, 50, 50));
         labelPA1.setText("Usuarios añadidos");
+        cardUsuarios.add(labelPA1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 77, -1, 29));
 
         iconUserCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usersCard3.png"))); // NOI18N
+        cardUsuarios.add(iconUserCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 15, 60, 56));
 
         cantUsers.setBackground(new java.awt.Color(255, 255, 255));
         cantUsers.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         cantUsers.setForeground(new java.awt.Color(150, 50, 50));
+        cantUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantUsers.setText("1");
-
-        javax.swing.GroupLayout cardUsuariosLayout = new javax.swing.GroupLayout(cardUsuarios);
-        cardUsuarios.setLayout(cardUsuariosLayout);
-        cardUsuariosLayout.setHorizontalGroup(
-            cardUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardUsuariosLayout.createSequentialGroup()
-                .addGroup(cardUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardUsuariosLayout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(cantUsers))
-                    .addGroup(cardUsuariosLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(labelPA1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardUsuariosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(iconUserCard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
-        );
-        cardUsuariosLayout.setVerticalGroup(
-            cardUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardUsuariosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(iconUserCard, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPA1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cantUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
+        cardUsuarios.add(cantUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 113, 100, 34));
 
         cardReservas.setBackground(new java.awt.Color(253, 253, 253));
+        cardReservas.setPreferredSize(new java.awt.Dimension(252, 155));
+        cardReservas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelMR.setBackground(new java.awt.Color(255, 255, 255));
         labelMR.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
         labelMR.setForeground(new java.awt.Color(150, 50, 50));
         labelMR.setText("Numero de mesas");
+        cardReservas.add(labelMR, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 74, -1, 29));
 
         iconReservasCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mesaGrande.png"))); // NOI18N
+        cardReservas.add(iconReservasCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 12, 60, 56));
 
         cantReservas.setBackground(new java.awt.Color(255, 255, 255));
         cantReservas.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         cantReservas.setForeground(new java.awt.Color(150, 50, 50));
+        cantReservas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantReservas.setText("1");
-
-        javax.swing.GroupLayout cardReservasLayout = new javax.swing.GroupLayout(cardReservas);
-        cardReservas.setLayout(cardReservasLayout);
-        cardReservasLayout.setHorizontalGroup(
-            cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardReservasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
-                        .addComponent(cantReservas)
-                        .addGap(115, 115, 115))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
-                        .addComponent(labelMR)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
-                        .addComponent(iconReservasCard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))))
-        );
-        cardReservasLayout.setVerticalGroup(
-            cardReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardReservasLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(iconReservasCard, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelMR, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cantReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
-        );
+        cardReservas.add(cantReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 109, 100, 34));
 
         cardPedidos1.setBackground(new java.awt.Color(253, 253, 253));
+        cardPedidos1.setPreferredSize(new java.awt.Dimension(252, 155));
+        cardPedidos1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelPP.setBackground(new java.awt.Color(255, 255, 255));
         labelPP.setFont(new java.awt.Font("Boring Sans A Trial", 1, 24)); // NOI18N
         labelPP.setForeground(new java.awt.Color(150, 50, 50));
         labelPP.setText("Pedidos Pendientes");
+        cardPedidos1.add(labelPP, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 78, -1, 29));
 
         iconPedidosCard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pedidosCard.png"))); // NOI18N
+        cardPedidos1.add(iconPedidosCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 10, -1, -1));
 
         cantPedidos.setBackground(new java.awt.Color(255, 255, 255));
         cantPedidos.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         cantPedidos.setForeground(new java.awt.Color(150, 50, 50));
+        cantPedidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantPedidos.setText("1");
-
-        javax.swing.GroupLayout cardPedidos1Layout = new javax.swing.GroupLayout(cardPedidos1);
-        cardPedidos1.setLayout(cardPedidos1Layout);
-        cardPedidos1Layout.setHorizontalGroup(
-            cardPedidos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardPedidos1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(cardPedidos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardPedidos1Layout.createSequentialGroup()
-                        .addComponent(iconPedidosCard, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardPedidos1Layout.createSequentialGroup()
-                        .addComponent(cantPedidos)
-                        .addGap(123, 123, 123))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardPedidos1Layout.createSequentialGroup()
-                        .addComponent(labelPP)
-                        .addGap(16, 16, 16))))
-        );
-        cardPedidos1Layout.setVerticalGroup(
-            cardPedidos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardPedidos1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPedidosCard, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(labelPP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cantPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        cardPedidos1.add(cantPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 113, 100, 34));
 
         javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
         panelInfo.setLayout(panelInfoLayout);
@@ -291,17 +198,17 @@ public class Info extends javax.swing.JPanel {
             panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cardUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cardPedidos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cardPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cardReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cardProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cardProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
         );
 

@@ -801,7 +801,7 @@
               <Color blue="16" green="15" red="6d" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/maximize2.png"/>
+              <Image iconType="3" name="/img/maximize0.png"/>
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>

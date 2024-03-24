@@ -32,7 +32,7 @@ public class Main {
                 obj.setVisible(true);
 
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2051);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }

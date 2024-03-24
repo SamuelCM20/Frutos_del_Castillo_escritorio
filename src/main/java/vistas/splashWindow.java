@@ -97,7 +97,7 @@ public class splashWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void runFile(){
-        Timer mtimer = new Timer(45,(ActionEvent e) -> {
+        Timer mtimer = new Timer(15,(ActionEvent e) -> {
             progressBar.setValue(progressBar.getValue() + 1);
             progressBar.setBackground(Color.white);
             progressBar.setStringPainted(true);
@@ -120,7 +120,7 @@ public class splashWindow extends javax.swing.JFrame {
                 obj.setVisible(true);
 
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2051);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }

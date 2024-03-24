@@ -45,15 +45,11 @@ public class Productos extends javax.swing.JPanel {
         fillRows();
         llenarComboBoxCategorias();
 
-       
         tableProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tableProducts.setDefaultRenderer(Object.class, new CustomCellRenderer());
 
     }
-    
-  
 
-    
     private ControladorProductos objControlador = new ControladorProductos();
     private ControladorUtils objControladorUtils = new ControladorUtils();
 
@@ -422,10 +418,11 @@ public class Productos extends javax.swing.JPanel {
 
             boolean nombre = ControladorUtils.evaluarExpresion("[a-zA-Z ]{1,50}", txtNameProduct.getText());
             if (nombre) {
-                try {
+                boolean precioValidacion = ControladorUtils.evaluarExpresion("^\\d*\\.?\\d+$", txtPrecioP.getText().trim());
 
+                if (precioValidacion) {
                     double precio = Double.parseDouble(txtPrecioP.getText().trim());
-
+                    
                     String[] data = objControlador.copiarImagen();
 
                     if (data[0].equalsIgnoreCase("true")) {
@@ -437,18 +434,18 @@ public class Productos extends javax.swing.JPanel {
                         Categorias categoria = (Categorias) comboBoxCategoria.getSelectedItem();
                         int idCategoria = categoria.getIdCategoria();
 
-                        objControlador.agregarProducto(txtNameProduct.getText().trim(), precio, disponibilidad, idCategoria, txtDescripcion.getText().trim(), newRuta);
+                        objControlador.agregarProducto(txtNameProduct.getText().trim(), precio , disponibilidad, idCategoria, txtDescripcion.getText().trim(), newRuta);
 
                         fillRows();
-
                         limpiarCampos();
+                        JOptionPane.showMessageDialog(this, "Producto agregado con exito.");
                     } else {
                         JOptionPane.showMessageDialog(null, "La imagen también es requerida.");
                     }
-                } catch (NumberFormatException e) {
+                } else {
                     JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el campo nombre.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             }
 

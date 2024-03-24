@@ -4,45 +4,34 @@
  */
 package vistas;
 
-import com.toedter.calendar.JDateChooser;
 import controladores.ControladorUtils;
-import vistas.Usuarios;
 import controladores.controladorUsers;
-import javax.swing.BorderFactory;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
 /**
  *
  * @author samue
  */
 public class agregarUsuario extends javax.swing.JDialog {
-    //hola
-    /**
-     * Creates new form agregarUsuario
-     */
-    private JDateChooser dateChooser;
 
     private Usuarios us;
+    private controladorUsers ctrlu = new controladorUsers();
 
     public agregarUsuario(java.awt.Frame parent, boolean modal, vistas.Usuarios us) {
         super(parent, modal);
         this.us = us;
         initComponents();
+        
         initDateChooser();
 
     }
 
-    private controladorUsers ctrlu = new controladorUsers();
-
     private void initDateChooser() {
-        dateChooser = new JDateChooser();
-        dateChooser.setBounds(24, 202, 125, 33);
-        dateChooser.setBackground(java.awt.Color.RED);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -18);
 
-        getContentPane().setLayout(null);
-        getContentPane().add(dateChooser);
-        dateChooser.repaint();
+        dateChooser.setMaxSelectableDate(cal.getTime());
 
     }
 
@@ -72,7 +61,7 @@ public class agregarUsuario extends javax.swing.JDialog {
         txtNewCelUsers = new javax.swing.JTextField();
         newPassword = new javax.swing.JPasswordField();
         labelPass = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo usuario");
@@ -156,10 +145,7 @@ public class agregarUsuario extends javax.swing.JDialog {
         labelPass.setForeground(new java.awt.Color(85, 21, 22));
         labelPass.setText("Contraseña");
         panelEditUsers.add(labelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 176, -1, -1));
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        panelEditUsers.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
+        panelEditUsers.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 202, 125, 33));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,9 +174,9 @@ public class agregarUsuario extends javax.swing.JDialog {
         boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(), txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
 
         if (validacionCampos) {
-                boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}",txtNewCelUsers.getText().trim());
-                if (celValidacion) {
-    
+            boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}", txtNewCelUsers.getText().trim());
+            if (celValidacion) {
+
                 String cel = txtNewCelUsers.getText().trim();
                 if (ctrlu.validarFecha(dateChooser.getDate())) {
 
@@ -213,14 +199,13 @@ public class agregarUsuario extends javax.swing.JDialog {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "La fecha seleccionada no es valida.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
 
-                }else{
+            } else {
 
                 JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
-                }
-            
+            }
 
         } else {
 
@@ -237,7 +222,7 @@ public class agregarUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNewSave;
     private javax.swing.JComboBox<String> cbxNewRol;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

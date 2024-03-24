@@ -10,22 +10,17 @@ package controladores;
  */
 import Modelo.Conexion;
 import Modelo.Users;
-import vistas.Usuarios;
-import controladores.ControladorUtils;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class controladorUsers {
@@ -228,8 +223,19 @@ public class controladorUsers {
 
     public boolean validarFecha(Date selectedDate) {
 
-        Date currentDate = new Date();
-        return selectedDate.before(currentDate);
+        Calendar fechaNacimiento = Calendar.getInstance();
+        fechaNacimiento.setTime(selectedDate);
+        Calendar maximum = Calendar.getInstance();
+        maximum.add(Calendar.YEAR, -18);
+        
+        if (fechaNacimiento.after(maximum)) {
+            return false;
+        }else{
+            return true;
+        }
+//            Date currentDate = new Date();
+//            return selectedDate.before(currentDate);
+
     }
 
     public boolean validarCorreo(String email) {
