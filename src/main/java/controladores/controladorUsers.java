@@ -145,14 +145,14 @@ public class controladorUsers {
 
     }
 
-    public void actualizarPerfil(String name, String lastname, Date date, String email) {
+    public void actualizarPerfil(String name, String lastname, Date date, String email,String emailAnt) {
 
         Modelo.Users user = new Users();
         try ( Conexion con = new Conexion()) {
 
             java.sql.Date fechaNacimiento = new java.sql.Date(date.getTime());
 
-            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento + "',updated_at = '" + ctrlu.crearTimestamp() + "' WHERE email = '" + email + "';";
+            String consulta = "UPDATE users SET nombre = '" + name + "', apellido = '" + lastname + "', fecha_nacimiento  = '" + fechaNacimiento + "',email = '"+email+"',updated_at = '" + ctrlu.crearTimestamp() + "' WHERE email = '" + emailAnt + "';";
 
             user.setNombre(name);
             user.setApellido(lastname);
@@ -227,10 +227,10 @@ public class controladorUsers {
         fechaNacimiento.setTime(selectedDate);
         Calendar maximum = Calendar.getInstance();
         maximum.add(Calendar.YEAR, -18);
-        
+
         if (fechaNacimiento.after(maximum)) {
             return false;
-        }else{
+        } else {
             return true;
         }
 //            Date currentDate = new Date();
@@ -240,7 +240,7 @@ public class controladorUsers {
 
     public boolean validarCorreo(String email) {
 
-        String patronCorreo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String patronCorreo = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+([\\.][^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])\\.)+([a-zA-Z]{2,}))$";
 
         String consulta = "SELECT COUNT(*) AS cantidad FROM users WHERE email = '" + email + "'";
         try ( Conexion con = new Conexion()) {
@@ -306,12 +306,54 @@ public class controladorUsers {
 
     }
 
-    public boolean validarCamposPerfil(String nombre, String apellido, Date seleDate) {
+    public boolean validarCamposPerfil(String nombre, String apellido, Date seleDate,String correo) {
 
-        return !(nombre.equals("") || apellido.equals("") || seleDate == null);
+        return !(nombre.equals("") || apellido.equals("") || seleDate == null || correo.equals(""));
     }
 
     public boolean validarSeleccionTabla(int rowSelected) {
         return rowSelected != -1;
+    }
+
+    public int obtenerIdUsuario(String email) {
+
+        String consulta = "SELECT id FROM users WHERE email = '" + email + "';";
+
+        try ( Conexion con = new Conexion()) {
+            ResultSet rs = con.consulta(consulta);
+
+            if (rs.next()) {
+
+                int id = rs.getInt("id");
+
+                return id;
+
+            }
+        } catch (SQLException e) {
+
+            System.out.println("Error al obtener rol: " + e);
+        }
+        return 0;
+
+    }
+    
+    public boolean obtenerNumeroRol(int id){
+        String consulta = "SELECT role_id FROM model_has_roles WHERE model_id = " + id + ";";
+
+        try ( Conexion con = new Conexion()) {
+            ResultSet rs = con.consulta(consulta);
+
+            if (rs.next()) {
+
+                int rol = rs.getInt("role_id");
+
+                return rol == 2;
+
+            }
+        } catch (SQLException e) {
+
+            System.out.println("Error al obtener rol: " + e);
+        }
+        return false;
     }
 }

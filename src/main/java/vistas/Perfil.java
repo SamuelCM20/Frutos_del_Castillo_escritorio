@@ -25,6 +25,7 @@ public class Perfil extends javax.swing.JDialog {
     public JDateChooser dateChooser;
     private index objVistaIndex = new index();
     controladorUsers ctrlu = new controladorUsers();
+    private String correoAnterior = "";
 
     public Perfil(java.awt.Frame parent, boolean modal, index objVistaIndex) {
 
@@ -50,6 +51,11 @@ public class Perfil extends javax.swing.JDialog {
         dateChooser.repaint();
 
         labelFecha.setVisible(false);
+    }
+    
+    public boolean correoModificado(String correoActual, String correoNuevo) {
+
+        return correoActual.equals(correoNuevo);
     }
 
     @SuppressWarnings("unchecked")
@@ -150,7 +156,6 @@ public class Perfil extends javax.swing.JDialog {
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 130, 120, 33));
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 130, 128, 33));
 
-        txtCorreo.setFocusable(false);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
@@ -194,21 +199,32 @@ public class Perfil extends javax.swing.JDialog {
         ControladorUtils objUtils = new ControladorUtils();
 
         if (accion.equals("Editar")) {
-
-            habilitarPerfil();
+            correoAnterior = txtCorreo.getText();
+            habilitarPerfil(correoAnterior);
             btnEditar.setText("Guardar");
 
         } else {
-
-            if (ctrlu.validarCamposPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate())) {
+       
+            if (ctrlu.validarCamposPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(),txtCorreo.getText())) {
                 if (objUtils.evaluarExpresion(expression, name) &&  objUtils.evaluarExpresion(expression, lastName)) {
                     if (ctrlu.validarFecha(dateChooser.getDate())) {
-                        ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText());
-
+                        if (!correoModificado(correoAnterior, txtCorreo.getText())) {
+                            if (!ctrlu.validarCorreo(txtCorreo.getText())) {
+                                JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);
+                                objVistaIndex.setUserName(txtNombre.getText());
+                                JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
+                                btnEditar.setText("Editar");
+                                this.setVisible(false);   
+                            }
+                        }else{
+                        ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);
                         objVistaIndex.setUserName(txtNombre.getText());
                         JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
                         btnEditar.setText("Editar");
                         this.setVisible(false);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                     }
@@ -232,18 +248,17 @@ public class Perfil extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    private void habilitarPerfil() {
+    private void habilitarPerfil(String email) {
         txtNombre.setEditable(true);
         txtApellido.setEditable(true);
         dateChooser.setEnabled(true);
+        int idUsuario = ctrlu.obtenerIdUsuario(email);
+        
+        if(ctrlu.obtenerNumeroRol(idUsuario)){
+            txtCorreo.setEditable(true);
+        }
+        
     }
-
-    private void deshabilitarPerfil() {
-        txtNombre.setEditable(false);
-        txtApellido.setEditable(false);
-        dateChooser.setEnabled(false);
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
