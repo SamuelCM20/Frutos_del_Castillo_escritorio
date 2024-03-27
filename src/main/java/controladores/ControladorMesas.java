@@ -48,7 +48,7 @@ public class ControladorMesas {
         List<Mesas> lista = new ArrayList<>();
 
         try ( Conexion con = new Conexion()) {
-            String consulta = "select * from mesas";
+            String consulta = "select * from mesas WHERE estado != 2;";
 
             ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {
@@ -145,5 +145,39 @@ public class ControladorMesas {
 
         } catch (Exception e) {
         }
+    }
+    public void eliminarMesa(int id){
+        
+        String consulta = "UPDATE mesas SET estado = 2 WHERE id = "+id+";";
+        try ( Conexion objConexion = new Conexion()) {
+            boolean res = objConexion.ejecutar(consulta);
+
+            if (res) {
+                System.out.println("Mesa eliminada exitosamente");
+            } else {
+                System.out.println("Error al eliminar mesa");
+            }
+
+        } catch (Exception e) {
+        }
+    }
+    public boolean maximoMesas(){
+        String consulta = "SELECT COUNT(*) as cantidad FROM mesas WHERE estado = 1";
+        try ( Conexion con = new Conexion()) {
+
+                try {
+                    ResultSet rs = con.consulta(consulta);
+                    if (rs.next()) {
+                        int cantidad = rs.getInt("cantidad");
+
+                        return cantidad <= 50;
+                    }
+                } catch (SQLException e) {
+                }
+            
+
+        } catch (Exception e) {
+        }
+        return false;
     }
 }
