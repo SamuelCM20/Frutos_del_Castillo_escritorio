@@ -276,15 +276,9 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelFecha">
+        <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
-                </LineBorder>
-              </Border>
-            </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

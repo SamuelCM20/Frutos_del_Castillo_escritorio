@@ -36,7 +36,6 @@ public class controladorIndex {
                 p.txtNombre.setText(rc.getString("nombre"));
                 p.txtApellido.setText(rc.getString("apellido"));
                 p.txtCorreo.setText(rc.getString("email"));
-                p.labelFecha.setText(rc.getString("fecha_nacimiento"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
                 Date fecha = sdf.parse(rc.getString("fecha_nacimiento"));

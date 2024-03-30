@@ -7,11 +7,9 @@ package vistas;
 import com.toedter.calendar.JDateChooser;
 import controladores.ControladorUtils;
 import controladores.controladorUsers;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import vistas.index;
-
 
 /**
  *
@@ -19,10 +17,6 @@ import vistas.index;
  */
 public class Perfil extends javax.swing.JDialog {
 
-    /**
-     * pri Creates new form Perfil
-     */
-    public JDateChooser dateChooser;
     private index objVistaIndex = new index();
     controladorUsers ctrlu = new controladorUsers();
     private String correoAnterior = "";
@@ -37,23 +31,20 @@ public class Perfil extends javax.swing.JDialog {
         modificarFocus(false);
     }
 
-    private void modificarFocus(boolean valor){
+    private void modificarFocus(boolean valor) {
         txtNombre.setFocusable(valor);
         txtApellido.setFocusable(valor);
         txtCorreo.setFocusable(valor);
+        dateChooser.setEnabled(valor);
     }
+
     private void initDateChooser() {
-        dateChooser = new JDateChooser();
-        dateChooser.setBounds(295, 235, 140, 28);
-        dateChooser.setEnabled(false);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -18);
 
-        getContentPane().setLayout(null);
-        getContentPane().add(dateChooser);
-        dateChooser.repaint();
-
-        labelFecha.setVisible(false);
+        dateChooser.setMaxSelectableDate(cal.getTime());
     }
-    
+
     public boolean correoModificado(String correoActual, String correoNuevo) {
 
         return correoActual.equals(correoNuevo);
@@ -78,7 +69,7 @@ public class Perfil extends javax.swing.JDialog {
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         labelImagen = new javax.swing.JLabel();
-        labelFecha = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         labelNacimiento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -167,8 +158,8 @@ public class Perfil extends javax.swing.JDialog {
         labelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/free-user-icon-3296-thumb.png"))); // NOI18N
         jPanel1.add(labelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
-        labelFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel1.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 235, 140, 28));
+        dateChooser.setFocusable(false);
+        jPanel1.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 235, 140, 28));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,30 +196,30 @@ public class Perfil extends javax.swing.JDialog {
             btnEditar.setText("Guardar");
 
         } else {
-       
-            if (ctrlu.validarCamposPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(),txtCorreo.getText())) {
-                if (objUtils.evaluarExpresion(expression, name) &&  objUtils.evaluarExpresion(expression, lastName)) {
+
+            if (ctrlu.validarCamposPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText())) {
+                if (objUtils.evaluarExpresion(expression, name) && objUtils.evaluarExpresion(expression, lastName)) {
                     if (ctrlu.validarFecha(dateChooser.getDate())) {
                         if (!correoModificado(correoAnterior, txtCorreo.getText())) {
                             if (!ctrlu.validarCorreo(txtCorreo.getText())) {
                                 JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
-                            }else{
-                                ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);
+                            } else {
+                                ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(), correoAnterior);
                                 objVistaIndex.setUserName(txtNombre.getText());
                                 JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente, es necesario volver a iniciar sesion");
                                 btnEditar.setText("Editar");
-                                this.setVisible(false);  
+                                this.setVisible(false);
                                 objVistaIndex.cerrarSesion();
                             }
-                        }else{
-                        ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);
-                        objVistaIndex.setUserName(txtNombre.getText());
-                        JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
-                        btnEditar.setText("Editar");
-                        this.setVisible(false);
+                        } else {
+                            ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(), correoAnterior);
+                            objVistaIndex.setUserName(txtNombre.getText());
+                            JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
+                            btnEditar.setText("Editar");
+                            this.setVisible(false);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "La fecha seleccionada no puede ser anterior a la fecha actual.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "La fecha seleccionada no es valida.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "El nombre solo debe contener letras.", "Error de validación", JOptionPane.ERROR_MESSAGE);
@@ -255,22 +246,22 @@ public class Perfil extends javax.swing.JDialog {
         txtApellido.setEditable(true);
         dateChooser.setEnabled(true);
         int idUsuario = ctrlu.obtenerIdUsuario(email);
-        
-        if(ctrlu.obtenerNumeroRol(idUsuario)){
+
+        if (ctrlu.obtenerNumeroRol(idUsuario)) {
             txtCorreo.setEditable(true);
         }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnVolver;
+    public com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelApellido;
     private javax.swing.JLabel labelCorreo;
-    public javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelImagen;
     public javax.swing.JLabel labelNacimiento;
     private javax.swing.JLabel labelNombre;
