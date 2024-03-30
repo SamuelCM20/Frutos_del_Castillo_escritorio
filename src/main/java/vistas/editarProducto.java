@@ -227,29 +227,34 @@ public class editarProducto extends javax.swing.JDialog {
         boolean validacionCampos = objControlador.validarCampos(fieldNombre.getText(), fieldPrecio.getText(), comboBoxDisponibilidad, comboBoxCategorias, fieldDescripcion.getText());
 
         if (validacionCampos) {
-            boolean precioValidacion = ControladorUtils.evaluarExpresion("^\\d*\\.?\\d+$", fieldPrecio.getText().trim());
-            
-            if (precioValidacion) {
-                double precio = Double.parseDouble(fieldPrecio.getText().trim());
-                int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDisponibilidad);
+            boolean nombre = ControladorUtils.evaluarExpresion("[a-zA-Z ]{1,50}", fieldNombre.getText());
+            if (nombre) {
+                boolean precioValidacion = ControladorUtils.evaluarExpresion("^\\d*\\.?\\d+$", fieldPrecio.getText().trim());
 
-                Categorias categoria = (Categorias) comboBoxCategorias.getSelectedItem();
-                int idCategoria = categoria.getIdCategoria();
+                if (precioValidacion) {
+                    double precio = Double.parseDouble(fieldPrecio.getText().trim());
+                    int disponibilidad = objControlador.getValorDisponibilidad(comboBoxDisponibilidad);
 
-                String[] dataImagen = objControlador.copiarImagen();
+                    Categorias categoria = (Categorias) comboBoxCategorias.getSelectedItem();
+                    int idCategoria = categoria.getIdCategoria();
 
-                objControlador.actualizarProducto(producto.getIdProductos(), fieldNombre.getText().trim(), precio, disponibilidad, idCategoria, fieldDescripcion.getText().trim(), dataImagen);
+                    String[] dataImagen = objControlador.copiarImagen();
 
-                vistaProductos.fillRows();
-                vistaProductos.rowSelected = -1;
+                    objControlador.actualizarProducto(producto.getIdProductos(), fieldNombre.getText().trim(), precio, disponibilidad, idCategoria, fieldDescripcion.getText().trim(), dataImagen);
 
-                JOptionPane.showMessageDialog(this, "Producto actualizado con exito.");
-                this.setVisible(false);
+                    vistaProductos.fillRows();
+                    vistaProductos.rowSelected = -1;
+
+                    JOptionPane.showMessageDialog(this, "Producto actualizado con exito.");
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.");
+                JOptionPane.showMessageDialog(null, "Todos los campos son necesarios, menos la imagen.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Todos los campos son necesarios, menos la imagen.");
+            JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el campo nombre.", "Error de validación", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed

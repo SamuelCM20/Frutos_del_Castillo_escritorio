@@ -174,7 +174,13 @@ public class agregarUsuario extends javax.swing.JDialog {
         boolean validacionCampos = ctrlu.validarCampos(txtNewNameUsers.getText(), txtNewLastnameUsers.getText(), txtNewCelUsers.getText(), dateChooser.getDate(), txtNewEmailUsers.getText(), newPassword.getText(), cbxNewRol);
 
         if (validacionCampos) {
+            String expression = "[a-zA-Z]{1,30}";
+            String name = txtNewNameUsers.getText();
+            String lastName = txtNewLastnameUsers.getText();
+            ControladorUtils objUtils = new ControladorUtils();
+          if (objUtils.evaluarExpresion(expression, name) && objUtils.evaluarExpresion(expression, lastName)) {
             boolean celValidacion = ControladorUtils.evaluarExpresion("[0-9]{10}", txtNewCelUsers.getText().trim());
+            
             if (celValidacion) {
 
                 String cel = txtNewCelUsers.getText().trim();
@@ -205,6 +211,9 @@ public class agregarUsuario extends javax.swing.JDialog {
             } else {
 
                 JOptionPane.showMessageDialog(null, "Porfavor, ingresa un numero de telefono valido.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre y apellidos solo letras");
             }
 
         } else {

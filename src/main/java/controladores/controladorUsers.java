@@ -240,7 +240,7 @@ public class controladorUsers {
 
     public boolean validarCorreo(String email) {
 
-        String patronCorreo = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+([\\.][^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])\\.)+([a-zA-Z]{2,}))$";
+        String patronCorreo = "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}";
 
         String consulta = "SELECT COUNT(*) AS cantidad FROM users WHERE email = '" + email + "'";
         try ( Conexion con = new Conexion()) {

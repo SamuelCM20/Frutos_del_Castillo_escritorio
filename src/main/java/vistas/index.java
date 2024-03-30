@@ -605,16 +605,10 @@ public class index extends javax.swing.JFrame {
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         // TODO add your handling code here:
-
-        Users modLogin = new Users();
-        login visLogin = new login();
-
         int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
-        if (opc == JOptionPane.YES_OPTION) {
-            this.setVisible(false);
-            Controlador ctrl = new Controlador(visLogin, modLogin);
-            ctrl.iniciar();
-        }
+                if (opc == JOptionPane.YES_OPTION) {
+                    cerrarSesion();
+                }
 
     }//GEN-LAST:event_btnSalirMouseClicked
 
@@ -822,6 +816,17 @@ public class index extends javax.swing.JFrame {
         jpanelMain.add(p, BorderLayout.CENTER);
         jpanelMain.revalidate();
         jpanelMain.repaint();
+    }
+    
+    public void cerrarSesion(){
+            Users modLogin = new Users();
+            login visLogin = new login();
+
+        
+            this.setVisible(false);
+            Controlador ctrl = new Controlador(visLogin, modLogin);
+            ctrl.iniciar();
+        
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import vistas.index;
-import vistas.index;
+
 
 /**
  *
@@ -40,6 +40,7 @@ public class Perfil extends javax.swing.JDialog {
     private void modificarFocus(boolean valor){
         txtNombre.setFocusable(valor);
         txtApellido.setFocusable(valor);
+        txtCorreo.setFocusable(valor);
     }
     private void initDateChooser() {
         dateChooser = new JDateChooser();
@@ -214,9 +215,10 @@ public class Perfil extends javax.swing.JDialog {
                             }else{
                                 ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);
                                 objVistaIndex.setUserName(txtNombre.getText());
-                                JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
+                                JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente, es necesario volver a iniciar sesion");
                                 btnEditar.setText("Editar");
-                                this.setVisible(false);   
+                                this.setVisible(false);  
+                                objVistaIndex.cerrarSesion();
                             }
                         }else{
                         ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(),correoAnterior);

@@ -44,8 +44,7 @@ public class Pedidos extends javax.swing.JPanel {
         tablePedidos.setDefaultRenderer(Object.class, new CustomCellRenderer());
         tablePediProducts.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tablePediProducts.setDefaultRenderer(Object.class, new CustomCellRenderer());
-        
-        btnFactura.setBackground(Color.WHITE);
+ 
     }
 
     int rowSelected = -1;
@@ -125,15 +124,48 @@ public class Pedidos extends javax.swing.JPanel {
         if (rowSelected != -1) {
             Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
             if (objControladorPedidos.actualizarPedido(pedido.getIdCompra())) {
-                fillRows();
-                limpiarCampos();
-                JOptionPane.showMessageDialog(this, "Pedido tomado con exito.");
+                
+                int opc = JOptionPane.showConfirmDialog(null, "¡Pedido tomado con exito!, ¿desea generar factura?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
+                        if (opc == JOptionPane.YES_OPTION) {
+                             generarFactura();
+                             fillRows();
+                             limpiarCampos();
+                         }
             } else {
                 JOptionPane.showMessageDialog(this, "Hubo un error al tomar el pedido.");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un pedido de la tabla derecha.");
         }
+    }
+    
+    public void generarFactura(){
+        if (rowSelected != -1) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar como");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+
+                String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                Modelo.Mesas objMesa = (Modelo.Mesas) modelTableCompras.getValueAt(rowSelected, 1);
+                Modelo.Compra objPedido = (Modelo.Compra) listaPedidos.get(rowSelected);
+
+                boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, objMesa, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);
+
+                if (facturaGenerada) {
+                    JOptionPane.showMessageDialog(null, "Factura guardada con exito.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al guardar la factura.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un pedido de la tabla derecha.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
 
     /**
@@ -169,7 +201,6 @@ public class Pedidos extends javax.swing.JPanel {
         tablePediProducts = new javax.swing.JTable();
         btnCancelarP = new javax.swing.JButton();
         btnCompletarP = new javax.swing.JButton();
-        btnFactura = new javax.swing.JButton();
         labelPrecio = new javax.swing.JLabel();
         labelValorTotal = new javax.swing.JLabel();
         panelTable = new javax.swing.JPanel();
@@ -311,7 +342,6 @@ public class Pedidos extends javax.swing.JPanel {
         labelCliente2.setText("Pedido:");
         jPanel1.add(labelCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 166, -1, -1));
 
-        tablePediProducts.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tablePediProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -334,7 +364,7 @@ public class Pedidos extends javax.swing.JPanel {
         tablePediProducts.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablePediProducts);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 197, 405, 91));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 197, 405, 110));
 
         btnCancelarP.setBackground(new java.awt.Color(133, 33, 33));
         btnCancelarP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -347,7 +377,7 @@ public class Pedidos extends javax.swing.JPanel {
                 btnCancelarPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 325, 105, 35));
+        jPanel1.add(btnCancelarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 105, 35));
 
         btnCompletarP.setBackground(new java.awt.Color(96, 29, 73));
         btnCompletarP.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -360,26 +390,17 @@ public class Pedidos extends javax.swing.JPanel {
                 btnCompletarPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 325, 110, 35));
-
-        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
-        btnFactura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 320, 90, 40));
+        jPanel1.add(btnCompletarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, 35));
 
         labelPrecio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         labelPrecio.setForeground(new java.awt.Color(85, 21, 22));
         labelPrecio.setText("Total:");
-        jPanel1.add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 166, -1, -1));
+        jPanel1.add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
         labelValorTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelValorTotal.setForeground(new java.awt.Color(85, 21, 22));
         labelValorTotal.setText("$");
-        jPanel1.add(labelValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 160, 91, 27));
+        jPanel1.add(labelValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 150, 27));
 
         jPanel3.add(jPanel1, "card2");
 
@@ -454,35 +475,6 @@ public class Pedidos extends javax.swing.JPanel {
         validacionCampos();
     }//GEN-LAST:event_btnCompletarPActionPerformed
 
-    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-
-        if (rowSelected != -1) {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Guardar como");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            int userSelection = fileChooser.showSaveDialog(null);
-
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-
-                String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
-
-                Modelo.Mesas objMesa = (Modelo.Mesas) modelTableCompras.getValueAt(rowSelected, 1);
-                Modelo.Compra objPedido = (Modelo.Compra) listaPedidos.get(rowSelected);
-
-                boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, objMesa, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);
-
-                if (facturaGenerada) {
-                    JOptionPane.showMessageDialog(null, "Factura guardada con exito.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Hubo un error al guardar la factura.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un pedido de la tabla derecha.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnFacturaActionPerformed
-
     private void tablePedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePedidosMouseClicked
         rowSelected = tablePedidos.getSelectedRow();
         fillFields();
@@ -512,7 +504,6 @@ public class Pedidos extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarP;
     private javax.swing.JButton btnCompletarP;
-    private javax.swing.JButton btnFactura;
     private javax.swing.JTextField fieldComentario;
     private javax.swing.JTextField fieldEmpleado;
     private javax.swing.JTextField fieldMesa;

@@ -376,6 +376,8 @@ public class Productos extends javax.swing.JPanel {
         tableProducts.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableProducts.setShowHorizontalLines(true);
         tableProducts.setShowVerticalLines(true);
+        tableProducts.getTableHeader().setResizingAllowed(false);
+        tableProducts.getTableHeader().setReorderingAllowed(false);
         tableProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableProductsMouseClicked(evt);
@@ -416,8 +418,11 @@ public class Productos extends javax.swing.JPanel {
 
         if (validacionCampos) {
 
-            boolean nombre = ControladorUtils.evaluarExpresion("[a-zA-Z ]{1,50}", txtNameProduct.getText());
-            if (nombre) {
+            String expression = "[a-zA-Z]{1,30}";
+            String name = txtNameProduct.getText();
+            String description = txtDescripcion.getText();
+            ControladorUtils objUtils = new ControladorUtils();
+            if (objUtils.evaluarExpresion(expression, name) && objUtils.evaluarExpresion(expression, description)) {
                 boolean precioValidacion = ControladorUtils.evaluarExpresion("^\\d*\\.?\\d+$", txtPrecioP.getText().trim());
 
                 if (precioValidacion) {
@@ -446,7 +451,7 @@ public class Productos extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Solo se aceptan números en el campo precio.", "Error de validación", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el campo nombre.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el campo nombre y en la descripcion.", "Error de validación", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
