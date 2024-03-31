@@ -13,7 +13,6 @@ import Modelo.Users;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,7 +23,6 @@ import javax.swing.JComboBox;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class controladorUsers {
-    //hola
 
     ControladorUtils ctrlu = new ControladorUtils();
 
@@ -109,7 +107,7 @@ public class controladorUsers {
                 int id = rs.getInt("id");
 
                 String agregarRol = "INSERT INTO model_has_roles(role_id,model_type,model_id) "
-                        + "VALUES(" + rol + ",'App\\Models\\User'," + id + ")";
+                        + "VALUES(" + rol + ",'App\\\\Models\\\\User'," + id + ")";
 
                 boolean res = con.ejecutar(agregarRol);
 

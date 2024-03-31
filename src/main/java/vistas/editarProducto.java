@@ -8,13 +8,11 @@ import Modelo.Categorias;
 import Modelo.Productos;
 import controladores.ControladorProductos;
 import controladores.ControladorUtils;
-import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
