@@ -40,7 +40,7 @@ public class controladorUsers {
                 int id = rc.getInt("id");
                 String nombre = rc.getString("nombre");
                 String apellido = rc.getString("apellido");
-                String fecha_na = rc.getString("fecha_nacimiento");
+                Date fecha_na = rc.getDate("fecha_nacimiento");
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
                 lista.add(new Users(id, nombre, apellido, fecha_na, email, celular));

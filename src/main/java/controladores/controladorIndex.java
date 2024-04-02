@@ -5,10 +5,10 @@
 package controladores;
 
 import Modelo.Conexion;
+import Modelo.Users;
 import vistas.Perfil;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import vistas.login;
 
 /**
  *
@@ -18,35 +18,18 @@ public class controladorIndex {
 
     public controladorIndex() {
     }
-    
-    
-    public void mostrarDatos(Perfil p, int userId) {
+
+    public void mostrarDatos(Perfil p, Users user) {
 
         p.txtNombre.setEditable(false);
         p.txtApellido.setEditable(false);
         p.txtCorreo.setEditable(false);
 
-        try ( Conexion con = new Conexion()) {
-
-            String consulta = "SELECT * FROM users WHERE id = " + userId;
-
-            ResultSet rc = con.consulta(consulta);
-            if (rc != null && rc.next()) {
-
-                p.txtNombre.setText(rc.getString("nombre"));
-                p.txtApellido.setText(rc.getString("apellido"));
-                p.txtCorreo.setText(rc.getString("email"));
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-                Date fecha = sdf.parse(rc.getString("fecha_nacimiento"));
-                p.dateChooser.setDate(fecha);
-                p.labelRol.setText(obtenerRol(rc.getInt("id")));
-            }
-
-        } catch (Exception e) {
-            
-            System.out.println(e);
-        }
+        p.txtNombre.setText(user.getNombre());
+        p.txtApellido.setText(user.getApellido());
+        p.txtCorreo.setText(user.getEmail());
+        p.dateChooser.setDate(user.getFecha_nacimiento());
+        p.labelRol.setText(user.getNombre_rol());
 
     }
 
@@ -54,6 +37,14 @@ public class controladorIndex {
 
         return state == 1;
 
+    }
+
+    public void iniciarLogin() {
+        Users modLogin = new Users();
+        login visLogin = new login();
+        
+        Controlador ctrl = new Controlador(visLogin, modLogin);
+        ctrl.iniciar();
     }
 
     public String obtenerRol(int id) {
@@ -79,5 +70,5 @@ public class controladorIndex {
         }
         return null;
     }
-    
+
 }

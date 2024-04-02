@@ -10,14 +10,11 @@ import controladores.Controlador;
 import controladores.controladorIndex;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -607,7 +604,8 @@ public class index extends javax.swing.JFrame {
         // TODO add your handling code here:
         int opc = JOptionPane.showConfirmDialog(null, "¿Quiere cerrar sesion?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
                 if (opc == JOptionPane.YES_OPTION) {
-                    cerrarSesion();
+                    this.dispose();
+                    objControladorIndex.iniciarLogin();
                 }
 
     }//GEN-LAST:event_btnSalirMouseClicked
@@ -687,8 +685,8 @@ public class index extends javax.swing.JFrame {
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
         // TODO add your handling code here:
-        Perfil p = new Perfil(this, true, this);
-        objControladorIndex.mostrarDatos(p, user.getIdUsuario());
+        Perfil p = new Perfil(this, true, userName, user);
+        objControladorIndex.mostrarDatos(p, user);
         p.setLocationRelativeTo(null);
         p.setVisible(true);
 
@@ -818,16 +816,6 @@ public class index extends javax.swing.JFrame {
         jpanelMain.repaint();
     }
     
-    public void cerrarSesion(){
-            Users modLogin = new Users();
-            login visLogin = new login();
-
-        
-            this.setVisible(false);
-            Controlador ctrl = new Controlador(visLogin, modLogin);
-            ctrl.iniciar();
-        
-    }
 
     @Override
     public void setDefaultCloseOperation(int operation) {

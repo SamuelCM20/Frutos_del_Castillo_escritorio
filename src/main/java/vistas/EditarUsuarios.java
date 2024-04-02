@@ -4,11 +4,9 @@
  */
 package vistas;
 
-import com.toedter.calendar.JDateChooser;
+
 import java.text.ParseException;
 import controladores.controladorUsers;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import controladores.ControladorUtils;
 import java.util.Calendar;
@@ -43,7 +41,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, -18);
-        
+
         dateChooser.setMaxSelectableDate(cal.getTime());
 
     }
@@ -58,15 +56,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditLastnameUsers.setText(user.getApellido());
         txtEditCelUsers.setText(user.getCelular());
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        try {
-
-            Date fecha = sdf.parse(user.getFecha_nacimiento());
-            dateChooser.setDate(fecha);
-        } catch (ParseException e) {
-            System.out.println(e);
-        }
+        dateChooser.setDate(user.getFecha_nacimiento());
 
         txtEditEmailUsers.setText(user.getEmail());
 
