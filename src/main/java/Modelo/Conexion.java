@@ -23,12 +23,12 @@ public class Conexion  implements AutoCloseable{
     public Conexion() {
         
         
-        String host = "localhost";
+        String host = "shared16.hostgator.co";
         String puerto = "3306";
-        String nameBD = "frutosdelcastillo";
+        String nameBD = "laroman1_bd";
 
-        String usuario = "root";
-        String pass = "";
+        String usuario = "laroman1_super";
+        String pass = "Adso02.2560312";
 
         String driver = "com.mysql.cj.jdbc.Driver";
 
@@ -40,9 +40,9 @@ public class Conexion  implements AutoCloseable{
             conect = DriverManager.getConnection(dbURL, usuario, pass);
             isConnected = true;
            
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
 
-            System.out.println("Desconectado");
+            System.out.println("Desconectado: " + e);
             isConnected = false;
 
         }
