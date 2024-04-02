@@ -97,7 +97,7 @@ public class splashWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void runFile(){
-        Timer mtimer = new Timer(15,(ActionEvent e) -> {
+        Timer mtimer = new Timer(48,(ActionEvent e) -> {
             progressBar.setValue(progressBar.getValue() + 1);
             progressBar.setBackground(Color.white);
             progressBar.setStringPainted(true);

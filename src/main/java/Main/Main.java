@@ -31,17 +31,17 @@ public class Main {
                 splashWindow obj = new splashWindow();
                 obj.setVisible(true);
 
+                Controlador ctrl = new Controlador(visLogin, modLogin);
                 try {
                     Thread.sleep(2051);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                obj.dispose();
-
-                Controlador ctrl = new Controlador(visLogin, modLogin);
+                
                 ctrl.iniciar();
-
+                
+                obj.dispose();
+                
             };
 
             Thread miHiloSplash = new Thread(mRun);
