@@ -278,9 +278,10 @@ public class controladorUsers {
 
     public String encriptarContrasenia(String contrasenia) {
         String salt = BCrypt.gensalt();
-        String ContraseniaEncrypt = BCrypt.hashpw(contrasenia, salt);
+        String ContraseniaOld = BCrypt.hashpw(contrasenia, salt);
+         String passwordNew = ContraseniaOld.substring(0, 2) + "y" + ContraseniaOld.substring(3, ContraseniaOld.length());
 
-        return ContraseniaEncrypt;
+        return passwordNew;
 
     }
 
