@@ -18,17 +18,17 @@ public class Users {
     private String nombre;
     private String apellido; 
     //pendiente fecha
-    private String fecha_nacimiento;
+    private Date fecha_nacimiento;
     private String email;
     private String password;
     private String celular;
-    private int getRol_id;
+    private String nombre_rol;
     
     
 
    
 
-    public Users(int id,String nombre,String apellido,String fecha_nacimiento,String email,String celular){
+    public Users(int id,String nombre,String apellido,Date fecha_nacimiento,String email,String celular){
         this.idUsuario = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,8 +36,6 @@ public class Users {
         this.email = email;
 
         this.celular = celular;
-
-        this.celular = celular; 
 
     }
 
@@ -69,11 +67,11 @@ public class Users {
         this.apellido = apellido;
     }
 
-    public String getFecha_nacimiento() {
+    public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
@@ -101,8 +99,11 @@ public class Users {
         this.celular = celular;
     }
 
-    public int getGetRol_id() {
-        return getRol_id;
+    public String getNombre_rol() {
+        return nombre_rol;
+    }
+    public void setNombre_rol(String nombre_rol) {
+        this.nombre_rol = nombre_rol;
     }
     
     @Override

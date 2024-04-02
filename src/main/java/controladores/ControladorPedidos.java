@@ -103,7 +103,7 @@ public class ControladorPedidos {
                 int id = rc.getInt("id");
                 String nombre = rc.getString("nombre");
                 String apellido = rc.getString("apellido");
-                String fechaNacimiento = rc.getString("fecha_nacimiento");
+                Date fechaNacimiento = rc.getDate("fecha_nacimiento");
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
 

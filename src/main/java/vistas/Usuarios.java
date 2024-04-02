@@ -13,10 +13,10 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -24,11 +24,8 @@ import javax.swing.table.JTableHeader;
  */
 public class Usuarios extends javax.swing.JPanel {
 
-    index prn = new index();
+    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
     
-    /**
-     * Creates new form Usuarios
-     */
     public Usuarios() {
         initComponents();
         
@@ -196,7 +193,7 @@ public class Usuarios extends javax.swing.JPanel {
     private void addUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUsersMouseClicked
         // TODO add your handling code here:
 
-        agregarUsuario as = new agregarUsuario(prn, true,this);
+        agregarUsuario as = new agregarUsuario(parentFrame, true,this);
         as.setLocationRelativeTo(null);
         as.setVisible(true);
     }//GEN-LAST:event_addUsersMouseClicked
@@ -211,7 +208,7 @@ public class Usuarios extends javax.swing.JPanel {
         
         EditarUsuarios eu;
         try {
-            eu = new EditarUsuarios(prn, true,user,this);
+            eu = new EditarUsuarios(parentFrame, true,user,this);
             eu.setLocationRelativeTo(null);
             eu.setVisible(true);
         } catch (ParseException ex) {

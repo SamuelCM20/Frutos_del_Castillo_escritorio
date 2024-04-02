@@ -39,7 +39,7 @@ public class ControladorProductos {
 
     public Productos getProducto(int productoId) {
 
-        String consulta = "select * from productos where id = " + productoId;
+        String consulta = "select id, nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id from productos where id = " + productoId;
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
@@ -65,7 +65,7 @@ public class ControladorProductos {
     public List<Productos> getProductos() {
         List<Productos> lista = new ArrayList<>();
 
-        String consulta = "select * from productos";
+        String consulta = "select id, nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id from productos";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);

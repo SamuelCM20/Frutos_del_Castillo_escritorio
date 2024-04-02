@@ -10,22 +10,13 @@ import controladores.ControladorProductos;
 import controladores.ControladorUtils;
 import controladores.CustomCellRenderer;
 import controladores.CustomHeaderRenderer;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -488,8 +479,9 @@ public class Productos extends javax.swing.JPanel {
 
             Modelo.Productos producto = (Modelo.Productos) listaProductos.get(rowSelected);
 
-            index prn = new index();
-            editarProducto obj = new editarProducto(prn, true, producto, this);
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            
+            editarProducto obj = new editarProducto(parentFrame, true, producto, this);
             obj.setLocationRelativeTo(null);
             obj.setResizable(false);
             obj.setVisible(true);

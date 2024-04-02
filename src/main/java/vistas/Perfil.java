@@ -4,10 +4,13 @@
  */
 package vistas;
 
-import com.toedter.calendar.JDateChooser;
+import Modelo.Users;
+import controladores.Controlador;
 import controladores.ControladorUtils;
+import controladores.controladorIndex;
 import controladores.controladorUsers;
 import java.util.Calendar;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,14 +19,16 @@ import javax.swing.JOptionPane;
  */
 public class Perfil extends javax.swing.JDialog {
 
-    private index objVistaIndex = new index();
-    controladorUsers ctrlu = new controladorUsers();
+    private JLabel userName;
+    private Users user;
+    private controladorUsers ctrlu = new controladorUsers();
     private String correoAnterior = "";
 
-    public Perfil(java.awt.Frame parent, boolean modal, index objVistaIndex) {
+    public Perfil(java.awt.Frame parent, boolean modal, JLabel userName, Users user) {
 
         super(parent, modal);
-        this.objVistaIndex = objVistaIndex;
+        this.user = user;
+        this.userName = userName;
         initComponents();
         initDateChooser();
 
@@ -204,15 +209,26 @@ public class Perfil extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(this, "El correo no es valido o ya existe en el programa", "Error de validacion", JOptionPane.ERROR_MESSAGE);
                             } else {
                                 ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(), correoAnterior);
-                                objVistaIndex.setUserName(txtNombre.getText());
+                                
+                                controladorIndex objControladorIndex = new controladorIndex();
+                                
                                 JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente, es necesario volver a iniciar sesion");
                                 btnEditar.setText("Editar");
                                 this.setVisible(false);
-                                objVistaIndex.cerrarSesion();
+                                
+                                this.getParent().setVisible(false);
+                                objControladorIndex.iniciarLogin();
+
+                                
                             }
                         } else {
                             ctrlu.actualizarPerfil(txtNombre.getText(), txtApellido.getText(), dateChooser.getDate(), txtCorreo.getText(), correoAnterior);
-                            objVistaIndex.setUserName(txtNombre.getText());
+                            user.setNombre(txtNombre.getText());
+                            user.setApellido(txtApellido.getText());
+                            user.setFecha_nacimiento(dateChooser.getDate());
+                            user.setEmail(txtCorreo.getText());
+
+                            userName.setText(txtNombre.getText().toUpperCase());
                             JOptionPane.showMessageDialog(this, "Perfil actualizado exitosamente");
                             btnEditar.setText("Editar");
                             this.setVisible(false);
@@ -244,7 +260,7 @@ public class Perfil extends javax.swing.JDialog {
         txtNombre.setEditable(true);
         txtApellido.setEditable(true);
         dateChooser.setEnabled(true);
-        int idUsuario = ctrlu.obtenerIdUsuario(email);
+        int idUsuario = user.getIdUsuario();
 
         if (ctrlu.obtenerNumeroRol(idUsuario)) {
             txtCorreo.setEditable(true);

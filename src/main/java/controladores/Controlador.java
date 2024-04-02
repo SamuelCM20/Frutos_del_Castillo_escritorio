@@ -6,27 +6,17 @@ package controladores;
 
 import Modelo.Conexion;
 import vistas.login;
-import vistas.Perfil;
 import Modelo.Users;
-import controladores.controladorIndex;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.text.View;
 
 import org.mindrot.jbcrypt.BCrypt;
-import sun.awt.www.content.audio.x_aiff;
 
 /**
  *
@@ -77,7 +67,7 @@ public class Controlador implements ActionListener {
         //Obtener la informacion del usuario e iniciar sesion
         modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
 
-        String consulta = "select * from users where email = '" + modeloLogin.getEmail() + "'";
+        String consulta = "select id, nombre, apellido, email, fecha_nacimiento, password, celular from users where email = '" + modeloLogin.getEmail() + "'";
 
         try ( Conexion conex = new Conexion();) {
             ResultSet rc = conex.consulta(consulta);
@@ -86,9 +76,9 @@ public class Controlador implements ActionListener {
                 String UserName = rc.getString("nombre");
                 String Lastname = rc.getString("apellido");
                 int UserId = rc.getInt("id");
-                String Birthday = rc.getString("fecha_nacimiento");
+                Date Birthday = rc.getDate("fecha_nacimiento");
                 String Useremail = rc.getString("email");
-                String phone = rc.getString("nombre");
+                String phone = rc.getString("celular");
 
                 modeloLogin.setIdUsuario(UserId);
                 modeloLogin.setNombre(UserName);
@@ -100,6 +90,8 @@ public class Controlador implements ActionListener {
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
 
                 String rolUsuario = objControladorIndex.obtenerRol(modeloLogin.getIdUsuario());
+                modeloLogin.setNombre_rol(rolUsuario);
+                
                 if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
                     if(!rolUsuario.equalsIgnoreCase("Usuario")){
                         this.vistaLogin.setVisible(false);
