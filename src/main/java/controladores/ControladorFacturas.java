@@ -50,7 +50,7 @@ public class ControladorFacturas {
         cb.lineTo(documento.getPageSize().getWidth() + 2f, documento.top() + altura);
         cb.stroke();
     }
-    
+
     //Insertar el logo del restaurante en la factura
     public static void cargarImagen(String rutaImagen, Document documento) {
         // Cargar la imagen como un objeto Image de iText
@@ -75,7 +75,7 @@ public class ControladorFacturas {
     }
 
     //FUncion para generar la factura
-    public boolean generarFacturaPDF(Modelo.Compra objCompra, Modelo.Mesas objMesa, Modelo.Users objUsuario, List<Modelo.Factura> listaPedidos, String folderPath) {
+    public boolean generarFacturaPDF(Modelo.Compra objCompra, Modelo.Users objUsuario, List<Modelo.Factura> listaPedidos, String folderPath) {
 
         ControladorProductos objControladorProductos = new ControladorProductos();
         Configs objConfig = getNit();
@@ -112,7 +112,7 @@ public class ControladorFacturas {
             documento.add(new Paragraph("Codigo factura:  FV0001"));
             documento.add(new Paragraph("Fecha factura: " + fecha));
             documento.add(new Paragraph("Empleado: " + empleado));
-            documento.add(new Paragraph("No mesa: " + objMesa.getNumero_mesa()));
+            documento.add(new Paragraph("No mesa: " + objCompra.getMesa_numero()));
             documento.add(new Paragraph(" "));
             documento.add(new Paragraph(" "));
 
@@ -174,7 +174,12 @@ public class ControladorFacturas {
 
     public List<Factura> getFacturas(int idCompra) {
         List<Factura> lista = new ArrayList<>();
-        String consulta = "select * from facturas where compra_id = " + idCompra + ";";
+
+        String consulta = "select f.id, f.cantidad_producto, f.subtotal, f.precio, f.compra_id, f.producto_id, p.nombre\n"
+                + "from facturas f \n"
+                + "join productos p\n"
+                + "on f.producto_id = p.id where f.compra_id = " + idCompra + ";";
+
         try ( Conexion objConexion = new Conexion();) {
 
             ResultSet rc = objConexion.consulta(consulta);
@@ -187,8 +192,9 @@ public class ControladorFacturas {
 
                 int compraId = rc.getInt("compra_id");
                 int productoId = rc.getInt("producto_id");
-
-                lista.add(new Factura(id, cantidadProducto, subtotal, precio, compraId, productoId));
+                String productoNombre = rc.getString("nombre");
+                
+                lista.add(new Factura(id, cantidadProducto, subtotal, precio, compraId, productoId, productoNombre));
             }
 
         } catch (SQLException s) {

@@ -25,7 +25,7 @@ public class ControladorMesas {
 
     public Mesas getMesa(int mesaId) {
 
-        String consulta = "select * from mesas where id = " + mesaId + ";";
+        String consulta = "select id, numero_mesa, estado from mesas where id = " + mesaId + ";";
         try ( Conexion objConexion = new Conexion();) {
 
             ResultSet rc = objConexion.consulta(consulta);
@@ -48,7 +48,7 @@ public class ControladorMesas {
         List<Mesas> lista = new ArrayList<>();
 
         try ( Conexion con = new Conexion()) {
-            String consulta = "select * from mesas WHERE estado != 2;";
+            String consulta = "select id, numero_mesa, estado from mesas WHERE estado != 2;";
 
             ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {

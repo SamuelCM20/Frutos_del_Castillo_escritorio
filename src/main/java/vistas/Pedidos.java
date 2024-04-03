@@ -76,8 +76,7 @@ public class Pedidos extends javax.swing.JPanel {
         listaPedidos = objControladorPedidos.getPedidos();
 
         listaPedidos.forEach(l -> {
-            Modelo.Mesas objMesa = objControladorMesas.getMesa(l.getMesas_id());
-            modelTableCompras.addRow(new Object[]{"¡Nuevo pedido!", objMesa, "en proceso...", l.getFecha_hora()});
+            modelTableCompras.addRow(new Object[]{"¡Nuevo pedido!", l.getMesa_numero(), "en proceso...", l.getFecha_hora()});
         });
     }
 
@@ -90,21 +89,18 @@ public class Pedidos extends javax.swing.JPanel {
         listaPedidosFacturas = objControladorFacturas.getFacturas(idCompra);
 
         listaPedidosFacturas.forEach(l -> {
-            Modelo.Productos objProducto = objControladorProductos.getProducto(l.getProductos_id());
-
-            modelTableProductos.addRow(new Object[]{l.getIdFactura(), objProducto.getNombre(), l.getCantidad_producto()});
+            modelTableProductos.addRow(new Object[]{l.getIdFactura(), l.getProducto_nombre(), l.getCantidad_producto()});
         });
     }
 
     public void fillFields() {
         Modelo.Compra pedido = (Modelo.Compra) listaPedidos.get(rowSelected);
-        Modelo.Mesas mesa = (Modelo.Mesas) tablePedidos.getValueAt(rowSelected, 1);
 
         usuarioEmpleadoPedido = objControladorPedidos.getUsuario(pedido.getUsuarios_id());
 
         fieldEmpleado.setText(usuarioEmpleadoPedido.getNombre().toUpperCase() + " " + usuarioEmpleadoPedido.getApellido().toUpperCase());
 
-        fieldMesa.setText(String.valueOf(mesa.getNumero_mesa()));
+        fieldMesa.setText(String.valueOf(pedido.getMesa_numero()));
         fieldComentario.setText(pedido.getComentario());
 
         fillRowsPedidosProductos(pedido.getIdCompra());
@@ -150,11 +146,10 @@ public class Pedidos extends javax.swing.JPanel {
             if (userSelection == JFileChooser.APPROVE_OPTION) {
 
                 String folderPath = fileChooser.getSelectedFile().getAbsolutePath();
-
-                Modelo.Mesas objMesa = (Modelo.Mesas) modelTableCompras.getValueAt(rowSelected, 1);
+                
                 Modelo.Compra objPedido = (Modelo.Compra) listaPedidos.get(rowSelected);
 
-                boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, objMesa, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);
+                boolean facturaGenerada = objControladorFacturas.generarFacturaPDF(objPedido, usuarioEmpleadoPedido, listaPedidosFacturas, folderPath);
 
                 if (facturaGenerada) {
                     JOptionPane.showMessageDialog(null, "Factura guardada con exito.");

@@ -18,19 +18,30 @@ public class Factura {
     private int compra_usuarios_id;
     private int compra_usuarios_reservas_id;
     private int productos_id;
+    private String producto_nombre;
     
-    public Factura(int idFactura, int cantidad_producto, double subtotal, double precio, int compra_id, int producto_id){
+    public Factura(int idFactura, int cantidad_producto, double subtotal, double precio, int compra_id, int producto_id, String producto_nombre){
         this.idFactura = idFactura;
         this.cantidad_producto = cantidad_producto;
         this.subtotal = subtotal;
         this.precio = precio;
         this.compra_id = compra_id;
         this.productos_id = producto_id;
+        this.producto_nombre = producto_nombre;
     }
     public Factura(){
         
     }
 
+    public String getProducto_nombre() {
+        return producto_nombre;
+    }
+
+    public void setProducto_nombre(String producto_nombre) {
+        this.producto_nombre = producto_nombre;
+    }
+
+    
     public int getIdFactura() {
         return idFactura;
     }

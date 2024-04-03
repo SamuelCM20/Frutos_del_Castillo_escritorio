@@ -36,7 +36,10 @@ public class ControladorPedidos {
     public List<Compra> getPedidos() {
         List<Compra> lista = new ArrayList<>();
 
-        String consulta = "select * from compras where estado = 1";
+        String consulta = "SELECT c.id, c.user_id, c.fecha_hora, c.iva, c.costo_total, c.comentario, c.direccion, c.estado, c.mesa_id, m.numero_mesa, m.estado as 'mesa_estado' \n"
+                + "from compras c\n"
+                + "join mesas m \n"
+                + "on c.mesa_id = m.id where c.estado = 1";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
@@ -48,11 +51,14 @@ public class ControladorPedidos {
                 double costoTotal = rc.getDouble("costo_total");
                 String comentario = rc.getString("comentario");
                 String direccion = rc.getString("direccion");
+
                 int estado = rc.getInt("estado");
                 int userId = rc.getInt("user_id");
                 int mesaId = rc.getInt("mesa_id");
+                String mesa_numero = rc.getString("numero_mesa");
+                int mesa_estado = rc.getInt("mesa_estado");
 
-                lista.add(new Compra(id, fechaHora, iva, costoTotal, comentario, direccion, estado, userId, mesaId));
+                lista.add(new Compra(id, fechaHora, iva, costoTotal, comentario, direccion, estado, userId, mesaId, mesa_numero, mesa_estado));
             }
 
         } catch (SQLException s) {
@@ -64,7 +70,9 @@ public class ControladorPedidos {
     public List<Compra> getPedidosHistorial() {
         List<Compra> lista = new ArrayList<>();
 
-        String consulta = "select * from compras where estado != 1";
+        String consulta = "select c.id, c.user_id, c.fecha_hora, c.iva, c.costo_total, c.comentario, c.direccion, c.estado, c.mesa_id, m.numero_mesa, m.estado as 'mesa_estado' from compras c \n"
+                + "join mesas m \n"
+                + "on c.mesa_id = m.id where c.estado != 1;";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
@@ -76,11 +84,14 @@ public class ControladorPedidos {
                 double costoTotal = rc.getDouble("costo_total");
                 String comentario = rc.getString("comentario");
                 String direccion = rc.getString("direccion");
+
                 int estado = rc.getInt("estado");
                 int userId = rc.getInt("user_id");
                 int mesaId = rc.getInt("mesa_id");
+                String mesa_numero = rc.getString("numero_mesa");
+                int mesa_estado = rc.getInt("mesa_estado");
 
-                lista.add(new Compra(id, fechaHora, iva, costoTotal, comentario, direccion, estado, userId, mesaId));
+                lista.add(new Compra(id, fechaHora, iva, costoTotal, comentario, direccion, estado, userId, mesaId, mesa_numero, mesa_estado));
             }
 
         } catch (SQLException s) {
@@ -101,7 +112,7 @@ public class ControladorPedidos {
             ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
-                int id = rc.getInt("id");
+                int id = rc.getInt("user_id");
                 String nombre = rc.getString("nombre");
                 String apellido = rc.getString("apellido");
                 Date fechaNacimiento = rc.getDate("fecha_nacimiento");
