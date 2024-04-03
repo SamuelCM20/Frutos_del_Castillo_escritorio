@@ -409,7 +409,7 @@ public class Productos extends javax.swing.JPanel {
 
         if (validacionCampos) {
 
-            String expression = "[a-zA-Z]{1,30}";
+            String expression = "^[a-zA-Záéíóúñ ]+$";
             String name = txtNameProduct.getText();
             String description = txtDescripcion.getText();
             ControladorUtils objUtils = new ControladorUtils();

@@ -49,7 +49,7 @@ public class editarProducto extends javax.swing.JDialog {
         getDisponibilidad();
         comboBoxCategorias.setSelectedIndex(producto.getCategorias_id());
 
-        ImageIcon icono = new ImageIcon(producto.getImagen_1());
+        ImageIcon icono = objControlador.obtenerImagenRemota(producto.getImagen_1());
         Image imagen = icono.getImage();
         Image imagenEscalada = imagen.getScaledInstance(newIconProduct.getWidth(), newIconProduct.getHeight(), Image.SCALE_SMOOTH);
         icono = new ImageIcon(imagenEscalada);

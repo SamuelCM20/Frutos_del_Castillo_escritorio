@@ -67,7 +67,11 @@ public class Controlador implements ActionListener {
         //Obtener la informacion del usuario e iniciar sesion
         modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
 
-        String consulta = "select id, nombre, apellido, email, fecha_nacimiento, password, celular from users where email = '" + modeloLogin.getEmail() + "'";
+        String consulta = "SELECT us.id AS 'user_id', us.nombre, us.apellido, us.email, us.fecha_nacimiento, us.password, us.celular, mrole.role_id, r.name AS 'role_name'\n"
+                + "FROM users us\n"
+                + "JOIN model_has_roles mrole ON us.id = mrole.model_id\n"
+                + "JOIN roles r ON mrole.role_id = r.id \n"
+                + "WHERE us.email = '" + modeloLogin.getEmail() + "'";
 
         try ( Conexion conex = new Conexion();) {
             ResultSet rc = conex.consulta(consulta);

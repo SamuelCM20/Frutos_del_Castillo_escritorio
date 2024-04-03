@@ -18,11 +18,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Modelo.Conexion;
 import Modelo.Productos;
+import java.awt.Image;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -129,39 +137,44 @@ public class ControladorProductos {
     }
 
     public String[] copiarImagen() {
-        if (selectedFile != null) {
-            String basePath = Paths.get("src", "main").toString();
-
-            // Ruta relativa al src/main donde se guardarán las imágenes
-            String relativePath = "resources/images/";
-
-            // Crear el directorio de destino dentro de resources si no existe
-            Path destinationDir = Paths.get(basePath, relativePath);
-
-            try {
-                Files.createDirectories(destinationDir);
-                // Copiar el archivo seleccionado al directorio de destino
-
-                Path destinationPath = destinationDir.resolve(selectedFile.getName());
-                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-                System.out.println("Imagen guardada, ruta de destino: " + destinationPath.toString());
-
-                String[] data = {"true", destinationPath.toString()};
+       if (selectedFile != null) {
+        String server = "ftp.laromana.store";
+        int port = 21;
+        String username = "samuelito@laromana.store";
+        String password = "Adso02.2560312";
+        String remoteFolder = "/imagen-produto";
+        
+        try {
+            FTPClient ftpClient = new FTPClient();
+            ftpClient.connect(server, port);
+            ftpClient.login(username, password);
+            ftpClient.enterLocalPassiveMode();
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            
+            InputStream inputStream = new FileInputStream(selectedFile);
+            boolean done = ftpClient.storeFile(remoteFolder + "/" + selectedFile.getName(), inputStream);
+            inputStream.close();
+            
+            if (done) {
+                System.out.println("Imagen guardada en el servidor FTP.");
+                String[] data = {"true","storage/"+ remoteFolder + "/" + selectedFile.getName()};
                 return data;
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                System.out.println("Error al guardar la imagen en el proyecto.");
-
+            } else {
+                System.out.println("No se pudo guardar la imagen en el servidor FTP.");
                 String[] data = {"false"};
                 return data;
             }
-        } else {
-
+        } catch (IOException ex) {
+            System.out.println("Error al guardar la imagen en el servidor FTP: " + ex.getMessage());
+            ex.printStackTrace();
             String[] data = {"false"};
             return data;
         }
+    } else {
+        System.out.println("No se ha seleccionado ningún archivo de imagen.");
+        String[] data = {"false"};
+        return data;
+    }
     }
 
     public List<Categorias> getCategorias() {
@@ -186,8 +199,8 @@ public class ControladorProductos {
     public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen) {
         
         Timestamp timestamp = ctrlu.crearTimestamp();
-        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id,created_at,updated_at) "
-                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ", '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
+        String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad,size,imagen_1, categoria_id,created_at,updated_at) "
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ",'grande', '" + "storage/"+ imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
@@ -274,4 +287,18 @@ public class ControladorProductos {
             return 0;
         }
     }
+    
+    public ImageIcon obtenerImagenRemota(String imageUrl){
+        
+        try {
+            URL url = new URL("https://laromana.store/public/"+imageUrl);
+            Image image = ImageIO.read(url);
+            return new ImageIcon(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+    } 
+    
 }
