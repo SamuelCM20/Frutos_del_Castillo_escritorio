@@ -79,7 +79,7 @@ public class Controlador implements ActionListener {
                 String passwordOld = rc.getString("password");
                 String UserName = rc.getString("nombre");
                 String Lastname = rc.getString("apellido");
-                int UserId = rc.getInt("id");
+                int UserId = rc.getInt("user_id");
                 Date Birthday = rc.getDate("fecha_nacimiento");
                 String Useremail = rc.getString("email");
                 String phone = rc.getString("celular");

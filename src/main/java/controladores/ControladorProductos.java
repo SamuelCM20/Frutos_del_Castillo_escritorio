@@ -157,7 +157,7 @@ public class ControladorProductos {
             
             if (done) {
                 System.out.println("Imagen guardada en el servidor FTP.");
-                String[] data = {"true","storage/"+ remoteFolder + "/" + selectedFile.getName()};
+                String[] data = {"true","storage"+ remoteFolder + "/" + selectedFile.getName()};
                 return data;
             } else {
                 System.out.println("No se pudo guardar la imagen en el servidor FTP.");
@@ -200,7 +200,7 @@ public class ControladorProductos {
         
         Timestamp timestamp = ctrlu.crearTimestamp();
         String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad,size,imagen_1, categoria_id,created_at,updated_at) "
-                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ",'grande', '" + "storage/"+ imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ",'grande', '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);

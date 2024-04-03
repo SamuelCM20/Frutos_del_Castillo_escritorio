@@ -108,7 +108,7 @@ public class ControladorFacturas {
             String empleado = objUsuario.getNombre() + " " + objUsuario.getApellido();
 
             //documento.add(new Paragraph(" "));
-            documento.add(new Paragraph("Nit: " + objConfig.getDescripcion()));
+            documento.add(new Paragraph("Nit: 00000000"));
             documento.add(new Paragraph("Codigo factura:  FV0001"));
             documento.add(new Paragraph("Fecha factura: " + fecha));
             documento.add(new Paragraph("Empleado: " + empleado));
