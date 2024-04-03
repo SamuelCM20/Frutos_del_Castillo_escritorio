@@ -160,7 +160,7 @@ public class editarProducto extends javax.swing.JDialog {
 
         newIconProduct.setBackground(new java.awt.Color(255, 255, 255));
         newIconProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panelEditProduct.add(newIconProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 60, 60));
+        panelEditProduct.add(newIconProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 345, 60, 60));
 
         jSeparator1.setBackground(new java.awt.Color(97, 6, 63));
         jSeparator1.setForeground(new java.awt.Color(97, 6, 63));
@@ -177,7 +177,7 @@ public class editarProducto extends javax.swing.JDialog {
                 btnNewImageActionPerformed(evt);
             }
         });
-        panelEditProduct.add(btnNewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 352, 133, 37));
+        panelEditProduct.add(btnNewImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 357, 133, 37));
 
         btnActualizar.setBackground(new java.awt.Color(97, 6, 63));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

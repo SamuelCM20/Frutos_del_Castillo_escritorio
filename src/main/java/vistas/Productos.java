@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -64,25 +63,11 @@ public class Productos extends javax.swing.JPanel {
     }
 
     public void tableModel() {
-        String[] titulosTablaProductos = {"Codigo", "Nombre", "Precio", "Categoria", "Estado"};
+        String[] titulosTablaProductos = {"Nombre", "Precio", "Categoria", "Estado"};
         modelTableProductos = objControladorUtils.addTableModel(modelTableProductos, tableProducts, titulosTablaProductos);
     }
 
-    public String getNombreCategoria(int id) {
-
-        List<Categorias> listaCategorias = objControlador.getCategorias();
-
-        String nombre = listaCategorias.stream()
-                .filter(categoria -> categoria.getIdCategoria() == id)
-                .map(Categorias::getNombre)
-                .findFirst()
-                .orElse(null);
-
-        return nombre;
-    }
-
     public String getNombreDisponibilidad(int identificador) {
-
         String nombre = "";
         if (identificador == 0) {
             nombre = "No disponible";
@@ -91,7 +76,6 @@ public class Productos extends javax.swing.JPanel {
         }
 
         return nombre;
-
     }
 
     public void fillRows() {
@@ -100,9 +84,8 @@ public class Productos extends javax.swing.JPanel {
         listaProductos = objControlador.getProductos();
 
         listaProductos.forEach(l -> {
-            String cat = getNombreCategoria(l.getCategorias_id());
             String disponibilidad = getNombreDisponibilidad(l.getDisponibilidad());
-            modelTableProductos.addRow(new Object[]{l.getIdProductos(), l.getNombre(), l.getPrecio(), cat, disponibilidad});
+            modelTableProductos.addRow(new Object[]{l.getNombre(), l.getPrecio(), l.getCategoria_nombre(), disponibilidad});
         });
 
     }

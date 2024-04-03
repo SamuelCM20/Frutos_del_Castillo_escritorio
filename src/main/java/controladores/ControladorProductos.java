@@ -47,7 +47,9 @@ public class ControladorProductos {
 
     public Productos getProducto(int productoId) {
 
-        String consulta = "select id, nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id from productos where id = " + productoId;
+        String consulta = "select p.id, p.nombre, p.precio, p.descripcion, p.disponibilidad, p.imagen_1, p.categoria_id, c.nombre as 'categoria_nombre'\n"
+                + "from productos p \n"
+                + "join categorias c on p.categoria_id = c.id where p.id = '" + productoId + "'";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
@@ -60,8 +62,9 @@ public class ControladorProductos {
                 int disponibilidad = rc.getInt("disponibilidad");
                 String imagen1 = rc.getString("imagen_1");
                 int categoriaId = rc.getInt("categoria_id");
+                String categoria_nombre = rc.getString("categoria_nombre");
 
-                return new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId);
+                return new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId, categoria_nombre);
             }
 
         } catch (SQLException s) {
@@ -73,7 +76,9 @@ public class ControladorProductos {
     public List<Productos> getProductos() {
         List<Productos> lista = new ArrayList<>();
 
-        String consulta = "select id, nombre, precio, descripcion, disponibilidad, imagen_1, categoria_id from productos";
+        String consulta = "select p.id, p.nombre, p.precio, p.descripcion, p.disponibilidad, p.imagen_1, p.categoria_id, c.nombre as 'categoria_nombre'\n"
+                + "from productos p \n"
+                + "join categorias c on p.categoria_id = c.id;";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
@@ -86,8 +91,9 @@ public class ControladorProductos {
                 int disponibilidad = rc.getInt("disponibilidad");
                 String imagen1 = rc.getString("imagen_1");
                 int categoriaId = rc.getInt("categoria_id");
+                String categoria_nombre = rc.getString("categoria_nombre");
 
-                lista.add(new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId));
+                lista.add(new Productos(id, nombre, precio, descripcion, disponibilidad, imagen1, categoriaId, categoria_nombre));
             }
 
         } catch (SQLException s) {
@@ -137,54 +143,56 @@ public class ControladorProductos {
     }
 
     public String[] copiarImagen() {
-       if (selectedFile != null) {
-        String server = "ftp.laromana.store";
-        int port = 21;
-        String username = "samuelito@laromana.store";
-        String password = "Adso02.2560312";
-        String remoteFolder = "/imagen-produto";
-        
-        try {
-            FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(server, port);
-            ftpClient.login(username, password);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            
-            InputStream inputStream = new FileInputStream(selectedFile);
-            boolean done = ftpClient.storeFile(remoteFolder + "/" + selectedFile.getName(), inputStream);
-            inputStream.close();
-            
-            if (done) {
-                System.out.println("Imagen guardada en el servidor FTP.");
-                String[] data = {"true","storage"+ remoteFolder + "/" + selectedFile.getName()};
-                return data;
-            } else {
-                System.out.println("No se pudo guardar la imagen en el servidor FTP.");
+        if (selectedFile != null) {
+            String server = "ftp.laromana.store";
+            int port = 21;
+            String username = "samuelito@laromana.store";
+            String password = "Adso02.2560312";
+            String remoteFolder = "/imagen-produto";
+
+            try {
+                FTPClient ftpClient = new FTPClient();
+                ftpClient.connect(server, port);
+                ftpClient.login(username, password);
+                ftpClient.enterLocalPassiveMode();
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+                InputStream inputStream = new FileInputStream(selectedFile);
+                boolean done = ftpClient.storeFile(remoteFolder + "/" + selectedFile.getName(), inputStream);
+                inputStream.close();
+
+                if (done) {
+                    System.out.println("Imagen guardada en el servidor FTP.");
+                    String[] data = {"true", "storage" + remoteFolder + "/" + selectedFile.getName()};
+                    return data;
+                } else {
+                    System.out.println("No se pudo guardar la imagen en el servidor FTP.");
+                    String[] data = {"false"};
+                    return data;
+                }
+            } catch (IOException ex) {
+                System.out.println("Error al guardar la imagen en el servidor FTP: " + ex.getMessage());
+                ex.printStackTrace();
                 String[] data = {"false"};
                 return data;
             }
-        } catch (IOException ex) {
-            System.out.println("Error al guardar la imagen en el servidor FTP: " + ex.getMessage());
-            ex.printStackTrace();
+        } else {
+            System.out.println("No se ha seleccionado ningún archivo de imagen.");
             String[] data = {"false"};
             return data;
         }
-    } else {
-        System.out.println("No se ha seleccionado ningún archivo de imagen.");
-        String[] data = {"false"};
-        return data;
-    }
     }
 
     public List<Categorias> getCategorias() {
         List<Categorias> lista = new ArrayList<>();
 
-        String consulta = "select * from categorias";
+        String consulta = "select id, nombre, imagen from categorias";
 
         try ( Conexion objConexion = new Conexion()) {
+            
             ResultSet rc = objConexion.consulta(consulta);
             lista.add(new Categorias(0, "Seleccionar", "None"));
+            
             while (rc != null && rc.next()) {
                 int id = rc.getInt("id");
                 lista.add(new Categorias(id, rc.getString("nombre"), rc.getString("imagen")));
@@ -197,10 +205,10 @@ public class ControladorProductos {
     }
 
     public void agregarProducto(String nombre, double precio, int disponibilidad, int categoria, String descripcion, String imagen) {
-        
+
         Timestamp timestamp = ctrlu.crearTimestamp();
         String consulta = "INSERT INTO productos(nombre, precio, descripcion, disponibilidad,size,imagen_1, categoria_id,created_at,updated_at) "
-                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ",'grande', '" + imagen + "', " + categoria + ",'"+timestamp+"','"+timestamp+"');";
+                + "VALUES('" + nombre + "', " + precio + ",'" + descripcion + "', " + disponibilidad + ",'grande', '" + imagen + "', " + categoria + ",'" + timestamp + "','" + timestamp + "');";
 
         try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
@@ -226,27 +234,24 @@ public class ControladorProductos {
 
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
-                    + ", imagen_1 = '" + rutaImagen + "',updated_at = '"+timestamp+"' WHERE id = " + id;
+                    + ", imagen_1 = '" + rutaImagen + "',updated_at = '" + timestamp + "' WHERE id = " + id;
         } else {
             consulta = "UPDATE productos set nombre = '" + nombre + "'"
                     + ", precio = '" + precio + "', disponibilidad = '" + disponibilidad + "', categoria_id = '" + categoria + "', descripcion = '" + descripcion + "'"
-                    + ",updated_at = '"+timestamp+"' WHERE id = " + id;
+                    + ",updated_at = '" + timestamp + "' WHERE id = " + id;
         }
 
-        try (Conexion objConexion = new Conexion()) {
+        try ( Conexion objConexion = new Conexion()) {
             boolean res = objConexion.ejecutar(consulta);
 
-        if (res) {
-            System.out.println("producto actualizado");
-        } else {
-            System.out.println("Error al actualizar producto.");
-        }
-            
+            if (res) {
+                System.out.println("producto actualizado");
+            } else {
+                System.out.println("Error al actualizar producto.");
+            }
+
         } catch (Exception e) {
         }
-       
-
-        
 
     }
 
@@ -287,18 +292,18 @@ public class ControladorProductos {
             return 0;
         }
     }
-    
-    public ImageIcon obtenerImagenRemota(String imageUrl){
-        
+
+    public ImageIcon obtenerImagenRemota(String imageUrl) {
+
         try {
-            URL url = new URL("https://laromana.store/public/"+imageUrl);
+            URL url = new URL("https://laromana.store/public/" + imageUrl);
             Image image = ImageIO.read(url);
             return new ImageIcon(image);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-        
-    } 
-    
+
+    }
+
 }

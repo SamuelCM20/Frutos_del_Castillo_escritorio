@@ -18,9 +18,10 @@ public class Productos {
    private int disponibilidad;
    private String imagen_1;
    private int categorias_id;
+   private String categoria_nombre;
 
    
-   public Productos(int id, String nombre, double precio, String descripcion, int disponibilidad, String imagen1, int categoriaId){
+   public Productos(int id, String nombre, double precio, String descripcion, int disponibilidad, String imagen1, int categoriaId, String categoria_nombre){
        this.idProductos = id;
        this.nombre = nombre;
        this.precio = precio;
@@ -28,7 +29,16 @@ public class Productos {
        this.disponibilidad = disponibilidad;
        this.imagen_1 = imagen1;
        this.categorias_id = categoriaId;
+       this.categoria_nombre = categoria_nombre;
    }
+
+    public String getCategoria_nombre() {
+        return categoria_nombre;
+    }
+
+    public void setCategoria_nombre(String categoria_nombre) {
+        this.categoria_nombre = categoria_nombre;
+    }
    public Productos(){
        
    }
