@@ -742,9 +742,9 @@ public class index extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnMaximizeActionPerformed
 
-    public void runView(String rol, Modelo.Users user) {
+    public void runView(Modelo.Users user) {
         this.user = user;
-        this.rol = rol;
+        this.rol = user.getNombre_rol();
         if (!rol.equals("super_admin")) {
             btnUsuarios.setVisible(false);
             btnProductos.setVisible(false);

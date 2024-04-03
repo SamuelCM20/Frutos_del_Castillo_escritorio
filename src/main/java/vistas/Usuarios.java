@@ -25,16 +25,16 @@ import javax.swing.table.DefaultTableModel;
 public class Usuarios extends javax.swing.JPanel {
 
     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-    
+
     public Usuarios() {
         initComponents();
-        
+
         tableModel();
         fillRows();
         tableUsuarios.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tableUsuarios.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,31 +43,27 @@ public class Usuarios extends javax.swing.JPanel {
     private controladorUsers conObject = new controladorUsers();
     private controladorIndex ctrl = new controladorIndex();
     private ControladorUtils objControladorUtils = new ControladorUtils();
-    
+
     private DefaultTableModel modelTableUsuarios;
     private List<Modelo.Users> listaUsers;
-  
+
     int rowSelected = -1;
-    
+
     public void tableModel() {
         String[] titulosTablaUsuarios = {"Identificación", "Nombre", "Apellido", "Rol"};
-        modelTableUsuarios = objControladorUtils.addTableModel(modelTableUsuarios, tableUsuarios, titulosTablaUsuarios);  
+        modelTableUsuarios = objControladorUtils.addTableModel(modelTableUsuarios, tableUsuarios, titulosTablaUsuarios);
     }
-    
+
     public void fillRows() {
 
         modelTableUsuarios.setRowCount(0);
         listaUsers = conObject.getUsers();
-        
-        listaUsers.forEach(l -> {
-            String rol = ctrl.obtenerRol(l.getIdUsuario());
 
-            modelTableUsuarios.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), rol});
+        listaUsers.forEach(l -> {
+            modelTableUsuarios.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), l.getNombre_rol()});
         });
 
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -193,30 +189,28 @@ public class Usuarios extends javax.swing.JPanel {
     private void addUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUsersMouseClicked
         // TODO add your handling code here:
 
-        agregarUsuario as = new agregarUsuario(parentFrame, true,this);
+        agregarUsuario as = new agregarUsuario(parentFrame, true, this);
         as.setLocationRelativeTo(null);
         as.setVisible(true);
     }//GEN-LAST:event_addUsersMouseClicked
 
     private void btnEditarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUserMouseClicked
-        // TODO add your handling code here:
-        
-        
+
         rowSelected = tableUsuarios.getSelectedRow();
         if (conObject.validarSeleccionTabla(rowSelected)) {
-        Modelo.Users user = (Modelo.Users) listaUsers.get(rowSelected);
-        
-        EditarUsuarios eu;
-        try {
-            eu = new EditarUsuarios(parentFrame, true,user,this);
-            eu.setLocationRelativeTo(null);
-            eu.setVisible(true);
-        } catch (ParseException ex) {
-            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else{
+            Modelo.Users user = (Modelo.Users) listaUsers.get(rowSelected);
+
+            EditarUsuarios eu;
+            try {
+                eu = new EditarUsuarios(parentFrame, true, user, this);
+                eu.setLocationRelativeTo(null);
+                eu.setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Se necesita seleccionar una fila de la tabla.");
-            
+
         }
     }//GEN-LAST:event_btnEditarUserMouseClicked
 

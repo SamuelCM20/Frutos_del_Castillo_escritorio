@@ -43,7 +43,10 @@ public class controladorUsers {
                 Date fecha_na = rc.getDate("fecha_nacimiento");
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
-                lista.add(new Users(id, nombre, apellido, fecha_na, email, celular));
+                
+                int roleId = rc.getInt("role_id");
+                String roleName = rc.getString("name");
+                lista.add(new Users(id, nombre, apellido, fecha_na, email, celular, roleId, roleName));
             }
         } catch (SQLException e) {
         }

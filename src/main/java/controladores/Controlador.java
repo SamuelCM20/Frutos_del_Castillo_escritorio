@@ -26,13 +26,11 @@ public class Controlador implements ActionListener {
     
     //variables de modelos y vistas
     private login vistaLogin;
-    private Users modeloLogin;
     private controladorIndex objControladorIndex = new controladorIndex();
 
     //Constructor que hereda el modelo User y la vista Login
-    public Controlador(login vistaLogin, Users modeloLogin) {
+    public Controlador(login vistaLogin) {
         this.vistaLogin = vistaLogin;
-        this.modeloLogin = modeloLogin;
         this.vistaLogin.btnEntrar.addActionListener(this);
     }
     vistas.index x = new vistas.index();
@@ -57,50 +55,38 @@ public class Controlador implements ActionListener {
 
         }
         
-        try {
-            modeloLogin.setEmail(vistaLogin.txtEmail.getText());
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, "error");
-            return;
-        }
-        
-        //Obtener la informacion del usuario e iniciar sesion
-        modeloLogin.setPassword(vistaLogin.contraseniaUser.getText());
+        String email = vistaLogin.txtEmail.getText();
+        String password = vistaLogin.contraseniaUser.getText();
 
         String consulta = "SELECT us.id AS 'user_id', us.nombre, us.apellido, us.email, us.fecha_nacimiento, us.password, us.celular, mrole.role_id, r.name AS 'role_name'\n"
                 + "FROM users us\n"
                 + "JOIN model_has_roles mrole ON us.id = mrole.model_id\n"
                 + "JOIN roles r ON mrole.role_id = r.id \n"
-                + "WHERE us.email = '" + modeloLogin.getEmail() + "'";
+                + "WHERE us.email = '" + email + "'";
 
         try ( Conexion conex = new Conexion();) {
             ResultSet rc = conex.consulta(consulta);
             if (rc != null && rc.next()) {
+                int userId = rc.getInt("user_id");
                 String passwordOld = rc.getString("password");
-                String UserName = rc.getString("nombre");
-                String Lastname = rc.getString("apellido");
-                int UserId = rc.getInt("user_id");
-                Date Birthday = rc.getDate("fecha_nacimiento");
-                String Useremail = rc.getString("email");
+                String userName = rc.getString("nombre");
+                String lastname = rc.getString("apellido");
+                Date birthday = rc.getDate("fecha_nacimiento");
+                String userEmail = rc.getString("email");
                 String phone = rc.getString("celular");
+                
+                int roleId = rc.getInt("role_id");
+                String roleName = rc.getString("role_name");
 
-                modeloLogin.setIdUsuario(UserId);
-                modeloLogin.setNombre(UserName);
-                modeloLogin.setApellido(Lastname);
-                modeloLogin.setFecha_nacimiento(Birthday);
-                modeloLogin.setEmail(Useremail);
-                modeloLogin.setCelular(phone);
 
                 String passwordNew = passwordOld.substring(0, 2) + "a" + passwordOld.substring(3, passwordOld.length());
-
-                String rolUsuario = objControladorIndex.obtenerRol(modeloLogin.getIdUsuario());
-                modeloLogin.setNombre_rol(rolUsuario);
                 
-                if (BCrypt.checkpw(modeloLogin.getPassword(), passwordNew)) {
-                    if(!rolUsuario.equalsIgnoreCase("Usuario")){
+                if (BCrypt.checkpw(password, passwordNew)) {
+                    if(!roleName.equalsIgnoreCase("Usuario")){
+                        Users modeloLogin = new Users(userId, userName, lastname, birthday, phone, userEmail, roleId, roleName);
                         this.vistaLogin.setVisible(false);
                         x.setUserName(modeloLogin.getNombre());
-                        x.runView(rolUsuario, modeloLogin);
+                        x.runView(modeloLogin);
                     }else{
                         
                         JOptionPane.showMessageDialog(null, "El usuario ingresado no tiene los permisos suficientes para iniciar sesión", "Error en iniciar sesión", JOptionPane.ERROR_MESSAGE);

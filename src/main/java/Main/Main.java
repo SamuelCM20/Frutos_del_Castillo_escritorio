@@ -22,7 +22,6 @@ public class Main {
 
     public static void main(String args[]) {
 
-        Users modLogin = new Users();
         login visLogin = new login();
         Conexion con = new Conexion();
 
@@ -31,7 +30,7 @@ public class Main {
                 splashWindow obj = new splashWindow();
                 obj.setVisible(true);
 
-                Controlador ctrl = new Controlador(visLogin, modLogin);
+                Controlador ctrl = new Controlador(visLogin);
                 try {
                     Thread.sleep(2051);
                 } catch (InterruptedException ex) {

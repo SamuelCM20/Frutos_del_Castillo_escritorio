@@ -38,8 +38,7 @@ public class ControladorPedidos {
 
         String consulta = "select * from compras where estado = 1";
 
-        
-        try (Conexion objConexion = new Conexion()) {
+        try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
@@ -67,8 +66,7 @@ public class ControladorPedidos {
 
         String consulta = "select * from compras where estado != 1";
 
-        
-        try (Conexion objConexion = new Conexion()) {
+        try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
@@ -93,10 +91,13 @@ public class ControladorPedidos {
 
     public Users getUsuario(int usuarioId) {
 
-        String consulta = "select * from users where id = " + usuarioId;
+        String consulta = "SELECT us.id AS 'user_id', us.nombre, us.apellido, us.email, us.fecha_nacimiento, us.password, us.celular, mrole.role_id, r.name AS 'role_name'\n"
+                + "FROM users us\n"
+                + "JOIN model_has_roles mrole ON us.id = mrole.model_id\n"
+                + "JOIN roles r ON mrole.role_id = r.id \n"
+                + "WHERE us.id= '" + usuarioId + "'";
 
-       
-        try (Conexion objConexion = new Conexion()) {
+        try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);
             while (rc != null && rc.next()) {
 
@@ -107,7 +108,10 @@ public class ControladorPedidos {
                 String email = rc.getString("email");
                 String celular = rc.getString("celular");
 
-                return new Users(id, nombre, apellido, fechaNacimiento, email, celular);
+                String role_name = rc.getString("role_name");
+                int role_id = rc.getInt("role_id");
+
+                return new Users(id, nombre, apellido, fechaNacimiento, email, celular, role_id, role_name);
             }
 
         } catch (SQLException s) {

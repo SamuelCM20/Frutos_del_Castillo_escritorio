@@ -22,13 +22,16 @@ public class Users {
     private String email;
     private String password;
     private String celular;
+    
+    
+    private int id_rol;
     private String nombre_rol;
     
     
 
    
 
-    public Users(int id,String nombre,String apellido,Date fecha_nacimiento,String email,String celular){
+    public Users(int id,String nombre,String apellido,Date fecha_nacimiento,String email,String celular, int id_rol, String nombre_rol){
         this.idUsuario = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,7 +39,17 @@ public class Users {
         this.email = email;
 
         this.celular = celular;
+        this.id_rol = id_rol;
+        this.nombre_rol = nombre_rol;
 
+    }
+
+    public int getId_rol() {
+        return id_rol;
+    }
+
+    public void setId_rol(int id_rol) {
+        this.id_rol = id_rol;
     }
 
     public Users() {

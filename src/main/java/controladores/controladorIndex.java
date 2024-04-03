@@ -43,7 +43,7 @@ public class controladorIndex {
         Users modLogin = new Users();
         login visLogin = new login();
         
-        Controlador ctrl = new Controlador(visLogin, modLogin);
+        Controlador ctrl = new Controlador(visLogin);
         ctrl.iniciar();
     }
 

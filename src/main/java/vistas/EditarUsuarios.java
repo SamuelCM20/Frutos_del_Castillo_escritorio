@@ -60,8 +60,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
         txtEditEmailUsers.setText(user.getEmail());
 
-        int rol = ctrlu.getRol(user.getIdUsuario());
-        cbxEditRol.setSelectedIndex(rol);
+        int rol = user.getId_rol();
+        cbxEditRol.setSelectedIndex(rol-1);
 
     }
 

@@ -127,7 +127,7 @@ public class splashWindow extends javax.swing.JFrame {
 
                 obj.dispose();
 
-                Controlador ctrl = new Controlador(visLogin, modLogin);
+                Controlador ctrl = new Controlador(visLogin);
                 ctrl.iniciar();
 
             };
