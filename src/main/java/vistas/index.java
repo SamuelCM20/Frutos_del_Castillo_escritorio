@@ -42,6 +42,7 @@ public class index extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(index.class.getResource("/img/letraSquare.png")).getImage());
 
         Info in = new Info();
+        
         showPanel(in);
 
         addFlatLaf();
@@ -654,6 +655,7 @@ public class index extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
+       
         Usuarios us = new Usuarios();
         showPanel(us);
 
@@ -816,10 +818,11 @@ public class index extends javax.swing.JFrame {
         jpanelMain.repaint();
     }
     
-
     @Override
     public void setDefaultCloseOperation(int operation) {
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
 
     }
+    
+    
 }

@@ -39,7 +39,7 @@ public class ControladorPedidos {
         String consulta = "SELECT c.id, c.user_id, c.fecha_hora, c.iva, c.costo_total, c.comentario, c.direccion, c.estado, c.mesa_id, m.numero_mesa, m.estado as 'mesa_estado' \n"
                 + "from compras c\n"
                 + "join mesas m \n"
-                + "on c.mesa_id = m.id where c.estado = 1";
+                + "on c.mesa_id = m.id where c.estado = 1 AND mesa_id is NOT null;";
 
         try ( Conexion objConexion = new Conexion()) {
             ResultSet rc = objConexion.consulta(consulta);

@@ -10,6 +10,7 @@ package controladores;
  */
 import Modelo.Conexion;
 import Modelo.Users;
+import vistas.index;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -26,14 +27,16 @@ public class controladorUsers {
 
     ControladorUtils ctrlu = new ControladorUtils();
 
+
     public List<Users> getUsers() {
         List<Users> lista = new ArrayList<>();
+
 
         try ( Conexion con = new Conexion()) {
 
             String consulta = "SELECT * FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id "
-                    + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario'";
-
+                    + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario' AND users.id != " + 3 + ";";
+           
             ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {
 
@@ -358,4 +361,5 @@ public class controladorUsers {
         }
         return false;
     }
+   
 }

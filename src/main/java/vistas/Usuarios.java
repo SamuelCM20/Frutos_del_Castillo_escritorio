@@ -9,6 +9,7 @@ import controladores.CustomHeaderRenderer;
 import controladores.CustomCellRenderer;
 import controladores.controladorUsers;
 import controladores.controladorIndex;
+import Modelo.Users;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,14 +27,18 @@ public class Usuarios extends javax.swing.JPanel {
 
     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
+
     public Usuarios() {
         initComponents();
 
         tableModel();
         fillRows();
+        
         tableUsuarios.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tableUsuarios.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,10 +62,13 @@ public class Usuarios extends javax.swing.JPanel {
     public void fillRows() {
 
         modelTableUsuarios.setRowCount(0);
+        
         listaUsers = conObject.getUsers();
 
         listaUsers.forEach(l -> {
+
             modelTableUsuarios.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), l.getNombre_rol()});
+
         });
 
     }

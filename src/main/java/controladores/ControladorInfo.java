@@ -74,7 +74,7 @@ public class ControladorInfo {
             
             Connection con = conex.getConectarDB();
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT count(*) FROM compras WHERE estado = 1");
+            ResultSet rs = stm.executeQuery("SELECT count(*) FROM compras WHERE estado = 1 AND mesa_id is NOT null;");
             // chequeo que el result set no sea vacío, moviendo el cursor a la 
             // primer fila. (El cursor inicia antes de la primer fila)
             if (rs.next()) {
