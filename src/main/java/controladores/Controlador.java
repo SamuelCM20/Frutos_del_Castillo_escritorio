@@ -58,7 +58,7 @@ public class Controlador implements ActionListener {
         String email = vistaLogin.txtEmail.getText();
         String password = vistaLogin.contraseniaUser.getText();
 
-        String consulta = "SELECT us.id AS 'user_id', us.nombre, us.apellido, us.email, us.fecha_nacimiento, us.password, us.celular, mrole.role_id, r.name AS 'role_name'\n"
+        String consulta = "SELECT us.id AS 'user_id', us.nombre, us.apellido, us.email as 'user_email', us.fecha_nacimiento, us.password, us.celular, mrole.role_id, r.name AS 'role_name'\n"
                 + "FROM users us\n"
                 + "JOIN model_has_roles mrole ON us.id = mrole.model_id\n"
                 + "JOIN roles r ON mrole.role_id = r.id \n"
@@ -72,7 +72,7 @@ public class Controlador implements ActionListener {
                 String userName = rc.getString("nombre");
                 String lastname = rc.getString("apellido");
                 Date birthday = rc.getDate("fecha_nacimiento");
-                String userEmail = rc.getString("email");
+                String userEmail = rc.getString("user_email");
                 String phone = rc.getString("celular");
                 
                 int roleId = rc.getInt("role_id");
@@ -83,7 +83,7 @@ public class Controlador implements ActionListener {
                 
                 if (BCrypt.checkpw(password, passwordNew)) {
                     if(!roleName.equalsIgnoreCase("Usuario")){
-                        Users modeloLogin = new Users(userId, userName, lastname, birthday, phone, userEmail, roleId, roleName);
+                        Users modeloLogin = new Users(userId, userName, lastname, birthday, userEmail, phone, roleId, roleName);
                         this.vistaLogin.setVisible(false);
                         x.setUserName(modeloLogin.getNombre());
                         x.runView(modeloLogin);

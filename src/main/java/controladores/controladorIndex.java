@@ -34,13 +34,10 @@ public class controladorIndex {
     }
 
     public boolean verEstado(int state) {
-
         return state == 1;
-
     }
 
     public void iniciarLogin() {
-        Users modLogin = new Users();
         login visLogin = new login();
         
         Controlador ctrl = new Controlador(visLogin);
