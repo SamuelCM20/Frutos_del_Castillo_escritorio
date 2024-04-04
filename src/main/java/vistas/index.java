@@ -655,8 +655,8 @@ public class index extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
-       
-        Usuarios us = new Usuarios();
+       int id =  user.getIdUsuario();
+        Usuarios us = new Usuarios(id); 
         showPanel(us);
 
     }//GEN-LAST:event_btnUsuariosMouseClicked

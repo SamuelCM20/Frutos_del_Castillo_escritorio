@@ -28,14 +28,14 @@ public class controladorUsers {
     ControladorUtils ctrlu = new ControladorUtils();
 
 
-    public List<Users> getUsers() {
+    public List<Users> getUsers(int idUser) {
         List<Users> lista = new ArrayList<>();
 
 
         try ( Conexion con = new Conexion()) {
 
             String consulta = "SELECT * FROM users JOIN model_has_roles ON users.id = model_has_roles.model_id "
-                    + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario' AND users.id != " + 3 + ";";
+                    + "JOIN roles ON model_has_roles.role_id = roles.id WHERE roles.name != 'usuario' AND users.id != " +idUser + ";";
            
             ResultSet rc = con.consulta(consulta);
             while (rc != null && rc.next()) {

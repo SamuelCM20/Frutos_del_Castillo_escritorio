@@ -26,19 +26,21 @@ import javax.swing.table.DefaultTableModel;
 public class Usuarios extends javax.swing.JPanel {
 
     JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+    private int id;
 
 
-    public Usuarios() {
+    public Usuarios(int id) {
         initComponents();
-
+        this.id = id;
         tableModel();
         fillRows();
         
         tableUsuarios.getTableHeader().setDefaultRenderer(new CustomHeaderRenderer());
         tableUsuarios.setDefaultRenderer(Object.class, new CustomCellRenderer());
     }
-
-    
+    public Usuarios(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,12 +65,12 @@ public class Usuarios extends javax.swing.JPanel {
 
         modelTableUsuarios.setRowCount(0);
         
-        listaUsers = conObject.getUsers();
-
+        listaUsers = conObject.getUsers(id);
+        
         listaUsers.forEach(l -> {
-
+            
             modelTableUsuarios.addRow(new Object[]{l.getIdUsuario(), l.getNombre(), l.getApellido(), l.getNombre_rol()});
-
+            
         });
 
     }
