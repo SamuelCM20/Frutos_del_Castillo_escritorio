@@ -124,9 +124,11 @@ public class Pedidos extends javax.swing.JPanel {
                 int opc = JOptionPane.showConfirmDialog(null, "¡Pedido tomado con exito!, ¿desea generar factura?", "Confirmar cierre", JOptionPane.YES_NO_OPTION);
                         if (opc == JOptionPane.YES_OPTION) {
                              generarFactura();
-                             fillRows();
+                        }
+                            fillRows();
                              limpiarCampos();
-                         }
+                                        
+                                                       
             } else {
                 JOptionPane.showMessageDialog(this, "Hubo un error al tomar el pedido.");
             }

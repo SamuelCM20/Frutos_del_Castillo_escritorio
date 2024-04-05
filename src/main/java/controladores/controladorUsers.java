@@ -50,6 +50,7 @@ public class controladorUsers {
                 int roleId = rc.getInt("role_id");
                 String roleName = rc.getString("name");
                 lista.add(new Users(id, nombre, apellido, fecha_na, email, celular, roleId, roleName));
+                System.out.println(id + nombre + apellido+ fecha_na+ email+ celular+ roleId+ roleName);
             }
         } catch (SQLException e) {
         }
