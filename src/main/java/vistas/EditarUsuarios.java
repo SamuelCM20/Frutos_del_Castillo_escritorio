@@ -4,12 +4,13 @@
  */
 package vistas;
 
-
 import java.text.ParseException;
 import controladores.controladorUsers;
 import javax.swing.JOptionPane;
 import controladores.ControladorUtils;
 import java.util.Calendar;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -21,14 +22,15 @@ public class EditarUsuarios extends javax.swing.JDialog {
     /**
      * Creates new form EditarUsuarios
      */
-    index prn = new index();
-
+    JFrame parentFrame;
+    //index prn = new index();
     private Modelo.Users user;
     private vistas.Usuarios usuarios;
     controladorUsers ctrlu = new controladorUsers();
 
     public EditarUsuarios(java.awt.Frame parent, boolean modal, Modelo.Users user, vistas.Usuarios usuarios) throws ParseException {
         super(parent, modal);
+        this.parentFrame = (JFrame) parent;
         this.user = user;
         this.usuarios = usuarios;
         initComponents();
@@ -61,7 +63,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtEditEmailUsers.setText(user.getEmail());
 
         int rol = user.getId_rol();
-        cbxEditRol.setSelectedIndex(rol-1);
+        cbxEditRol.setSelectedIndex(rol - 1);
 
     }
 
@@ -204,7 +206,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
 
     private void btnPasswordRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswordRestoreActionPerformed
         // TODO add your handling code here:
-        vistas.RecuperarContraseña rc = new vistas.RecuperarContraseña(prn, user, true);
+        vistas.RecuperarContraseña rc = new vistas.RecuperarContraseña(parentFrame, user, true);
     }//GEN-LAST:event_btnPasswordRestoreActionPerformed
 
     private void txtEditCelUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditCelUsersActionPerformed
@@ -212,8 +214,8 @@ public class EditarUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_txtEditCelUsersActionPerformed
 
     private void btnPasswordRestoreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPasswordRestoreMouseClicked
-        // TODO add your handling code here:
-        RecuperarContraseña rc = new RecuperarContraseña(prn, user, true);
+        
+        RecuperarContraseña rc = new RecuperarContraseña(parentFrame, user, true);
         rc.setLocationRelativeTo(null);
         this.setVisible(false);
         rc.setVisible(true);
